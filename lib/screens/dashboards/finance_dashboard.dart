@@ -1,7 +1,7 @@
 import 'package:shadcn_flutter/shadcn_flutter.dart';
 
-class ClassicDashboardScreen extends StatelessWidget {
-  const ClassicDashboardScreen({super.key});
+class FinanceDashboardScreen extends StatelessWidget {
+  const FinanceDashboardScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -9,7 +9,7 @@ class ClassicDashboardScreen extends StatelessWidget {
       padding: const .all(16),
       child: Column(
         children: [
-          Row(children: [const Text("Classic Dashboard").bold().large()]),
+          Row(children: [const Text("Finance Dashboard").bold().large()]),
 
           const SizedBox(height: 16),
           Row(
@@ -21,13 +21,7 @@ class ClassicDashboardScreen extends StatelessWidget {
                   padding: const .all(16),
                   child: Column(
                     crossAxisAlignment: .start,
-                    children: [
-                      const Text("Team Members").semiBold(),
-                      const SizedBox(height: 4),
-                      const Text(
-                        "Invite your team members to collaborate.",
-                      ).muted().small(),
-                    ],
+                    children: [const Text("My Balance").semiBold()],
                   ),
                 ),
               ),
@@ -36,7 +30,7 @@ class ClassicDashboardScreen extends StatelessWidget {
                   padding: const .all(16),
                   child: Column(
                     crossAxisAlignment: .start,
-                    children: [const Text("Subscriptions").semiBold()],
+                    children: [const Text("Net Profit").semiBold()],
                   ),
                 ),
               ),
@@ -45,7 +39,16 @@ class ClassicDashboardScreen extends StatelessWidget {
                   padding: const .all(16),
                   child: Column(
                     crossAxisAlignment: .start,
-                    children: [const Text("Total Revenue").semiBold()],
+                    children: [const Text("Expenses").semiBold()],
+                  ),
+                ),
+              ),
+              Expanded(
+                child: Card(
+                  padding: const .all(16),
+                  child: Column(
+                    crossAxisAlignment: .start,
+                    children: [const Text("Pending Invoices").semiBold()],
                   ),
                 ),
               ),
@@ -62,7 +65,7 @@ class ClassicDashboardScreen extends StatelessWidget {
                   padding: const .all(16),
                   child: Column(
                     crossAxisAlignment: .start,
-                    children: [const Text("Chat").semiBold()],
+                    children: [const Text("Income Sources").semiBold()],
                   ),
                 ),
               ),
@@ -73,11 +76,23 @@ class ClassicDashboardScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: .start,
                     children: [
-                      const Text("Exercise Minutes").semiBold(),
+                      const Text("Monthly Expenses").semiBold(),
                       const SizedBox(height: 4),
-                      const Text(
-                        "Your exercise minutes are ahead of where you normally are.",
-                      ).muted().small(),
+                      const Text("Last 6 months").muted().small(),
+                    ],
+                  ),
+                ),
+              ),
+              Expanded(
+                flex: 2,
+                child: Card(
+                  padding: const .all(16),
+                  child: Column(
+                    crossAxisAlignment: .start,
+                    children: [
+                      const Text("Summary").semiBold(),
+                      const SizedBox(height: 4),
+                      const Text("Data from 1-12 Apr, 2024").muted().small(),
                     ],
                   ),
                 ),
@@ -96,12 +111,19 @@ class ClassicDashboardScreen extends StatelessWidget {
                   padding: const .all(16),
                   child: Column(
                     crossAxisAlignment: .start,
+                    children: [const Text("Transactions").semiBold()],
+                  ),
+                ),
+              ),
+              Expanded(
+                child: Card(
+                  padding: const .all(16),
+                  child: Column(
+                    crossAxisAlignment: .start,
                     children: [
-                      const Text("Latest Payments").semiBold(),
+                      const Text("Saving Goal").semiBold(),
                       const SizedBox(height: 4),
-                      const Text(
-                        "See recent payments from your customers here.",
-                      ).muted().small(),
+                      const Text("75% Progress").muted().small(),
                     ],
                   ),
                 ),
@@ -112,10 +134,10 @@ class ClassicDashboardScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: .start,
                     children: [
-                      const Text("Payment Method").semiBold(),
+                      const Text("My Wallet").semiBold(),
                       const SizedBox(height: 4),
                       const Text(
-                        "Add a new payment method to your account.",
+                        "A total of 4 cards are listed",
                       ).muted().small(),
                     ],
                   ),

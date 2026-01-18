@@ -1,7 +1,7 @@
 import 'package:shadcn_flutter/shadcn_flutter.dart';
 
-class ClassicDashboardScreen extends StatelessWidget {
-  const ClassicDashboardScreen({super.key});
+class FileManagerDashboardScreen extends StatelessWidget {
+  const FileManagerDashboardScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -9,9 +9,10 @@ class ClassicDashboardScreen extends StatelessWidget {
       padding: const .all(16),
       child: Column(
         children: [
-          Row(children: [const Text("Classic Dashboard").bold().large()]),
+          Row(children: [const Text("File Manager Dashboard").bold().large()]),
 
           const SizedBox(height: 16),
+
           Row(
             crossAxisAlignment: .start,
             spacing: 16,
@@ -21,13 +22,7 @@ class ClassicDashboardScreen extends StatelessWidget {
                   padding: const .all(16),
                   child: Column(
                     crossAxisAlignment: .start,
-                    children: [
-                      const Text("Team Members").semiBold(),
-                      const SizedBox(height: 4),
-                      const Text(
-                        "Invite your team members to collaborate.",
-                      ).muted().small(),
-                    ],
+                    children: [const Text("Documents").semiBold()],
                   ),
                 ),
               ),
@@ -36,7 +31,7 @@ class ClassicDashboardScreen extends StatelessWidget {
                   padding: const .all(16),
                   child: Column(
                     crossAxisAlignment: .start,
-                    children: [const Text("Subscriptions").semiBold()],
+                    children: [const Text("Images").semiBold()],
                   ),
                 ),
               ),
@@ -45,7 +40,16 @@ class ClassicDashboardScreen extends StatelessWidget {
                   padding: const .all(16),
                   child: Column(
                     crossAxisAlignment: .start,
-                    children: [const Text("Total Revenue").semiBold()],
+                    children: [const Text("Videos").semiBold()],
+                  ),
+                ),
+              ),
+              Expanded(
+                child: Card(
+                  padding: const .all(16),
+                  child: Column(
+                    crossAxisAlignment: .start,
+                    children: [const Text("Others").semiBold()],
                   ),
                 ),
               ),
@@ -53,6 +57,7 @@ class ClassicDashboardScreen extends StatelessWidget {
           ),
 
           const SizedBox(height: 16),
+
           Row(
             crossAxisAlignment: .start,
             spacing: 16,
@@ -62,21 +67,38 @@ class ClassicDashboardScreen extends StatelessWidget {
                   padding: const .all(16),
                   child: Column(
                     crossAxisAlignment: .start,
-                    children: [const Text("Chat").semiBold()],
+                    children: [const Text("Documents").semiBold()],
                   ),
                 ),
               ),
               Expanded(
-                flex: 2,
+                child: Card(
+                  padding: const .all(16),
+                  child: Column(
+                    crossAxisAlignment: .start,
+                    children: [const Text("Images").semiBold()],
+                  ),
+                ),
+              ),
+              Expanded(
+                child: Card(
+                  padding: const .all(16),
+                  child: Column(
+                    crossAxisAlignment: .start,
+                    children: [const Text("Downloads").semiBold()],
+                  ),
+                ),
+              ),
+              Expanded(
                 child: Card(
                   padding: const .all(16),
                   child: Column(
                     crossAxisAlignment: .start,
                     children: [
-                      const Text("Exercise Minutes").semiBold(),
+                      const Text("Storage Space Used").semiBold(),
                       const SizedBox(height: 4),
                       const Text(
-                        "Your exercise minutes are ahead of where you normally are.",
+                        "See your remaining file storage",
                       ).muted().small(),
                     ],
                   ),
@@ -86,22 +108,20 @@ class ClassicDashboardScreen extends StatelessWidget {
           ),
 
           const SizedBox(height: 16),
+
           Row(
             crossAxisAlignment: .start,
             spacing: 16,
             children: [
               Expanded(
-                flex: 2,
                 child: Card(
                   padding: const .all(16),
                   child: Column(
                     crossAxisAlignment: .start,
                     children: [
-                      const Text("Latest Payments").semiBold(),
+                      const Text("Monthly File Transfer").semiBold(),
                       const SizedBox(height: 4),
-                      const Text(
-                        "See recent payments from your customers here.",
-                      ).muted().small(),
+                      const Text("Last 28 Days").muted().small(),
                     ],
                   ),
                 ),
@@ -112,11 +132,7 @@ class ClassicDashboardScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: .start,
                     children: [
-                      const Text("Payment Method").semiBold(),
-                      const SizedBox(height: 4),
-                      const Text(
-                        "Add a new payment method to your account.",
-                      ).muted().small(),
+                      const Text("Recently Uploaded Files").semiBold(),
                     ],
                   ),
                 ),

@@ -1,7 +1,7 @@
 import 'package:shadcn_flutter/shadcn_flutter.dart';
 
-class ClassicDashboardScreen extends StatelessWidget {
-  const ClassicDashboardScreen({super.key});
+class CrmDashboardScreen extends StatelessWidget {
+  const CrmDashboardScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -9,9 +9,10 @@ class ClassicDashboardScreen extends StatelessWidget {
       padding: const .all(16),
       child: Column(
         children: [
-          Row(children: [const Text("Classic Dashboard").bold().large()]),
+          Row(children: [const Text("CRM Dashboard").bold().large()]),
 
           const SizedBox(height: 16),
+
           Row(
             crossAxisAlignment: .start,
             spacing: 16,
@@ -22,11 +23,7 @@ class ClassicDashboardScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: .start,
                     children: [
-                      const Text("Team Members").semiBold(),
-                      const SizedBox(height: 4),
-                      const Text(
-                        "Invite your team members to collaborate.",
-                      ).muted().small(),
+                      const Text("Your target is incomplete").semiBold(),
                     ],
                   ),
                 ),
@@ -36,48 +33,36 @@ class ClassicDashboardScreen extends StatelessWidget {
                   padding: const .all(16),
                   child: Column(
                     crossAxisAlignment: .start,
-                    children: [const Text("Subscriptions").semiBold()],
+                    children: [
+                      const Text("Total Customers").muted().small(),
+                      const SizedBox(height: 4),
+                      const Text("1890").semiBold(),
+                    ],
                   ),
                 ),
               ),
               Expanded(
-                child: Card(
-                  padding: const .all(16),
-                  child: Column(
-                    crossAxisAlignment: .start,
-                    children: [const Text("Total Revenue").semiBold()],
-                  ),
-                ),
-              ),
-            ],
-          ),
-
-          const SizedBox(height: 16),
-          Row(
-            crossAxisAlignment: .start,
-            spacing: 16,
-            children: [
-              Expanded(
-                child: Card(
-                  padding: const .all(16),
-                  child: Column(
-                    crossAxisAlignment: .start,
-                    children: [const Text("Chat").semiBold()],
-                  ),
-                ),
-              ),
-              Expanded(
-                flex: 2,
                 child: Card(
                   padding: const .all(16),
                   child: Column(
                     crossAxisAlignment: .start,
                     children: [
-                      const Text("Exercise Minutes").semiBold(),
+                      const Text("Total Deals").muted().small(),
                       const SizedBox(height: 4),
-                      const Text(
-                        "Your exercise minutes are ahead of where you normally are.",
-                      ).muted().small(),
+                      const Text("1,02,890").semiBold(),
+                    ],
+                  ),
+                ),
+              ),
+              Expanded(
+                child: Card(
+                  padding: const .all(16),
+                  child: Column(
+                    crossAxisAlignment: .start,
+                    children: [
+                      const Text("Total Revenue").muted().small(),
+                      const SizedBox(height: 4),
+                      const Text("\$435,578").semiBold(),
                     ],
                   ),
                 ),
@@ -86,21 +71,30 @@ class ClassicDashboardScreen extends StatelessWidget {
           ),
 
           const SizedBox(height: 16),
+
           Row(
             crossAxisAlignment: .start,
             spacing: 16,
             children: [
               Expanded(
-                flex: 2,
+                child: Card(
+                  padding: const .all(16),
+                  child: Column(
+                    crossAxisAlignment: .start,
+                    children: [const Text("Leads by Source").semiBold()],
+                  ),
+                ),
+              ),
+              Expanded(
                 child: Card(
                   padding: const .all(16),
                   child: Column(
                     crossAxisAlignment: .start,
                     children: [
-                      const Text("Latest Payments").semiBold(),
+                      const Text("Tasks").semiBold(),
                       const SizedBox(height: 4),
                       const Text(
-                        "See recent payments from your customers here.",
+                        "Track and manage your upcoming tasks.",
                       ).muted().small(),
                     ],
                   ),
@@ -112,12 +106,29 @@ class ClassicDashboardScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: .start,
                     children: [
-                      const Text("Payment Method").semiBold(),
+                      const Text("Sales Pipeline").muted().small(),
                       const SizedBox(height: 4),
                       const Text(
-                        "Add a new payment method to your account.",
-                      ).muted().small(),
+                        "Current deals in your sales pipeline.",
+                      ).semiBold(),
                     ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+
+          const SizedBox(height: 16),
+
+          Row(
+            crossAxisAlignment: .start,
+            children: [
+              Expanded(
+                child: Card(
+                  padding: const .all(16),
+                  child: Column(
+                    crossAxisAlignment: .start,
+                    children: [const Text("Leads").semiBold()],
                   ),
                 ),
               ),

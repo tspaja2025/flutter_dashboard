@@ -1,17 +1,48 @@
 import 'package:shadcn_flutter/shadcn_flutter.dart';
 
-class ClassicDashboardScreen extends StatelessWidget {
-  const ClassicDashboardScreen({super.key});
+class HospitalManagementDashboardScreen extends StatefulWidget {
+  const HospitalManagementDashboardScreen({super.key});
+
+  @override
+  State<HospitalManagementDashboardScreen> createState() =>
+      HospitalManagementDashboardScreenState();
+}
+
+class HospitalManagementDashboardScreenState
+    extends State<HospitalManagementDashboardScreen> {
+  int index = 0;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const .all(16),
       child: Column(
+        crossAxisAlignment: .start,
         children: [
-          Row(children: [const Text("Classic Dashboard").bold().large()]),
+          Row(
+            children: [
+              const Text("Hospital Management Dashboard").bold().large(),
+            ],
+          ),
 
           const SizedBox(height: 16),
+
+          Tabs(
+            index: index,
+            children: const [
+              TabItem(child: Text("Overview")),
+              TabItem(child: Text("Reports")),
+              TabItem(child: Text("ACtivites")),
+            ],
+            onChanged: (int value) {
+              setState(() {
+                index = value;
+              });
+            },
+          ),
+
+          const SizedBox(height: 16),
+
           Row(
             crossAxisAlignment: .start,
             spacing: 16,
@@ -21,13 +52,7 @@ class ClassicDashboardScreen extends StatelessWidget {
                   padding: const .all(16),
                   child: Column(
                     crossAxisAlignment: .start,
-                    children: [
-                      const Text("Team Members").semiBold(),
-                      const SizedBox(height: 4),
-                      const Text(
-                        "Invite your team members to collaborate.",
-                      ).muted().small(),
-                    ],
+                    children: [const Text("Total Appointments").semiBold()],
                   ),
                 ),
               ),
@@ -36,7 +61,16 @@ class ClassicDashboardScreen extends StatelessWidget {
                   padding: const .all(16),
                   child: Column(
                     crossAxisAlignment: .start,
-                    children: [const Text("Subscriptions").semiBold()],
+                    children: [const Text("New Patients").semiBold()],
+                  ),
+                ),
+              ),
+              Expanded(
+                child: Card(
+                  padding: const .all(16),
+                  child: Column(
+                    crossAxisAlignment: .start,
+                    children: [const Text("Operations").semiBold()],
                   ),
                 ),
               ),
@@ -62,7 +96,9 @@ class ClassicDashboardScreen extends StatelessWidget {
                   padding: const .all(16),
                   child: Column(
                     crossAxisAlignment: .start,
-                    children: [const Text("Chat").semiBold()],
+                    children: [
+                      const Text("Patient Visits by Gender").semiBold(),
+                    ],
                   ),
                 ),
               ),
@@ -72,12 +108,35 @@ class ClassicDashboardScreen extends StatelessWidget {
                   padding: const .all(16),
                   child: Column(
                     crossAxisAlignment: .start,
+                    children: [const Text("Patients by Department").semiBold()],
+                  ),
+                ),
+              ),
+            ],
+          ),
+
+          const SizedBox(height: 16),
+          Row(
+            crossAxisAlignment: .start,
+            spacing: 16,
+            children: [
+              Expanded(
+                flex: 2,
+                child: Card(
+                  padding: const .all(16),
+                  child: Column(
+                    crossAxisAlignment: .start,
+                    children: [const Text("Upcoming Appointments").semiBold()],
+                  ),
+                ),
+              ),
+              Expanded(
+                child: Card(
+                  padding: const .all(16),
+                  child: Column(
+                    crossAxisAlignment: .start,
                     children: [
-                      const Text("Exercise Minutes").semiBold(),
-                      const SizedBox(height: 4),
-                      const Text(
-                        "Your exercise minutes are ahead of where you normally are.",
-                      ).muted().small(),
+                      const Text("Patients with Last Procedure").semiBold(),
                     ],
                   ),
                 ),
@@ -96,13 +155,7 @@ class ClassicDashboardScreen extends StatelessWidget {
                   padding: const .all(16),
                   child: Column(
                     crossAxisAlignment: .start,
-                    children: [
-                      const Text("Latest Payments").semiBold(),
-                      const SizedBox(height: 4),
-                      const Text(
-                        "See recent payments from your customers here.",
-                      ).muted().small(),
-                    ],
+                    children: [const SizedBox(height: 4)],
                   ),
                 ),
               ),
@@ -111,13 +164,7 @@ class ClassicDashboardScreen extends StatelessWidget {
                   padding: const .all(16),
                   child: Column(
                     crossAxisAlignment: .start,
-                    children: [
-                      const Text("Payment Method").semiBold(),
-                      const SizedBox(height: 4),
-                      const Text(
-                        "Add a new payment method to your account.",
-                      ).muted().small(),
-                    ],
+                    children: [const Text("Notes").semiBold()],
                   ),
                 ),
               ),
