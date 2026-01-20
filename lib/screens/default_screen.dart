@@ -1,6 +1,7 @@
 import 'package:flutter_dashboard/screens/ai_apps/ai_chat_ai_app.dart';
 import 'package:flutter_dashboard/screens/ai_apps/image_generate_ai_app.dart';
 import 'package:flutter_dashboard/screens/ai_apps/text_to_speech_ai_app.dart';
+import 'package:flutter_dashboard/screens/apps/api_keys_app.dart';
 import 'package:flutter_dashboard/screens/apps/calendar_app.dart';
 import 'package:flutter_dashboard/screens/apps/chats_app.dart';
 import 'package:flutter_dashboard/screens/apps/courses_app.dart';
@@ -63,6 +64,7 @@ class DefaultScreenState extends State<DefaultScreen> {
     const TasksAppScreen(),
     const CalendarAppScreen(),
     const FileManagerAppScreen(),
+    const ApiKeysAppScreen(),
     const PosAppScreen(),
     const CoursesAppScreen(),
     // AI Apps
