@@ -1,7 +1,7 @@
 import 'package:shadcn_flutter/shadcn_flutter.dart';
 
-class ErrorPageScreen extends StatelessWidget {
-  const ErrorPageScreen({super.key});
+class AuthenticationForgotPasswordPageScreen extends StatelessWidget {
+  const AuthenticationForgotPasswordPageScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -9,7 +9,7 @@ class ErrorPageScreen extends StatelessWidget {
       padding: const .all(16),
       child: Column(
         children: [
-          Row(children: [const Text("Error Page").bold().large()]),
+          Row(children: [const Text("Forgot Password Page").bold().large()]),
 
           const SizedBox(height: 16),
         ],
