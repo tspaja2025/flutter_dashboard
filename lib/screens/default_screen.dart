@@ -64,283 +64,466 @@ class DefaultScreen extends StatefulWidget {
 
 class DefaultScreenState extends State<DefaultScreen> {
   bool expanded = false;
-  int selectedIndex = 0;
+  AppScreen selectedPage = AppScreen.classicDashboard;
+  int? openSubmenuIndex;
 
-  final Map<String, bool> expandedItems = {};
-
-  final List<NavItem> menu = [
-    // ================= DASHBOARDS =================
-    NavItem(
-      label: "Dashboards",
-      children: [
-        NavItem(
-          label: "Classic Dashboard",
+  // Navigation data
+  final List<NavigationCategory> navigationCategories = [
+    NavigationCategory(
+      title: 'Dashboards',
+      items: [
+        NavigationRailItem(
+          label: 'Classic Dashboard',
           icon: LucideIcons.chartPie,
-          screenIndex: 0,
+          screen: AppScreen.classicDashboard,
         ),
-
-        NavItem(
-          label: "E-commerce",
+        NavigationRailItem(
+          label: 'E-commerce',
           icon: LucideIcons.shoppingBag,
+          screen: AppScreen.ecommerceDashboard,
           children: [
-            NavItem(label: "Dashboard", screenIndex: 1),
-            NavItem(label: "Product List", screenIndex: 2),
-            NavItem(label: "Product Detail", screenIndex: 3),
-            NavItem(label: "Add Product", screenIndex: 4),
-            NavItem(label: "Order List", screenIndex: 5),
-            NavItem(label: "Order Detail", screenIndex: 6),
+            NavigationRailItem(
+              label: 'Dashboard',
+              icon: LucideIcons.shoppingBag,
+              screen: AppScreen.ecommerceDashboard,
+            ),
+            NavigationRailItem(
+              label: 'Product List',
+              icon: LucideIcons.list,
+              screen: AppScreen.ecommerceProductList,
+            ),
+            NavigationRailItem(
+              label: 'Product Detail',
+              icon: LucideIcons.fileText,
+              screen: AppScreen.ecommerceOrderDetail,
+            ),
+            NavigationRailItem(
+              label: 'Add Product',
+              icon: LucideIcons.plus,
+              screen: AppScreen.ecommerceAddProduct,
+            ),
+            NavigationRailItem(
+              label: 'Order List',
+              icon: LucideIcons.listOrdered,
+              screen: AppScreen.ecommerceOrderList,
+            ),
+            NavigationRailItem(
+              label: 'Order Detail',
+              icon: LucideIcons.fileText,
+              screen: AppScreen.ecommerceOrderDetail,
+            ),
           ],
         ),
-
-        NavItem(
-          label: "Payment",
+        NavigationRailItem(
+          label: 'Payment Dashboard',
           icon: LucideIcons.creditCard,
+          screen: AppScreen.paymentDashboard,
           children: [
-            NavItem(label: "Dashboard", screenIndex: 7),
-            NavItem(label: "Transactions", screenIndex: 8),
+            NavigationRailItem(
+              label: 'Dashboard',
+              icon: LucideIcons.creditCard,
+              screen: AppScreen.paymentDashboard,
+            ),
+            NavigationRailItem(
+              label: 'Transactions',
+              icon: LucideIcons.history,
+              screen: AppScreen.paymentTransactions,
+            ),
           ],
         ),
-
-        NavItem(
-          label: "Hotel",
+        NavigationRailItem(
+          label: 'Hotel Dashboard',
           icon: LucideIcons.building,
+          screen: AppScreen.hotelDashboard,
           children: [
-            NavItem(label: "Dashboard", screenIndex: 9),
-            NavItem(label: "Booking", screenIndex: 10),
+            NavigationRailItem(
+              label: 'Dashboard',
+              icon: LucideIcons.building,
+              screen: AppScreen.hotelDashboard,
+            ),
+            NavigationRailItem(
+              label: 'Booking',
+              icon: LucideIcons.calendarCheck,
+              screen: AppScreen.hotelBooking,
+            ),
           ],
         ),
-
-        NavItem(
-          label: "Project Management",
+        NavigationRailItem(
+          label: 'Project Management',
           icon: LucideIcons.folderPlus,
+          screen: AppScreen.projectManagementDashboard,
           children: [
-            NavItem(label: "Dashboard", screenIndex: 11),
-            NavItem(label: "Project List", screenIndex: 12),
+            NavigationRailItem(
+              label: 'Dashboard',
+              icon: LucideIcons.folderPlus,
+              screen: AppScreen.projectManagementDashboard,
+            ),
+            NavigationRailItem(
+              label: 'Project List',
+              icon: LucideIcons.listChecks,
+              screen: AppScreen.projectProjectList,
+            ),
           ],
         ),
-
-        NavItem(
-          label: "Sales Dashboard",
+        NavigationRailItem(
+          label: 'Sales',
           icon: LucideIcons.circleDollarSign,
-          screenIndex: 13,
+          screen: AppScreen.salesDashboard,
         ),
-
-        NavItem(
-          label: "CRM Dashboard",
+        NavigationRailItem(
+          label: 'CRM',
           icon: LucideIcons.chartBarDecreasing,
-          screenIndex: 14,
+          screen: AppScreen.crmDashboard,
         ),
-
-        NavItem(
-          label: "Website Analytics",
+        NavigationRailItem(
+          label: 'Website Analytics',
           icon: LucideIcons.gauge,
-          screenIndex: 15,
+          screen: AppScreen.websiteAnalyticsDashboard,
         ),
-
-        NavItem(
-          label: "File Manager",
+        NavigationRailItem(
+          label: 'File Manager',
           icon: LucideIcons.folder,
-          screenIndex: 16,
+          screen: AppScreen.fileManagerDashboard,
         ),
-
-        NavItem(
-          label: "Crypto Dashboard",
+        NavigationRailItem(
+          label: 'Crypto',
           icon: LucideIcons.wallet,
-          screenIndex: 17,
+          screen: AppScreen.cryptoDashboard,
         ),
-
-        NavItem(
-          label: "Academy / School",
+        NavigationRailItem(
+          label: 'Academy/School',
           icon: LucideIcons.graduationCap,
-          screenIndex: 18,
+          screen: AppScreen.academyDashboard,
         ),
-
-        NavItem(
-          label: "Hospital Management",
-          icon: LucideIcons.heartPulse,
-          screenIndex: 19,
-        ),
-
-        NavItem(
-          label: "Finance Dashboard",
+        NavigationRailItem(
+          label: 'Finance Dashboard',
           icon: LucideIcons.walletCards,
-          screenIndex: 20,
+          screen: AppScreen.financeDashboard,
         ),
       ],
     ),
-
-    // ================= APPS =================
-    NavItem(
-      label: "Apps",
-      children: [
-        NavItem(
-          label: "Kanban Board",
+    NavigationCategory(
+      title: 'Apps',
+      items: [
+        NavigationRailItem(
+          label: 'Kanban',
           icon: LucideIcons.kanban,
-          screenIndex: 21,
+          screen: AppScreen.kanbanBoardApp,
         ),
-        NavItem(label: "Notes", icon: LucideIcons.stickyNote, screenIndex: 22),
-        NavItem(
-          label: "Chats",
+        NavigationRailItem(
+          label: 'Notes',
+          icon: LucideIcons.stickyNote,
+          screen: AppScreen.notesApp,
+        ),
+        NavigationRailItem(
+          label: 'Chats',
           icon: LucideIcons.messageSquare,
-          screenIndex: 23,
+          screen: AppScreen.chatsApp,
         ),
-        NavItem(
-          label: "Social Media",
-          icon: LucideIcons.messageCircleHeart,
-          screenIndex: 24,
+        NavigationRailItem(
+          label: 'Social Media',
+          icon: LucideIcons.messageSquareHeart,
+          screen: AppScreen.socialMediaApp,
         ),
-        NavItem(label: "Mail", icon: LucideIcons.mail, screenIndex: 25),
-        NavItem(
-          label: "Todo List",
-          icon: LucideIcons.squareCheck,
-          screenIndex: 26,
+        NavigationRailItem(
+          label: 'Mail',
+          icon: LucideIcons.mail,
+          screen: AppScreen.mailApp,
         ),
-        NavItem(
-          label: "Tasks",
-          icon: LucideIcons.clipboardCheck,
-          screenIndex: 27,
+        NavigationRailItem(
+          label: 'Todo List App',
+          icon: LucideIcons.listTodo,
+          screen: AppScreen.todoListApp,
         ),
-        NavItem(label: "Calendar", icon: LucideIcons.calendar, screenIndex: 28),
-        NavItem(
-          label: "File Manager",
-          icon: LucideIcons.folderArchive,
-          screenIndex: 29,
+        NavigationRailItem(
+          label: 'File Manager',
+          icon: LucideIcons.fileArchive,
+          screen: AppScreen.fileManagerApp,
         ),
-        NavItem(label: "API Keys", icon: LucideIcons.key, screenIndex: 30),
-        NavItem(label: "POS App", icon: LucideIcons.cookie, screenIndex: 31),
-        NavItem(label: "Courses", icon: LucideIcons.bookA, screenIndex: 32),
+        NavigationRailItem(
+          label: 'Api Keys',
+          icon: LucideIcons.key,
+          screen: AppScreen.apiKeysApp,
+        ),
+        NavigationRailItem(
+          label: 'POS App',
+          icon: LucideIcons.cookie,
+          screen: AppScreen.posApp,
+        ),
+        NavigationRailItem(
+          label: 'Courses',
+          icon: LucideIcons.bookA,
+          screen: AppScreen.coursesApp,
+        ),
       ],
     ),
-
-    // ================= AI APPS =================
-    NavItem(
-      label: "AI Apps",
-      children: [
-        NavItem(
-          label: "AI Chat",
+    NavigationCategory(
+      title: 'AI Apps',
+      items: [
+        NavigationRailItem(
+          label: 'AI Chat',
           icon: LucideIcons.brainCircuit,
-          screenIndex: 33,
+          screen: AppScreen.aiChatAiApp,
         ),
-        NavItem(
-          label: "Image Generator",
+        NavigationRailItem(
+          label: 'Image Generator',
           icon: LucideIcons.images,
-          screenIndex: 34,
+          screen: AppScreen.imageGenerateAiApp,
         ),
-        NavItem(
-          label: "Text To Speech",
+        NavigationRailItem(
+          label: 'Text to Speech',
           icon: LucideIcons.speech,
-          screenIndex: 35,
+          screen: AppScreen.textToSpeechAiApp,
         ),
       ],
     ),
-
-    // ================= PAGES =================
-    NavItem(
-      label: "Pages",
-      children: [
-        NavItem(label: "Users List", screenIndex: 36),
-        NavItem(label: "Profile", screenIndex: 37),
-        NavItem(label: "Onboarding Flow", screenIndex: 38),
-        NavItem(label: "Empty States", screenIndex: 39),
-
-        NavItem(
-          label: "Authentication",
+    NavigationCategory(
+      title: 'Pages',
+      items: [
+        NavigationRailItem(
+          label: 'Users List',
+          icon: LucideIcons.users,
+          screen: AppScreen.usersListPage,
+        ),
+        NavigationRailItem(
+          label: 'Profile',
+          icon: LucideIcons.user,
+          screen: AppScreen.profilePage,
+        ),
+        NavigationRailItem(
+          label: 'Onboarding Flow',
+          icon: LucideIcons.redoDot,
+          screen: AppScreen.onboardingFlowPage,
+        ),
+        NavigationRailItem(
+          label: 'Empty States',
+          icon: LucideIcons.brush,
+          screen: AppScreen.emptyStatesPage,
+          children: List.generate(
+            3,
+            (index) => NavigationRailItem(
+              label: 'Empty States ${(index + 1).toString().padLeft(2, '0')}',
+              icon: LucideIcons.brush,
+              screen: AppScreen.emptyStatesPage,
+            ),
+          ),
+        ),
+        NavigationRailItem(
+          label: 'Settings',
+          icon: LucideIcons.cog,
+          screen: AppScreen.settingsProfilePage,
           children: [
-            NavItem(label: "Login", screenIndex: 40),
-            NavItem(label: "Register", screenIndex: 41),
-            NavItem(label: "Forgot Password", screenIndex: 42),
+            NavigationRailItem(
+              label: 'Profile',
+              icon: LucideIcons.user,
+              screen: AppScreen.settingsProfilePage,
+            ),
+            NavigationRailItem(
+              label: 'Account',
+              icon: LucideIcons.userCog,
+              screen: AppScreen.settingsAccountPage,
+            ),
+            NavigationRailItem(
+              label: 'Billing',
+              icon: LucideIcons.creditCard,
+              screen: AppScreen.settingsBillingPage,
+            ),
+            NavigationRailItem(
+              label: 'Appearance',
+              icon: LucideIcons.palette,
+              screen: AppScreen.settingsAppearancePage,
+            ),
+            NavigationRailItem(
+              label: 'Notifications',
+              icon: LucideIcons.bell,
+              screen: AppScreen.settingsNotificationsPage,
+            ),
+            NavigationRailItem(
+              label: 'Display',
+              icon: LucideIcons.monitor,
+              screen: AppScreen.settingsDisplayPage,
+            ),
           ],
         ),
-
-        NavItem(
-          label: "Error Pages",
+        NavigationRailItem(
+          label: 'Pricing',
+          icon: LucideIcons.circleDollarSign,
+          screen: AppScreen.pricingColumnPage,
           children: [
-            NavItem(label: "404 Page", screenIndex: 43),
-            NavItem(label: "500 Page", screenIndex: 44),
-            NavItem(label: "403 Page", screenIndex: 45),
+            NavigationRailItem(
+              label: 'Column Pricing',
+              icon: LucideIcons.columns2,
+              screen: AppScreen.pricingColumnPage,
+            ),
+            NavigationRailItem(
+              label: 'Table Pricing',
+              icon: LucideIcons.table,
+              screen: AppScreen.pricingTablePage,
+            ),
+            NavigationRailItem(
+              label: 'Single Pricing',
+              icon: LucideIcons.fileText,
+              screen: AppScreen.pricingSinglePage,
+            ),
+          ],
+        ),
+        NavigationRailItem(
+          label: 'Authentication',
+          icon: LucideIcons.fingerprint,
+          screen: AppScreen.authenticationLoginPage,
+          children: [
+            NavigationRailItem(
+              label: 'Login',
+              icon: LucideIcons.logIn,
+              screen: AppScreen.authenticationLoginPage,
+            ),
+            NavigationRailItem(
+              label: 'Register',
+              icon: LucideIcons.userPlus,
+              screen: AppScreen.authenticationRegisterPage,
+            ),
+            NavigationRailItem(
+              label: 'Forgot Password',
+              icon: LucideIcons.key,
+              screen: AppScreen.authenticationForgotPasswordPage,
+            ),
+          ],
+        ),
+        NavigationRailItem(
+          label: 'Error Pages',
+          icon: LucideIcons.shieldAlert,
+          screen: AppScreen.error404Page,
+          children: [
+            NavigationRailItem(
+              label: '404',
+              icon: LucideIcons.fileQuestion,
+              screen: AppScreen.error404Page,
+            ),
+            NavigationRailItem(
+              label: '500',
+              icon: LucideIcons.server,
+              screen: AppScreen.error500Page,
+            ),
+            NavigationRailItem(
+              label: '403',
+              icon: LucideIcons.shieldBan,
+              screen: AppScreen.error403Page,
+            ),
           ],
         ),
       ],
     ),
   ];
 
-  final List<Widget> screens = [
+  // Screen mapping
+  final Map<AppScreen, Widget> screens = {
     // Dashboards
-    const ClassicDashboardScreen(),
-    // e-commerce children start
-    const EcommerceDashboardScreen(),
-    const EcommerceProductListScreen(),
-    const EcommerceProductDetailScreen(),
-    const EcommerceAddProductScreen(),
-    const EcommerceOrderListScreen(),
-    const EcommerceOrderDetailScreen(),
-    // e-commerce children end
-    // Payment children start
-    const PaymentDashboardScreen(),
-    const PaymentTransactionsScreen(),
-    // Payment children end
-    // Hotel children start
-    const HotelDashboardScreen(),
-    const HotelBookingScreen(),
-    // Hotel children end
-    // Project management children start
-    const ProjectManagementDashboardScreen(),
-    const ProjectProjectListScreen(),
-    // Project management children end
-    const SalesDashboardScreen(),
-    const CrmDashboardScreen(),
-    const WebsiteAnalyticsDashboardScreen(),
-    const FileManagerDashboardScreen(),
-    const CryptoDashboardScreen(),
-    const AcademyDashboardScreen(),
-    const HospitalManagementDashboardScreen(),
-    const FinanceDashboardScreen(),
+    AppScreen.classicDashboard: const ClassicDashboardScreen(),
+    AppScreen.ecommerceDashboard: const EcommerceDashboardScreen(),
+    AppScreen.ecommerceProductList: const EcommerceProductListScreen(),
+    AppScreen.ecommerceProductDetail: const EcommerceProductDetailScreen(),
+    AppScreen.ecommerceAddProduct: const EcommerceAddProductScreen(),
+    AppScreen.ecommerceOrderList: const EcommerceOrderListScreen(),
+    AppScreen.ecommerceOrderDetail: const EcommerceOrderDetailScreen(),
+    AppScreen.paymentDashboard: const PaymentDashboardScreen(),
+    AppScreen.paymentTransactions: const PaymentTransactionsScreen(),
+    AppScreen.hotelDashboard: const HotelDashboardScreen(),
+    AppScreen.hotelBooking: const HotelBookingScreen(),
+    AppScreen.projectManagementDashboard:
+        const ProjectManagementDashboardScreen(),
+    AppScreen.projectProjectList: const ProjectProjectListScreen(),
+    AppScreen.salesDashboard: const SalesDashboardScreen(),
+    AppScreen.crmDashboard: const CrmDashboardScreen(),
+    AppScreen.websiteAnalyticsDashboard:
+        const WebsiteAnalyticsDashboardScreen(),
+    AppScreen.fileManagerDashboard: const FileManagerDashboardScreen(),
+    AppScreen.cryptoDashboard: const CryptoDashboardScreen(),
+    AppScreen.academyDashboard: const AcademyDashboardScreen(),
+    AppScreen.hospitalManagementDashboard:
+        const HospitalManagementDashboardScreen(),
+    AppScreen.financeDashboard: const FinanceDashboardScreen(),
     // Apps
-    const KanbanBoardAppScreen(),
-    const NotesAppScreen(),
-    const ChatsAppScreen(),
-    const SocialMediaAppScreen(),
-    const MailAppScreen(),
-    const TodoListAppScreen(),
-    const TasksAppScreen(),
-    const CalendarAppScreen(),
-    const FileManagerAppScreen(),
-    const ApiKeysAppScreen(),
-    const PosAppScreen(),
-    const CoursesAppScreen(),
+    AppScreen.kanbanBoardApp: const KanbanBoardAppScreen(),
+    AppScreen.notesApp: const NotesAppScreen(),
+    AppScreen.chatsApp: const ChatsAppScreen(),
+    AppScreen.socialMediaApp: const SocialMediaAppScreen(),
+    AppScreen.mailApp: const MailAppScreen(),
+    AppScreen.todoListApp: const TodoListAppScreen(),
+    AppScreen.tasksApp: const TasksAppScreen(),
+    AppScreen.calendarApp: const CalendarAppScreen(),
+    AppScreen.fileManagerApp: const FileManagerAppScreen(),
+    AppScreen.apiKeysApp: const ApiKeysAppScreen(),
+    AppScreen.posApp: const PosAppScreen(),
+    AppScreen.coursesApp: const CoursesAppScreen(),
     // AI Apps
-    const AiChatAiAppScreen(),
-    const ImageGenerateAiAppScreen(),
-    const TextToSpeechAiAppScreen(),
+    AppScreen.aiChatAiApp: const AiChatAiAppScreen(),
+    AppScreen.imageGenerateAiApp: const ImageGenerateAiAppScreen(),
+    AppScreen.textToSpeechAiApp: const TextToSpeechAiAppScreen(),
     // Pages
-    const UsersListPageScreen(),
-    const ProfilePageScreen(),
-    const OnboardingFlowPageScreen(),
-    const EmptyStatesPageScreen(),
-    // Settings children start
-    const SettingsProfilePageScreen(),
-    const SettingsAccountPageScreen(),
-    const SettingsBillingPageScreen(),
-    const SettingsAppearancePageScreen(),
-    const SettingsNotificationsPageScreen(),
-    const SettingsDisplayPageScreen(),
-    // Settings children end
-    // Pricing children start
-    const PricingColumnPageScreen(),
-    const PricingTablePageScreen(),
-    const PricingSinglePageScreen(),
-    // Pricing children end
-    // Authentication children start
-    const AuthenticationLoginPageScreen(),
-    const AuthenticationRegisterPageScreen(),
-    const AuthenticationForgotPasswordPageScreen(),
-    // Authentication children end
-    // Error children start
-    const Error404PageScreen(),
-    const Error500PageScreen(),
-    const Error403PageScreen(),
-    // Error children end
-  ];
+    AppScreen.usersListPage: const UsersListPageScreen(),
+    AppScreen.profilePage: const ProfilePageScreen(),
+    AppScreen.onboardingFlowPage: const OnboardingFlowPageScreen(),
+    AppScreen.emptyStatesPage: const EmptyStatesPageScreen(),
+    // Settings
+    AppScreen.settingsProfilePage: const SettingsProfilePageScreen(),
+    AppScreen.settingsAccountPage: const SettingsAccountPageScreen(),
+    AppScreen.settingsBillingPage: const SettingsBillingPageScreen(),
+    AppScreen.settingsAppearancePage: const SettingsAppearancePageScreen(),
+    AppScreen.settingsNotificationsPage:
+        const SettingsNotificationsPageScreen(),
+    AppScreen.settingsDisplayPage: const SettingsDisplayPageScreen(),
+    // Pricing
+    AppScreen.pricingColumnPage: const PricingColumnPageScreen(),
+    AppScreen.pricingTablePage: const PricingTablePageScreen(),
+    AppScreen.pricingSinglePage: const PricingSinglePageScreen(),
+    // Authentication
+    AppScreen.authenticationLoginPage: const AuthenticationLoginPageScreen(),
+    AppScreen.authenticationRegisterPage:
+        const AuthenticationRegisterPageScreen(),
+    AppScreen.authenticationForgotPasswordPage:
+        const AuthenticationForgotPasswordPageScreen(),
+    // Error pages
+    AppScreen.error404Page: const Error404PageScreen(),
+    AppScreen.error500Page: const Error500PageScreen(),
+    AppScreen.error403Page: const Error403PageScreen(),
+  };
+
+  void _showUserMenu(BuildContext context) {
+    showDropdown(
+      context: context,
+      builder: (context) {
+        return const DropdownMenu(
+          children: [
+            MenuButton(child: Text("Upgrade to Pro")),
+            MenuButton(child: Text("Account")),
+            MenuButton(child: Text("Billing")),
+            MenuButton(child: Text("Notifications")),
+            MenuDivider(),
+            MenuButton(child: Text("Log out")),
+          ],
+        );
+      },
+    );
+  }
+
+  void _selectPage(AppScreen page) {
+    setState(() => selectedPage = page);
+  }
+
+  void _toggleSubmenu(int index) {
+    setState(() => openSubmenuIndex = openSubmenuIndex == index ? null : index);
+  }
+
+  int _getSubmenuIndex(NavigationRailItem item) {
+    int index = 0;
+    for (final category in navigationCategories) {
+      for (final navItem in category.items) {
+        if (navItem == item) return index;
+        index++;
+      }
+    }
+    return -1;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -349,92 +532,34 @@ class DefaultScreenState extends State<DefaultScreen> {
         child: Row(
           crossAxisAlignment: .stretch,
           children: [
-            _buildRail(),
+            NavigationRail(
+              labelType: .expanded,
+              labelPosition: .end,
+              alignment: .start,
+              expanded: expanded,
+              children: [
+                NavigationWidget(
+                  child: Column(
+                    crossAxisAlignment: .stretch,
+                    children: _buildNavigationItems(),
+                  ),
+                ),
+              ],
+            ),
 
-            Flexible(
+            Expanded(
               child: Padding(
                 padding: const .all(8),
                 child: Card(
-                  padding: const .all(0),
+                  padding: .zero,
                   child: Column(
                     crossAxisAlignment: .start,
                     children: [
-                      Padding(
-                        padding: const .all(8),
-                        child: Row(
-                          spacing: 8,
-                          children: [
-                            IconButton.ghost(
-                              onPressed: () {
-                                setState(() {
-                                  expanded = !expanded;
-                                });
-                              },
-                              icon: expanded
-                                  ? const Icon(LucideIcons.panelLeftClose)
-                                  : const Icon(LucideIcons.panelLeftOpen),
-                            ),
-                            IconButton.ghost(
-                              onPressed: () {},
-                              icon: const Icon(LucideIcons.search),
-                            ),
-                            const Spacer(),
-                            IconButton.ghost(
-                              onPressed: () {},
-                              icon: const Icon(LucideIcons.bell),
-                            ),
-                            IconButton.ghost(
-                              onPressed: () {},
-                              icon: const Icon(LucideIcons.moon),
-                            ),
-                            IconButton.ghost(
-                              onPressed: () {},
-                              icon: const Icon(LucideIcons.palette),
-                            ),
-                            Builder(
-                              builder: (context) {
-                                return IconButton.ghost(
-                                  onPressed: () {
-                                    showDropdown(
-                                      context: context,
-                                      builder: (context) {
-                                        return const DropdownMenu(
-                                          children: [
-                                            MenuButton(
-                                              child: Text("Upgrade to Pro"),
-                                            ),
-                                            MenuButton(child: Text("Account")),
-                                            MenuButton(child: Text("Billing")),
-                                            MenuButton(
-                                              child: Text("Notifications"),
-                                            ),
-                                            MenuDivider(),
-                                            MenuButton(child: Text("Log out")),
-                                          ],
-                                        );
-                                      },
-                                    );
-                                  },
-                                  icon: Avatar(
-                                    size: 24,
-                                    initials: Avatar.getInitials("ts paja"),
-                                    provider: const NetworkImage(
-                                      "https://avatars.githubusercontent.com/u/213942709?s=400&v=4",
-                                    ),
-                                  ),
-                                );
-                              },
-                            ),
-                          ],
-                        ),
-                      ),
+                      _buildAppBar(),
                       const Divider(),
                       Expanded(
                         child: SingleChildScrollView(
-                          child: IndexedStack(
-                            index: selectedIndex,
-                            children: screens,
-                          ),
+                          child: screens[selectedPage],
                         ),
                       ),
                     ],
@@ -448,102 +573,325 @@ class DefaultScreenState extends State<DefaultScreen> {
     );
   }
 
-  Widget _buildRail() {
-    return Container(
-      width: expanded ? 260 : 72,
-      decoration: BoxDecoration(
-        border: Border(
-          right: BorderSide(color: Theme.of(context).colorScheme.border),
-        ),
+  List<Widget> _buildNavigationItems() {
+    final items = <Widget>[
+      NavigationButton(
+        alignment: Alignment.centerLeft,
+        child: const Icon(LucideIcons.layoutDashboard),
       ),
-      child: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: .start,
-          children: [
-            const SizedBox(height: 8),
-            for (final section in menu) ...[
-              if (expanded)
-                Padding(
-                  padding: const .symmetric(horizontal: 12, vertical: 8),
-                  child: Text(section.label).small().semiBold().muted(),
-                ),
-              for (final item in section.children) _buildNavItem(item),
-            ],
-          ],
-        ),
+      const NavigationDivider(),
+    ];
+
+    for (final category in navigationCategories) {
+      items.add(_buildCategoryLabel(category.title));
+
+      for (final item in category.items) {
+        if (item.hasChildren) {
+          final submenuIndex = _getSubmenuIndex(item);
+          items.add(
+            NavigationSubmenu(
+              expanded: expanded,
+              isOpen: openSubmenuIndex == submenuIndex,
+              onToggle: () => _toggleSubmenu(submenuIndex),
+              label: item.label,
+              icon: item.icon,
+              children: item.children!
+                  .map((child) => _buildSubButton(child.label, child.screen))
+                  .toList(),
+            ),
+          );
+        } else {
+          items.add(_buildButton(item.label, item.icon, item.screen));
+        }
+      }
+    }
+
+    return items;
+  }
+
+  NavigationLabel _buildCategoryLabel(String label) {
+    return NavigationLabel(
+      alignment: .centerLeft,
+      child: Text(label).semiBold().muted(),
+    );
+  }
+
+  NavigationItem _buildButton(String label, IconData icon, AppScreen page) {
+    return NavigationItem(
+      alignment: .centerLeft,
+      selectedStyle: const ButtonStyle.primaryIcon(),
+      selected: selectedPage == page,
+      onChanged: (_) {
+        setState(() {
+          selectedPage = page;
+        });
+      },
+      label: Text(label),
+      child: Icon(icon),
+    );
+  }
+
+  NavigationItem _buildSubButton(String label, AppScreen page) {
+    return NavigationItem(
+      alignment: Alignment.centerLeft,
+      selectedStyle: const ButtonStyle.primaryIcon(),
+      selected: selectedPage == page,
+      onChanged: (_) => _selectPage(page),
+      child: Text(label),
+    );
+  }
+
+  Widget _buildAppBar() {
+    return Padding(
+      padding: const EdgeInsets.all(8),
+      child: Row(
+        children: [
+          IconButton.ghost(
+            onPressed: () => setState(() => expanded = !expanded),
+            icon: expanded
+                ? const Icon(LucideIcons.panelLeftClose)
+                : const Icon(LucideIcons.panelLeftOpen),
+          ),
+          IconButton.ghost(
+            onPressed: () {},
+            icon: const Icon(LucideIcons.search),
+          ),
+          const Spacer(),
+          _buildAppBarActions(),
+        ],
       ),
     );
   }
 
-  Widget _buildNavItem(NavItem item, {double indent = 0}) {
-    final isExpanded = expandedItems[item.label] ?? false;
-    final isSelected = item.screenIndex == selectedIndex;
-
-    return Column(
-      crossAxisAlignment: .start,
+  Widget _buildAppBarActions() {
+    return Row(
       children: [
-        GhostButton(
-          onPressed: () {
-            if (item.isParent) {
-              setState(() {
-                expandedItems[item.label] = !isExpanded;
-              });
-            } else {
-              setState(() {
-                selectedIndex = item.screenIndex!;
-              });
-            }
-          },
-          child: Row(
-            mainAxisAlignment: expanded ? .start : .center,
-            children: [
-              if (item.icon != null) Icon(item.icon, size: 16),
-              if (expanded) ...[
-                const SizedBox(width: 8),
-                Expanded(child: Text(item.label)),
-                if (item.isParent)
-                  Icon(
-                    isExpanded
-                        ? LucideIcons.chevronDown
-                        : LucideIcons.chevronRight,
-                    size: 14,
-                  ),
-              ],
-            ],
-          ),
+        IconButton.ghost(onPressed: () {}, icon: const Icon(LucideIcons.bell)),
+        IconButton.ghost(onPressed: () {}, icon: const Icon(LucideIcons.moon)),
+        IconButton.ghost(
+          onPressed: () {},
+          icon: const Icon(LucideIcons.palette),
         ),
-
-        if (item.isParent)
-          AnimatedSize(
-            duration: const Duration(milliseconds: 200),
-            curve: Curves.easeInOut,
-            child: isExpanded
-                ? Column(
-                    children: item.children
-                        .map(
-                          (child) => _buildNavItem(child, indent: indent + 16),
-                        )
-                        .toList(),
-                  )
-                : const SizedBox.shrink(),
-          ),
+        Builder(
+          builder: (context) {
+            return IconButton.ghost(
+              onPressed: () => _showUserMenu(context),
+              icon: Avatar(
+                size: 24,
+                initials: Avatar.getInitials("ts paja"),
+                provider: const NetworkImage(
+                  "https://avatars.githubusercontent.com/u/213942709?s=400&v=4",
+                ),
+              ),
+            );
+          },
+        ),
       ],
     );
   }
 }
 
-class NavItem {
-  final String label;
-  final IconData? icon;
-  final int? screenIndex;
-  final List<NavItem> children;
+enum AppScreen {
+  // Dashboards
+  classicDashboard,
+  // e-commerce children start
+  ecommerceDashboard,
+  ecommerceProductList,
+  ecommerceProductDetail,
+  ecommerceAddProduct,
+  ecommerceOrderList,
+  ecommerceOrderDetail,
+  // e-commerce children end
+  // Payment children start
+  paymentDashboard,
+  paymentTransactions,
+  // Payment children end
+  // Hotel children start
+  hotelDashboard,
+  hotelBooking,
+  // Hotel children end
+  // Project management children start
+  projectManagementDashboard,
+  projectProjectList,
+  // Project management children end
+  salesDashboard,
+  crmDashboard,
+  websiteAnalyticsDashboard,
+  fileManagerDashboard,
+  cryptoDashboard,
+  academyDashboard,
+  hospitalManagementDashboard,
+  financeDashboard,
+  // Apps
+  kanbanBoardApp,
+  notesApp,
+  chatsApp,
+  socialMediaApp,
+  mailApp,
+  todoListApp,
+  tasksApp,
+  calendarApp,
+  fileManagerApp,
+  apiKeysApp,
+  posApp,
+  coursesApp,
+  // AI Apps
+  aiChatAiApp,
+  imageGenerateAiApp,
+  textToSpeechAiApp,
+  // Pages
+  usersListPage,
+  profilePage,
+  onboardingFlowPage,
+  emptyStatesPage,
+  // Settings children start
+  settingsProfilePage,
+  settingsAccountPage,
+  settingsBillingPage,
+  settingsAppearancePage,
+  settingsNotificationsPage,
+  settingsDisplayPage,
+  // Settings children end
+  // Pricing children start
+  pricingColumnPage,
+  pricingTablePage,
+  pricingSinglePage,
+  // Pricing children end
+  // Authentication children start
+  authenticationLoginPage,
+  authenticationRegisterPage,
+  authenticationForgotPasswordPage,
+  // Authentication children end
+  // Error children start
+  error404Page,
+  error500Page,
+  error403Page,
+  // Error children end
+}
 
-  const NavItem({
+class NavigationRailItem {
+  final String label;
+  final IconData icon;
+  final AppScreen screen;
+  final List<NavigationRailItem>? children;
+
+  const NavigationRailItem({
     required this.label,
-    this.icon,
-    this.screenIndex,
-    this.children = const [],
+    required this.icon,
+    required this.screen,
+    this.children,
   });
 
-  bool get isParent => children.isNotEmpty;
+  bool get hasChildren => children != null && children!.isNotEmpty;
+}
+
+class NavigationCategory {
+  final String title;
+  final List<NavigationRailItem> items;
+
+  const NavigationCategory({required this.title, required this.items});
+}
+
+class NavigationSubmenu extends NavigationWidget {
+  NavigationSubmenu({
+    super.key,
+    required bool expanded,
+    required bool isOpen,
+    required VoidCallback onToggle,
+    required String label,
+    required IconData icon,
+    required List<Widget> children,
+  }) : super(
+         child: NavigationSubmenuBody(
+           expanded: expanded,
+           isOpen: isOpen,
+           onToggle: onToggle,
+           label: label,
+           icon: icon,
+           children: children,
+         ),
+       );
+}
+
+class NavigationSubmenuBody extends StatelessWidget {
+  final bool expanded;
+  final bool isOpen;
+  final VoidCallback onToggle;
+  final String label;
+  final IconData icon;
+  final List<Widget> children;
+
+  const NavigationSubmenuBody({
+    super.key,
+    required this.expanded,
+    required this.isOpen,
+    required this.onToggle,
+    required this.label,
+    required this.icon,
+    required this.children,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return NavigationWidget(
+      child: Column(
+        crossAxisAlignment: .stretch,
+        children: [
+          if (expanded) ...{
+            GhostButton(
+              onPressed: onToggle,
+              leading: Icon(icon),
+              density: .icon,
+              trailing: Icon(
+                isOpen ? Icons.arrow_drop_up : Icons.arrow_drop_down,
+              ),
+              child: Text(label),
+            ),
+            if (isOpen)
+              Padding(
+                padding: const .only(left: 16),
+                child: Container(
+                  padding: const .only(left: 12),
+                  decoration: BoxDecoration(
+                    border: Border(
+                      left: BorderSide(
+                        color: Theme.of(context).colorScheme.border,
+                      ),
+                    ),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: .stretch,
+                    children: children,
+                  ),
+                ),
+              ),
+          } else ...{
+            Builder(
+              builder: (context) {
+                return IconButton.ghost(
+                  icon: Icon(icon),
+                  onPressed: () {
+                    showPopover(
+                      context: context,
+                      alignment: .topLeft,
+                      offset: const Offset(0, 0),
+                      overlayBarrier: OverlayBarrier(
+                        borderRadius: Theme.of(context).borderRadiusLg,
+                      ),
+                      builder: (context) {
+                        return ModalContainer(
+                          padding: const .all(8),
+                          child: Wrap(direction: .vertical, children: children),
+                        );
+                      },
+                    );
+                  },
+                );
+              },
+            ),
+          },
+        ],
+      ),
+    );
+  }
 }

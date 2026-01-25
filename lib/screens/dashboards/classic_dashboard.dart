@@ -1,3 +1,4 @@
+import 'package:fl_chart/fl_chart.dart';
 import 'package:shadcn_flutter/shadcn_flutter.dart';
 
 class ClassicDashboardScreen extends StatefulWidget {
@@ -173,6 +174,21 @@ class ClassicDashboardScreenState extends State<ClassicDashboardScreen> {
                       const Text("+180.1% from last month").muted().small(),
 
                       const SizedBox(height: 16),
+
+                      SizedBox(
+                        height: 75,
+                        child: BarChart(
+                          BarChartData(
+                            barTouchData: barTouchData,
+                            titlesData: const FlTitlesData(show: false),
+                            borderData: FlBorderData(show: false),
+                            barGroups: barGroups,
+                            gridData: const FlGridData(show: false),
+                            alignment: .spaceAround,
+                            maxY: 20,
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -646,4 +662,127 @@ class ClassicDashboardScreenState extends State<ClassicDashboardScreen> {
       ),
     );
   }
+
+  BarTouchData get barTouchData => BarTouchData(
+    enabled: false,
+    touchTooltipData: BarTouchTooltipData(
+      getTooltipColor: (group) => Colors.transparent,
+      tooltipPadding: .zero,
+      tooltipMargin: 8,
+      getTooltipItem:
+          (
+            BarChartGroupData group,
+            int groupIndex,
+            BarChartRodData rod,
+            int rodIndex,
+          ) {
+            return BarTooltipItem(
+              rod.toY.round().toString(),
+              TextStyle(
+                color: Theme.of(context).colorScheme.primary,
+                fontWeight: .bold,
+              ),
+            );
+          },
+    ),
+  );
+
+  List<BarChartGroupData> get barGroups => [
+    BarChartGroupData(
+      x: 0,
+      barRods: [
+        BarChartRodData(
+          toY: 2.4,
+          width: 22,
+          borderRadius: .circular(0),
+          color: Colors.black,
+        ),
+      ],
+      showingTooltipIndicators: [0],
+    ),
+    BarChartGroupData(
+      x: 1,
+      barRods: [
+        BarChartRodData(
+          toY: 3.0,
+          width: 22,
+          borderRadius: .circular(0),
+          color: Colors.black,
+        ),
+      ],
+      showingTooltipIndicators: [0],
+    ),
+    BarChartGroupData(
+      x: 2,
+      barRods: [
+        BarChartRodData(
+          toY: 2.0,
+          width: 22,
+          borderRadius: .circular(0),
+          color: Colors.black,
+        ),
+      ],
+      showingTooltipIndicators: [0],
+    ),
+    BarChartGroupData(
+      x: 3,
+      barRods: [
+        BarChartRodData(
+          toY: 2.78,
+          width: 22,
+          borderRadius: .circular(0),
+          color: Colors.black,
+        ),
+      ],
+      showingTooltipIndicators: [0],
+    ),
+    BarChartGroupData(
+      x: 4,
+      barRods: [
+        BarChartRodData(
+          toY: 1.89,
+          width: 22,
+          borderRadius: .circular(0),
+          color: Colors.black,
+        ),
+      ],
+      showingTooltipIndicators: [0],
+    ),
+    BarChartGroupData(
+      x: 5,
+      barRods: [
+        BarChartRodData(
+          toY: 2.39,
+          width: 22,
+          borderRadius: .circular(0),
+          color: Colors.black,
+        ),
+      ],
+      showingTooltipIndicators: [0],
+    ),
+    BarChartGroupData(
+      x: 6,
+      barRods: [
+        BarChartRodData(
+          toY: 2.78,
+          width: 22,
+          borderRadius: .circular(0),
+          color: Colors.black,
+        ),
+      ],
+      showingTooltipIndicators: [0],
+    ),
+    BarChartGroupData(
+      x: 7,
+      barRods: [
+        BarChartRodData(
+          toY: 1.89,
+          width: 22,
+          borderRadius: .circular(0),
+          color: Colors.black,
+        ),
+      ],
+      showingTooltipIndicators: [0],
+    ),
+  ];
 }
