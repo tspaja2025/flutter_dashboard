@@ -1067,7 +1067,7 @@ class EcommerceDashboardScreen extends StatelessWidget {
 
                       Table(
                         columnWidths: {
-                          0: FixedTableSize(48),
+                          0: FixedTableSize(170),
                           1: FixedTableSize(150),
                           2: FixedTableSize(140),
                         },

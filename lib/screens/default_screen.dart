@@ -95,7 +95,7 @@ class DefaultScreenState extends State<DefaultScreen> {
             NavigationRailItem(
               label: 'Product Detail',
               icon: LucideIcons.fileText,
-              screen: AppScreen.ecommerceOrderDetail,
+              screen: AppScreen.ecommerceProductDetail,
             ),
             NavigationRailItem(
               label: 'Add Product',
