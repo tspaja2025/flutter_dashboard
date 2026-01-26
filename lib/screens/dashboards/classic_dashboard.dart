@@ -185,7 +185,7 @@ class ClassicDashboardScreenState extends State<ClassicDashboardScreen> {
                             barGroups: barGroups,
                             gridData: const FlGridData(show: false),
                             alignment: .spaceAround,
-                            maxY: 20,
+                            maxY: 500,
                           ),
                         ),
                       ),
@@ -198,7 +198,11 @@ class ClassicDashboardScreenState extends State<ClassicDashboardScreen> {
                   padding: const .all(16),
                   child: Column(
                     crossAxisAlignment: .start,
-                    children: [const Text("Total Revenue").semiBold()],
+                    children: [
+                      const Text("Total Revenue").semiBold(),
+                      const Text("\$15,231.89").large().semiBold(),
+                      const Text("+20.1% from last month").muted().small(),
+                    ],
                   ),
                 ),
               ),
@@ -215,7 +219,111 @@ class ClassicDashboardScreenState extends State<ClassicDashboardScreen> {
                   padding: const .all(16),
                   child: Column(
                     crossAxisAlignment: .start,
-                    children: [const Text("Chat").semiBold()],
+                    children: [
+                      Row(
+                        spacing: 8,
+                        children: [
+                          Avatar(
+                            size: 24,
+                            initials: Avatar.getInitials("ts paja"),
+                            provider: const NetworkImage(
+                              "https://avatars.githubusercontent.com/u/213942709?s=400&v=4",
+                            ),
+                          ),
+                          Column(
+                            crossAxisAlignment: .start,
+                            children: [
+                              const Text("John Doe"),
+                              const Text("john@doe.com").muted().small(),
+                            ],
+                          ),
+                          const Spacer(),
+                          IconButton.outline(
+                            onPressed: () {},
+                            icon: const Icon(LucideIcons.plus),
+                          ),
+                        ],
+                      ),
+
+                      const SizedBox(height: 16),
+
+                      Row(
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                              color: Theme.of(context).colorScheme.border,
+                              borderRadius: .circular(12),
+                            ),
+                            padding: const .all(8),
+                            child: const Text("Hi, how can I help you today?"),
+                          ),
+                        ],
+                      ),
+
+                      const SizedBox(height: 16),
+                      Row(
+                        mainAxisAlignment: .end,
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                              color: Colors.black,
+                              borderRadius: .circular(12),
+                            ),
+                            padding: const .all(8),
+                            child: const Text(
+                              "Hey, I'm having trouble with my account.",
+                            ),
+                          ),
+                        ],
+                      ),
+
+                      const SizedBox(height: 16),
+                      Row(
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                              color: Theme.of(context).colorScheme.border,
+                              borderRadius: .circular(12),
+                            ),
+                            padding: const .all(8),
+                            child: const Text("What seems to be the problem?"),
+                          ),
+                        ],
+                      ),
+
+                      const SizedBox(height: 16),
+                      Row(
+                        mainAxisAlignment: .end,
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                              color: Colors.black,
+                              borderRadius: .circular(12),
+                            ),
+                            padding: const .all(8),
+                            child: const Text("I can't log in."),
+                          ),
+                        ],
+                      ),
+
+                      const SizedBox(height: 16),
+
+                      Row(
+                        spacing: 8,
+                        children: [
+                          Expanded(
+                            child: TextField(
+                              placeholder: const Text("Type your message"),
+                            ),
+                          ),
+                          IconButton.primary(
+                            enabled: false,
+                            onPressed: () {},
+                            icon: const Icon(LucideIcons.send),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -226,11 +334,42 @@ class ClassicDashboardScreenState extends State<ClassicDashboardScreen> {
                   child: Column(
                     crossAxisAlignment: .start,
                     children: [
-                      const Text("Exercise Minutes").semiBold(),
-                      const SizedBox(height: 4),
-                      const Text(
-                        "Your exercise minutes are ahead of where you normally are.",
-                      ).muted().small(),
+                      Row(
+                        children: [
+                          Column(
+                            crossAxisAlignment: .start,
+                            children: [
+                              const Text("Exercise Minutes").semiBold(),
+                              const SizedBox(height: 4),
+                              const Text(
+                                "Your exercise minutes are ahead of where you normally are.",
+                              ).muted().small(),
+                            ],
+                          ),
+                          const Spacer(),
+                          Builder(
+                            builder: (context) {
+                              return OutlineButton(
+                                onPressed: () {
+                                  showDropdown(
+                                    context: context,
+                                    builder: (context) {
+                                      return const DropdownMenu(
+                                        children: [
+                                          MenuButton(child: Text("Excel")),
+                                          MenuButton(child: Text("PDF")),
+                                        ],
+                                      );
+                                    },
+                                  );
+                                },
+                                leading: const Icon(LucideIcons.download),
+                                child: const Text("Export"),
+                              );
+                            },
+                          ),
+                        ],
+                      ),
                     ],
                   ),
                 ),
@@ -275,7 +414,10 @@ class ClassicDashboardScreenState extends State<ClassicDashboardScreen> {
                       const SizedBox(height: 16),
 
                       Table(
-                        columnWidths: {0: FixedTableSize(48)},
+                        columnWidths: {
+                          0: FixedTableSize(48),
+                          2: FixedTableSize(220),
+                        },
                         defaultRowHeight: FixedTableSize(48),
 
                         rows: [
@@ -319,10 +461,10 @@ class ClassicDashboardScreenState extends State<ClassicDashboardScreen> {
                                   ),
                                 ),
                               ),
-                              _buildCell("Production API Key"),
-                              _buildCell("9e...f62"),
-                              _buildCell("Jan 19, 2025"),
-                              _buildCell("Active"),
+                              _buildCell("Kenneth Thompson"),
+                              _buildCell("kenneth@thompson.com"),
+                              _buildCell("\$316.00"),
+                              _buildCell("Success"),
                               TableCell(
                                 child: Container(
                                   padding: const .symmetric(horizontal: 8),
@@ -380,10 +522,10 @@ class ClassicDashboardScreenState extends State<ClassicDashboardScreen> {
                                   ),
                                 ),
                               ),
-                              _buildCell("Development API Key"),
-                              _buildCell("9e...f62"),
-                              _buildCell("Jan 19, 2025"),
-                              _buildCell("Inactive"),
+                              _buildCell("Abraham Lincoln"),
+                              _buildCell("abraham@lincoln.com"),
+                              _buildCell("\$242.00"),
+                              _buildCell("Success"),
                               TableCell(
                                 child: Container(
                                   padding: const .symmetric(horizontal: 8),
@@ -441,10 +583,315 @@ class ClassicDashboardScreenState extends State<ClassicDashboardScreen> {
                                   ),
                                 ),
                               ),
-                              _buildCell("Production Test"),
-                              _buildCell("9e...f62"),
-                              _buildCell("Jan 19, 2025"),
-                              _buildCell("Expired"),
+                              _buildCell("Monserrat Rodriguez"),
+                              _buildCell("monserrat@rodriguez.com"),
+                              _buildCell("\$837.00"),
+                              _buildCell("Processing"),
+                              TableCell(
+                                child: Container(
+                                  padding: const .symmetric(horizontal: 8),
+                                  alignment: .centerRight,
+                                  child: Builder(
+                                    builder: (context) {
+                                      return IconButton.ghost(
+                                        onPressed: () {
+                                          showDropdown(
+                                            context: context,
+                                            builder: (context) {
+                                              return const DropdownMenu(
+                                                children: [
+                                                  MenuButton(
+                                                    child: Text("View details"),
+                                                  ),
+                                                  MenuButton(
+                                                    child: Text(
+                                                      "Download receipt",
+                                                    ),
+                                                  ),
+                                                  MenuButton(
+                                                    child: Text(
+                                                      "Contact customer",
+                                                    ),
+                                                  ),
+                                                ],
+                                              );
+                                            },
+                                          );
+                                        },
+                                        icon: const Icon(
+                                          LucideIcons.ellipsisVertical,
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+
+                          TableRow(
+                            cells: [
+                              TableCell(
+                                child: Container(
+                                  padding: const .all(8),
+                                  child: Checkbox(
+                                    state: _state,
+                                    onChanged: (state) {
+                                      setState(() {
+                                        _state = state;
+                                      });
+                                    },
+                                  ),
+                                ),
+                              ),
+                              _buildCell("Silas Johnson"),
+                              _buildCell("silas@johnson.com"),
+                              _buildCell("\$874.00"),
+                              _buildCell("Success"),
+                              TableCell(
+                                child: Container(
+                                  padding: const .symmetric(horizontal: 8),
+                                  alignment: .centerRight,
+                                  child: Builder(
+                                    builder: (context) {
+                                      return IconButton.ghost(
+                                        onPressed: () {
+                                          showDropdown(
+                                            context: context,
+                                            builder: (context) {
+                                              return const DropdownMenu(
+                                                children: [
+                                                  MenuButton(
+                                                    child: Text("View details"),
+                                                  ),
+                                                  MenuButton(
+                                                    child: Text(
+                                                      "Download receipt",
+                                                    ),
+                                                  ),
+                                                  MenuButton(
+                                                    child: Text(
+                                                      "Contact customer",
+                                                    ),
+                                                  ),
+                                                ],
+                                              );
+                                            },
+                                          );
+                                        },
+                                        icon: const Icon(
+                                          LucideIcons.ellipsisVertical,
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+
+                          TableRow(
+                            cells: [
+                              TableCell(
+                                child: Container(
+                                  padding: const .all(8),
+                                  child: Checkbox(
+                                    state: _state,
+                                    onChanged: (state) {
+                                      setState(() {
+                                        _state = state;
+                                      });
+                                    },
+                                  ),
+                                ),
+                              ),
+                              _buildCell("Carmella DeVito"),
+                              _buildCell("carmella@devito.com"),
+                              _buildCell("\$721.00"),
+                              _buildCell("Failed"),
+                              TableCell(
+                                child: Container(
+                                  padding: const .symmetric(horizontal: 8),
+                                  alignment: .centerRight,
+                                  child: Builder(
+                                    builder: (context) {
+                                      return IconButton.ghost(
+                                        onPressed: () {
+                                          showDropdown(
+                                            context: context,
+                                            builder: (context) {
+                                              return const DropdownMenu(
+                                                children: [
+                                                  MenuButton(
+                                                    child: Text("View details"),
+                                                  ),
+                                                  MenuButton(
+                                                    child: Text(
+                                                      "Download receipt",
+                                                    ),
+                                                  ),
+                                                  MenuButton(
+                                                    child: Text(
+                                                      "Contact customer",
+                                                    ),
+                                                  ),
+                                                ],
+                                              );
+                                            },
+                                          );
+                                        },
+                                        icon: const Icon(
+                                          LucideIcons.ellipsisVertical,
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+
+                          TableRow(
+                            cells: [
+                              TableCell(
+                                child: Container(
+                                  padding: const .all(8),
+                                  child: Checkbox(
+                                    state: _state,
+                                    onChanged: (state) {
+                                      setState(() {
+                                        _state = state;
+                                      });
+                                    },
+                                  ),
+                                ),
+                              ),
+                              _buildCell("Maria Garcia"),
+                              _buildCell("maria@garcia.com"),
+                              _buildCell("\$529.00"),
+                              _buildCell("Success"),
+                              TableCell(
+                                child: Container(
+                                  padding: const .symmetric(horizontal: 8),
+                                  alignment: .centerRight,
+                                  child: Builder(
+                                    builder: (context) {
+                                      return IconButton.ghost(
+                                        onPressed: () {
+                                          showDropdown(
+                                            context: context,
+                                            builder: (context) {
+                                              return const DropdownMenu(
+                                                children: [
+                                                  MenuButton(
+                                                    child: Text("View details"),
+                                                  ),
+                                                  MenuButton(
+                                                    child: Text(
+                                                      "Download receipt",
+                                                    ),
+                                                  ),
+                                                  MenuButton(
+                                                    child: Text(
+                                                      "Contact customer",
+                                                    ),
+                                                  ),
+                                                ],
+                                              );
+                                            },
+                                          );
+                                        },
+                                        icon: const Icon(
+                                          LucideIcons.ellipsisVertical,
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+
+                          TableRow(
+                            cells: [
+                              TableCell(
+                                child: Container(
+                                  padding: const .all(8),
+                                  child: Checkbox(
+                                    state: _state,
+                                    onChanged: (state) {
+                                      setState(() {
+                                        _state = state;
+                                      });
+                                    },
+                                  ),
+                                ),
+                              ),
+                              _buildCell("James Wilson"),
+                              _buildCell("james@wilson.com"),
+                              _buildCell("\$438.00"),
+                              _buildCell("Processing"),
+                              TableCell(
+                                child: Container(
+                                  padding: const .symmetric(horizontal: 8),
+                                  alignment: .centerRight,
+                                  child: Builder(
+                                    builder: (context) {
+                                      return IconButton.ghost(
+                                        onPressed: () {
+                                          showDropdown(
+                                            context: context,
+                                            builder: (context) {
+                                              return const DropdownMenu(
+                                                children: [
+                                                  MenuButton(
+                                                    child: Text("View details"),
+                                                  ),
+                                                  MenuButton(
+                                                    child: Text(
+                                                      "Download receipt",
+                                                    ),
+                                                  ),
+                                                  MenuButton(
+                                                    child: Text(
+                                                      "Contact customer",
+                                                    ),
+                                                  ),
+                                                ],
+                                              );
+                                            },
+                                          );
+                                        },
+                                        icon: const Icon(
+                                          LucideIcons.ellipsisVertical,
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+
+                          TableRow(
+                            cells: [
+                              TableCell(
+                                child: Container(
+                                  padding: const .all(8),
+                                  child: Checkbox(
+                                    state: _state,
+                                    onChanged: (state) {
+                                      setState(() {
+                                        _state = state;
+                                      });
+                                    },
+                                  ),
+                                ),
+                              ),
+                              _buildCell("Sarah Jones"),
+                              _buildCell("sarah@jones.com"),
+                              _buildCell("\$692.00"),
+                              _buildCell("Success"),
                               TableCell(
                                 child: Container(
                                   padding: const .symmetric(horizontal: 8),
@@ -632,6 +1079,16 @@ class ClassicDashboardScreenState extends State<ClassicDashboardScreen> {
                           ],
                         ),
                       ),
+
+                      const SizedBox(height: 16),
+
+                      SizedBox(
+                        width: double.infinity,
+                        child: PrimaryButton(
+                          onPressed: () {},
+                          child: const Text("Continue"),
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -692,9 +1149,9 @@ class ClassicDashboardScreenState extends State<ClassicDashboardScreen> {
       x: 0,
       barRods: [
         BarChartRodData(
-          toY: 2.4,
-          width: 22,
-          borderRadius: .circular(0),
+          toY: 240,
+          width: 47,
+          borderRadius: .circular(4),
           color: Colors.black,
         ),
       ],
@@ -704,9 +1161,9 @@ class ClassicDashboardScreenState extends State<ClassicDashboardScreen> {
       x: 1,
       barRods: [
         BarChartRodData(
-          toY: 3.0,
-          width: 22,
-          borderRadius: .circular(0),
+          toY: 300,
+          width: 47,
+          borderRadius: .circular(4),
           color: Colors.black,
         ),
       ],
@@ -716,9 +1173,9 @@ class ClassicDashboardScreenState extends State<ClassicDashboardScreen> {
       x: 2,
       barRods: [
         BarChartRodData(
-          toY: 2.0,
-          width: 22,
-          borderRadius: .circular(0),
+          toY: 200,
+          width: 47,
+          borderRadius: .circular(8),
           color: Colors.black,
         ),
       ],
@@ -728,9 +1185,9 @@ class ClassicDashboardScreenState extends State<ClassicDashboardScreen> {
       x: 3,
       barRods: [
         BarChartRodData(
-          toY: 2.78,
-          width: 22,
-          borderRadius: .circular(0),
+          toY: 278,
+          width: 47,
+          borderRadius: .circular(4),
           color: Colors.black,
         ),
       ],
@@ -740,9 +1197,9 @@ class ClassicDashboardScreenState extends State<ClassicDashboardScreen> {
       x: 4,
       barRods: [
         BarChartRodData(
-          toY: 1.89,
-          width: 22,
-          borderRadius: .circular(0),
+          toY: 189,
+          width: 47,
+          borderRadius: .circular(4),
           color: Colors.black,
         ),
       ],
@@ -752,9 +1209,9 @@ class ClassicDashboardScreenState extends State<ClassicDashboardScreen> {
       x: 5,
       barRods: [
         BarChartRodData(
-          toY: 2.39,
-          width: 22,
-          borderRadius: .circular(0),
+          toY: 239,
+          width: 47,
+          borderRadius: .circular(4),
           color: Colors.black,
         ),
       ],
@@ -764,9 +1221,9 @@ class ClassicDashboardScreenState extends State<ClassicDashboardScreen> {
       x: 6,
       barRods: [
         BarChartRodData(
-          toY: 2.78,
-          width: 22,
-          borderRadius: .circular(0),
+          toY: 278,
+          width: 47,
+          borderRadius: .circular(4),
           color: Colors.black,
         ),
       ],
@@ -776,9 +1233,9 @@ class ClassicDashboardScreenState extends State<ClassicDashboardScreen> {
       x: 7,
       barRods: [
         BarChartRodData(
-          toY: 1.89,
-          width: 22,
-          borderRadius: .circular(0),
+          toY: 189,
+          width: 47,
+          borderRadius: .circular(4),
           color: Colors.black,
         ),
       ],
