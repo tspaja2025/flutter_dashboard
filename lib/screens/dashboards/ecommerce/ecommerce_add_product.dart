@@ -14,6 +14,7 @@ class EcommerceAddProductScreenState extends State<EcommerceAddProductScreen> {
   String? statusValue;
   String? categoryValue;
   String? subCategoryValue;
+  String? statusVariantValue;
 
   @override
   Widget build(BuildContext context) {
@@ -183,6 +184,156 @@ class EcommerceAddProductScreenState extends State<EcommerceAddProductScreen> {
                             const Text("Variants").bold(),
 
                             const SizedBox(height: 16),
+
+                            Row(
+                              spacing: 16,
+                              children: [
+                                Expanded(
+                                  child: FormField(
+                                    key: TextFieldKey(#variantStatus),
+                                    label: const Text("Status"),
+                                    child: Select<String>(
+                                      constraints: BoxConstraints(
+                                        maxWidth: 200,
+                                        minWidth: 200,
+                                      ),
+                                      itemBuilder: (context, item) {
+                                        return Text(item);
+                                      },
+                                      popupConstraints: const BoxConstraints(
+                                        maxHeight: 300,
+                                        maxWidth: 200,
+                                      ),
+                                      onChanged: (value) {
+                                        setState(() {
+                                          statusVariantValue = value;
+                                        });
+                                      },
+                                      value: statusVariantValue,
+                                      placeholder: const Text(
+                                        "Select a status",
+                                      ),
+                                      popup: const SelectPopup(
+                                        items: SelectItemList(
+                                          children: [
+                                            SelectItemButton(
+                                              value: "Size",
+                                              child: Text("Size"),
+                                            ),
+                                            SelectItemButton(
+                                              value: "Color",
+                                              child: Text("Color"),
+                                            ),
+                                            SelectItemButton(
+                                              value: "Weight",
+                                              child: Text("Weight"),
+                                            ),
+                                            SelectItemButton(
+                                              value: "Smell",
+                                              child: Text("Smell"),
+                                            ),
+                                          ],
+                                        ),
+                                      ).call,
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: FormField(
+                                    key: TextFieldKey(#value),
+                                    label: const Text("Value"),
+                                    child: const TextField(),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: FormField(
+                                    key: TextFieldKey(#price),
+                                    label: const Text("Price"),
+                                    child: const TextField(),
+                                  ),
+                                ),
+                              ],
+                            ),
+
+                            const SizedBox(height: 16),
+
+                            Row(
+                              spacing: 16,
+                              children: [
+                                Expanded(
+                                  child: FormField(
+                                    key: TextFieldKey(#variantStatusTwo),
+                                    label: const Text("Status"),
+                                    child: Select<String>(
+                                      constraints: BoxConstraints(
+                                        maxWidth: 200,
+                                        minWidth: 200,
+                                      ),
+                                      itemBuilder: (context, item) {
+                                        return Text(item);
+                                      },
+                                      popupConstraints: const BoxConstraints(
+                                        maxHeight: 300,
+                                        maxWidth: 200,
+                                      ),
+                                      onChanged: (value) {
+                                        setState(() {
+                                          statusVariantValue = value;
+                                        });
+                                      },
+                                      value: statusVariantValue,
+                                      placeholder: const Text(
+                                        "Select a status",
+                                      ),
+                                      popup: const SelectPopup(
+                                        items: SelectItemList(
+                                          children: [
+                                            SelectItemButton(
+                                              value: "Size",
+                                              child: Text("Size"),
+                                            ),
+                                            SelectItemButton(
+                                              value: "Color",
+                                              child: Text("Color"),
+                                            ),
+                                            SelectItemButton(
+                                              value: "Weight",
+                                              child: Text("Weight"),
+                                            ),
+                                            SelectItemButton(
+                                              value: "Smell",
+                                              child: Text("Smell"),
+                                            ),
+                                          ],
+                                        ),
+                                      ).call,
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: FormField(
+                                    key: TextFieldKey(#valueTwo),
+                                    label: const Text("Value"),
+                                    child: const TextField(),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: FormField(
+                                    key: TextFieldKey(#priceTwo),
+                                    label: const Text("Price"),
+                                    child: const TextField(),
+                                  ),
+                                ),
+                              ],
+                            ),
+
+                            const SizedBox(height: 16),
+
+                            PrimaryButton(
+                              onPressed: () {},
+                              leading: const Icon(LucideIcons.plus),
+                              child: const Text("Add Variant"),
+                            ),
                           ],
                         ),
                       ),
