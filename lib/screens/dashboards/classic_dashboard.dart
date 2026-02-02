@@ -179,10 +179,131 @@ class ClassicDashboardScreenState extends State<ClassicDashboardScreen> {
                         height: 75,
                         child: BarChart(
                           BarChartData(
-                            barTouchData: barTouchData,
+                            barTouchData: BarTouchData(
+                              enabled: false,
+                              touchTooltipData: BarTouchTooltipData(
+                                getTooltipColor: (group) => Colors.transparent,
+                                tooltipPadding: .zero,
+                                tooltipMargin: 8,
+                                getTooltipItem:
+                                    (
+                                      BarChartGroupData group,
+                                      int groupIndex,
+                                      BarChartRodData rod,
+                                      int rodIndex,
+                                    ) {
+                                      return BarTooltipItem(
+                                        rod.toY.round().toString(),
+                                        TextStyle(
+                                          color: Theme.of(
+                                            context,
+                                          ).colorScheme.primary,
+                                          fontWeight: .bold,
+                                        ),
+                                      );
+                                    },
+                              ),
+                            ),
                             titlesData: const FlTitlesData(show: false),
                             borderData: FlBorderData(show: false),
-                            barGroups: barGroups,
+                            barGroups: [
+                              BarChartGroupData(
+                                x: 0,
+                                barRods: [
+                                  BarChartRodData(
+                                    toY: 240,
+                                    width: 47,
+                                    borderRadius: .circular(4),
+                                    color: Colors.black,
+                                  ),
+                                ],
+                                showingTooltipIndicators: [0],
+                              ),
+                              BarChartGroupData(
+                                x: 1,
+                                barRods: [
+                                  BarChartRodData(
+                                    toY: 300,
+                                    width: 47,
+                                    borderRadius: .circular(4),
+                                    color: Colors.black,
+                                  ),
+                                ],
+                                showingTooltipIndicators: [0],
+                              ),
+                              BarChartGroupData(
+                                x: 2,
+                                barRods: [
+                                  BarChartRodData(
+                                    toY: 200,
+                                    width: 47,
+                                    borderRadius: .circular(8),
+                                    color: Colors.black,
+                                  ),
+                                ],
+                                showingTooltipIndicators: [0],
+                              ),
+                              BarChartGroupData(
+                                x: 3,
+                                barRods: [
+                                  BarChartRodData(
+                                    toY: 278,
+                                    width: 47,
+                                    borderRadius: .circular(4),
+                                    color: Colors.black,
+                                  ),
+                                ],
+                                showingTooltipIndicators: [0],
+                              ),
+                              BarChartGroupData(
+                                x: 4,
+                                barRods: [
+                                  BarChartRodData(
+                                    toY: 189,
+                                    width: 47,
+                                    borderRadius: .circular(4),
+                                    color: Colors.black,
+                                  ),
+                                ],
+                                showingTooltipIndicators: [0],
+                              ),
+                              BarChartGroupData(
+                                x: 5,
+                                barRods: [
+                                  BarChartRodData(
+                                    toY: 239,
+                                    width: 47,
+                                    borderRadius: .circular(4),
+                                    color: Colors.black,
+                                  ),
+                                ],
+                                showingTooltipIndicators: [0],
+                              ),
+                              BarChartGroupData(
+                                x: 6,
+                                barRods: [
+                                  BarChartRodData(
+                                    toY: 278,
+                                    width: 47,
+                                    borderRadius: .circular(4),
+                                    color: Colors.black,
+                                  ),
+                                ],
+                                showingTooltipIndicators: [0],
+                              ),
+                              BarChartGroupData(
+                                x: 7,
+                                barRods: [
+                                  BarChartRodData(
+                                    toY: 189,
+                                    width: 47,
+                                    borderRadius: .circular(4),
+                                    color: Colors.black,
+                                  ),
+                                ],
+                                showingTooltipIndicators: [0],
+                              ),
+                            ],
                             gridData: const FlGridData(show: false),
                             alignment: .spaceAround,
                             maxY: 500,
@@ -202,6 +323,48 @@ class ClassicDashboardScreenState extends State<ClassicDashboardScreen> {
                       const Text("Total Revenue").semiBold(),
                       const Text("\$15,231.89").large().semiBold(),
                       const Text("+20.1% from last month").muted().small(),
+
+                      SizedBox(
+                        height: 150,
+                        width: double.infinity,
+                        child: LineChart(
+                          LineChartData(
+                            lineBarsData: [
+                              LineChartBarData(
+                                spots: [
+                                  FlSpot(0, 100),
+                                  FlSpot(2, 200),
+                                  FlSpot(4, 150),
+                                  FlSpot(6, 250),
+                                  FlSpot(8, 110),
+                                ],
+                                color: Colors.gray,
+                                isCurved: false,
+                                isStrokeCapRound: true,
+                                barWidth: 2,
+                                belowBarData: BarAreaData(show: false),
+                                dotData: FlDotData(
+                                  show: true,
+                                  getDotPainter:
+                                      (spot, percent, barData, index) {
+                                        return FlDotCirclePainter(
+                                          radius: 4,
+                                          color: Colors.gray,
+                                          strokeColor: Colors.white,
+                                          strokeWidth: 1,
+                                        );
+                                      },
+                                ),
+                              ),
+                            ],
+                            minY: 0,
+                            maxY: 300,
+                            titlesData: FlTitlesData(show: false),
+                            gridData: FlGridData(show: false),
+                            borderData: FlBorderData(show: false),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -369,6 +532,80 @@ class ClassicDashboardScreenState extends State<ClassicDashboardScreen> {
                             },
                           ),
                         ],
+                      ),
+
+                      const SizedBox(height: 32),
+
+                      SizedBox(
+                        height: 150,
+                        width: double.infinity,
+                        child: LineChart(
+                          LineChartData(
+                            lineBarsData: [
+                              LineChartBarData(
+                                spots: [
+                                  FlSpot(0, 400),
+                                  FlSpot(2, 300),
+                                  FlSpot(4, 200),
+                                  FlSpot(6, 278),
+                                  FlSpot(8, 189),
+                                  FlSpot(10, 239),
+                                  FlSpot(12, 349),
+                                ],
+                                color: Colors.gray,
+                                isCurved: false,
+                                isStrokeCapRound: true,
+                                barWidth: 2,
+                                belowBarData: BarAreaData(show: false),
+                                dotData: FlDotData(
+                                  show: true,
+                                  getDotPainter:
+                                      (spot, percent, barData, index) {
+                                        return FlDotCirclePainter(
+                                          radius: 4,
+                                          color: Colors.gray,
+                                          strokeColor: Colors.white,
+                                          strokeWidth: 1,
+                                        );
+                                      },
+                                ),
+                              ),
+                              LineChartBarData(
+                                spots: [
+                                  FlSpot(0, 240),
+                                  FlSpot(2, 139),
+                                  FlSpot(4, 400),
+                                  FlSpot(6, 390),
+                                  FlSpot(8, 480),
+                                  FlSpot(10, 380),
+                                  FlSpot(12, 400),
+                                ],
+                                color: Colors.black,
+                                isCurved: false,
+                                isStrokeCapRound: true,
+                                barWidth: 2,
+                                belowBarData: BarAreaData(show: false),
+                                dotData: FlDotData(
+                                  show: true,
+                                  getDotPainter:
+                                      (spot, percent, barData, index) {
+                                        return FlDotCirclePainter(
+                                          radius: 4,
+                                          color: Colors.gray,
+                                          strokeColor: Colors.white,
+                                          strokeWidth: 1,
+                                        );
+                                      },
+                                ),
+                              ),
+                            ],
+                            minY: 0,
+                            maxY: 400,
+                            titlesData: FlTitlesData(show: false),
+                            gridData: FlGridData(show: false),
+                            borderData: FlBorderData(show: false),
+                          ),
+                        ),
                       ),
                     ],
                   ),
@@ -1119,127 +1356,4 @@ class ClassicDashboardScreenState extends State<ClassicDashboardScreen> {
       ),
     );
   }
-
-  BarTouchData get barTouchData => BarTouchData(
-    enabled: false,
-    touchTooltipData: BarTouchTooltipData(
-      getTooltipColor: (group) => Colors.transparent,
-      tooltipPadding: .zero,
-      tooltipMargin: 8,
-      getTooltipItem:
-          (
-            BarChartGroupData group,
-            int groupIndex,
-            BarChartRodData rod,
-            int rodIndex,
-          ) {
-            return BarTooltipItem(
-              rod.toY.round().toString(),
-              TextStyle(
-                color: Theme.of(context).colorScheme.primary,
-                fontWeight: .bold,
-              ),
-            );
-          },
-    ),
-  );
-
-  List<BarChartGroupData> get barGroups => [
-    BarChartGroupData(
-      x: 0,
-      barRods: [
-        BarChartRodData(
-          toY: 240,
-          width: 47,
-          borderRadius: .circular(4),
-          color: Colors.black,
-        ),
-      ],
-      showingTooltipIndicators: [0],
-    ),
-    BarChartGroupData(
-      x: 1,
-      barRods: [
-        BarChartRodData(
-          toY: 300,
-          width: 47,
-          borderRadius: .circular(4),
-          color: Colors.black,
-        ),
-      ],
-      showingTooltipIndicators: [0],
-    ),
-    BarChartGroupData(
-      x: 2,
-      barRods: [
-        BarChartRodData(
-          toY: 200,
-          width: 47,
-          borderRadius: .circular(8),
-          color: Colors.black,
-        ),
-      ],
-      showingTooltipIndicators: [0],
-    ),
-    BarChartGroupData(
-      x: 3,
-      barRods: [
-        BarChartRodData(
-          toY: 278,
-          width: 47,
-          borderRadius: .circular(4),
-          color: Colors.black,
-        ),
-      ],
-      showingTooltipIndicators: [0],
-    ),
-    BarChartGroupData(
-      x: 4,
-      barRods: [
-        BarChartRodData(
-          toY: 189,
-          width: 47,
-          borderRadius: .circular(4),
-          color: Colors.black,
-        ),
-      ],
-      showingTooltipIndicators: [0],
-    ),
-    BarChartGroupData(
-      x: 5,
-      barRods: [
-        BarChartRodData(
-          toY: 239,
-          width: 47,
-          borderRadius: .circular(4),
-          color: Colors.black,
-        ),
-      ],
-      showingTooltipIndicators: [0],
-    ),
-    BarChartGroupData(
-      x: 6,
-      barRods: [
-        BarChartRodData(
-          toY: 278,
-          width: 47,
-          borderRadius: .circular(4),
-          color: Colors.black,
-        ),
-      ],
-      showingTooltipIndicators: [0],
-    ),
-    BarChartGroupData(
-      x: 7,
-      barRods: [
-        BarChartRodData(
-          toY: 189,
-          width: 47,
-          borderRadius: .circular(4),
-          color: Colors.black,
-        ),
-      ],
-      showingTooltipIndicators: [0],
-    ),
-  ];
 }
