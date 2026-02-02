@@ -10,6 +10,83 @@ class KanbanBoardAppScreen extends StatefulWidget {
 class KanbanBoardAppScreenState extends State<KanbanBoardAppScreen> {
   int index = 0;
 
+  List<SortableData<KanbanColumnItem>> todo = [
+    const SortableData(
+      KanbanColumnItem(
+        title: "Integrate Stripe payment gateway",
+        content: "Compile competitor landing page design for inspiration...",
+        priority: "High",
+      ),
+    ),
+    const SortableData(
+      KanbanColumnItem(
+        title: "Redesign marketing homepage",
+        content: "Compile competitor landing page design for inspiration...",
+        priority: "Medium",
+      ),
+    ),
+    const SortableData(
+      KanbanColumnItem(
+        title: "Set up automated backups",
+        content: "Compile competitor landing page design for inspiration...",
+        priority: "Low",
+      ),
+    ),
+    const SortableData(
+      KanbanColumnItem(
+        title: "Implement blog search functionality",
+        content: "Compile competitor landing page design for inspiration...",
+        priority: "Medium",
+      ),
+    ),
+  ];
+
+  List<SortableData<KanbanColumnItem>> inProgress = [
+    const SortableData(
+      KanbanColumnItem(
+        title: "Dark mode toggle implementation",
+        content: "Compile competitor landing page design for inspiration...",
+        priority: "High",
+      ),
+    ),
+    const SortableData(
+      KanbanColumnItem(
+        title: "Database schema refactoring",
+        content: "Compile competitor landing page design for inspiration...",
+        priority: "Medium",
+      ),
+    ),
+    const SortableData(
+      KanbanColumnItem(
+        title: "Accessibility improvements",
+        content: "Compile competitor landing page design for inspiration...",
+        priority: "Low",
+      ),
+    ),
+  ];
+
+  List<SortableData<KanbanColumnItem>> done = [
+    const SortableData(
+      KanbanColumnItem(
+        title: "Set up CI/CD pipeline",
+        content: "Compile competitor landing page design for inspiration...",
+        priority: "High",
+      ),
+    ),
+    const SortableData(
+      KanbanColumnItem(
+        title: "Initial project setup",
+        content: "Compile competitor landing page design for inspiration...",
+        priority: "Medium",
+      ),
+    ),
+  ];
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -137,89 +214,219 @@ class KanbanBoardAppScreenState extends State<KanbanBoardAppScreen> {
             index: index,
             children: [
               SingleChildScrollView(
-                child: Row(
-                  crossAxisAlignment: .start,
-                  spacing: 16,
-                  children: [
-                    KanbanColumn(
-                      title: "To Do",
-                      itemCount: "4",
-                      children: [
-                        KanbanColumnItem(
-                          title: "Integrate Stripe payment gateway",
-                          content:
-                              "Compile competitor landing page design for inspiration...",
-                          priority: "High",
+                child: SortableLayer(
+                  child: Row(
+                    crossAxisAlignment: .start,
+                    spacing: 16,
+                    children: [
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width / 4,
+                        child: Card(
+                          child: SortableDropFallback<String>(
+                            onAccept: (value) {
+                              setState(() {
+                                swapItemInLists(
+                                  [todo, inProgress],
+                                  value,
+                                  inProgress,
+                                  inProgress.length,
+                                );
+                              });
+                            },
+                            child: Column(
+                              crossAxisAlignment: .stretch,
+                              children: [
+                                Row(
+                                  children: [
+                                    const Text("To Do"),
+                                    const SizedBox(width: 8),
+                                    PrimaryBadge(child: Text("${todo.length}")),
+                                    const Spacer(),
+                                    IconButton.ghost(
+                                      onPressed: () {},
+                                      icon: const Icon(
+                                        LucideIcons.gripVertical,
+                                      ),
+                                    ),
+                                    IconButton.ghost(
+                                      onPressed: () {},
+                                      icon: const Icon(LucideIcons.plus),
+                                    ),
+                                  ],
+                                ),
+
+                                const SizedBox(height: 16),
+
+                                for (int i = 0; i < todo.length; i++)
+                                  Sortable<KanbanColumnItem>(
+                                    data: todo[i],
+                                    onAcceptTop: (value) {
+                                      setState(() {
+                                        swapItemInLists(
+                                          [todo, inProgress],
+                                          value,
+                                          inProgress,
+                                          i,
+                                        );
+                                      });
+                                    },
+                                    onAcceptBottom: (value) {
+                                      setState(() {
+                                        swapItemInLists(
+                                          [todo, inProgress],
+                                          value,
+                                          inProgress,
+                                          i + 1,
+                                        );
+                                      });
+                                    },
+                                    child: todo[i].data,
+                                  ),
+                              ],
+                            ),
+                          ),
                         ),
-                        const SizedBox(height: 8),
-                        KanbanColumnItem(
-                          title: "Redesign marketing homepage",
-                          content:
-                              "Compile competitor landing page design for inspiration...",
-                          priority: "Medium",
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width / 4,
+                        child: Card(
+                          child: SortableDropFallback<String>(
+                            onAccept: (value) {
+                              setState(() {
+                                swapItemInLists(
+                                  [todo, inProgress],
+                                  value,
+                                  inProgress,
+                                  inProgress.length,
+                                );
+                              });
+                            },
+                            child: Column(
+                              crossAxisAlignment: .stretch,
+                              children: [
+                                Row(
+                                  children: [
+                                    const Text("In Progress"),
+                                    const SizedBox(width: 8),
+                                    PrimaryBadge(
+                                      child: Text("${inProgress.length}"),
+                                    ),
+                                    const Spacer(),
+                                    IconButton.ghost(
+                                      onPressed: () {},
+                                      icon: const Icon(
+                                        LucideIcons.gripVertical,
+                                      ),
+                                    ),
+                                    IconButton.ghost(
+                                      onPressed: () {},
+                                      icon: const Icon(LucideIcons.plus),
+                                    ),
+                                  ],
+                                ),
+
+                                const SizedBox(height: 16),
+
+                                for (int i = 0; i < inProgress.length; i++)
+                                  Sortable<KanbanColumnItem>(
+                                    data: inProgress[i],
+                                    onAcceptTop: (value) {
+                                      setState(() {
+                                        swapItemInLists(
+                                          [todo, inProgress],
+                                          value,
+                                          inProgress,
+                                          i,
+                                        );
+                                      });
+                                    },
+                                    onAcceptBottom: (value) {
+                                      setState(() {
+                                        swapItemInLists(
+                                          [todo, inProgress],
+                                          value,
+                                          inProgress,
+                                          i + 1,
+                                        );
+                                      });
+                                    },
+                                    child: inProgress[i].data,
+                                  ),
+                              ],
+                            ),
+                          ),
                         ),
-                        const SizedBox(height: 8),
-                        KanbanColumnItem(
-                          title: "Set up automated backups",
-                          content:
-                              "Compile competitor landing page design for inspiration...",
-                          priority: "Low",
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width / 4,
+                        child: Card(
+                          child: SortableDropFallback<String>(
+                            onAccept: (value) {
+                              setState(() {
+                                swapItemInLists(
+                                  [todo, inProgress],
+                                  value,
+                                  inProgress,
+                                  inProgress.length,
+                                );
+                              });
+                            },
+                            child: Column(
+                              crossAxisAlignment: .stretch,
+                              children: [
+                                Row(
+                                  children: [
+                                    const Text("Done"),
+                                    const SizedBox(width: 8),
+                                    PrimaryBadge(child: Text("${done.length}")),
+                                    const Spacer(),
+                                    IconButton.ghost(
+                                      onPressed: () {},
+                                      icon: const Icon(
+                                        LucideIcons.gripVertical,
+                                      ),
+                                    ),
+                                    IconButton.ghost(
+                                      onPressed: () {},
+                                      icon: const Icon(LucideIcons.plus),
+                                    ),
+                                  ],
+                                ),
+
+                                const SizedBox(height: 16),
+
+                                for (int i = 0; i < done.length; i++)
+                                  Sortable<KanbanColumnItem>(
+                                    data: done[i],
+                                    onAcceptTop: (value) {
+                                      setState(() {
+                                        swapItemInLists(
+                                          [todo, inProgress],
+                                          value,
+                                          inProgress,
+                                          i,
+                                        );
+                                      });
+                                    },
+                                    onAcceptBottom: (value) {
+                                      setState(() {
+                                        swapItemInLists(
+                                          [todo, inProgress],
+                                          value,
+                                          inProgress,
+                                          i + 1,
+                                        );
+                                      });
+                                    },
+                                    child: done[i].data,
+                                  ),
+                              ],
+                            ),
+                          ),
                         ),
-                        const SizedBox(height: 8),
-                        KanbanColumnItem(
-                          title: "Implement blog search functionality",
-                          content:
-                              "Compile competitor landing page design for inspiration...",
-                          priority: "Medium",
-                        ),
-                      ],
-                    ),
-                    KanbanColumn(
-                      title: "In Progress",
-                      itemCount: "3",
-                      children: [
-                        KanbanColumnItem(
-                          title: "Dark mode toggle implementation",
-                          content:
-                              "Compile competitor landing page design for inspiration...",
-                          priority: "High",
-                        ),
-                        const SizedBox(height: 8),
-                        KanbanColumnItem(
-                          title: "Database schema refactoring",
-                          content:
-                              "Compile competitor landing page design for inspiration...",
-                          priority: "Medium",
-                        ),
-                        const SizedBox(height: 8),
-                        KanbanColumnItem(
-                          title: "Accessibility improvements",
-                          content:
-                              "Compile competitor landing page design for inspiration...",
-                          priority: "Low",
-                        ),
-                      ],
-                    ),
-                    KanbanColumn(
-                      title: "Done",
-                      itemCount: "2",
-                      children: [
-                        KanbanColumnItem(
-                          title: "Set up CI/CD pipeline",
-                          content:
-                              "Compile competitor landing page design for inspiration...",
-                          priority: "High",
-                        ),
-                        const SizedBox(height: 8),
-                        KanbanColumnItem(
-                          title: "Initial project setup",
-                          content:
-                              "Compile competitor landing page design for inspiration...",
-                          priority: "Medium",
-                        ),
-                      ],
-                    ),
-                  ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
               Column(children: [const Text("List")]),
@@ -227,51 +434,6 @@ class KanbanBoardAppScreenState extends State<KanbanBoardAppScreen> {
             ],
           ),
         ],
-      ),
-    );
-  }
-}
-
-class KanbanColumn extends StatelessWidget {
-  final String title;
-  final String itemCount;
-  final List<Widget> children;
-
-  const KanbanColumn({
-    super.key,
-    required this.title,
-    required this.itemCount,
-    required this.children,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: MediaQuery.of(context).size.width / 4,
-      child: Card(
-        child: Column(
-          children: [
-            Row(
-              children: [
-                Text(title),
-                const SizedBox(width: 8),
-                PrimaryBadge(child: Text(itemCount)),
-                const Spacer(),
-                IconButton.ghost(
-                  onPressed: () {},
-                  icon: const Icon(LucideIcons.gripVertical),
-                ),
-                IconButton.ghost(
-                  onPressed: () {},
-                  icon: const Icon(LucideIcons.plus),
-                ),
-              ],
-            ),
-
-            const SizedBox(height: 16),
-            ...children,
-          ],
-        ),
       ),
     );
   }
