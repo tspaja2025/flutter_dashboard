@@ -10,6 +10,7 @@ class SalesDashboardScreen extends StatefulWidget {
 
 class SalesDashboardScreenState extends State<SalesDashboardScreen> {
   bool _isDesktop = true;
+  String? _selectedValue;
 
   final List<ChartData> _desktopData = [
     ChartData(value: 222, label: "Apr 5"),
@@ -270,6 +271,10 @@ class SalesDashboardScreenState extends State<SalesDashboardScreen> {
                             const Text("Total Balance").muted().small(),
                             const SizedBox(height: 4),
                             const Text("\$103,045").semiBold(),
+                            const SizedBox(height: 4),
+                            const Text(
+                              "+3.6% Compare from last month",
+                            ).muted().small(),
                           ],
                         ),
                       ),
@@ -284,6 +289,10 @@ class SalesDashboardScreenState extends State<SalesDashboardScreen> {
                             const Text("Total Expense").muted().small(),
                             const SizedBox(height: 4),
                             const Text("\$15,010").semiBold(),
+                            const SizedBox(height: 4),
+                            const Text(
+                              "+2.5% Compare from last month",
+                            ).muted().small(),
                           ],
                         ),
                       ),
@@ -307,6 +316,10 @@ class SalesDashboardScreenState extends State<SalesDashboardScreen> {
                             const Text("Total Income").muted().small(),
                             const SizedBox(height: 4),
                             const Text("\$78,000").semiBold(),
+                            const SizedBox(height: 4),
+                            const Text(
+                              "-6.0% Compare from last month",
+                            ).muted().small(),
                           ],
                         ),
                       ),
@@ -321,6 +334,10 @@ class SalesDashboardScreenState extends State<SalesDashboardScreen> {
                             const Text("Total Sales Tax").muted().small(),
                             const SizedBox(height: 4),
                             const Text("\$9,090").semiBold(),
+                            const SizedBox(height: 4),
+                            const Text(
+                              "+5.0% Compare from last month",
+                            ).muted().small(),
                           ],
                         ),
                       ),
@@ -343,11 +360,151 @@ class SalesDashboardScreenState extends State<SalesDashboardScreen> {
                   child: Column(
                     crossAxisAlignment: .start,
                     children: [
-                      const Text("Best Selling Product").semiBold(),
-                      const SizedBox(height: 4),
-                      const Text(
-                        "Top-Selling Products at a Glance",
-                      ).muted().small(),
+                      Row(
+                        children: [
+                          Column(
+                            crossAxisAlignment: .start,
+                            children: [
+                              const Text("Best Selling Product").semiBold(),
+                              const SizedBox(height: 4),
+                              const Text(
+                                "Top-Selling Products at a Glance",
+                              ).muted().small(),
+                            ],
+                          ),
+                          const Spacer(),
+                          IconButton.outline(
+                            onPressed: () {},
+                            icon: const Icon(LucideIcons.chevronRight),
+                          ),
+                        ],
+                      ),
+
+                      const SizedBox(height: 16),
+
+                      OutlinedContainer(
+                        padding: const .all(16),
+                        child: Row(
+                          spacing: 8,
+                          children: [
+                            Avatar(
+                              size: 24,
+                              initials: Avatar.getInitials("ts paja"),
+                              provider: const NetworkImage(
+                                "https://avatars.githubusercontent.com/u/213942709?s=400&v=4",
+                              ),
+                            ),
+                            const Text("Sports Shoes"),
+                            const Spacer(),
+                            const Text("316 items sold"),
+                          ],
+                        ),
+                      ),
+
+                      const SizedBox(height: 16),
+
+                      OutlinedContainer(
+                        padding: const .all(16),
+                        child: Row(
+                          spacing: 8,
+                          children: [
+                            Avatar(
+                              size: 24,
+                              initials: Avatar.getInitials("ts paja"),
+                              provider: const NetworkImage(
+                                "https://avatars.githubusercontent.com/u/213942709?s=400&v=4",
+                              ),
+                            ),
+                            const Text("Black T-Shirt"),
+                            const Spacer(),
+                            const Text("274 items sold"),
+                          ],
+                        ),
+                      ),
+
+                      const SizedBox(height: 16),
+
+                      OutlinedContainer(
+                        padding: const .all(16),
+                        child: Row(
+                          spacing: 8,
+                          children: [
+                            Avatar(
+                              size: 24,
+                              initials: Avatar.getInitials("ts paja"),
+                              provider: const NetworkImage(
+                                "https://avatars.githubusercontent.com/u/213942709?s=400&v=4",
+                              ),
+                            ),
+                            const Text("Jeans"),
+                            const Spacer(),
+                            const Text("195 items sold"),
+                          ],
+                        ),
+                      ),
+
+                      const SizedBox(height: 16),
+
+                      OutlinedContainer(
+                        padding: const .all(16),
+                        child: Row(
+                          spacing: 8,
+                          children: [
+                            Avatar(
+                              size: 24,
+                              initials: Avatar.getInitials("ts paja"),
+                              provider: const NetworkImage(
+                                "https://avatars.githubusercontent.com/u/213942709?s=400&v=4",
+                              ),
+                            ),
+                            const Text("Red Sneakers"),
+                            const Spacer(),
+                            const Text("402 items sold"),
+                          ],
+                        ),
+                      ),
+
+                      const SizedBox(height: 16),
+
+                      OutlinedContainer(
+                        padding: const .all(16),
+                        child: Row(
+                          spacing: 8,
+                          children: [
+                            Avatar(
+                              size: 24,
+                              initials: Avatar.getInitials("ts paja"),
+                              provider: const NetworkImage(
+                                "https://avatars.githubusercontent.com/u/213942709?s=400&v=4",
+                              ),
+                            ),
+                            const Text("Red Scarf"),
+                            const Spacer(),
+                            const Text("280 items sold"),
+                          ],
+                        ),
+                      ),
+
+                      const SizedBox(height: 16),
+
+                      OutlinedContainer(
+                        padding: const .all(16),
+                        child: Row(
+                          spacing: 8,
+                          children: [
+                            Avatar(
+                              size: 24,
+                              initials: Avatar.getInitials("ts paja"),
+                              provider: const NetworkImage(
+                                "https://avatars.githubusercontent.com/u/213942709?s=400&v=4",
+                              ),
+                            ),
+                            const Text("Kitchen Accessory"),
+                            const Spacer(),
+                            const Text("150 items sold"),
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -358,11 +515,303 @@ class SalesDashboardScreenState extends State<SalesDashboardScreen> {
                   child: Column(
                     crossAxisAlignment: .start,
                     children: [
-                      const Text("Track Order Status").semiBold(),
-                      const SizedBox(height: 4),
-                      const Text(
-                        "Analyze growth and changes in visitor patterns",
-                      ).muted().small(),
+                      Row(
+                        children: [
+                          Column(
+                            crossAxisAlignment: .start,
+                            children: [
+                              const Text("Track Order Status").semiBold(),
+                              const SizedBox(height: 4),
+                              const Text(
+                                "Analyze growth and changes in visitor patterns",
+                              ).muted().small(),
+                            ],
+                          ),
+                          const Spacer(),
+                          Builder(
+                            builder: (context) {
+                              return OutlineButton(
+                                onPressed: () {
+                                  showDropdown(
+                                    context: context,
+                                    builder: (context) {
+                                      return const DropdownMenu(
+                                        children: [
+                                          MenuButton(child: Text("Excel")),
+                                          MenuButton(child: Text("PDF")),
+                                        ],
+                                      );
+                                    },
+                                  );
+                                },
+                                leading: const Icon(LucideIcons.download),
+                                child: const Text("Export"),
+                              );
+                            },
+                          ),
+                        ],
+                      ),
+
+                      const SizedBox(height: 16),
+
+                      Row(
+                        spacing: 16,
+                        children: [
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: .start,
+                              children: [
+                                const Text("43").large().bold(),
+                                const SizedBox(height: 8),
+                                const Text("New Order +0.5%"),
+                                const SizedBox(height: 8),
+                                SizedBox(
+                                  width: double.infinity,
+                                  child: Progress(
+                                    progress: 43,
+                                    min: 0,
+                                    max: 100,
+                                    color: Colors.blue,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: .start,
+                              children: [
+                                const Text("12").large().bold(),
+                                const SizedBox(height: 8),
+                                const Text("On Progress -0.3%"),
+                                const SizedBox(height: 8),
+                                SizedBox(
+                                  width: double.infinity,
+                                  child: Progress(
+                                    progress: 12,
+                                    min: 0,
+                                    max: 100,
+                                    color: Colors.teal,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: .start,
+                              children: [
+                                const Text("40").large().bold(),
+                                const SizedBox(height: 8),
+                                const Text("Completed +0.5%"),
+                                const SizedBox(height: 8),
+
+                                SizedBox(
+                                  width: double.infinity,
+                                  child: Progress(
+                                    progress: 40,
+                                    min: 0,
+                                    max: 100,
+                                    color: Colors.green,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: .start,
+                              children: [
+                                const Text("2").large().bold(),
+                                const SizedBox(height: 8),
+                                const Text("Return -0.5%"),
+                                const SizedBox(height: 8),
+
+                                SizedBox(
+                                  width: double.infinity,
+                                  child: Progress(
+                                    progress: 2,
+                                    min: 0,
+                                    max: 100,
+                                    color: Colors.orange,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+
+                      const SizedBox(height: 16),
+
+                      Row(
+                        children: [
+                          SizedBox(
+                            width: 200,
+                            child: TextField(
+                              placeholder: const Text("Filter orders..."),
+                            ),
+                          ),
+                          const Spacer(),
+                          Select<String>(
+                            itemBuilder: (context, item) {
+                              return Text(item);
+                            },
+                            popupConstraints: const BoxConstraints(
+                              maxHeight: 300,
+                              maxWidth: 200,
+                            ),
+                            onChanged: (value) {
+                              setState(() {
+                                _selectedValue = value;
+                              });
+                            },
+                            value: _selectedValue,
+                            placeholder: const Text("Columns"),
+                            popup: const SelectPopup(
+                              items: SelectItemList(
+                                children: [
+                                  SelectItemButton(
+                                    value: "Id",
+                                    child: Text("Id"),
+                                  ),
+                                  SelectItemButton(
+                                    value: "Customer Name",
+                                    child: Text("Customer Name"),
+                                  ),
+                                  SelectItemButton(
+                                    value: "Items",
+                                    child: Text("Items"),
+                                  ),
+                                  SelectItemButton(
+                                    value: "Amount",
+                                    child: Text("Amount"),
+                                  ),
+                                  SelectItemButton(
+                                    value: "Payment Method",
+                                    child: Text("Payment Method"),
+                                  ),
+                                  SelectItemButton(
+                                    value: "Status",
+                                    child: Text("Status"),
+                                  ),
+                                ],
+                              ),
+                            ).call,
+                          ),
+                        ],
+                      ),
+
+                      const SizedBox(height: 16),
+
+                      Table(
+                        columnWidths: {
+                          0: FixedTableSize(48),
+                          1: FixedTableSize(200),
+                        },
+                        defaultRowHeight: FixedTableSize(48),
+
+                        rows: [
+                          // Header row
+                          TableRow(
+                            cells: [
+                              _buildHeaderCell("ID"),
+                              _buildHeaderCell("Customer Name"),
+                              _buildHeaderCell("Qty Items"),
+                              _buildHeaderCell("Amount"),
+                              _buildHeaderCell("Payment Method"),
+                              _buildHeaderCell("Status", true),
+                            ],
+                          ),
+
+                          // Body rows
+                          TableRow(
+                            cells: [
+                              _buildCell("1"),
+                              _buildCell("Kenneth Thompson"),
+                              _buildCell("2"),
+                              _buildCell("\$316.00"),
+                              _buildCell("E-Wallet"),
+                              _buildCell("New Order"),
+                            ],
+                          ),
+
+                          TableRow(
+                            cells: [
+                              _buildCell("2"),
+                              _buildCell("Abraham Lincoln"),
+                              _buildCell("6"),
+                              _buildCell("\$242.00"),
+                              _buildCell("Bank Transfer"),
+                              _buildCell("In Progress"),
+                            ],
+                          ),
+
+                          TableRow(
+                            cells: [
+                              _buildCell("3"),
+                              _buildCell("Monserrat Rodriguez"),
+                              _buildCell("3"),
+                              _buildCell("\$837.00"),
+                              _buildCell("E-Wallet"),
+                              _buildCell("New Order"),
+                            ],
+                          ),
+
+                          TableRow(
+                            cells: [
+                              _buildCell("4"),
+                              _buildCell("Silas Johnson"),
+                              _buildCell("15"),
+                              _buildCell("\$874.00"),
+                              _buildCell("Bank Transfer"),
+                              _buildCell("On Hold"),
+                            ],
+                          ),
+
+                          TableRow(
+                            cells: [
+                              _buildCell("5"),
+                              _buildCell("Carmella DeVito"),
+                              _buildCell("4"),
+                              _buildCell("\$721.00"),
+                              _buildCell("Credit Card"),
+                              _buildCell("Completed"),
+                            ],
+                          ),
+
+                          TableRow(
+                            cells: [
+                              _buildCell("6"),
+                              _buildCell("Maria Garcia"),
+                              _buildCell("8"),
+                              _buildCell("\$529.00"),
+                              _buildCell("PayPal"),
+                              _buildCell("Completed"),
+                            ],
+                          ),
+                        ],
+                      ),
+
+                      const SizedBox(height: 16),
+
+                      Row(
+                        spacing: 8,
+                        children: [
+                          const Text("0 of 6 row(s) selected."),
+                          const Spacer(),
+                          IconButton.outline(
+                            enabled: false,
+                            onPressed: () {},
+                            icon: const Icon(LucideIcons.chevronLeft),
+                          ),
+                          IconButton.outline(
+                            enabled: false,
+                            onPressed: () {},
+                            icon: const Icon(LucideIcons.chevronRight),
+                          ),
+                        ],
+                      ),
                     ],
                   ),
                 ),
@@ -370,6 +819,26 @@ class SalesDashboardScreenState extends State<SalesDashboardScreen> {
             ],
           ),
         ],
+      ),
+    );
+  }
+
+  TableCell _buildHeaderCell(String text, [bool alignRight = false]) {
+    return TableCell(
+      child: Container(
+        padding: const .all(8),
+        alignment: alignRight ? .centerRight : .centerLeft,
+        child: Text(text).muted().semiBold(),
+      ),
+    );
+  }
+
+  TableCell _buildCell(String text, [bool alignRight = false]) {
+    return TableCell(
+      child: Container(
+        padding: const .all(8),
+        alignment: alignRight ? .centerRight : .centerLeft,
+        child: Text(text),
       ),
     );
   }
@@ -500,7 +969,7 @@ class RevenueBarChart extends StatelessWidget {
           ),
         ),
       ],
-      showingTooltipIndicators: [0],
+      // showingTooltipIndicators: [0],
     ),
   );
 }
