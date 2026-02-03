@@ -533,7 +533,7 @@ class DefaultScreenState extends State<DefaultScreen> {
           crossAxisAlignment: .stretch,
           children: [
             NavigationRail(
-              labelType: .expanded,
+              labelType: expanded ? .expanded : .tooltip,
               labelPosition: .end,
               alignment: .start,
               expanded: expanded,
