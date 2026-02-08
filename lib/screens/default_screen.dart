@@ -488,24 +488,6 @@ class DefaultScreenState extends State<DefaultScreen> {
     AppScreen.error403Page: const Error403PageScreen(),
   };
 
-  void _showUserMenu(BuildContext context) {
-    showDropdown(
-      context: context,
-      builder: (context) {
-        return const DropdownMenu(
-          children: [
-            MenuButton(child: Text("Upgrade to Pro")),
-            MenuButton(child: Text("Account")),
-            MenuButton(child: Text("Billing")),
-            MenuButton(child: Text("Notifications")),
-            MenuDivider(),
-            MenuButton(child: Text("Log out")),
-          ],
-        );
-      },
-    );
-  }
-
   void _selectPage(AppScreen page) {
     setState(() => selectedPage = page);
   }
@@ -549,14 +531,16 @@ class DefaultScreenState extends State<DefaultScreen> {
 
             Expanded(
               child: Padding(
-                padding: const .all(8),
-                child: Card(
-                  padding: .zero,
+                padding: const .only(top: 8, right: 8, bottom: 8, left: 0),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).colorScheme.card,
+                    borderRadius: .circular(12),
+                  ),
                   child: Column(
                     crossAxisAlignment: .start,
                     children: [
                       _buildAppBar(),
-                      const Divider(),
                       Expanded(
                         child: SingleChildScrollView(
                           child: screens[selectedPage],
@@ -642,51 +626,90 @@ class DefaultScreenState extends State<DefaultScreen> {
   }
 
   Widget _buildAppBar() {
-    return Padding(
-      padding: const EdgeInsets.all(8),
+    return Container(
+      height: 56,
+      padding: const .symmetric(horizontal: 16),
+      decoration: BoxDecoration(
+        border: Border(
+          bottom: BorderSide(color: Theme.of(context).colorScheme.border),
+        ),
+      ),
       child: Row(
         children: [
           IconButton.ghost(
-            onPressed: () => setState(() => expanded = !expanded),
-            icon: expanded
-                ? const Icon(LucideIcons.panelLeftClose)
-                : const Icon(LucideIcons.panelLeftOpen),
+            onPressed: () {
+              setState(() {
+                expanded = !expanded;
+              });
+            },
+            icon: const Icon(LucideIcons.panelLeft, size: 16),
+          ),
+          const SizedBox(height: 16, child: VerticalDivider()),
+          IconButton.ghost(
+            onPressed: () {},
+            icon: const Icon(LucideIcons.search, size: 16),
+          ),
+          const Spacer(),
+          IconButton.ghost(
+            onPressed: () {},
+            icon: const Icon(LucideIcons.bell, size: 16),
           ),
           IconButton.ghost(
             onPressed: () {},
-            icon: const Icon(LucideIcons.search),
+            icon: const Icon(LucideIcons.moon, size: 16),
           ),
-          const Spacer(),
-          _buildAppBarActions(),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildAppBarActions() {
-    return Row(
-      children: [
-        IconButton.ghost(onPressed: () {}, icon: const Icon(LucideIcons.bell)),
-        IconButton.ghost(onPressed: () {}, icon: const Icon(LucideIcons.moon)),
-        IconButton.ghost(
-          onPressed: () {},
-          icon: const Icon(LucideIcons.palette),
-        ),
-        Builder(
-          builder: (context) {
-            return IconButton.ghost(
-              onPressed: () => _showUserMenu(context),
-              icon: Avatar(
-                size: 24,
-                initials: Avatar.getInitials("ts paja"),
-                provider: const NetworkImage(
-                  "https://avatars.githubusercontent.com/u/213942709?s=400&v=4",
+          IconButton.ghost(
+            onPressed: () {},
+            icon: const Icon(LucideIcons.palette, size: 16),
+          ),
+          const SizedBox(height: 16, child: VerticalDivider()),
+          Builder(
+            builder: (context) {
+              return IconButton.ghost(
+                onPressed: () {
+                  showDropdown(
+                    context: context,
+                    builder: (context) {
+                      return const DropdownMenu(
+                        children: [
+                          MenuButton(
+                            leading: Icon(LucideIcons.sparkles),
+                            child: Text("Upgrade to Pro"),
+                          ),
+                          MenuButton(
+                            leading: Icon(LucideIcons.badgeCheck),
+                            child: Text("Account"),
+                          ),
+                          MenuButton(
+                            leading: Icon(LucideIcons.creditCard),
+                            child: Text("Billing"),
+                          ),
+                          MenuButton(
+                            leading: Icon(LucideIcons.bell),
+                            child: Text("Notifications"),
+                          ),
+                          MenuDivider(),
+                          MenuButton(
+                            leading: Icon(LucideIcons.logOut),
+                            child: Text("Log Out"),
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                },
+                icon: Avatar(
+                  size: 24,
+                  initials: Avatar.getInitials("ts paja"),
+                  provider: const NetworkImage(
+                    "https://avatars.githubusercontent.com/u/213942709?s=400&v=4",
+                  ),
                 ),
-              ),
-            );
-          },
-        ),
-      ],
+              );
+            },
+          ),
+        ],
+      ).gap(8),
     );
   }
 }
