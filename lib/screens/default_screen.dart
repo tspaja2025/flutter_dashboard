@@ -196,6 +196,11 @@ class DefaultScreenState extends State<DefaultScreen> {
           screen: AppScreen.academyDashboard,
         ),
         NavigationRailItem(
+          label: 'Hospital management',
+          icon: LucideIcons.heartPulse,
+          screen: AppScreen.hospitalManagementDashboard,
+        ),
+        NavigationRailItem(
           label: 'Finance Dashboard',
           icon: LucideIcons.walletCards,
           screen: AppScreen.financeDashboard,
