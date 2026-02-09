@@ -55,6 +55,25 @@ import 'package:flutter_dashboard/screens/pages/settings/settings_profile_page.d
 import 'package:flutter_dashboard/screens/pages/users_list_page.dart';
 import 'package:shadcn_flutter/shadcn_flutter.dart';
 
+// TODO:
+// Apps:
+// Social Media
+// File Manager
+// POS App
+// Courses
+// AI Apps:
+// Image Generator
+// Text to Speech
+// Pages:
+// Users List
+// Profile
+// Onboarding Flow
+// Empty States
+// Settings
+// Pricing
+// Authentication
+// Error Pages
+
 class DefaultScreen extends StatefulWidget {
   const DefaultScreen({super.key});
 
