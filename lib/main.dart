@@ -13,8 +13,8 @@ class FlutterDashboard extends StatelessWidget {
     return ShadcnApp(
       debugShowCheckedModeBanner: false,
       title: "Flutter Dashboard",
-      theme: ThemeData(colorScheme: ColorSchemes.lightDefaultColor),
-      darkTheme: ThemeData(colorScheme: ColorSchemes.darkDefaultColor),
+      theme: ThemeData(colorScheme: ColorSchemes.lightNeutral),
+      // darkTheme: ThemeData(colorScheme: ColorSchemes.darkNeutral),
       themeMode: ThemeMode.dark,
       home: const DefaultScreen(),
     );
