@@ -37,7 +37,9 @@ import 'package:flutter_dashboard/screens/dashboards/website_analytics_dashboard
 import 'package:flutter_dashboard/screens/pages/authentication/authentication_forgot_password_page.dart';
 import 'package:flutter_dashboard/screens/pages/authentication/authentication_login_page.dart';
 import 'package:flutter_dashboard/screens/pages/authentication/authentication_register_page.dart';
-import 'package:flutter_dashboard/screens/pages/empty_states_page.dart';
+import 'package:flutter_dashboard/screens/pages/empty_states/empty_state_01_page.dart';
+import 'package:flutter_dashboard/screens/pages/empty_states/empty_state_02_page.dart';
+import 'package:flutter_dashboard/screens/pages/empty_states/empty_state_03_page.dart';
 import 'package:flutter_dashboard/screens/pages/error_pages/error_403_page.dart';
 import 'package:flutter_dashboard/screens/pages/error_pages/error_404_page.dart';
 import 'package:flutter_dashboard/screens/pages/error_pages/error_500_page.dart';
@@ -65,10 +67,7 @@ import 'package:shadcn_flutter/shadcn_flutter.dart';
 // Image Generator
 // Text to Speech
 // Pages:
-// Users List
-// Profile
 // Onboarding Flow
-// Empty States
 // Settings
 // Pricing
 // Authentication
@@ -322,15 +321,24 @@ class DefaultScreenState extends State<DefaultScreen> {
         NavigationRailItem(
           label: 'Empty States',
           icon: LucideIcons.brush,
-          screen: AppScreen.emptyStatesPage,
-          children: List.generate(
-            3,
-            (index) => NavigationRailItem(
-              label: 'Empty States ${(index + 1).toString().padLeft(2, '0')}',
-              icon: LucideIcons.brush,
-              screen: AppScreen.emptyStatesPage,
+          screen: AppScreen.emptyStates01Page,
+          children: [
+            NavigationRailItem(
+              label: 'Empty States 01',
+              icon: LucideIcons.user,
+              screen: AppScreen.emptyStates01Page,
             ),
-          ),
+            NavigationRailItem(
+              label: 'Empty States 02',
+              icon: LucideIcons.user,
+              screen: AppScreen.emptyStates02Page,
+            ),
+            NavigationRailItem(
+              label: 'Empty States 03',
+              icon: LucideIcons.user,
+              screen: AppScreen.emptyStates03Page,
+            ),
+          ],
         ),
         NavigationRailItem(
           label: 'Settings',
@@ -487,7 +495,9 @@ class DefaultScreenState extends State<DefaultScreen> {
     AppScreen.usersListPage: const UsersListPageScreen(),
     AppScreen.profilePage: const ProfilePageScreen(),
     AppScreen.onboardingFlowPage: const OnboardingFlowPageScreen(),
-    AppScreen.emptyStatesPage: const EmptyStatesPageScreen(),
+    AppScreen.emptyStates01Page: const EmptyStates01PageScreen(),
+    AppScreen.emptyStates02Page: const EmptyStates02PageScreen(),
+    AppScreen.emptyStates03Page: const EmptyStates03PageScreen(),
     // Settings
     AppScreen.settingsProfilePage: const SettingsProfilePageScreen(),
     AppScreen.settingsAccountPage: const SettingsAccountPageScreen(),
@@ -790,7 +800,9 @@ enum AppScreen {
   usersListPage,
   profilePage,
   onboardingFlowPage,
-  emptyStatesPage,
+  emptyStates01Page,
+  emptyStates02Page,
+  emptyStates03Page,
   // Settings children start
   settingsProfilePage,
   settingsAccountPage,
