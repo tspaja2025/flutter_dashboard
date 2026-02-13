@@ -255,6 +255,16 @@ class DefaultScreenState extends State<DefaultScreen> {
           screen: AppScreen.todoListApp,
         ),
         NavigationRailItem(
+          label: 'Tasks',
+          icon: LucideIcons.clipboardCheck,
+          screen: AppScreen.tasksApp,
+        ),
+        NavigationRailItem(
+          label: 'Calendar',
+          icon: LucideIcons.calendar,
+          screen: AppScreen.calendarApp,
+        ),
+        NavigationRailItem(
           label: 'File Manager',
           icon: LucideIcons.fileArchive,
           screen: AppScreen.fileManagerApp,
