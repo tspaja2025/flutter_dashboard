@@ -68,10 +68,6 @@ import 'package:shadcn_flutter/shadcn_flutter.dart';
 // Text to Speech
 // Pages:
 // Onboarding Flow
-// Settings
-// Pricing
-// Authentication
-// Error Pages
 
 class DefaultScreen extends StatefulWidget {
   const DefaultScreen({super.key});
