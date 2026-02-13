@@ -9,7 +9,20 @@ class CoursesAppScreen extends StatelessWidget {
       padding: const .all(16),
       child: Column(
         children: [
-          Row(children: [const Text("Courses App").bold().large()]),
+          Row(
+            children: [
+              const Text("Courses App").bold().large(),
+              const Spacer(),
+              IconButton.outline(
+                onPressed: () {},
+                icon: const Icon(LucideIcons.chartBar),
+              ),
+              IconButton.outline(
+                onPressed: () {},
+                icon: const Icon(LucideIcons.list),
+              ),
+            ],
+          ),
 
           const SizedBox(height: 16),
         ],
