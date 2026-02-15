@@ -960,3 +960,727 @@ class NavigationSubmenuBody extends StatelessWidget {
     );
   }
 }
+
+// Possible updates to
+// default_screen.dart
+// and
+// main.dart
+
+// import 'package:flutter_shad/screens/default_screen.dart';
+// import 'package:shadcn_flutter/shadcn_flutter.dart';
+
+// void main() {
+//   runApp(const FlutterShad());
+// }
+
+// class FlutterShad extends StatefulWidget {
+//   const FlutterShad({super.key});
+
+//   @override
+//   State<FlutterShad> createState() => FlutterShadState();
+// }
+
+// class FlutterShadState extends State<FlutterShad> {
+//   ThemeMode _themeMode = ThemeMode.dark;
+
+//   void _toggleTheme() {
+//     setState(() {
+//       _themeMode = _themeMode == ThemeMode.light
+//           ? ThemeMode.dark
+//           : ThemeMode.light;
+//     });
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return ShadcnApp(
+//       debugShowCheckedModeBanner: false,
+//       theme: ThemeData(colorScheme: ColorSchemes.lightNeutral),
+//       darkTheme: ThemeData.dark(colorScheme: ColorSchemes.darkNeutral),
+//       themeMode: _themeMode,
+//       title: "Flutter shadcn",
+//       home: DefaultScreen(onThemeToggle: _toggleTheme, themeMode: _themeMode),
+//     );
+//   }
+// }
+
+// import 'package:shadcn_flutter/shadcn_flutter.dart';
+
+// class DefaultScreen extends StatefulWidget {
+//   final VoidCallback onThemeToggle;
+//   final ThemeMode themeMode;
+
+//   const DefaultScreen({
+//     super.key,
+//     required this.onThemeToggle,
+//     required this.themeMode,
+//   });
+
+//   @override
+//   State<DefaultScreen> createState() => DefaultScreenState();
+// }
+
+// class DefaultScreenState extends State<DefaultScreen> {
+//   bool sidebarExpanded = true;
+//   DashboardRoute activeRoute = DashboardRoute.first;
+
+//   void toggleSidebar() {
+//     setState(() => sidebarExpanded = !sidebarExpanded);
+//   }
+
+//   void setRoute(DashboardRoute route) {
+//     setState(() => activeRoute = route);
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       child: Row(
+//         children: [
+//           DashboardSidebar(
+//             expanded: sidebarExpanded,
+//             activeRoute: activeRoute,
+//             onRouteSelected: setRoute,
+//           ),
+//           Expanded(
+//             child: DashboardShell(
+//               onToggleSidebar: toggleSidebar,
+//               onThemeToggle: widget.onThemeToggle,
+//               themeMode: widget.themeMode,
+//               child: dashboardRouteBuilder(activeRoute),
+//             ),
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+
+//   Widget dashboardRouteBuilder(DashboardRoute route) {
+//     switch (route) {
+//       case DashboardRoute.first:
+//         return const FirstScreen();
+//       case DashboardRoute.second:
+//         return const SecondScreen();
+//     }
+//   }
+// }
+
+// enum DashboardRoute { first, second }
+
+// class DashboardSidebar extends StatelessWidget {
+//   final bool expanded;
+//   final DashboardRoute activeRoute;
+//   final ValueChanged<DashboardRoute> onRouteSelected;
+
+//   const DashboardSidebar({
+//     super.key,
+//     required this.expanded,
+//     required this.activeRoute,
+//     required this.onRouteSelected,
+//   });
+
+//   static const sidebarRoutes = [
+//     SidebarRouteItem(
+//       route: DashboardRoute.first,
+//       label: 'First Screen',
+//       icon: LucideIcons.chartPie,
+//     ),
+//     SidebarRouteItem(
+//       route: DashboardRoute.second,
+//       label: 'Second Screen',
+//       icon: LucideIcons.chartPie,
+//     ),
+//   ];
+
+//   @override
+//   Widget build(BuildContext context) {
+//     final theme = Theme.of(context);
+
+//     return AnimatedContainer(
+//       duration: const Duration(milliseconds: 200),
+//       width: expanded ? 240 : 72,
+//       decoration: BoxDecoration(
+//         border: Border(right: BorderSide(color: theme.colorScheme.border)),
+//       ),
+//       child: Column(
+//         crossAxisAlignment: CrossAxisAlignment.stretch,
+//         children: [
+//           _SidebarHeader(expanded: expanded),
+//           Column(
+//             crossAxisAlignment: CrossAxisAlignment.stretch,
+//             children: [
+//               ...sidebarRoutes.map(
+//                 (item) => SidebarItem(
+//                   item: item,
+//                   expanded: expanded,
+//                   selected: item.route == activeRoute,
+//                   onTap: () => onRouteSelected(item.route),
+//                 ),
+//               ),
+//             ],
+//           ).gap(8).withPadding(horizontal: 16),
+//         ],
+//       ).gap(8),
+//     );
+//   }
+// }
+
+// class _SidebarHeader extends StatelessWidget {
+//   final bool expanded;
+
+//   const _SidebarHeader({required this.expanded});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     final theme = Theme.of(context);
+
+//     return Container(
+//       decoration: BoxDecoration(
+//         border: Border(bottom: BorderSide(color: theme.colorScheme.border)),
+//       ),
+//       height: 72,
+//       child: Row(
+//         mainAxisAlignment: MainAxisAlignment.center,
+//         children: [
+//           if (expanded)
+//             const Text("Flutter Dashboard")
+//           else
+//             const Icon(LucideIcons.layoutDashboard),
+//         ],
+//       ),
+//     );
+//   }
+// }
+
+// class DashboardAppBar extends StatelessWidget {
+//   final VoidCallback onToggleSidebar;
+//   final VoidCallback onThemeToggle;
+//   final ThemeMode themeMode;
+
+//   const DashboardAppBar({
+//     super.key,
+//     required this.onToggleSidebar,
+//     required this.onThemeToggle,
+//     required this.themeMode,
+//   });
+
+//   @override
+//   Widget build(BuildContext context) {
+//     final theme = Theme.of(context);
+
+//     return Container(
+//       height: 64,
+//       decoration: BoxDecoration(
+//         border: Border(bottom: BorderSide(color: theme.colorScheme.border)),
+//       ),
+//       child: Row(
+//         spacing: 8,
+//         children: [
+//           IconButton.ghost(
+//             onPressed: onToggleSidebar,
+//             icon: const Icon(LucideIcons.panelLeft, size: 16),
+//           ),
+//           const SizedBox(height: 16, child: VerticalDivider()),
+//           IconButton.ghost(
+//             onPressed: () {},
+//             icon: const Icon(LucideIcons.search, size: 16),
+//           ),
+//           const Spacer(),
+//           const NotificationsMenu(),
+//           IconButton.ghost(
+//             onPressed: onThemeToggle,
+//             icon: Icon(
+//               themeMode == ThemeMode.dark ? LucideIcons.sun : LucideIcons.moon,
+//               size: 16,
+//             ),
+//           ),
+//           const ThemeMenu(),
+//           const SizedBox(height: 16, child: VerticalDivider()),
+//           const UserMenu(),
+//         ],
+//       ).withPadding(horizontal: 16),
+//     );
+//   }
+// }
+
+// class DashboardShell extends StatelessWidget {
+//   final Widget child;
+//   final VoidCallback onToggleSidebar;
+//   final VoidCallback onThemeToggle;
+//   final ThemeMode themeMode;
+
+//   const DashboardShell({
+//     super.key,
+//     required this.child,
+//     required this.onToggleSidebar,
+//     required this.onThemeToggle,
+//     required this.themeMode,
+//   });
+
+//   @override
+//   Widget build(BuildContext context) {
+//     final theme = Theme.of(context);
+
+//     return Container(
+//       margin: const EdgeInsets.all(8),
+//       decoration: BoxDecoration(
+//         border: Border.all(color: theme.colorScheme.border),
+//         borderRadius: BorderRadius.circular(12),
+//       ),
+//       child: Column(
+//         crossAxisAlignment: CrossAxisAlignment.start,
+//         children: [
+//           DashboardAppBar(
+//             onToggleSidebar: onToggleSidebar,
+//             onThemeToggle: onThemeToggle,
+//             themeMode: themeMode,
+//           ),
+//           Expanded(child: child),
+//         ],
+//       ),
+//     );
+//   }
+// }
+
+// class SidebarRouteItem {
+//   final DashboardRoute route;
+//   final String label;
+//   final IconData icon;
+
+//   const SidebarRouteItem({
+//     required this.route,
+//     required this.label,
+//     required this.icon,
+//   });
+// }
+
+// class SidebarItem extends StatelessWidget {
+//   final SidebarRouteItem item;
+//   final bool selected;
+//   final bool expanded;
+//   final VoidCallback onTap;
+
+//   const SidebarItem({
+//     super.key,
+//     required this.item,
+//     required this.selected,
+//     required this.expanded,
+//     required this.onTap,
+//   });
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Button(
+//       onPressed: onTap,
+//       style: selected ? ButtonStyle.primary() : ButtonStyle.ghost(),
+//       leading: Icon(item.icon, size: 16),
+//       child: expanded ? Text(item.label) : const SizedBox.shrink(),
+//     );
+//   }
+// }
+
+// class NotificationsMenu extends StatelessWidget {
+//   const NotificationsMenu({super.key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     final theme = Theme.of(context);
+
+//     return Builder(
+//       builder: (context) {
+//         return IconButton.ghost(
+//           onPressed: () {
+//             showDropdown(
+//               context: context,
+//               alignment: Alignment.bottomRight,
+//               builder: (context) {
+//                 return Container(
+//                   decoration: BoxDecoration(
+//                     color: theme.colorScheme.card,
+//                     border: Border.all(color: theme.colorScheme.border),
+//                     borderRadius: BorderRadius.circular(8),
+//                   ),
+//                   width: 280,
+//                   child: Column(
+//                     crossAxisAlignment: CrossAxisAlignment.start,
+//                     mainAxisSize: MainAxisSize.min,
+//                     children: [
+//                       Container(
+//                         padding: const EdgeInsets.symmetric(horizontal: 16),
+//                         decoration: BoxDecoration(
+//                           border: Border(
+//                             bottom: BorderSide(color: theme.colorScheme.border),
+//                           ),
+//                         ),
+//                         height: 48,
+//                         child: Row(
+//                           children: [
+//                             const Text("Notifications").small(),
+//                             const Spacer(),
+//                             TextButton(
+//                               onPressed: () {},
+//                               density: ButtonDensity.dense,
+//                               child: const Text("View all"),
+//                             ),
+//                           ],
+//                         ),
+//                       ),
+
+//                       Container(
+//                         padding: const EdgeInsets.all(16),
+//                         decoration: BoxDecoration(
+//                           border: Border(
+//                             bottom: BorderSide(color: theme.colorScheme.border),
+//                           ),
+//                         ),
+//                         child: Row(
+//                           children: [
+//                             Avatar(
+//                               size: 24,
+//                               initials: Avatar.getInitials("ts paja"),
+//                               provider: const NetworkImage(
+//                                 "https://avatars.githubusercontent.com/u/213942709?s=400&v=4",
+//                               ),
+//                             ),
+//                             Column(
+//                               crossAxisAlignment: CrossAxisAlignment.start,
+//                               children: [
+//                                 const Text("Your order is placed").small(),
+//                                 const Text(
+//                                   "Amet minim mallit non deser unt...",
+//                                 ).muted().small(),
+//                                 const Text("2 days ago").muted().small(),
+//                               ],
+//                             ),
+//                           ],
+//                         ).gap(8),
+//                       ),
+
+//                       Container(
+//                         padding: const EdgeInsets.all(16),
+//                         decoration: BoxDecoration(
+//                           border: Border(
+//                             bottom: BorderSide(color: theme.colorScheme.border),
+//                           ),
+//                         ),
+//                         child: Row(
+//                           children: [
+//                             Avatar(
+//                               size: 24,
+//                               initials: Avatar.getInitials("ts paja"),
+//                               provider: const NetworkImage(
+//                                 "https://avatars.githubusercontent.com/u/213942709?s=400&v=4",
+//                               ),
+//                             ),
+//                             Column(
+//                               crossAxisAlignment: CrossAxisAlignment.start,
+//                               children: [
+//                                 const Text("Congratulations Darlene").small(),
+//                                 const Text(
+//                                   "Won the monthly best selled badge",
+//                                 ).muted().small(),
+//                                 const Text("2 days ago").muted().small(),
+//                               ],
+//                             ),
+//                           ],
+//                         ).gap(8),
+//                       ),
+
+//                       Container(
+//                         padding: const EdgeInsets.all(16),
+//                         child: Row(
+//                           children: [
+//                             Avatar(
+//                               size: 24,
+//                               initials: Avatar.getInitials("ts paja"),
+//                               provider: const NetworkImage(
+//                                 "https://avatars.githubusercontent.com/u/213942709?s=400&v=4",
+//                               ),
+//                             ),
+//                             Column(
+//                               crossAxisAlignment: CrossAxisAlignment.start,
+//                               children: [
+//                                 const Text("Joaquina Weisenborn").small(),
+//                                 const Text(
+//                                   "Requesting access permission",
+//                                 ).muted().small(),
+//                                 Row(
+//                                   children: [
+//                                     OutlineButton(
+//                                       onPressed: () {},
+//                                       density: ButtonDensity.dense,
+//                                       child: const Text("Accept"),
+//                                     ),
+//                                     OutlineButton(
+//                                       onPressed: () {},
+//                                       density: ButtonDensity.dense,
+//                                       child: const Text("Decline"),
+//                                     ),
+//                                   ],
+//                                 ).gap(8),
+//                                 const Text("2 days ago").muted().small(),
+//                               ],
+//                             ).gap(4),
+//                           ],
+//                         ).gap(8),
+//                       ),
+//                     ],
+//                   ),
+//                 );
+//               },
+//             );
+//           },
+//           icon: const Icon(LucideIcons.bell, size: 16),
+//         );
+//       },
+//     );
+//   }
+// }
+
+// class ThemeMenu extends StatefulWidget {
+//   const ThemeMenu({super.key});
+
+//   @override
+//   State<ThemeMenu> createState() => ThemeMenuState();
+// }
+
+// class ThemeMenuState extends State<ThemeMenu> {
+//   String? selectedValue;
+
+//   @override
+//   Widget build(BuildContext context) {
+//     final theme = Theme.of(context);
+
+//     return Builder(
+//       builder: (context) {
+//         return IconButton.ghost(
+//           onPressed: () {
+//             showDropdown(
+//               context: context,
+//               alignment: Alignment.bottomRight,
+//               builder: (context) {
+//                 return Container(
+//                   padding: const EdgeInsets.all(12),
+//                   decoration: BoxDecoration(
+//                     color: theme.colorScheme.card,
+//                     border: Border.all(color: theme.colorScheme.border),
+//                     borderRadius: BorderRadius.circular(8),
+//                   ),
+//                   width: 280,
+//                   child: Column(
+//                     crossAxisAlignment: CrossAxisAlignment.start,
+//                     mainAxisSize: MainAxisSize.min,
+//                     children: [
+//                       const Text("Theme preset").small(),
+
+//                       const SizedBox(height: 16),
+
+//                       Select<String>(
+//                         itemBuilder: (context, item) {
+//                           return Text(item);
+//                         },
+//                         popupConstraints: const BoxConstraints(
+//                           maxHeight: 300,
+//                           maxWidth: 200,
+//                         ),
+//                         onChanged: (value) {
+//                           setState(() {
+//                             selectedValue = value;
+//                           });
+//                         },
+//                         value: selectedValue,
+//                         placeholder: const Text("Default"),
+//                         popup: const SelectPopup(
+//                           items: SelectItemList(
+//                             children: [
+//                               SelectItemButton(
+//                                 value: "Default",
+//                                 child: Text("Default"),
+//                               ),
+//                             ],
+//                           ),
+//                         ).call,
+//                       ),
+
+//                       const SizedBox(height: 16),
+
+//                       const Text("Scale:"),
+
+//                       const SizedBox(height: 16),
+
+//                       Row(
+//                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+//                         children: [
+//                           OutlineButton(
+//                             onPressed: () {},
+//                             density: ButtonDensity.dense,
+//                             child: const Icon(LucideIcons.ban, size: 16),
+//                           ),
+//                           OutlineButton(
+//                             onPressed: () {},
+//                             density: ButtonDensity.dense,
+//                             child: const Text("XS"),
+//                           ),
+//                           OutlineButton(
+//                             onPressed: () {},
+//                             density: ButtonDensity.dense,
+//                             child: const Text("LG"),
+//                           ),
+//                         ],
+//                       ),
+
+//                       const SizedBox(height: 16),
+
+//                       const Text("Radius:"),
+
+//                       const SizedBox(height: 16),
+
+//                       Row(
+//                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+//                         children: [
+//                           OutlineButton(
+//                             onPressed: () {},
+//                             density: ButtonDensity.dense,
+//                             child: const Icon(LucideIcons.ban, size: 16),
+//                           ),
+//                           OutlineButton(
+//                             onPressed: () {},
+//                             density: ButtonDensity.dense,
+//                             child: const Text("SM"),
+//                           ),
+//                           OutlineButton(
+//                             onPressed: () {},
+//                             density: ButtonDensity.dense,
+//                             child: const Text("MD"),
+//                           ),
+//                           OutlineButton(
+//                             onPressed: () {},
+//                             density: ButtonDensity.dense,
+//                             child: const Text("LG"),
+//                           ),
+//                           OutlineButton(
+//                             onPressed: () {},
+//                             density: ButtonDensity.dense,
+//                             child: const Text("XL"),
+//                           ),
+//                         ],
+//                       ),
+
+//                       const SizedBox(height: 16),
+
+//                       const Text("Color mode:"),
+
+//                       const SizedBox(height: 16),
+
+//                       Row(
+//                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+//                         children: [
+//                           OutlineButton(
+//                             onPressed: () {},
+//                             child: const Text("Light"),
+//                           ),
+//                           OutlineButton(
+//                             onPressed: () {},
+//                             child: const Text("Dark"),
+//                           ),
+//                         ],
+//                       ),
+
+//                       const SizedBox(height: 16),
+
+//                       SizedBox(
+//                         width: double.infinity,
+//                         child: PrimaryButton(
+//                           onPressed: () {},
+//                           child: const Text("Reset to Default"),
+//                         ),
+//                       ),
+//                     ],
+//                   ),
+//                 );
+//               },
+//             );
+//           },
+//           icon: const Icon(LucideIcons.palette, size: 16),
+//         );
+//       },
+//     );
+//   }
+// }
+
+// class UserMenu extends StatelessWidget {
+//   const UserMenu({super.key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Builder(
+//       builder: (context) {
+//         return IconButton.ghost(
+//           onPressed: () {
+//             showDropdown(
+//               context: context,
+//               builder: (context) {
+//                 return const DropdownMenu(
+//                   children: [
+//                     MenuButton(
+//                       leading: Icon(LucideIcons.sparkles, size: 16),
+//                       child: Text("Upgrade to Pro"),
+//                     ),
+//                     MenuButton(
+//                       leading: Icon(LucideIcons.badgeCheck, size: 16),
+//                       child: Text("Account"),
+//                     ),
+//                     MenuButton(
+//                       leading: Icon(LucideIcons.creditCard, size: 16),
+//                       child: Text("Billing"),
+//                     ),
+//                     MenuButton(
+//                       leading: Icon(LucideIcons.bell, size: 16),
+//                       child: Text("Notifications"),
+//                     ),
+//                     MenuDivider(),
+//                     MenuButton(
+//                       leading: Icon(LucideIcons.logOut, size: 16),
+//                       child: Text("Log Out"),
+//                     ),
+//                   ],
+//                 );
+//               },
+//             );
+//           },
+//           icon: Avatar(
+//             size: 24,
+//             initials: Avatar.getInitials("ts paja"),
+//             provider: const NetworkImage(
+//               "https://avatars.githubusercontent.com/u/213942709?s=400&v=4",
+//             ),
+//           ),
+//         );
+//       },
+//     );
+//   }
+// }
+
+// class FirstScreen extends StatelessWidget {
+//   const FirstScreen({super.key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Column(
+//       crossAxisAlignment: CrossAxisAlignment.start,
+//       children: [const Text("First Screen")],
+//     ).withPadding(all: 16);
+//   }
+// }
+
+// class SecondScreen extends StatelessWidget {
+//   const SecondScreen({super.key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Column(
+//       crossAxisAlignment: CrossAxisAlignment.start,
+//       children: [const Text("Second Screen")],
+//     ).withPadding(all: 16);
+//   }
+// }
