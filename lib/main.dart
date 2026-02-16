@@ -5,8 +5,23 @@ void main() {
   runApp(const FlutterDashboard());
 }
 
-class FlutterDashboard extends StatelessWidget {
+class FlutterDashboard extends StatefulWidget {
   const FlutterDashboard({super.key});
+
+  @override
+  State<FlutterDashboard> createState() => FlutterDashboardState();
+}
+
+class FlutterDashboardState extends State<FlutterDashboard> {
+  ThemeMode _themeMode = ThemeMode.light;
+
+  void _toggleTheme() {
+    setState(() {
+      _themeMode = _themeMode == ThemeMode.light
+          ? ThemeMode.dark
+          : ThemeMode.light;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -14,9 +29,9 @@ class FlutterDashboard extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: "Flutter Dashboard",
       theme: ThemeData(colorScheme: ColorSchemes.lightNeutral),
-      // darkTheme: ThemeData(colorScheme: ColorSchemes.darkNeutral),
-      themeMode: ThemeMode.dark,
-      home: const DefaultScreen(),
+      darkTheme: ThemeData.dark(colorScheme: ColorSchemes.darkNeutral),
+      themeMode: _themeMode,
+      home: DefaultScreen(onThemeToggle: _toggleTheme, themeMode: _themeMode),
     );
   }
 }
