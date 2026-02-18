@@ -170,6 +170,9 @@ class ClassicDashboardScreenState extends State<ClassicDashboardScreen> {
                     crossAxisAlignment: .start,
                     children: [
                       const Text("Subscriptions").semiBold(),
+
+                      const SizedBox(height: 16),
+
                       const Text("+4850").large().semiBold(),
                       const Text("+180.1% from last month").muted().small(),
 
@@ -321,11 +324,14 @@ class ClassicDashboardScreenState extends State<ClassicDashboardScreen> {
                     crossAxisAlignment: .start,
                     children: [
                       const Text("Total Revenue").semiBold(),
+
+                      const SizedBox(height: 16),
+
                       const Text("\$15,231.89").large().semiBold(),
                       const Text("+20.1% from last month").muted().small(),
 
                       SizedBox(
-                        height: 150,
+                        height: 90,
                         width: double.infinity,
                         child: LineChart(
                           LineChartData(
@@ -338,7 +344,7 @@ class ClassicDashboardScreenState extends State<ClassicDashboardScreen> {
                                   FlSpot(6, 250),
                                   FlSpot(8, 110),
                                 ],
-                                color: Colors.gray,
+                                color: Colors.black,
                                 isCurved: false,
                                 isStrokeCapRound: true,
                                 barWidth: 2,
@@ -349,8 +355,8 @@ class ClassicDashboardScreenState extends State<ClassicDashboardScreen> {
                                       (spot, percent, barData, index) {
                                         return FlDotCirclePainter(
                                           radius: 4,
-                                          color: Colors.gray,
-                                          strokeColor: Colors.white,
+                                          color: Colors.white,
+                                          strokeColor: Colors.black,
                                           strokeWidth: 1,
                                         );
                                       },
@@ -1262,6 +1268,7 @@ class ClassicDashboardScreenState extends State<ClassicDashboardScreen> {
 
                       Form(
                         child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
                             FormField(
                               key: const InputKey(#name),
@@ -1323,6 +1330,7 @@ class ClassicDashboardScreenState extends State<ClassicDashboardScreen> {
                         width: double.infinity,
                         child: PrimaryButton(
                           onPressed: () {},
+                          alignment: Alignment.center,
                           child: const Text("Continue"),
                         ),
                       ),
