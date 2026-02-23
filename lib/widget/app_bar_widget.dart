@@ -208,7 +208,7 @@ class NotificationsMenu extends StatelessWidget {
               },
             );
           },
-          icon: const Icon(LucideIcons.palette, size: 16),
+          icon: const Icon(LucideIcons.bell, size: 16),
         );
       },
     );

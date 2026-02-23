@@ -23,19 +23,19 @@ Perfect for **admin panels, SaaS products, analytics platforms, fintech apps, an
 
 A rich set of ready-to-use dashboards for various industries:
 
-- Classic Dashboard  
-- E-commerce Dashboard  
-- Payment Dashboard  
-- Hotel Dashboard  
-- Project Management Dashboard  
-- Sales Dashboard  
-- CRM Dashboard  
-- Website Analytics Dashboard  
-- File Manager Dashboard  
-- Crypto Dashboard  
-- Academy / School Dashboard  
-- Hospital Management Dashboard  
-- Finance Dashboard  
+- Classic Dashboard
+- E-commerce Dashboard
+- Payment Dashboard
+- Hotel Dashboard
+- Project Management Dashboard
+- Sales Dashboard
+- CRM Dashboard
+- Website Analytics Dashboard
+- File Manager Dashboard
+- Crypto Dashboard
+- Academy / School Dashboard
+- Hospital Management Dashboard
+- Finance Dashboard
 
 ---
 
@@ -43,18 +43,18 @@ A rich set of ready-to-use dashboards for various industries:
 
 Pre-built application UIs to speed up development:
 
-- Kanban Board  
-- Notes App  
-- Chat Application  
-- Social Media App  
-- Mail App  
-- Todo List App  
-- Tasks Manager  
-- Calendar  
-- File Manager  
-- API Keys Manager  
-- POS (Point of Sale) App  
-- Courses App  
+- Kanban Board
+- Notes App
+- Chat Application
+- Social Media App
+- Mail App
+- Todo List App
+- Tasks Manager
+- Calendar
+- File Manager
+- API Keys Manager
+- POS (Point of Sale) App
+- Courses App
 
 ---
 
@@ -62,10 +62,9 @@ Pre-built application UIs to speed up development:
 
 AI-focused application interfaces ready for integration:
 
-- AI Chat  
-- AI Chat V2  
-- Image Generator  
-- Text to Speech  
+- AI Chat
+- Image Generator
+- Text to Speech
 
 ---
 
@@ -73,14 +72,13 @@ AI-focused application interfaces ready for integration:
 
 Essential pages for real-world applications:
 
-- Users List  
-- Profile  
-- Profile V2  
-- Onboarding Flow  
-- Empty States  
-- Settings  
-- Pricing  
-- Authentication (Login, Register, Forgot Password, etc.)  
+- Users List
+- Profile
+- Onboarding Flow
+- Empty States
+- Settings
+- Pricing
+- Authentication (Login, Register, Forgot Password, etc.)
 - Error Pages (404, 500, etc.)
 
 ---
@@ -90,7 +88,7 @@ Essential pages for real-world applications:
 - [**Flutter**](https://flutter.dev/)
 - [**Dart**](https://dart.dev/)
 - [**shadcn_flutter**](https://sunarya-thito.github.io/shadcn_flutter/) UI components
-- [**fl_chart**](https://flchart.dev/)
+- [**fl_chart**](https://flchart.dev/) charts
 
 ---
 
