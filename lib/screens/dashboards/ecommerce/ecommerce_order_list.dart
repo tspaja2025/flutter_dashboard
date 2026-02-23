@@ -14,6 +14,81 @@ class EcommerceOrderListScreenState extends State<EcommerceOrderListScreen> {
   String? categoryValue;
   CheckboxState _state = CheckboxState.unchecked;
 
+  final orderList = [
+    OrderListRow(
+      id: "# 1",
+      product: "Sport Shoes",
+      price: "\$316.00",
+      customer: "Liam Johnson",
+      date: "Jan 27, 2026",
+      type: "Sale",
+      status: "Pending",
+    ),
+    OrderListRow(
+      id: "# 2",
+      product: "Black T-Shirt",
+      price: "\$316.00",
+      customer: "Emma Brown",
+      date: "Jan 27, 2026",
+      type: "Sale",
+      status: "Completed",
+    ),
+    OrderListRow(
+      id: "# 3",
+      product: "Jeans",
+      price: "\$316.00",
+      customer: "Noah Williams",
+      date: "Jan 27, 2026",
+      type: "Return",
+      status: "Pending",
+    ),
+    OrderListRow(
+      id: "# 4",
+      product: "Red Sneakers",
+      price: "\$316.00",
+      customer: "Olivia Garcia",
+      date: "Jan 27, 2026",
+      type: "Sale",
+      status: "Shipped",
+    ),
+    OrderListRow(
+      id: "# 5",
+      product: "Red Scarf",
+      price: "\$316.00",
+      customer: "Elijah Jones",
+      date: "Jan 27, 2026",
+      type: "Sale",
+      status: "Delivered",
+    ),
+    OrderListRow(
+      id: "# 6",
+      product: "Kitchen Accessory",
+      price: "\$316.00",
+      customer: "Ava Miller",
+      date: "Jan 27, 2026",
+      type: "Return",
+      status: "Pending",
+    ),
+    OrderListRow(
+      id: "# 7",
+      product: "Bicycle",
+      price: "\$316.00",
+      customer: "James Martinez",
+      date: "Jan 27, 2026",
+      type: "Sale",
+      status: "Completed",
+    ),
+    OrderListRow(
+      id: "# 8",
+      product: "Sports Shoes",
+      price: "\$316.00",
+      customer: "Sophia Anderson",
+      date: "Jan 27, 2026",
+      type: "Sale",
+      status: "Shipped",
+    ),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -172,421 +247,7 @@ class EcommerceOrderListScreenState extends State<EcommerceOrderListScreen> {
               ),
 
               // Body rows
-              TableRow(
-                cells: [
-                  TableCell(
-                    child: Container(
-                      padding: const .all(8),
-                      child: Checkbox(
-                        state: _state,
-                        onChanged: (state) {
-                          setState(() {
-                            _state = state;
-                          });
-                        },
-                      ),
-                    ),
-                  ),
-                  _buildCell("# 1"),
-                  _buildCell("Sport Shoes"),
-                  _buildCell("\$316.00"),
-                  _buildCell("Liam Johnson"),
-                  _buildCell("Jan 27, 2026"),
-                  _buildCell("Sale"),
-                  _buildCell("Pending"),
-                  TableCell(
-                    child: Container(
-                      padding: const .symmetric(horizontal: 8),
-                      alignment: .centerRight,
-                      child: Builder(
-                        builder: (context) {
-                          return IconButton.ghost(
-                            onPressed: () {
-                              showDropdown(
-                                context: context,
-                                builder: (context) {
-                                  return const DropdownMenu(
-                                    children: [
-                                      MenuButton(child: Text("Order Details")),
-                                      MenuButton(child: Text("Edit")),
-                                      MenuButton(child: Text("Delete")),
-                                    ],
-                                  );
-                                },
-                              );
-                            },
-                            icon: const Icon(LucideIcons.ellipsisVertical),
-                          );
-                        },
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-
-              TableRow(
-                cells: [
-                  TableCell(
-                    child: Container(
-                      padding: const .all(8),
-                      child: Checkbox(
-                        state: _state,
-                        onChanged: (state) {
-                          setState(() {
-                            _state = state;
-                          });
-                        },
-                      ),
-                    ),
-                  ),
-                  _buildCell("# 2"),
-                  _buildCell("Black T-Shirt"),
-                  _buildCell("\$316.00"),
-                  _buildCell("Emma Brown"),
-                  _buildCell("Jan 27, 2026"),
-                  _buildCell("Sale"),
-                  _buildCell("Completed"),
-                  TableCell(
-                    child: Container(
-                      padding: const .symmetric(horizontal: 8),
-                      alignment: .centerRight,
-                      child: Builder(
-                        builder: (context) {
-                          return IconButton.ghost(
-                            onPressed: () {
-                              showDropdown(
-                                context: context,
-                                builder: (context) {
-                                  return const DropdownMenu(
-                                    children: [
-                                      MenuButton(child: Text("Order Details")),
-                                      MenuButton(child: Text("Edit")),
-                                      MenuButton(child: Text("Delete")),
-                                    ],
-                                  );
-                                },
-                              );
-                            },
-                            icon: const Icon(LucideIcons.ellipsisVertical),
-                          );
-                        },
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-
-              TableRow(
-                cells: [
-                  TableCell(
-                    child: Container(
-                      padding: const .all(8),
-                      child: Checkbox(
-                        state: _state,
-                        onChanged: (state) {
-                          setState(() {
-                            _state = state;
-                          });
-                        },
-                      ),
-                    ),
-                  ),
-                  _buildCell("# 3"),
-                  _buildCell("Jeans"),
-                  _buildCell("\$316.00"),
-                  _buildCell("Noah Williams"),
-                  _buildCell("Jan 27, 2026"),
-                  _buildCell("Return"),
-                  _buildCell("Pending"),
-                  TableCell(
-                    child: Container(
-                      padding: const .symmetric(horizontal: 8),
-                      alignment: .centerRight,
-                      child: Builder(
-                        builder: (context) {
-                          return IconButton.ghost(
-                            onPressed: () {
-                              showDropdown(
-                                context: context,
-                                builder: (context) {
-                                  return const DropdownMenu(
-                                    children: [
-                                      MenuButton(child: Text("Order Details")),
-                                      MenuButton(child: Text("Edit")),
-                                      MenuButton(child: Text("Delete")),
-                                    ],
-                                  );
-                                },
-                              );
-                            },
-                            icon: const Icon(LucideIcons.ellipsisVertical),
-                          );
-                        },
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-
-              TableRow(
-                cells: [
-                  TableCell(
-                    child: Container(
-                      padding: const .all(8),
-                      child: Checkbox(
-                        state: _state,
-                        onChanged: (state) {
-                          setState(() {
-                            _state = state;
-                          });
-                        },
-                      ),
-                    ),
-                  ),
-                  _buildCell("# 4"),
-                  _buildCell("Red Sneakers"),
-                  _buildCell("\$316.00"),
-                  _buildCell("Olivia Garcia"),
-                  _buildCell("Jan 27, 2026"),
-                  _buildCell("Sale"),
-                  _buildCell("Shipped"),
-                  TableCell(
-                    child: Container(
-                      padding: const .symmetric(horizontal: 8),
-                      alignment: .centerRight,
-                      child: Builder(
-                        builder: (context) {
-                          return IconButton.ghost(
-                            onPressed: () {
-                              showDropdown(
-                                context: context,
-                                builder: (context) {
-                                  return const DropdownMenu(
-                                    children: [
-                                      MenuButton(child: Text("Order Details")),
-                                      MenuButton(child: Text("Edit")),
-                                      MenuButton(child: Text("Delete")),
-                                    ],
-                                  );
-                                },
-                              );
-                            },
-                            icon: const Icon(LucideIcons.ellipsisVertical),
-                          );
-                        },
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-
-              TableRow(
-                cells: [
-                  TableCell(
-                    child: Container(
-                      padding: const .all(8),
-                      child: Checkbox(
-                        state: _state,
-                        onChanged: (state) {
-                          setState(() {
-                            _state = state;
-                          });
-                        },
-                      ),
-                    ),
-                  ),
-                  _buildCell("# 5"),
-                  _buildCell("Red Scarf"),
-                  _buildCell("\$316.00"),
-                  _buildCell("Elijah Jones"),
-                  _buildCell("Jan 27, 2026"),
-                  _buildCell("Sale"),
-                  _buildCell("Delivered"),
-                  TableCell(
-                    child: Container(
-                      padding: const .symmetric(horizontal: 8),
-                      alignment: .centerRight,
-                      child: Builder(
-                        builder: (context) {
-                          return IconButton.ghost(
-                            onPressed: () {
-                              showDropdown(
-                                context: context,
-                                builder: (context) {
-                                  return const DropdownMenu(
-                                    children: [
-                                      MenuButton(child: Text("Order Details")),
-                                      MenuButton(child: Text("Edit")),
-                                      MenuButton(child: Text("Delete")),
-                                    ],
-                                  );
-                                },
-                              );
-                            },
-                            icon: const Icon(LucideIcons.ellipsisVertical),
-                          );
-                        },
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-
-              TableRow(
-                cells: [
-                  TableCell(
-                    child: Container(
-                      padding: const .all(8),
-                      child: Checkbox(
-                        state: _state,
-                        onChanged: (state) {
-                          setState(() {
-                            _state = state;
-                          });
-                        },
-                      ),
-                    ),
-                  ),
-                  _buildCell("# 6"),
-                  _buildCell("Kitchen Accessory"),
-                  _buildCell("\$316.00"),
-                  _buildCell("Ava Miller"),
-                  _buildCell("Jan 27, 2026"),
-                  _buildCell("Return"),
-                  _buildCell("Pending"),
-                  TableCell(
-                    child: Container(
-                      padding: const .symmetric(horizontal: 8),
-                      alignment: .centerRight,
-                      child: Builder(
-                        builder: (context) {
-                          return IconButton.ghost(
-                            onPressed: () {
-                              showDropdown(
-                                context: context,
-                                builder: (context) {
-                                  return const DropdownMenu(
-                                    children: [
-                                      MenuButton(child: Text("Order Details")),
-                                      MenuButton(child: Text("Edit")),
-                                      MenuButton(child: Text("Delete")),
-                                    ],
-                                  );
-                                },
-                              );
-                            },
-                            icon: const Icon(LucideIcons.ellipsisVertical),
-                          );
-                        },
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-
-              TableRow(
-                cells: [
-                  TableCell(
-                    child: Container(
-                      padding: const .all(8),
-                      child: Checkbox(
-                        state: _state,
-                        onChanged: (state) {
-                          setState(() {
-                            _state = state;
-                          });
-                        },
-                      ),
-                    ),
-                  ),
-                  _buildCell("# 7"),
-                  _buildCell("Bicycle"),
-                  _buildCell("\$316.00"),
-                  _buildCell("James Martinez"),
-                  _buildCell("Jan 27, 2026"),
-                  _buildCell("Sale"),
-                  _buildCell("Completed"),
-                  TableCell(
-                    child: Container(
-                      padding: const .symmetric(horizontal: 8),
-                      alignment: .centerRight,
-                      child: Builder(
-                        builder: (context) {
-                          return IconButton.ghost(
-                            onPressed: () {
-                              showDropdown(
-                                context: context,
-                                builder: (context) {
-                                  return const DropdownMenu(
-                                    children: [
-                                      MenuButton(child: Text("Order Details")),
-                                      MenuButton(child: Text("Edit")),
-                                      MenuButton(child: Text("Delete")),
-                                    ],
-                                  );
-                                },
-                              );
-                            },
-                            icon: const Icon(LucideIcons.ellipsisVertical),
-                          );
-                        },
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-
-              TableRow(
-                cells: [
-                  TableCell(
-                    child: Container(
-                      padding: const .all(8),
-                      child: Checkbox(
-                        state: _state,
-                        onChanged: (state) {
-                          setState(() {
-                            _state = state;
-                          });
-                        },
-                      ),
-                    ),
-                  ),
-                  _buildCell("# 8"),
-                  _buildCell("Sports Shoes"),
-                  _buildCell("\$316.00"),
-                  _buildCell("Sophia Anderson"),
-                  _buildCell("Jan 27, 2026"),
-                  _buildCell("Sale"),
-                  _buildCell("Shipped"),
-                  TableCell(
-                    child: Container(
-                      padding: const .symmetric(horizontal: 8),
-                      alignment: .centerRight,
-                      child: Builder(
-                        builder: (context) {
-                          return IconButton.ghost(
-                            onPressed: () {
-                              showDropdown(
-                                context: context,
-                                builder: (context) {
-                                  return const DropdownMenu(
-                                    children: [
-                                      MenuButton(child: Text("Order Details")),
-                                      MenuButton(child: Text("Edit")),
-                                      MenuButton(child: Text("Delete")),
-                                    ],
-                                  );
-                                },
-                              );
-                            },
-                            icon: const Icon(LucideIcons.ellipsisVertical),
-                          );
-                        },
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+              ...orderList.map((row) => _buildDataRow(context, row)),
             ],
           ),
 
@@ -633,4 +294,86 @@ class EcommerceOrderListScreenState extends State<EcommerceOrderListScreen> {
       ),
     );
   }
+
+  TableCell _checkboxCell() {
+    return TableCell(
+      child: Padding(
+        padding: const .all(8),
+        child: Checkbox(
+          state: _state,
+          onChanged: (state) {
+            setState(() {
+              _state = state;
+            });
+          },
+        ),
+      ),
+    );
+  }
+
+  TableCell _actionCell(BuildContext context) {
+    return TableCell(
+      child: Container(
+        padding: const .symmetric(horizontal: 8),
+        alignment: .centerRight,
+        child: Builder(
+          builder: (context) {
+            return IconButton.ghost(
+              onPressed: () {
+                showDropdown(
+                  context: context,
+                  builder: (context) {
+                    return const DropdownMenu(
+                      children: [
+                        MenuButton(child: Text("Order details")),
+                        MenuButton(child: Text("Edit")),
+                        MenuButton(child: Text("Delete")),
+                      ],
+                    );
+                  },
+                );
+              },
+              icon: const Icon(LucideIcons.ellipsisVertical),
+            );
+          },
+        ),
+      ),
+    );
+  }
+
+  TableRow _buildDataRow(BuildContext context, OrderListRow row) {
+    return TableRow(
+      cells: [
+        _checkboxCell(),
+        _buildCell(row.id),
+        _buildCell(row.product),
+        _buildCell(row.price),
+        _buildCell(row.customer),
+        _buildCell(row.date),
+        _buildCell(row.type),
+        _buildCell(row.status),
+        _actionCell(context),
+      ],
+    );
+  }
+}
+
+class OrderListRow {
+  final String id;
+  final String product;
+  final String price;
+  final String customer;
+  final String date;
+  final String type;
+  final String status;
+
+  OrderListRow({
+    required this.id,
+    required this.product,
+    required this.price,
+    required this.customer,
+    required this.date,
+    required this.type,
+    required this.status,
+  });
 }

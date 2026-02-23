@@ -1,7 +1,103 @@
 import 'package:shadcn_flutter/shadcn_flutter.dart';
 
-class EcommerceDashboardScreen extends StatelessWidget {
+class EcommerceDashboardScreen extends StatefulWidget {
   const EcommerceDashboardScreen({super.key});
+
+  @override
+  State<EcommerceDashboardScreen> createState() =>
+      EcommerceDashboardScreenState();
+}
+
+class EcommerceDashboardScreenState extends State<EcommerceDashboardScreen> {
+  final recentOrders = [
+    RecentOrderRow(
+      id: "# 1",
+      customer: "Theodore Bell",
+      product: "Tire Doodad",
+      amount: "\$316.00",
+      status: "Processing",
+    ),
+    RecentOrderRow(
+      id: "# 2",
+      customer: "Amelia Grant",
+      product: "Engine Kit Kat",
+      amount: "\$316.00",
+      status: "Paid",
+    ),
+    RecentOrderRow(
+      id: "# 3",
+      customer: "Eleanor Ward",
+      product: "Brake Pad",
+      amount: "\$316.00",
+      status: "Success",
+    ),
+    RecentOrderRow(
+      id: "# 4",
+      customer: "Henry Carter",
+      product: "Fuel Pump",
+      amount: "\$316.00",
+      status: "Processing",
+    ),
+    RecentOrderRow(
+      id: "# 5",
+      customer: "Olivia Harris",
+      product: "Steering Wheel",
+      amount: "\$316.00",
+      status: "Failed",
+    ),
+    RecentOrderRow(
+      id: "# 6",
+      customer: "James Robinson",
+      product: "Air Filter",
+      amount: "\$316.00",
+      status: "Paid",
+    ),
+    RecentOrderRow(
+      id: "# 7",
+      customer: "Sophia Martinez",
+      product: "Oil Filter",
+      amount: "\$316.00",
+      status: "Success",
+    ),
+    RecentOrderRow(
+      id: "# 8",
+      customer: "Liam Thompson",
+      product: "Radiator Cap",
+      amount: "\$316.00",
+      status: "Processing",
+    ),
+  ];
+
+  final bestSellingProducts = [
+    BestSellingProductsRow(
+      product: "Sport Shoes",
+      sold: "\$316.00",
+      sales: "10",
+    ),
+    BestSellingProductsRow(
+      product: "Black T-Shirt",
+      sold: "\$316.00",
+      sales: "20",
+    ),
+    BestSellingProductsRow(product: "Jeans", sold: "\$316.00", sales: "15"),
+    BestSellingProductsRow(
+      product: "Red Sneakers",
+      sold: "\$316.00",
+      sales: "40",
+    ),
+    BestSellingProductsRow(product: "Red Scarf", sold: "\$316.00", sales: "37"),
+    BestSellingProductsRow(
+      product: "Kitchen Accessory",
+      sold: "\$316.00",
+      sales: "18",
+    ),
+    BestSellingProductsRow(product: "Bicycle", sold: "\$316.00", sales: "25"),
+    BestSellingProductsRow(
+      product: "Sports Shoes",
+      sold: "\$316.00",
+      sales: "10",
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -586,412 +682,8 @@ class EcommerceDashboardScreen extends StatelessWidget {
                           ),
 
                           // Body rows
-                          TableRow(
-                            cells: [
-                              _buildCell("# 1"),
-                              _buildCell("Theodore Bell"),
-                              _buildCell("Tire Doodad"),
-                              _buildCell("\$316.00"),
-                              _buildCell("Processing"),
-                              TableCell(
-                                child: Container(
-                                  padding: const .symmetric(horizontal: 8),
-                                  alignment: .centerRight,
-                                  child: Builder(
-                                    builder: (context) {
-                                      return IconButton.ghost(
-                                        onPressed: () {
-                                          showDropdown(
-                                            context: context,
-                                            builder: (context) {
-                                              return const DropdownMenu(
-                                                children: [
-                                                  MenuButton(
-                                                    child: Text(
-                                                      "Copy order ID",
-                                                    ),
-                                                  ),
-                                                  MenuButton(
-                                                    child: Text(
-                                                      "View customer",
-                                                    ),
-                                                  ),
-                                                  MenuButton(
-                                                    child: Text(
-                                                      "View payment details",
-                                                    ),
-                                                  ),
-                                                ],
-                                              );
-                                            },
-                                          );
-                                        },
-                                        icon: const Icon(
-                                          LucideIcons.ellipsisVertical,
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-
-                          TableRow(
-                            cells: [
-                              _buildCell("# 2"),
-                              _buildCell("Amelia Grant"),
-                              _buildCell("Engine Kit Kat"),
-                              _buildCell("\$316.00"),
-                              _buildCell("Paid"),
-                              TableCell(
-                                child: Container(
-                                  padding: const .symmetric(horizontal: 8),
-                                  alignment: .centerRight,
-                                  child: Builder(
-                                    builder: (context) {
-                                      return IconButton.ghost(
-                                        onPressed: () {
-                                          showDropdown(
-                                            context: context,
-                                            builder: (context) {
-                                              return const DropdownMenu(
-                                                children: [
-                                                  MenuButton(
-                                                    child: Text(
-                                                      "Copy order ID",
-                                                    ),
-                                                  ),
-                                                  MenuButton(
-                                                    child: Text(
-                                                      "View customer",
-                                                    ),
-                                                  ),
-                                                  MenuButton(
-                                                    child: Text(
-                                                      "View payment details",
-                                                    ),
-                                                  ),
-                                                ],
-                                              );
-                                            },
-                                          );
-                                        },
-                                        icon: const Icon(
-                                          LucideIcons.ellipsisVertical,
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-
-                          TableRow(
-                            cells: [
-                              _buildCell("# 3"),
-                              _buildCell("Eleanor Ward"),
-                              _buildCell("Brake Pad"),
-                              _buildCell("\$316.00"),
-                              _buildCell("Success"),
-                              TableCell(
-                                child: Container(
-                                  padding: const .symmetric(horizontal: 8),
-                                  alignment: .centerRight,
-                                  child: Builder(
-                                    builder: (context) {
-                                      return IconButton.ghost(
-                                        onPressed: () {
-                                          showDropdown(
-                                            context: context,
-                                            builder: (context) {
-                                              return const DropdownMenu(
-                                                children: [
-                                                  MenuButton(
-                                                    child: Text(
-                                                      "Copy order ID",
-                                                    ),
-                                                  ),
-                                                  MenuButton(
-                                                    child: Text(
-                                                      "View customer",
-                                                    ),
-                                                  ),
-                                                  MenuButton(
-                                                    child: Text(
-                                                      "View payment details",
-                                                    ),
-                                                  ),
-                                                ],
-                                              );
-                                            },
-                                          );
-                                        },
-                                        icon: const Icon(
-                                          LucideIcons.ellipsisVertical,
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-
-                          TableRow(
-                            cells: [
-                              _buildCell("# 4"),
-                              _buildCell("Henry Carter"),
-                              _buildCell("Fuel Pump"),
-                              _buildCell("\$316.00"),
-                              _buildCell("Processing"),
-                              TableCell(
-                                child: Container(
-                                  padding: const .symmetric(horizontal: 8),
-                                  alignment: .centerRight,
-                                  child: Builder(
-                                    builder: (context) {
-                                      return IconButton.ghost(
-                                        onPressed: () {
-                                          showDropdown(
-                                            context: context,
-                                            builder: (context) {
-                                              return const DropdownMenu(
-                                                children: [
-                                                  MenuButton(
-                                                    child: Text(
-                                                      "Copy order ID",
-                                                    ),
-                                                  ),
-                                                  MenuButton(
-                                                    child: Text(
-                                                      "View customer",
-                                                    ),
-                                                  ),
-                                                  MenuButton(
-                                                    child: Text(
-                                                      "View payment details",
-                                                    ),
-                                                  ),
-                                                ],
-                                              );
-                                            },
-                                          );
-                                        },
-                                        icon: const Icon(
-                                          LucideIcons.ellipsisVertical,
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-
-                          TableRow(
-                            cells: [
-                              _buildCell("# 5"),
-                              _buildCell("Olivia Harris"),
-                              _buildCell("Steering Wheel"),
-                              _buildCell("\$316.00"),
-                              _buildCell("Failed"),
-                              TableCell(
-                                child: Container(
-                                  padding: const .symmetric(horizontal: 8),
-                                  alignment: .centerRight,
-                                  child: Builder(
-                                    builder: (context) {
-                                      return IconButton.ghost(
-                                        onPressed: () {
-                                          showDropdown(
-                                            context: context,
-                                            builder: (context) {
-                                              return const DropdownMenu(
-                                                children: [
-                                                  MenuButton(
-                                                    child: Text(
-                                                      "Copy order ID",
-                                                    ),
-                                                  ),
-                                                  MenuButton(
-                                                    child: Text(
-                                                      "View customer",
-                                                    ),
-                                                  ),
-                                                  MenuButton(
-                                                    child: Text(
-                                                      "View payment details",
-                                                    ),
-                                                  ),
-                                                ],
-                                              );
-                                            },
-                                          );
-                                        },
-                                        icon: const Icon(
-                                          LucideIcons.ellipsisVertical,
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-
-                          TableRow(
-                            cells: [
-                              _buildCell("# 6"),
-                              _buildCell("James Robinson"),
-                              _buildCell("Air Filter"),
-                              _buildCell("\$316.00"),
-                              _buildCell("Paid"),
-                              TableCell(
-                                child: Container(
-                                  padding: const .symmetric(horizontal: 8),
-                                  alignment: .centerRight,
-                                  child: Builder(
-                                    builder: (context) {
-                                      return IconButton.ghost(
-                                        onPressed: () {
-                                          showDropdown(
-                                            context: context,
-                                            builder: (context) {
-                                              return const DropdownMenu(
-                                                children: [
-                                                  MenuButton(
-                                                    child: Text(
-                                                      "Copy order ID",
-                                                    ),
-                                                  ),
-                                                  MenuButton(
-                                                    child: Text(
-                                                      "View customer",
-                                                    ),
-                                                  ),
-                                                  MenuButton(
-                                                    child: Text(
-                                                      "View payment details",
-                                                    ),
-                                                  ),
-                                                ],
-                                              );
-                                            },
-                                          );
-                                        },
-                                        icon: const Icon(
-                                          LucideIcons.ellipsisVertical,
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-
-                          TableRow(
-                            cells: [
-                              _buildCell("# 7"),
-                              _buildCell("Sophia Martinez"),
-                              _buildCell("Oil Filter"),
-                              _buildCell("\$316.00"),
-                              _buildCell("Success"),
-                              TableCell(
-                                child: Container(
-                                  padding: const .symmetric(horizontal: 8),
-                                  alignment: .centerRight,
-                                  child: Builder(
-                                    builder: (context) {
-                                      return IconButton.ghost(
-                                        onPressed: () {
-                                          showDropdown(
-                                            context: context,
-                                            builder: (context) {
-                                              return const DropdownMenu(
-                                                children: [
-                                                  MenuButton(
-                                                    child: Text(
-                                                      "Copy order ID",
-                                                    ),
-                                                  ),
-                                                  MenuButton(
-                                                    child: Text(
-                                                      "View customer",
-                                                    ),
-                                                  ),
-                                                  MenuButton(
-                                                    child: Text(
-                                                      "View payment details",
-                                                    ),
-                                                  ),
-                                                ],
-                                              );
-                                            },
-                                          );
-                                        },
-                                        icon: const Icon(
-                                          LucideIcons.ellipsisVertical,
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-
-                          TableRow(
-                            cells: [
-                              _buildCell("# 8"),
-                              _buildCell("Liam Thompson"),
-                              _buildCell("Radiator Cap"),
-                              _buildCell("\$316.00"),
-                              _buildCell("Processing"),
-                              TableCell(
-                                child: Container(
-                                  padding: const .symmetric(horizontal: 8),
-                                  alignment: .centerRight,
-                                  child: Builder(
-                                    builder: (context) {
-                                      return IconButton.ghost(
-                                        onPressed: () {
-                                          showDropdown(
-                                            context: context,
-                                            builder: (context) {
-                                              return const DropdownMenu(
-                                                children: [
-                                                  MenuButton(
-                                                    child: Text(
-                                                      "Copy order ID",
-                                                    ),
-                                                  ),
-                                                  MenuButton(
-                                                    child: Text(
-                                                      "View customer",
-                                                    ),
-                                                  ),
-                                                  MenuButton(
-                                                    child: Text(
-                                                      "View payment details",
-                                                    ),
-                                                  ),
-                                                ],
-                                              );
-                                            },
-                                          );
-                                        },
-                                        icon: const Icon(
-                                          LucideIcons.ellipsisVertical,
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                ),
-                              ),
-                            ],
+                          ...recentOrders.map(
+                            (row) => _buildRecentOrdersRow(context, row),
                           ),
                         ],
                       ),
@@ -1085,396 +777,8 @@ class EcommerceDashboardScreen extends StatelessWidget {
                           ),
 
                           // Body rows
-                          TableRow(
-                            cells: [
-                              _buildCell("Sport Shoes"),
-                              _buildCell("\$316.00"),
-                              _buildCell("10"),
-                              TableCell(
-                                child: Container(
-                                  padding: const .symmetric(horizontal: 8),
-                                  alignment: .centerRight,
-                                  child: Builder(
-                                    builder: (context) {
-                                      return IconButton.ghost(
-                                        onPressed: () {
-                                          showDropdown(
-                                            context: context,
-                                            builder: (context) {
-                                              return const DropdownMenu(
-                                                children: [
-                                                  MenuButton(
-                                                    child: Text(
-                                                      "Copy order ID",
-                                                    ),
-                                                  ),
-                                                  MenuButton(
-                                                    child: Text(
-                                                      "View customer",
-                                                    ),
-                                                  ),
-                                                  MenuButton(
-                                                    child: Text(
-                                                      "View payment details",
-                                                    ),
-                                                  ),
-                                                ],
-                                              );
-                                            },
-                                          );
-                                        },
-                                        icon: const Icon(
-                                          LucideIcons.ellipsisVertical,
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-
-                          TableRow(
-                            cells: [
-                              _buildCell("Black T-Shirt"),
-                              _buildCell("\$316.00"),
-                              _buildCell("20"),
-                              TableCell(
-                                child: Container(
-                                  padding: const .symmetric(horizontal: 8),
-                                  alignment: .centerRight,
-                                  child: Builder(
-                                    builder: (context) {
-                                      return IconButton.ghost(
-                                        onPressed: () {
-                                          showDropdown(
-                                            context: context,
-                                            builder: (context) {
-                                              return const DropdownMenu(
-                                                children: [
-                                                  MenuButton(
-                                                    child: Text(
-                                                      "Copy order ID",
-                                                    ),
-                                                  ),
-                                                  MenuButton(
-                                                    child: Text(
-                                                      "View customer",
-                                                    ),
-                                                  ),
-                                                  MenuButton(
-                                                    child: Text(
-                                                      "View payment details",
-                                                    ),
-                                                  ),
-                                                ],
-                                              );
-                                            },
-                                          );
-                                        },
-                                        icon: const Icon(
-                                          LucideIcons.ellipsisVertical,
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-
-                          TableRow(
-                            cells: [
-                              _buildCell("Jeans"),
-                              _buildCell("\$316.00"),
-                              _buildCell("15"),
-                              TableCell(
-                                child: Container(
-                                  padding: const .symmetric(horizontal: 8),
-                                  alignment: .centerRight,
-                                  child: Builder(
-                                    builder: (context) {
-                                      return IconButton.ghost(
-                                        onPressed: () {
-                                          showDropdown(
-                                            context: context,
-                                            builder: (context) {
-                                              return const DropdownMenu(
-                                                children: [
-                                                  MenuButton(
-                                                    child: Text(
-                                                      "Copy order ID",
-                                                    ),
-                                                  ),
-                                                  MenuButton(
-                                                    child: Text(
-                                                      "View customer",
-                                                    ),
-                                                  ),
-                                                  MenuButton(
-                                                    child: Text(
-                                                      "View payment details",
-                                                    ),
-                                                  ),
-                                                ],
-                                              );
-                                            },
-                                          );
-                                        },
-                                        icon: const Icon(
-                                          LucideIcons.ellipsisVertical,
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-
-                          TableRow(
-                            cells: [
-                              _buildCell("Red Sneakers"),
-                              _buildCell("\$316.00"),
-                              _buildCell("40"),
-                              TableCell(
-                                child: Container(
-                                  padding: const .symmetric(horizontal: 8),
-                                  alignment: .centerRight,
-                                  child: Builder(
-                                    builder: (context) {
-                                      return IconButton.ghost(
-                                        onPressed: () {
-                                          showDropdown(
-                                            context: context,
-                                            builder: (context) {
-                                              return const DropdownMenu(
-                                                children: [
-                                                  MenuButton(
-                                                    child: Text(
-                                                      "Copy order ID",
-                                                    ),
-                                                  ),
-                                                  MenuButton(
-                                                    child: Text(
-                                                      "View customer",
-                                                    ),
-                                                  ),
-                                                  MenuButton(
-                                                    child: Text(
-                                                      "View payment details",
-                                                    ),
-                                                  ),
-                                                ],
-                                              );
-                                            },
-                                          );
-                                        },
-                                        icon: const Icon(
-                                          LucideIcons.ellipsisVertical,
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-
-                          TableRow(
-                            cells: [
-                              _buildCell("Red Scarf"),
-                              _buildCell("\$316.00"),
-                              _buildCell("37"),
-                              TableCell(
-                                child: Container(
-                                  padding: const .symmetric(horizontal: 8),
-                                  alignment: .centerRight,
-                                  child: Builder(
-                                    builder: (context) {
-                                      return IconButton.ghost(
-                                        onPressed: () {
-                                          showDropdown(
-                                            context: context,
-                                            builder: (context) {
-                                              return const DropdownMenu(
-                                                children: [
-                                                  MenuButton(
-                                                    child: Text(
-                                                      "Copy order ID",
-                                                    ),
-                                                  ),
-                                                  MenuButton(
-                                                    child: Text(
-                                                      "View customer",
-                                                    ),
-                                                  ),
-                                                  MenuButton(
-                                                    child: Text(
-                                                      "View payment details",
-                                                    ),
-                                                  ),
-                                                ],
-                                              );
-                                            },
-                                          );
-                                        },
-                                        icon: const Icon(
-                                          LucideIcons.ellipsisVertical,
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-
-                          TableRow(
-                            cells: [
-                              _buildCell("Kitchen Accessory"),
-                              _buildCell("\$316.00"),
-                              _buildCell("18"),
-                              TableCell(
-                                child: Container(
-                                  padding: const .symmetric(horizontal: 8),
-                                  alignment: .centerRight,
-                                  child: Builder(
-                                    builder: (context) {
-                                      return IconButton.ghost(
-                                        onPressed: () {
-                                          showDropdown(
-                                            context: context,
-                                            builder: (context) {
-                                              return const DropdownMenu(
-                                                children: [
-                                                  MenuButton(
-                                                    child: Text(
-                                                      "Copy order ID",
-                                                    ),
-                                                  ),
-                                                  MenuButton(
-                                                    child: Text(
-                                                      "View customer",
-                                                    ),
-                                                  ),
-                                                  MenuButton(
-                                                    child: Text(
-                                                      "View payment details",
-                                                    ),
-                                                  ),
-                                                ],
-                                              );
-                                            },
-                                          );
-                                        },
-                                        icon: const Icon(
-                                          LucideIcons.ellipsisVertical,
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-
-                          TableRow(
-                            cells: [
-                              _buildCell("Bicycle"),
-                              _buildCell("\$316.00"),
-                              _buildCell("25"),
-                              TableCell(
-                                child: Container(
-                                  padding: const .symmetric(horizontal: 8),
-                                  alignment: .centerRight,
-                                  child: Builder(
-                                    builder: (context) {
-                                      return IconButton.ghost(
-                                        onPressed: () {
-                                          showDropdown(
-                                            context: context,
-                                            builder: (context) {
-                                              return const DropdownMenu(
-                                                children: [
-                                                  MenuButton(
-                                                    child: Text(
-                                                      "Copy order ID",
-                                                    ),
-                                                  ),
-                                                  MenuButton(
-                                                    child: Text(
-                                                      "View customer",
-                                                    ),
-                                                  ),
-                                                  MenuButton(
-                                                    child: Text(
-                                                      "View payment details",
-                                                    ),
-                                                  ),
-                                                ],
-                                              );
-                                            },
-                                          );
-                                        },
-                                        icon: const Icon(
-                                          LucideIcons.ellipsisVertical,
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-
-                          TableRow(
-                            cells: [
-                              _buildCell("Sports Shoes"),
-                              _buildCell("\$316.00"),
-                              _buildCell("10"),
-                              TableCell(
-                                child: Container(
-                                  padding: const .symmetric(horizontal: 8),
-                                  alignment: .centerRight,
-                                  child: Builder(
-                                    builder: (context) {
-                                      return IconButton.ghost(
-                                        onPressed: () {
-                                          showDropdown(
-                                            context: context,
-                                            builder: (context) {
-                                              return const DropdownMenu(
-                                                children: [
-                                                  MenuButton(
-                                                    child: Text(
-                                                      "Copy order ID",
-                                                    ),
-                                                  ),
-                                                  MenuButton(
-                                                    child: Text(
-                                                      "View customer",
-                                                    ),
-                                                  ),
-                                                  MenuButton(
-                                                    child: Text(
-                                                      "View payment details",
-                                                    ),
-                                                  ),
-                                                ],
-                                              );
-                                            },
-                                          );
-                                        },
-                                        icon: const Icon(
-                                          LucideIcons.ellipsisVertical,
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                ),
-                              ),
-                            ],
+                          ...bestSellingProducts.map(
+                            (row) => _buildBestSellingProdutsRow(context, row),
                           ),
                         ],
                       ),
@@ -1528,4 +832,89 @@ class EcommerceDashboardScreen extends StatelessWidget {
       ),
     );
   }
+
+  TableCell _actionCell(BuildContext context) {
+    return TableCell(
+      child: Container(
+        padding: const .symmetric(horizontal: 8),
+        alignment: .centerRight,
+        child: Builder(
+          builder: (context) {
+            return IconButton.ghost(
+              onPressed: () {
+                showDropdown(
+                  context: context,
+                  builder: (context) {
+                    return const DropdownMenu(
+                      children: [
+                        MenuButton(child: Text("Copy order ID")),
+                        MenuButton(child: Text("View customer")),
+                        MenuButton(child: Text("View payment details")),
+                      ],
+                    );
+                  },
+                );
+              },
+              icon: const Icon(LucideIcons.ellipsisVertical),
+            );
+          },
+        ),
+      ),
+    );
+  }
+
+  TableRow _buildRecentOrdersRow(BuildContext context, RecentOrderRow row) {
+    return TableRow(
+      cells: [
+        _buildCell(row.id),
+        _buildCell(row.customer),
+        _buildCell(row.product),
+        _buildCell(row.amount),
+        _buildCell(row.status),
+        _actionCell(context),
+      ],
+    );
+  }
+
+  TableRow _buildBestSellingProdutsRow(
+    BuildContext context,
+    BestSellingProductsRow row,
+  ) {
+    return TableRow(
+      cells: [
+        _buildCell(row.product),
+        _buildCell(row.sold),
+        _buildCell(row.sales),
+        _actionCell(context),
+      ],
+    );
+  }
+}
+
+class RecentOrderRow {
+  final String id;
+  final String customer;
+  final String product;
+  final String amount;
+  final String status;
+
+  RecentOrderRow({
+    required this.id,
+    required this.customer,
+    required this.product,
+    required this.amount,
+    required this.status,
+  });
+}
+
+class BestSellingProductsRow {
+  final String product;
+  final String sold;
+  final String sales;
+
+  BestSellingProductsRow({
+    required this.product,
+    required this.sold,
+    required this.sales,
+  });
 }
