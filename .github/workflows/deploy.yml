@@ -26,14 +26,17 @@ jobs:
         run: flutter doctor -v
 
       - name: Build web
-        run: flutter build web --release --base-href "/${{ github.event.repository.name }}/"
+        run: flutter build web --wasm --release --base-href "/${{ github.event.repository.name }}/"
         # Replace REPOSITORY_NAME with your actual repository name
         # or use: --base-href "/${{ github.event.repository.name }}/"
+
+      - name: Add .nojekyll
+        run: touch build/web/.nojekyll
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GH_FDASHBOARD }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build/web
           publish_branch: gh-pages
           # Optional: uncomment if you want to keep the deployment history
