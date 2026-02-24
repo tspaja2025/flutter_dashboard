@@ -10,6 +10,51 @@ class PricingTablePageScreen extends StatefulWidget {
 class PricingTablePageScreenState extends State<PricingTablePageScreen> {
   bool value = false;
 
+  final pricingTable = [
+    PricingTableRow(
+      features: "Price",
+      basic: "\$9.99/month",
+      pro: "\$19.99/month",
+      enterprice: "\$49.99/month",
+    ),
+    PricingTableRow(
+      features: "Users",
+      basic: "1 User",
+      pro: "5 Users",
+      enterprice: "Unlimited users",
+    ),
+    PricingTableRow(
+      features: "Storage",
+      basic: "5GB storage",
+      pro: "50GB storage",
+      enterprice: "500GB storage",
+    ),
+    PricingTableRow(
+      features: "Support",
+      basic: "Basic support",
+      pro: "Priority support",
+      enterprice: "24/7 premium support",
+    ),
+    PricingTableRow(
+      features: "Integrations",
+      basic: "Limited integrations",
+      pro: "Advanced integrations",
+      enterprice: "Custom integrations",
+    ),
+    PricingTableRow(
+      features: "Analytics",
+      basic: "false",
+      pro: "true",
+      enterprice: "true",
+    ),
+    PricingTableRow(
+      features: "Api",
+      basic: "false",
+      pro: "false",
+      enterprice: "true",
+    ),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -56,68 +101,7 @@ class PricingTablePageScreenState extends State<PricingTablePageScreen> {
                       ),
 
                       // Body rows
-                      TableRow(
-                        cells: [
-                          _buildCell("Price"),
-                          _buildCell("\$9.99/month"),
-                          _buildCell("\$19.99/month"),
-                          _buildCell("\$49.99/month", true),
-                        ],
-                      ),
-
-                      TableRow(
-                        cells: [
-                          _buildCell("Users"),
-                          _buildCell("1 User"),
-                          _buildCell("5 Users"),
-                          _buildCell("Unlimited users", true),
-                        ],
-                      ),
-
-                      TableRow(
-                        cells: [
-                          _buildCell("Storage"),
-                          _buildCell("5GB storage"),
-                          _buildCell("50GB storage"),
-                          _buildCell("500GB storage", true),
-                        ],
-                      ),
-
-                      TableRow(
-                        cells: [
-                          _buildCell("Support"),
-                          _buildCell("Basic support"),
-                          _buildCell("Priority support"),
-                          _buildCell("24/7 premium support", true),
-                        ],
-                      ),
-
-                      TableRow(
-                        cells: [
-                          _buildCell("Integrations"),
-                          _buildCell("Limited integrations"),
-                          _buildCell("Advanced integrations"),
-                          _buildCell("Custom integrations", true),
-                        ],
-                      ),
-
-                      TableRow(
-                        cells: [
-                          _buildCell("Analytics"),
-                          _buildCell("false"),
-                          _buildCell("true"),
-                          _buildCell("true", true),
-                        ],
-                      ),
-
-                      TableRow(
-                        cells: [
-                          _buildCell("Api"),
-                          _buildCell("false"),
-                          _buildCell("false"),
-                          _buildCell("true", true),
-                        ],
-                      ),
+                      ...pricingTable.map((row) => _buildDataRow(context, row)),
                     ],
                   ),
                 ],
@@ -256,4 +240,29 @@ class PricingTablePageScreenState extends State<PricingTablePageScreen> {
       ),
     );
   }
+
+  TableRow _buildDataRow(BuildContext context, PricingTableRow row) {
+    return TableRow(
+      cells: [
+        _buildCell(row.features),
+        _buildCell(row.basic),
+        _buildCell(row.pro),
+        _buildCell(row.enterprice, true),
+      ],
+    );
+  }
+}
+
+class PricingTableRow {
+  final String features;
+  final String basic;
+  final String pro;
+  final String enterprice;
+
+  PricingTableRow({
+    required this.features,
+    required this.basic,
+    required this.pro,
+    required this.enterprice,
+  });
 }

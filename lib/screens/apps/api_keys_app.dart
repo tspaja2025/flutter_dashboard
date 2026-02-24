@@ -10,6 +10,30 @@ class ApiKeysAppScreen extends StatefulWidget {
 class ApiKeysAppScreenState extends State<ApiKeysAppScreen> {
   CheckboxState _state = CheckboxState.unchecked;
 
+  final apiKeys = [
+    ApiKeysRow(
+      name: "Production API Key",
+      key: "9e...f62",
+      createdAt: "Jan 19, 2025",
+      updatedAt: "Jan 20, 2025",
+      status: "Active",
+    ),
+    ApiKeysRow(
+      name: "Development API Key",
+      key: "9e...f62",
+      createdAt: "Jan 19, 2025",
+      updatedAt: "Jan 20, 2025",
+      status: "Inactive",
+    ),
+    ApiKeysRow(
+      name: "Production Test",
+      key: "9e...f62",
+      createdAt: "Jan 19, 2025",
+      updatedAt: "Jan 20, 2025",
+      status: "Expired",
+    ),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -125,161 +149,7 @@ class ApiKeysAppScreenState extends State<ApiKeysAppScreen> {
               ),
 
               // Body rows
-              TableRow(
-                cells: [
-                  TableCell(
-                    child: Container(
-                      padding: const .all(8),
-                      child: Checkbox(
-                        state: _state,
-                        onChanged: (state) {
-                          setState(() {
-                            _state = state;
-                          });
-                        },
-                      ),
-                    ),
-                  ),
-                  _buildCell("Production API Key"),
-                  _buildCell("9e...f62"),
-                  _buildCell("Jan 19, 2025"),
-                  _buildCell("Jan 20, 2025"),
-                  _buildCell("Active"),
-                  TableCell(
-                    child: Container(
-                      padding: const .symmetric(horizontal: 8),
-                      alignment: .centerRight,
-                      child: Builder(
-                        builder: (context) {
-                          return IconButton.ghost(
-                            onPressed: () {
-                              showDropdown(
-                                context: context,
-                                builder: (context) {
-                                  return const DropdownMenu(
-                                    children: [
-                                      MenuButton(child: Text("Actions")),
-                                      MenuButton(child: Text("Rename")),
-                                      MenuButton(child: Text("Regenerate Key")),
-                                      MenuButton(child: Text("Enable")),
-                                      MenuButton(child: Text("Revoke")),
-                                    ],
-                                  );
-                                },
-                              );
-                            },
-                            icon: const Icon(LucideIcons.ellipsisVertical),
-                          );
-                        },
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-
-              TableRow(
-                cells: [
-                  TableCell(
-                    child: Container(
-                      padding: const .all(8),
-                      child: Checkbox(
-                        state: _state,
-                        onChanged: (state) {
-                          setState(() {
-                            _state = state;
-                          });
-                        },
-                      ),
-                    ),
-                  ),
-                  _buildCell("Development API Key"),
-                  _buildCell("9e...f62"),
-                  _buildCell("Jan 19, 2025"),
-                  _buildCell("Jan 20, 2025"),
-                  _buildCell("Inactive"),
-                  TableCell(
-                    child: Container(
-                      padding: const .symmetric(horizontal: 8),
-                      alignment: .centerRight,
-                      child: Builder(
-                        builder: (context) {
-                          return IconButton.ghost(
-                            onPressed: () {
-                              showDropdown(
-                                context: context,
-                                builder: (context) {
-                                  return const DropdownMenu(
-                                    children: [
-                                      MenuButton(child: Text("Actions")),
-                                      MenuButton(child: Text("Rename")),
-                                      MenuButton(child: Text("Regenerate Key")),
-                                      MenuButton(child: Text("Enable")),
-                                      MenuButton(child: Text("Revoke")),
-                                    ],
-                                  );
-                                },
-                              );
-                            },
-                            icon: const Icon(LucideIcons.ellipsisVertical),
-                          );
-                        },
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-
-              TableRow(
-                cells: [
-                  TableCell(
-                    child: Container(
-                      padding: const .all(8),
-                      child: Checkbox(
-                        state: _state,
-                        onChanged: (state) {
-                          setState(() {
-                            _state = state;
-                          });
-                        },
-                      ),
-                    ),
-                  ),
-                  _buildCell("Production Test"),
-                  _buildCell("9e...f62"),
-                  _buildCell("Jan 19, 2025"),
-                  _buildCell("Jan 20, 2025"),
-                  _buildCell("Expired"),
-                  TableCell(
-                    child: Container(
-                      padding: const .symmetric(horizontal: 8),
-                      alignment: .centerRight,
-                      child: Builder(
-                        builder: (context) {
-                          return IconButton.ghost(
-                            onPressed: () {
-                              showDropdown(
-                                context: context,
-                                builder: (context) {
-                                  return const DropdownMenu(
-                                    children: [
-                                      MenuButton(child: Text("Actions")),
-                                      MenuButton(child: Text("Rename")),
-                                      MenuButton(child: Text("Regenerate Key")),
-                                      MenuButton(child: Text("Enable")),
-                                      MenuButton(child: Text("Revoke")),
-                                    ],
-                                  );
-                                },
-                              );
-                            },
-                            icon: const Icon(LucideIcons.ellipsisVertical),
-                          );
-                        },
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+              ...apiKeys.map((row) => _buildDataRow(context, row)),
             ],
           ),
 
@@ -326,4 +196,83 @@ class ApiKeysAppScreenState extends State<ApiKeysAppScreen> {
       ),
     );
   }
+
+  TableCell _checkboxCell() {
+    return TableCell(
+      child: Padding(
+        padding: const .all(8),
+        child: Checkbox(
+          state: _state,
+          onChanged: (state) {
+            setState(() {
+              _state = state;
+            });
+          },
+        ),
+      ),
+    );
+  }
+
+  TableCell _actionCell(BuildContext context) {
+    return TableCell(
+      child: Container(
+        padding: const .symmetric(horizontal: 8),
+        alignment: .centerRight,
+        child: Builder(
+          builder: (context) {
+            return IconButton.ghost(
+              onPressed: () {
+                showDropdown(
+                  context: context,
+                  builder: (context) {
+                    return const DropdownMenu(
+                      children: [
+                        MenuButton(child: Text("Actions")),
+                        MenuButton(child: Text("Rename")),
+                        MenuButton(child: Text("Regenerate Key")),
+                        MenuButton(child: Text("Enable")),
+                        MenuButton(child: Text("Revoke")),
+                        MenuButton(child: Text("Delete")),
+                      ],
+                    );
+                  },
+                );
+              },
+              icon: const Icon(LucideIcons.ellipsisVertical),
+            );
+          },
+        ),
+      ),
+    );
+  }
+
+  TableRow _buildDataRow(BuildContext context, ApiKeysRow row) {
+    return TableRow(
+      cells: [
+        _checkboxCell(),
+        _buildCell(row.name),
+        _buildCell(row.key),
+        _buildCell(row.createdAt),
+        _buildCell(row.updatedAt),
+        _buildCell(row.status),
+        _actionCell(context),
+      ],
+    );
+  }
+}
+
+class ApiKeysRow {
+  final String name;
+  final String key;
+  final String createdAt;
+  final String updatedAt;
+  final String status;
+
+  ApiKeysRow({
+    required this.name,
+    required this.key,
+    required this.createdAt,
+    required this.updatedAt,
+    required this.status,
+  });
 }

@@ -12,6 +12,30 @@ class CrmDashboardScreenState extends State<CrmDashboardScreen> {
   CheckboxState _state = CheckboxState.unchecked;
   String? _selectedValue;
 
+  final leadRow = [
+    LeadsRow(
+      status: "Success",
+      email: "kenneth@thompson.com",
+      amount: "\$316.00",
+    ),
+    LeadsRow(
+      status: "Success",
+      email: "abraham@lincoln.com",
+      amount: "\$242.00",
+    ),
+    LeadsRow(
+      status: "Processing",
+      email: "monserrat@rodriguez.com",
+      amount: "\$837.00",
+    ),
+    LeadsRow(status: "Success", email: "silas@johnson.com", amount: "\$874.00"),
+    LeadsRow(
+      status: "Failed",
+      email: "carmella@devito.com",
+      amount: "\$721.00",
+    ),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -553,315 +577,7 @@ class CrmDashboardScreenState extends State<CrmDashboardScreen> {
                           ),
 
                           // Body rows
-                          TableRow(
-                            cells: [
-                              TableCell(
-                                child: Container(
-                                  padding: const .all(8),
-                                  child: Checkbox(
-                                    state: _state,
-                                    onChanged: (state) {
-                                      setState(() {
-                                        _state = state;
-                                      });
-                                    },
-                                  ),
-                                ),
-                              ),
-                              _buildCell("Success"),
-                              _buildCell("kenneth@thompson.com"),
-                              _buildCell("\$316.00"),
-                              TableCell(
-                                child: Container(
-                                  padding: const .symmetric(horizontal: 8),
-                                  alignment: .centerRight,
-                                  child: Builder(
-                                    builder: (context) {
-                                      return IconButton.ghost(
-                                        onPressed: () {
-                                          showDropdown(
-                                            context: context,
-                                            builder: (context) {
-                                              return const DropdownMenu(
-                                                children: [
-                                                  MenuButton(
-                                                    child: Text(
-                                                      "Copy payment ID",
-                                                    ),
-                                                  ),
-                                                  MenuButton(
-                                                    child: Text(
-                                                      "View customer",
-                                                    ),
-                                                  ),
-                                                  MenuButton(
-                                                    child: Text(
-                                                      "View payment details",
-                                                    ),
-                                                  ),
-                                                ],
-                                              );
-                                            },
-                                          );
-                                        },
-                                        icon: const Icon(
-                                          LucideIcons.ellipsisVertical,
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-
-                          TableRow(
-                            cells: [
-                              TableCell(
-                                child: Container(
-                                  padding: const .all(8),
-                                  child: Checkbox(
-                                    state: _state,
-                                    onChanged: (state) {
-                                      setState(() {
-                                        _state = state;
-                                      });
-                                    },
-                                  ),
-                                ),
-                              ),
-                              _buildCell("Success"),
-                              _buildCell("abraham@lincoln.com"),
-                              _buildCell("\$242.00"),
-                              TableCell(
-                                child: Container(
-                                  padding: const .symmetric(horizontal: 8),
-                                  alignment: .centerRight,
-                                  child: Builder(
-                                    builder: (context) {
-                                      return IconButton.ghost(
-                                        onPressed: () {
-                                          showDropdown(
-                                            context: context,
-                                            builder: (context) {
-                                              return const DropdownMenu(
-                                                children: [
-                                                  MenuButton(
-                                                    child: Text(
-                                                      "Copy payment ID",
-                                                    ),
-                                                  ),
-                                                  MenuButton(
-                                                    child: Text(
-                                                      "View customer",
-                                                    ),
-                                                  ),
-                                                  MenuButton(
-                                                    child: Text(
-                                                      "View payment details",
-                                                    ),
-                                                  ),
-                                                ],
-                                              );
-                                            },
-                                          );
-                                        },
-                                        icon: const Icon(
-                                          LucideIcons.ellipsisVertical,
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-
-                          TableRow(
-                            cells: [
-                              TableCell(
-                                child: Container(
-                                  padding: const .all(8),
-                                  child: Checkbox(
-                                    state: _state,
-                                    onChanged: (state) {
-                                      setState(() {
-                                        _state = state;
-                                      });
-                                    },
-                                  ),
-                                ),
-                              ),
-                              _buildCell("Processing"),
-                              _buildCell("monserrat@rodriguez.com"),
-                              _buildCell("\$837.00"),
-                              TableCell(
-                                child: Container(
-                                  padding: const .symmetric(horizontal: 8),
-                                  alignment: .centerRight,
-                                  child: Builder(
-                                    builder: (context) {
-                                      return IconButton.ghost(
-                                        onPressed: () {
-                                          showDropdown(
-                                            context: context,
-                                            builder: (context) {
-                                              return const DropdownMenu(
-                                                children: [
-                                                  MenuButton(
-                                                    child: Text(
-                                                      "Copy payment ID",
-                                                    ),
-                                                  ),
-                                                  MenuButton(
-                                                    child: Text(
-                                                      "View customer",
-                                                    ),
-                                                  ),
-                                                  MenuButton(
-                                                    child: Text(
-                                                      "View payment details",
-                                                    ),
-                                                  ),
-                                                ],
-                                              );
-                                            },
-                                          );
-                                        },
-                                        icon: const Icon(
-                                          LucideIcons.ellipsisVertical,
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-
-                          TableRow(
-                            cells: [
-                              TableCell(
-                                child: Container(
-                                  padding: const .all(8),
-                                  child: Checkbox(
-                                    state: _state,
-                                    onChanged: (state) {
-                                      setState(() {
-                                        _state = state;
-                                      });
-                                    },
-                                  ),
-                                ),
-                              ),
-                              _buildCell("Success"),
-                              _buildCell("silas@johnson.com"),
-                              _buildCell("\$874.00"),
-                              TableCell(
-                                child: Container(
-                                  padding: const .symmetric(horizontal: 8),
-                                  alignment: .centerRight,
-                                  child: Builder(
-                                    builder: (context) {
-                                      return IconButton.ghost(
-                                        onPressed: () {
-                                          showDropdown(
-                                            context: context,
-                                            builder: (context) {
-                                              return const DropdownMenu(
-                                                children: [
-                                                  MenuButton(
-                                                    child: Text(
-                                                      "Copy payment ID",
-                                                    ),
-                                                  ),
-                                                  MenuButton(
-                                                    child: Text(
-                                                      "View customer",
-                                                    ),
-                                                  ),
-                                                  MenuButton(
-                                                    child: Text(
-                                                      "View payment details",
-                                                    ),
-                                                  ),
-                                                ],
-                                              );
-                                            },
-                                          );
-                                        },
-                                        icon: const Icon(
-                                          LucideIcons.ellipsisVertical,
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-
-                          TableRow(
-                            cells: [
-                              TableCell(
-                                child: Container(
-                                  padding: const .all(8),
-                                  child: Checkbox(
-                                    state: _state,
-                                    onChanged: (state) {
-                                      setState(() {
-                                        _state = state;
-                                      });
-                                    },
-                                  ),
-                                ),
-                              ),
-                              _buildCell("Failed"),
-                              _buildCell("carmella@devito.com"),
-                              _buildCell("\$721.00"),
-                              TableCell(
-                                child: Container(
-                                  padding: const .symmetric(horizontal: 8),
-                                  alignment: .centerRight,
-                                  child: Builder(
-                                    builder: (context) {
-                                      return IconButton.ghost(
-                                        onPressed: () {
-                                          showDropdown(
-                                            context: context,
-                                            builder: (context) {
-                                              return const DropdownMenu(
-                                                children: [
-                                                  MenuButton(
-                                                    child: Text(
-                                                      "Copy payment ID",
-                                                    ),
-                                                  ),
-                                                  MenuButton(
-                                                    child: Text(
-                                                      "View customer",
-                                                    ),
-                                                  ),
-                                                  MenuButton(
-                                                    child: Text(
-                                                      "View payment details",
-                                                    ),
-                                                  ),
-                                                ],
-                                              );
-                                            },
-                                          );
-                                        },
-                                        icon: const Icon(
-                                          LucideIcons.ellipsisVertical,
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
+                          ...leadRow.map((row) => _buildDataRow(context, row)),
                         ],
                       ),
 
@@ -912,6 +628,64 @@ class CrmDashboardScreenState extends State<CrmDashboardScreen> {
         alignment: alignRight ? .centerRight : .centerLeft,
         child: Text(text),
       ),
+    );
+  }
+
+  TableCell _checkboxCell() {
+    return TableCell(
+      child: Padding(
+        padding: const .all(8),
+        child: Checkbox(
+          state: _state,
+          onChanged: (state) {
+            setState(() {
+              _state = state;
+            });
+          },
+        ),
+      ),
+    );
+  }
+
+  TableCell _actionCell(BuildContext context) {
+    return TableCell(
+      child: Container(
+        padding: const .symmetric(horizontal: 8),
+        alignment: .centerRight,
+        child: Builder(
+          builder: (context) {
+            return IconButton.ghost(
+              onPressed: () {
+                showDropdown(
+                  context: context,
+                  builder: (context) {
+                    return const DropdownMenu(
+                      children: [
+                        MenuButton(child: Text("Copy payment ID")),
+                        MenuButton(child: Text("View customer")),
+                        MenuButton(child: Text("View payment details")),
+                      ],
+                    );
+                  },
+                );
+              },
+              icon: const Icon(LucideIcons.ellipsisVertical),
+            );
+          },
+        ),
+      ),
+    );
+  }
+
+  TableRow _buildDataRow(BuildContext context, LeadsRow row) {
+    return TableRow(
+      cells: [
+        _checkboxCell(),
+        _buildCell(row.status),
+        _buildCell(row.email),
+        _buildCell(row.amount),
+        _actionCell(context),
+      ],
     );
   }
 }
@@ -1081,4 +855,12 @@ class Indicator extends StatelessWidget {
       ],
     );
   }
+}
+
+class LeadsRow {
+  final String status;
+  final String email;
+  final String amount;
+
+  LeadsRow({required this.status, required this.email, required this.amount});
 }

@@ -10,6 +10,15 @@ class TasksAppScreen extends StatefulWidget {
 class TasksAppScreenState extends State<TasksAppScreen> {
   CheckboxState _state = CheckboxState.unchecked;
 
+  final tasks = [
+    TasksRow(
+      task: "TASK-01",
+      title: "Design homepage layout",
+      status: "In Progress",
+      priority: "Medium",
+    ),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -138,7 +147,7 @@ class TasksAppScreenState extends State<TasksAppScreen> {
                     ),
                   ),
                   _buildHeaderCell("Task"),
-                  _buildHeaderCell("title"),
+                  _buildHeaderCell("Title"),
                   _buildHeaderCell("Status"),
                   _buildHeaderCell("Priority"),
                   _buildHeaderCell("Action", true),
@@ -146,58 +155,7 @@ class TasksAppScreenState extends State<TasksAppScreen> {
               ),
 
               // Body rows
-              TableRow(
-                cells: [
-                  TableCell(
-                    child: Container(
-                      padding: const .all(8),
-                      child: Checkbox(
-                        state: _state,
-                        onChanged: (state) {
-                          setState(() {
-                            _state = state;
-                          });
-                        },
-                      ),
-                    ),
-                  ),
-                  _buildCell("TASK-01"),
-                  _buildCell("Design homepage layout"),
-                  _buildCell("In Progress"),
-                  _buildCell("Medium"),
-                  TableCell(
-                    child: Container(
-                      padding: const .symmetric(horizontal: 8),
-                      alignment: .centerRight,
-                      child: Builder(
-                        builder: (context) {
-                          return IconButton.outline(
-                            onPressed: () {
-                              showDropdown(
-                                context: context,
-                                builder: (context) {
-                                  return const DropdownMenu(
-                                    children: [
-                                      MenuButton(child: Text("Edit")),
-                                      MenuButton(child: Text("Make a copy")),
-                                      MenuButton(child: Text("Favorite")),
-                                      MenuDivider(),
-                                      MenuButton(child: Text("Labels")),
-                                      MenuDivider(),
-                                      MenuButton(child: Text("Delete")),
-                                    ],
-                                  );
-                                },
-                              );
-                            },
-                            icon: const Icon(LucideIcons.ellipsisVertical),
-                          );
-                        },
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+              ...tasks.map((row) => _buildDataRow(context, row)),
             ],
           ),
         ],
@@ -224,4 +182,81 @@ class TasksAppScreenState extends State<TasksAppScreen> {
       ),
     );
   }
+
+  TableCell _checkboxCell() {
+    return TableCell(
+      child: Padding(
+        padding: const .all(8),
+        child: Checkbox(
+          state: _state,
+          onChanged: (state) {
+            setState(() {
+              _state = state;
+            });
+          },
+        ),
+      ),
+    );
+  }
+
+  TableCell _actionCell(BuildContext context) {
+    return TableCell(
+      child: Container(
+        padding: const .symmetric(horizontal: 8),
+        alignment: .centerRight,
+        child: Builder(
+          builder: (context) {
+            return IconButton.ghost(
+              onPressed: () {
+                showDropdown(
+                  context: context,
+                  builder: (context) {
+                    return const DropdownMenu(
+                      children: [
+                        MenuButton(child: Text("Edit")),
+                        MenuButton(child: Text("Make a copy")),
+                        MenuButton(child: Text("Favorite")),
+                        MenuDivider(),
+                        MenuButton(child: Text("Labels")),
+                        MenuDivider(),
+                        MenuButton(child: Text("Delete")),
+                      ],
+                    );
+                  },
+                );
+              },
+              icon: const Icon(LucideIcons.ellipsisVertical),
+            );
+          },
+        ),
+      ),
+    );
+  }
+
+  TableRow _buildDataRow(BuildContext context, TasksRow row) {
+    return TableRow(
+      cells: [
+        _checkboxCell(),
+        _buildCell(row.task),
+        _buildCell(row.title),
+        _buildCell(row.status),
+        _buildCell(row.priority),
+        _actionCell(context),
+      ],
+    );
+  }
+}
+
+class TasksRow {
+  final String task;
+  final String title;
+  final String status;
+  final String priority;
+
+  TasksRow({
+    required this.task,
+    required this.title,
+    required this.status,
+    required this.priority,
+  });
 }

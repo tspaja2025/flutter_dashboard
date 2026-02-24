@@ -13,6 +13,58 @@ class HospitalManagementDashboardScreenState
     extends State<HospitalManagementDashboardScreen> {
   int index = 0;
 
+  final upcomingAppointments = [
+    UpcomingAppointmentsRow(
+      patient: "John Swift",
+      date: "2026-02-09",
+      time: "9:07",
+      doctor: "Dr.Smith",
+      department: "Cardiology",
+    ),
+    UpcomingAppointmentsRow(
+      patient: "Jane Swift",
+      date: "2026-02-09",
+      time: "9:07",
+      doctor: "Dr.Johnson",
+      department: "Neurology",
+    ),
+    UpcomingAppointmentsRow(
+      patient: "Bob Wilson",
+      date: "2026-02-09",
+      time: "9:07",
+      doctor: "Dr.Brown",
+      department: "Oncology",
+    ),
+    UpcomingAppointmentsRow(
+      patient: "Alice Taylor",
+      date: "2026-02-09",
+      time: "9:07",
+      doctor: "Dr.Davis",
+      department: "Pediatrics",
+    ),
+    UpcomingAppointmentsRow(
+      patient: "Bill Galon",
+      date: "2026-02-09",
+      time: "9:07",
+      doctor: "Dr.Karen",
+      department: "Neurology",
+    ),
+    UpcomingAppointmentsRow(
+      patient: "Mike Dall",
+      date: "2026-02-09",
+      time: "9:07",
+      doctor: "Dr.Karen",
+      department: "Cardiology",
+    ),
+    UpcomingAppointmentsRow(
+      patient: "Bob Wilson",
+      date: "2026-02-09",
+      time: "9:07",
+      doctor: "Dr.Brown",
+      department: "Oncology",
+    ),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -207,347 +259,8 @@ class HospitalManagementDashboardScreenState
                                   ),
 
                                   // Body rows
-                                  TableRow(
-                                    cells: [
-                                      _buildCell("John Swift"),
-                                      _buildCell("2026-02-09"),
-                                      _buildCell("9:07"),
-                                      _buildCell("Dr.Smith"),
-                                      _buildCell("Cardiology"),
-                                      TableCell(
-                                        child: Container(
-                                          padding: const .symmetric(
-                                            horizontal: 8,
-                                          ),
-                                          alignment: .centerRight,
-                                          child: Builder(
-                                            builder: (context) {
-                                              return IconButton.ghost(
-                                                onPressed: () {
-                                                  showDropdown(
-                                                    context: context,
-                                                    builder: (context) {
-                                                      return const DropdownMenu(
-                                                        children: [
-                                                          MenuButton(
-                                                            child: Text("View"),
-                                                          ),
-                                                          MenuButton(
-                                                            child: Text("Edit"),
-                                                          ),
-                                                          MenuButton(
-                                                            child: Text(
-                                                              "Delete",
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      );
-                                                    },
-                                                  );
-                                                },
-                                                icon: const Icon(
-                                                  LucideIcons.ellipsisVertical,
-                                                ),
-                                              );
-                                            },
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-
-                                  TableRow(
-                                    cells: [
-                                      _buildCell("Jane Swift"),
-                                      _buildCell("2026-02-09"),
-                                      _buildCell("9:07"),
-                                      _buildCell("Dr.Johnson"),
-                                      _buildCell("Neurology"),
-                                      TableCell(
-                                        child: Container(
-                                          padding: const .symmetric(
-                                            horizontal: 8,
-                                          ),
-                                          alignment: .centerRight,
-                                          child: Builder(
-                                            builder: (context) {
-                                              return IconButton.ghost(
-                                                onPressed: () {
-                                                  showDropdown(
-                                                    context: context,
-                                                    builder: (context) {
-                                                      return const DropdownMenu(
-                                                        children: [
-                                                          MenuButton(
-                                                            child: Text("View"),
-                                                          ),
-                                                          MenuButton(
-                                                            child: Text("Edit"),
-                                                          ),
-                                                          MenuButton(
-                                                            child: Text(
-                                                              "Delete",
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      );
-                                                    },
-                                                  );
-                                                },
-                                                icon: const Icon(
-                                                  LucideIcons.ellipsisVertical,
-                                                ),
-                                              );
-                                            },
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-
-                                  TableRow(
-                                    cells: [
-                                      _buildCell("Bob Wilson"),
-                                      _buildCell("2026-02-09"),
-                                      _buildCell("9:07"),
-                                      _buildCell("Dr.Brown"),
-                                      _buildCell("Oncology"),
-                                      TableCell(
-                                        child: Container(
-                                          padding: const .symmetric(
-                                            horizontal: 8,
-                                          ),
-                                          alignment: .centerRight,
-                                          child: Builder(
-                                            builder: (context) {
-                                              return IconButton.ghost(
-                                                onPressed: () {
-                                                  showDropdown(
-                                                    context: context,
-                                                    builder: (context) {
-                                                      return const DropdownMenu(
-                                                        children: [
-                                                          MenuButton(
-                                                            child: Text("View"),
-                                                          ),
-                                                          MenuButton(
-                                                            child: Text("Edit"),
-                                                          ),
-                                                          MenuButton(
-                                                            child: Text(
-                                                              "Delete",
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      );
-                                                    },
-                                                  );
-                                                },
-                                                icon: const Icon(
-                                                  LucideIcons.ellipsisVertical,
-                                                ),
-                                              );
-                                            },
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-
-                                  TableRow(
-                                    cells: [
-                                      _buildCell("Alice Taylor"),
-                                      _buildCell("2026-02-09"),
-                                      _buildCell("9:07"),
-                                      _buildCell("Dr.Davis"),
-                                      _buildCell("Pediatrics"),
-                                      TableCell(
-                                        child: Container(
-                                          padding: const .symmetric(
-                                            horizontal: 8,
-                                          ),
-                                          alignment: .centerRight,
-                                          child: Builder(
-                                            builder: (context) {
-                                              return IconButton.ghost(
-                                                onPressed: () {
-                                                  showDropdown(
-                                                    context: context,
-                                                    builder: (context) {
-                                                      return const DropdownMenu(
-                                                        children: [
-                                                          MenuButton(
-                                                            child: Text("View"),
-                                                          ),
-                                                          MenuButton(
-                                                            child: Text("Edit"),
-                                                          ),
-                                                          MenuButton(
-                                                            child: Text(
-                                                              "Delete",
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      );
-                                                    },
-                                                  );
-                                                },
-                                                icon: const Icon(
-                                                  LucideIcons.ellipsisVertical,
-                                                ),
-                                              );
-                                            },
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-
-                                  TableRow(
-                                    cells: [
-                                      _buildCell("Bill Galon"),
-                                      _buildCell("2026-02-09"),
-                                      _buildCell("9:07"),
-                                      _buildCell("Dr.Karen"),
-                                      _buildCell("Neurology"),
-                                      TableCell(
-                                        child: Container(
-                                          padding: const .symmetric(
-                                            horizontal: 8,
-                                          ),
-                                          alignment: .centerRight,
-                                          child: Builder(
-                                            builder: (context) {
-                                              return IconButton.ghost(
-                                                onPressed: () {
-                                                  showDropdown(
-                                                    context: context,
-                                                    builder: (context) {
-                                                      return const DropdownMenu(
-                                                        children: [
-                                                          MenuButton(
-                                                            child: Text("View"),
-                                                          ),
-                                                          MenuButton(
-                                                            child: Text("Edit"),
-                                                          ),
-                                                          MenuButton(
-                                                            child: Text(
-                                                              "Delete",
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      );
-                                                    },
-                                                  );
-                                                },
-                                                icon: const Icon(
-                                                  LucideIcons.ellipsisVertical,
-                                                ),
-                                              );
-                                            },
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-
-                                  TableRow(
-                                    cells: [
-                                      _buildCell("Mike Dall"),
-                                      _buildCell("2026-02-09"),
-                                      _buildCell("9:07"),
-                                      _buildCell("Dr.Karen"),
-                                      _buildCell("Cardiology"),
-                                      TableCell(
-                                        child: Container(
-                                          padding: const .symmetric(
-                                            horizontal: 8,
-                                          ),
-                                          alignment: .centerRight,
-                                          child: Builder(
-                                            builder: (context) {
-                                              return IconButton.ghost(
-                                                onPressed: () {
-                                                  showDropdown(
-                                                    context: context,
-                                                    builder: (context) {
-                                                      return const DropdownMenu(
-                                                        children: [
-                                                          MenuButton(
-                                                            child: Text("View"),
-                                                          ),
-                                                          MenuButton(
-                                                            child: Text("Edit"),
-                                                          ),
-                                                          MenuButton(
-                                                            child: Text(
-                                                              "Delete",
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      );
-                                                    },
-                                                  );
-                                                },
-                                                icon: const Icon(
-                                                  LucideIcons.ellipsisVertical,
-                                                ),
-                                              );
-                                            },
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-
-                                  TableRow(
-                                    cells: [
-                                      _buildCell("Bob Wilson"),
-                                      _buildCell("2026-02-09"),
-                                      _buildCell("9:07"),
-                                      _buildCell("Dr.Brown"),
-                                      _buildCell("Oncology"),
-                                      TableCell(
-                                        child: Container(
-                                          padding: const .symmetric(
-                                            horizontal: 8,
-                                          ),
-                                          alignment: .centerRight,
-                                          child: Builder(
-                                            builder: (context) {
-                                              return IconButton.ghost(
-                                                onPressed: () {
-                                                  showDropdown(
-                                                    context: context,
-                                                    builder: (context) {
-                                                      return const DropdownMenu(
-                                                        children: [
-                                                          MenuButton(
-                                                            child: Text("View"),
-                                                          ),
-                                                          MenuButton(
-                                                            child: Text("Edit"),
-                                                          ),
-                                                          MenuButton(
-                                                            child: Text(
-                                                              "Delete",
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      );
-                                                    },
-                                                  );
-                                                },
-                                                icon: const Icon(
-                                                  LucideIcons.ellipsisVertical,
-                                                ),
-                                              );
-                                            },
-                                          ),
-                                        ),
-                                      ),
-                                    ],
+                                  ...upcomingAppointments.map(
+                                    (row) => _buildDataRow(context, row),
                                   ),
                                 ],
                               ),
@@ -880,6 +593,49 @@ class HospitalManagementDashboardScreenState
       ),
     );
   }
+
+  TableCell _actionCell(BuildContext context) {
+    return TableCell(
+      child: Container(
+        padding: const .symmetric(horizontal: 8),
+        alignment: .centerRight,
+        child: Builder(
+          builder: (context) {
+            return IconButton.ghost(
+              onPressed: () {
+                showDropdown(
+                  context: context,
+                  builder: (context) {
+                    return const DropdownMenu(
+                      children: [
+                        MenuButton(child: Text("View")),
+                        MenuButton(child: Text("Edit")),
+                        MenuButton(child: Text("Delete")),
+                      ],
+                    );
+                  },
+                );
+              },
+              icon: const Icon(LucideIcons.ellipsisVertical),
+            );
+          },
+        ),
+      ),
+    );
+  }
+
+  TableRow _buildDataRow(BuildContext context, UpcomingAppointmentsRow row) {
+    return TableRow(
+      cells: [
+        _buildCell(row.patient),
+        _buildCell(row.date),
+        _buildCell(row.time),
+        _buildCell(row.doctor),
+        _buildCell(row.department),
+        _actionCell(context),
+      ],
+    );
+  }
 }
 
 class LineChartSample extends StatelessWidget {
@@ -1203,4 +959,20 @@ class CalendarWidget extends StatelessWidget {
       ],
     );
   }
+}
+
+class UpcomingAppointmentsRow {
+  final String patient;
+  final String date;
+  final String time;
+  final String doctor;
+  final String department;
+
+  UpcomingAppointmentsRow({
+    required this.patient,
+    required this.date,
+    required this.time,
+    required this.doctor,
+    required this.department,
+  });
 }

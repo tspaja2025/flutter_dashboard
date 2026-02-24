@@ -3,16 +3,172 @@ import 'package:shadcn_flutter/shadcn_flutter.dart';
 class ProjectProjectListScreen extends StatelessWidget {
   const ProjectProjectListScreen({super.key});
 
+  List<AvatarWidget> getAvatars() {
+    return [
+      Avatar(initials: Avatar.getInitials("TS"), backgroundColor: Colors.red),
+      Avatar(initials: Avatar.getInitials("TS"), backgroundColor: Colors.green),
+      Avatar(initials: Avatar.getInitials("TS"), backgroundColor: Colors.blue),
+      Avatar(
+        initials: Avatar.getInitials("TS"),
+        backgroundColor: Colors.yellow,
+      ),
+    ];
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const .all(16),
       child: Column(
         children: [
-          Row(children: [const Text("Project List Page").bold().large()]),
+          Row(
+            children: [
+              const Text("Project List Page").bold().large(),
+              const Spacer(),
+              PrimaryButton(
+                onPressed: () {},
+                leading: const Icon(LucideIcons.plus),
+                child: const Text("New Project"),
+              ),
+            ],
+          ),
 
           const SizedBox(height: 16),
+
+          Row(
+            spacing: 16,
+            children: [
+              ProjectCardWidget(
+                title: "Mobile App",
+                subtitle: "Prototyping",
+                date: "Feb 24, 2026",
+                progress: 78,
+              ),
+              ProjectCardWidget(
+                title: "Design Learn Management System",
+                subtitle: "UI/UX Design",
+                date: "Feb 24, 2026",
+                progress: 32,
+              ),
+              ProjectCardWidget(
+                title: "Chat Mobile app",
+                subtitle: "Prototyping",
+                date: "Feb 24, 2026",
+                progress: 64,
+              ),
+              ProjectCardWidget(
+                title: "Store Dashboard",
+                subtitle: "UI/UX Design",
+                date: "Feb 24, 2026",
+                progress: 45,
+              ),
+            ],
+          ),
+
+          const SizedBox(height: 16),
+
+          Row(
+            spacing: 16,
+            children: [
+              ProjectCardWidget(
+                title: "NFT Marketplace App",
+                subtitle: "Prototyping",
+                date: "Feb 24, 2026",
+                progress: 69,
+              ),
+              ProjectCardWidget(
+                title: "Mobile App",
+                subtitle: "UI/UX Design",
+                date: "Feb 24, 2026",
+                progress: 56,
+              ),
+              ProjectCardWidget(
+                title: "LMS App Design",
+                subtitle: "UI/UX Design",
+                date: "Feb 24, 2026",
+                progress: 78,
+              ),
+              ProjectCardWidget(
+                title: "Design Learn Management System",
+                subtitle: "UI/UX Design",
+                date: "Feb 24, 2026",
+                progress: 25,
+              ),
+            ],
+          ),
         ],
+      ),
+    );
+  }
+}
+
+class ProjectCardWidget extends StatelessWidget {
+  final String title;
+  final String subtitle;
+  final String date;
+  final double progress;
+
+  const ProjectCardWidget({
+    super.key,
+    required this.title,
+    required this.subtitle,
+    required this.date,
+    required this.progress,
+  });
+
+  List<AvatarWidget> getAvatars() {
+    return [
+      Avatar(initials: Avatar.getInitials("TS"), backgroundColor: Colors.red),
+      Avatar(initials: Avatar.getInitials("TS"), backgroundColor: Colors.green),
+      Avatar(initials: Avatar.getInitials("TS"), backgroundColor: Colors.blue),
+      Avatar(
+        initials: Avatar.getInitials("TS"),
+        backgroundColor: Colors.yellow,
+      ),
+    ];
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Card(
+        child: Column(
+          crossAxisAlignment: .start,
+          children: [
+            Text(title).semiBold(),
+            const SizedBox(height: 4),
+            Text(subtitle).muted().small(),
+
+            const SizedBox(height: 16),
+
+            Text(date).muted().small(),
+
+            const SizedBox(height: 16),
+
+            Row(
+              children: [
+                const Text("Progress"),
+                const Spacer(),
+                Text("$progress%"),
+              ],
+            ),
+            const SizedBox(height: 4),
+            SizedBox(
+              width: double.infinity,
+              child: Progress(progress: progress, min: 0, max: 100),
+            ),
+
+            const SizedBox(height: 16),
+
+            Row(
+              children: [
+                AvatarGroup.toLeft(children: getAvatars()),
+                const Spacer(),
+                const Chip(child: Text("1 week left")),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

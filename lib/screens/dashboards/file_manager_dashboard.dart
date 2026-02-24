@@ -1,8 +1,43 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:shadcn_flutter/shadcn_flutter.dart';
 
-class FileManagerDashboardScreen extends StatelessWidget {
+class FileManagerDashboardScreen extends StatefulWidget {
   const FileManagerDashboardScreen({super.key});
+
+  @override
+  State<FileManagerDashboardScreen> createState() =>
+      FileManagerDashboardScreenState();
+}
+
+class FileManagerDashboardScreenState
+    extends State<FileManagerDashboardScreen> {
+  final recentlyUploadedFiles = [
+    RecentlyUploadedFilesRow(
+      name: "project-proposal.docx",
+      size: "2.38 MB",
+      uploadDate: "Feb 3, 2026",
+    ),
+    RecentlyUploadedFilesRow(
+      name: "company-logo.png",
+      size: "1.14 MB",
+      uploadDate: "Feb 3, 2026",
+    ),
+    RecentlyUploadedFilesRow(
+      name: "presentation.pptx",
+      size: "5.35 MB",
+      uploadDate: "Feb 3, 2026",
+    ),
+    RecentlyUploadedFilesRow(
+      name: "budget.xlsx",
+      size: "957.03 KB",
+      uploadDate: "Feb 3, 2026",
+    ),
+    RecentlyUploadedFilesRow(
+      name: "product-video.mp4",
+      size: "150.68 MB",
+      uploadDate: "Feb 3, 2026",
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -465,224 +500,8 @@ class FileManagerDashboardScreen extends StatelessWidget {
                           ),
 
                           // Body rows
-                          TableRow(
-                            cells: [
-                              _buildCell("project-proposal.docx"),
-                              _buildCell("2.38 MB"),
-                              _buildCell("Feb 3, 2026"),
-                              TableCell(
-                                child: Container(
-                                  padding: const .symmetric(horizontal: 8),
-                                  alignment: .centerRight,
-                                  child: Builder(
-                                    builder: (context) {
-                                      return IconButton.ghost(
-                                        onPressed: () {
-                                          showDropdown(
-                                            context: context,
-                                            builder: (context) {
-                                              return const DropdownMenu(
-                                                children: [
-                                                  MenuButton(
-                                                    child: Text("Download"),
-                                                  ),
-                                                  MenuButton(
-                                                    child: Text("Share"),
-                                                  ),
-                                                  MenuDivider(),
-                                                  MenuButton(
-                                                    child: Text("Delete"),
-                                                  ),
-                                                ],
-                                              );
-                                            },
-                                          );
-                                        },
-                                        icon: const Icon(
-                                          LucideIcons.ellipsisVertical,
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-
-                          TableRow(
-                            cells: [
-                              _buildCell("company-logo.png"),
-                              _buildCell("1.14 MB"),
-                              _buildCell("Feb 3, 2026"),
-                              TableCell(
-                                child: Container(
-                                  padding: const .symmetric(horizontal: 8),
-                                  alignment: .centerRight,
-                                  child: Builder(
-                                    builder: (context) {
-                                      return IconButton.ghost(
-                                        onPressed: () {
-                                          showDropdown(
-                                            context: context,
-                                            builder: (context) {
-                                              return const DropdownMenu(
-                                                children: [
-                                                  MenuButton(
-                                                    child: Text("Download"),
-                                                  ),
-                                                  MenuButton(
-                                                    child: Text("Share"),
-                                                  ),
-                                                  MenuDivider(),
-                                                  MenuButton(
-                                                    child: Text("Delete"),
-                                                  ),
-                                                ],
-                                              );
-                                            },
-                                          );
-                                        },
-                                        icon: const Icon(
-                                          LucideIcons.ellipsisVertical,
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-
-                          TableRow(
-                            cells: [
-                              _buildCell("presentation.pptx"),
-                              _buildCell("5.35 MB"),
-                              _buildCell("Feb 3, 2026"),
-                              TableCell(
-                                child: Container(
-                                  padding: const .symmetric(horizontal: 8),
-                                  alignment: .centerRight,
-                                  child: Builder(
-                                    builder: (context) {
-                                      return IconButton.ghost(
-                                        onPressed: () {
-                                          showDropdown(
-                                            context: context,
-                                            builder: (context) {
-                                              return const DropdownMenu(
-                                                children: [
-                                                  MenuButton(
-                                                    child: Text("Download"),
-                                                  ),
-                                                  MenuButton(
-                                                    child: Text("Share"),
-                                                  ),
-                                                  MenuDivider(),
-                                                  MenuButton(
-                                                    child: Text("Delete"),
-                                                  ),
-                                                ],
-                                              );
-                                            },
-                                          );
-                                        },
-                                        icon: const Icon(
-                                          LucideIcons.ellipsisVertical,
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-
-                          TableRow(
-                            cells: [
-                              _buildCell("budget.xlsx"),
-                              _buildCell("957.03 KB"),
-                              _buildCell("Feb 3, 2026"),
-                              TableCell(
-                                child: Container(
-                                  padding: const .symmetric(horizontal: 8),
-                                  alignment: .centerRight,
-                                  child: Builder(
-                                    builder: (context) {
-                                      return IconButton.ghost(
-                                        onPressed: () {
-                                          showDropdown(
-                                            context: context,
-                                            builder: (context) {
-                                              return const DropdownMenu(
-                                                children: [
-                                                  MenuButton(
-                                                    child: Text("Download"),
-                                                  ),
-                                                  MenuButton(
-                                                    child: Text("Share"),
-                                                  ),
-                                                  MenuDivider(),
-                                                  MenuButton(
-                                                    child: Text("Delete"),
-                                                  ),
-                                                ],
-                                              );
-                                            },
-                                          );
-                                        },
-                                        icon: const Icon(
-                                          LucideIcons.ellipsisVertical,
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-
-                          TableRow(
-                            cells: [
-                              _buildCell("product-video.mp4"),
-                              _buildCell("150.68 MB"),
-                              _buildCell("Feb 3, 2026"),
-                              TableCell(
-                                child: Container(
-                                  padding: const .symmetric(horizontal: 8),
-                                  alignment: .centerRight,
-                                  child: Builder(
-                                    builder: (context) {
-                                      return IconButton.ghost(
-                                        onPressed: () {
-                                          showDropdown(
-                                            context: context,
-                                            builder: (context) {
-                                              return const DropdownMenu(
-                                                children: [
-                                                  MenuButton(
-                                                    child: Text("Download"),
-                                                  ),
-                                                  MenuButton(
-                                                    child: Text("Share"),
-                                                  ),
-                                                  MenuDivider(),
-                                                  MenuButton(
-                                                    child: Text("Delete"),
-                                                  ),
-                                                ],
-                                              );
-                                            },
-                                          );
-                                        },
-                                        icon: const Icon(
-                                          LucideIcons.ellipsisVertical,
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                ),
-                              ),
-                            ],
+                          ...recentlyUploadedFiles.map(
+                            (row) => _buildDataRow(context, row),
                           ),
                         ],
                       ),
@@ -734,6 +553,47 @@ class FileManagerDashboardScreen extends StatelessWidget {
         alignment: alignRight ? .centerRight : .centerLeft,
         child: Text(text),
       ),
+    );
+  }
+
+  TableCell _actionCell(BuildContext context) {
+    return TableCell(
+      child: Container(
+        padding: const .symmetric(horizontal: 8),
+        alignment: .centerRight,
+        child: Builder(
+          builder: (context) {
+            return IconButton.ghost(
+              onPressed: () {
+                showDropdown(
+                  context: context,
+                  builder: (context) {
+                    return const DropdownMenu(
+                      children: [
+                        MenuButton(child: Text("Download")),
+                        MenuButton(child: Text("Share")),
+                        MenuButton(child: Text("Delete")),
+                      ],
+                    );
+                  },
+                );
+              },
+              icon: const Icon(LucideIcons.ellipsisVertical),
+            );
+          },
+        ),
+      ),
+    );
+  }
+
+  TableRow _buildDataRow(BuildContext context, RecentlyUploadedFilesRow row) {
+    return TableRow(
+      cells: [
+        _buildCell(row.name),
+        _buildCell(row.size),
+        _buildCell(row.uploadDate, true),
+        _actionCell(context),
+      ],
     );
   }
 }
@@ -939,4 +799,16 @@ class BarChartSampleState extends State<BarChartSample> {
       child: Text(text, style: const TextStyle(fontSize: 10)),
     );
   }
+}
+
+class RecentlyUploadedFilesRow {
+  final String name;
+  final String size;
+  final String uploadDate;
+
+  RecentlyUploadedFilesRow({
+    required this.name,
+    required this.size,
+    required this.uploadDate,
+  });
 }

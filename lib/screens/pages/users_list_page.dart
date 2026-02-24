@@ -11,6 +11,57 @@ class UsersListPageScreenState extends State<UsersListPageScreen> {
   CheckboxState _state = CheckboxState.unchecked;
   String? selectedValue;
 
+  final usersList = [
+    UsersListRow(
+      name: "Stern Thireau",
+      role: "Construction Foreman",
+      plan: "Basic",
+      email: "stren@thireau.com",
+      country: "Portugal",
+      status: "Active",
+    ),
+    UsersListRow(
+      name: "Ford McKibbin",
+      role: "Project Manager",
+      plan: "Team",
+      email: "ford@mckibbin.com",
+      country: "Mexico",
+      status: "Pending",
+    ),
+    UsersListRow(
+      name: "Foss Roglieri",
+      role: "Construction Expeditor",
+      plan: "Basic",
+      email: "foss@roglieri.com",
+      country: "Brazil",
+      status: "Active",
+    ),
+    UsersListRow(
+      name: "Maurits Elgey",
+      role: "Construction manager",
+      plan: "Enterprise",
+      email: "maurits@elgey.com",
+      country: "Poland",
+      status: "Active",
+    ),
+    UsersListRow(
+      name: "Gun Kaasmann",
+      role: "Construction Foreman",
+      plan: "Team",
+      email: "gun@kassmann.com",
+      country: "Russia",
+      status: "Pending",
+    ),
+    UsersListRow(
+      name: "Edmund McCrae",
+      role: "Project Manager",
+      plan: "Team",
+      email: "edmund@mccrae.com",
+      country: "Poland",
+      status: "Pending",
+    ),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -150,429 +201,7 @@ class UsersListPageScreenState extends State<UsersListPageScreen> {
               ),
 
               // Body rows
-              TableRow(
-                cells: [
-                  TableCell(
-                    child: Container(
-                      padding: const .all(8),
-                      child: Checkbox(
-                        state: _state,
-                        onChanged: (state) {
-                          setState(() {
-                            _state = state;
-                          });
-                        },
-                      ),
-                    ),
-                  ),
-                  _buildCell("Kenneth Thompson"),
-                  _buildCell("kenneth@thompson.com"),
-                  _buildCell("\$316.00"),
-                  _buildCell("Success"),
-                  TableCell(
-                    child: Container(
-                      padding: const .symmetric(horizontal: 8),
-                      alignment: .centerRight,
-                      child: Builder(
-                        builder: (context) {
-                          return IconButton.ghost(
-                            onPressed: () {
-                              showDropdown(
-                                context: context,
-                                builder: (context) {
-                                  return const DropdownMenu(
-                                    children: [
-                                      MenuButton(child: Text("View details")),
-                                      MenuButton(
-                                        child: Text("Download receipt"),
-                                      ),
-                                      MenuButton(
-                                        child: Text("Contact customer"),
-                                      ),
-                                    ],
-                                  );
-                                },
-                              );
-                            },
-                            icon: const Icon(LucideIcons.ellipsisVertical),
-                          );
-                        },
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-
-              TableRow(
-                cells: [
-                  TableCell(
-                    child: Container(
-                      padding: const .all(8),
-                      child: Checkbox(
-                        state: _state,
-                        onChanged: (state) {
-                          setState(() {
-                            _state = state;
-                          });
-                        },
-                      ),
-                    ),
-                  ),
-                  _buildCell("Abraham Lincoln"),
-                  _buildCell("abraham@lincoln.com"),
-                  _buildCell("\$242.00"),
-                  _buildCell("Success"),
-                  TableCell(
-                    child: Container(
-                      padding: const .symmetric(horizontal: 8),
-                      alignment: .centerRight,
-                      child: Builder(
-                        builder: (context) {
-                          return IconButton.ghost(
-                            onPressed: () {
-                              showDropdown(
-                                context: context,
-                                builder: (context) {
-                                  return const DropdownMenu(
-                                    children: [
-                                      MenuButton(child: Text("View details")),
-                                      MenuButton(
-                                        child: Text("Download receipt"),
-                                      ),
-                                      MenuButton(
-                                        child: Text("Contact customer"),
-                                      ),
-                                    ],
-                                  );
-                                },
-                              );
-                            },
-                            icon: const Icon(LucideIcons.ellipsisVertical),
-                          );
-                        },
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-
-              TableRow(
-                cells: [
-                  TableCell(
-                    child: Container(
-                      padding: const .all(8),
-                      child: Checkbox(
-                        state: _state,
-                        onChanged: (state) {
-                          setState(() {
-                            _state = state;
-                          });
-                        },
-                      ),
-                    ),
-                  ),
-                  _buildCell("Monserrat Rodriguez"),
-                  _buildCell("monserrat@rodriguez.com"),
-                  _buildCell("\$837.00"),
-                  _buildCell("Processing"),
-                  TableCell(
-                    child: Container(
-                      padding: const .symmetric(horizontal: 8),
-                      alignment: .centerRight,
-                      child: Builder(
-                        builder: (context) {
-                          return IconButton.ghost(
-                            onPressed: () {
-                              showDropdown(
-                                context: context,
-                                builder: (context) {
-                                  return const DropdownMenu(
-                                    children: [
-                                      MenuButton(child: Text("View details")),
-                                      MenuButton(
-                                        child: Text("Download receipt"),
-                                      ),
-                                      MenuButton(
-                                        child: Text("Contact customer"),
-                                      ),
-                                    ],
-                                  );
-                                },
-                              );
-                            },
-                            icon: const Icon(LucideIcons.ellipsisVertical),
-                          );
-                        },
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-
-              TableRow(
-                cells: [
-                  TableCell(
-                    child: Container(
-                      padding: const .all(8),
-                      child: Checkbox(
-                        state: _state,
-                        onChanged: (state) {
-                          setState(() {
-                            _state = state;
-                          });
-                        },
-                      ),
-                    ),
-                  ),
-                  _buildCell("Silas Johnson"),
-                  _buildCell("silas@johnson.com"),
-                  _buildCell("\$874.00"),
-                  _buildCell("Success"),
-                  TableCell(
-                    child: Container(
-                      padding: const .symmetric(horizontal: 8),
-                      alignment: .centerRight,
-                      child: Builder(
-                        builder: (context) {
-                          return IconButton.ghost(
-                            onPressed: () {
-                              showDropdown(
-                                context: context,
-                                builder: (context) {
-                                  return const DropdownMenu(
-                                    children: [
-                                      MenuButton(child: Text("View details")),
-                                      MenuButton(
-                                        child: Text("Download receipt"),
-                                      ),
-                                      MenuButton(
-                                        child: Text("Contact customer"),
-                                      ),
-                                    ],
-                                  );
-                                },
-                              );
-                            },
-                            icon: const Icon(LucideIcons.ellipsisVertical),
-                          );
-                        },
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-
-              TableRow(
-                cells: [
-                  TableCell(
-                    child: Container(
-                      padding: const .all(8),
-                      child: Checkbox(
-                        state: _state,
-                        onChanged: (state) {
-                          setState(() {
-                            _state = state;
-                          });
-                        },
-                      ),
-                    ),
-                  ),
-                  _buildCell("Carmella DeVito"),
-                  _buildCell("carmella@devito.com"),
-                  _buildCell("\$721.00"),
-                  _buildCell("Failed"),
-                  TableCell(
-                    child: Container(
-                      padding: const .symmetric(horizontal: 8),
-                      alignment: .centerRight,
-                      child: Builder(
-                        builder: (context) {
-                          return IconButton.ghost(
-                            onPressed: () {
-                              showDropdown(
-                                context: context,
-                                builder: (context) {
-                                  return const DropdownMenu(
-                                    children: [
-                                      MenuButton(child: Text("View details")),
-                                      MenuButton(
-                                        child: Text("Download receipt"),
-                                      ),
-                                      MenuButton(
-                                        child: Text("Contact customer"),
-                                      ),
-                                    ],
-                                  );
-                                },
-                              );
-                            },
-                            icon: const Icon(LucideIcons.ellipsisVertical),
-                          );
-                        },
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-
-              TableRow(
-                cells: [
-                  TableCell(
-                    child: Container(
-                      padding: const .all(8),
-                      child: Checkbox(
-                        state: _state,
-                        onChanged: (state) {
-                          setState(() {
-                            _state = state;
-                          });
-                        },
-                      ),
-                    ),
-                  ),
-                  _buildCell("Maria Garcia"),
-                  _buildCell("maria@garcia.com"),
-                  _buildCell("\$529.00"),
-                  _buildCell("Success"),
-                  TableCell(
-                    child: Container(
-                      padding: const .symmetric(horizontal: 8),
-                      alignment: .centerRight,
-                      child: Builder(
-                        builder: (context) {
-                          return IconButton.ghost(
-                            onPressed: () {
-                              showDropdown(
-                                context: context,
-                                builder: (context) {
-                                  return const DropdownMenu(
-                                    children: [
-                                      MenuButton(child: Text("View details")),
-                                      MenuButton(
-                                        child: Text("Download receipt"),
-                                      ),
-                                      MenuButton(
-                                        child: Text("Contact customer"),
-                                      ),
-                                    ],
-                                  );
-                                },
-                              );
-                            },
-                            icon: const Icon(LucideIcons.ellipsisVertical),
-                          );
-                        },
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-
-              TableRow(
-                cells: [
-                  TableCell(
-                    child: Container(
-                      padding: const .all(8),
-                      child: Checkbox(
-                        state: _state,
-                        onChanged: (state) {
-                          setState(() {
-                            _state = state;
-                          });
-                        },
-                      ),
-                    ),
-                  ),
-                  _buildCell("James Wilson"),
-                  _buildCell("james@wilson.com"),
-                  _buildCell("\$438.00"),
-                  _buildCell("Processing"),
-                  TableCell(
-                    child: Container(
-                      padding: const .symmetric(horizontal: 8),
-                      alignment: .centerRight,
-                      child: Builder(
-                        builder: (context) {
-                          return IconButton.ghost(
-                            onPressed: () {
-                              showDropdown(
-                                context: context,
-                                builder: (context) {
-                                  return const DropdownMenu(
-                                    children: [
-                                      MenuButton(child: Text("View details")),
-                                      MenuButton(
-                                        child: Text("Download receipt"),
-                                      ),
-                                      MenuButton(
-                                        child: Text("Contact customer"),
-                                      ),
-                                    ],
-                                  );
-                                },
-                              );
-                            },
-                            icon: const Icon(LucideIcons.ellipsisVertical),
-                          );
-                        },
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-
-              TableRow(
-                cells: [
-                  TableCell(
-                    child: Container(
-                      padding: const .all(8),
-                      child: Checkbox(
-                        state: _state,
-                        onChanged: (state) {
-                          setState(() {
-                            _state = state;
-                          });
-                        },
-                      ),
-                    ),
-                  ),
-                  _buildCell("Sarah Jones"),
-                  _buildCell("sarah@jones.com"),
-                  _buildCell("\$692.00"),
-                  _buildCell("Success"),
-                  TableCell(
-                    child: Container(
-                      padding: const .symmetric(horizontal: 8),
-                      alignment: .centerRight,
-                      child: Builder(
-                        builder: (context) {
-                          return IconButton.ghost(
-                            onPressed: () {
-                              showDropdown(
-                                context: context,
-                                builder: (context) {
-                                  return const DropdownMenu(
-                                    children: [
-                                      MenuButton(child: Text("View details")),
-                                      MenuButton(
-                                        child: Text("Download receipt"),
-                                      ),
-                                      MenuButton(
-                                        child: Text("Contact customer"),
-                                      ),
-                                    ],
-                                  );
-                                },
-                              );
-                            },
-                            icon: const Icon(LucideIcons.ellipsisVertical),
-                          );
-                        },
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+              ...usersList.map((row) => _buildDataRow(context, row)),
             ],
           ),
 
@@ -619,4 +248,83 @@ class UsersListPageScreenState extends State<UsersListPageScreen> {
       ),
     );
   }
+
+  TableCell _checkboxCell() {
+    return TableCell(
+      child: Padding(
+        padding: const .all(8),
+        child: Checkbox(
+          state: _state,
+          onChanged: (state) {
+            setState(() {
+              _state = state;
+            });
+          },
+        ),
+      ),
+    );
+  }
+
+  TableCell _actionCell(BuildContext context) {
+    return TableCell(
+      child: Container(
+        padding: const .symmetric(horizontal: 8),
+        alignment: .centerRight,
+        child: Builder(
+          builder: (context) {
+            return IconButton.ghost(
+              onPressed: () {
+                showDropdown(
+                  context: context,
+                  builder: (context) {
+                    return const DropdownMenu(
+                      children: [
+                        MenuButton(child: Text("View details")),
+                        MenuButton(child: Text("Download receipt")),
+                        MenuButton(child: Text("Contact customer")),
+                      ],
+                    );
+                  },
+                );
+              },
+              icon: const Icon(LucideIcons.ellipsisVertical),
+            );
+          },
+        ),
+      ),
+    );
+  }
+
+  TableRow _buildDataRow(BuildContext context, UsersListRow row) {
+    return TableRow(
+      cells: [
+        _checkboxCell(),
+        _buildCell(row.name),
+        _buildCell(row.role),
+        _buildCell(row.plan),
+        _buildCell(row.email),
+        _buildCell(row.country),
+        _buildCell(row.status),
+        _actionCell(context),
+      ],
+    );
+  }
+}
+
+class UsersListRow {
+  final String name;
+  final String role;
+  final String plan;
+  final String email;
+  final String country;
+  final String status;
+
+  UsersListRow({
+    required this.name,
+    required this.role,
+    required this.plan,
+    required this.email,
+    required this.country,
+    required this.status,
+  });
 }

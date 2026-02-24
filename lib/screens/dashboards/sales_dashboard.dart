@@ -120,6 +120,57 @@ class SalesDashboardScreenState extends State<SalesDashboardScreen> {
     ChartData(value: 180, label: "Dec 20"),
   ];
 
+  final trackOrderStatus = [
+    TrackOrderStatusRow(
+      id: "1",
+      customer: "Kenneth Thompson",
+      quantity: "2",
+      amount: "\$316.00",
+      paymentMethod: "E-Wallet",
+      status: "New Order",
+    ),
+    TrackOrderStatusRow(
+      id: "2",
+      customer: "Abraham Lincoln",
+      quantity: "6",
+      amount: "\$242.00",
+      paymentMethod: "Bank Transfer",
+      status: "In Progress",
+    ),
+    TrackOrderStatusRow(
+      id: "3",
+      customer: "Monserrat Rodriguez",
+      quantity: "3",
+      amount: "\$837.00",
+      paymentMethod: "E-Wallet",
+      status: "New Order",
+    ),
+    TrackOrderStatusRow(
+      id: "4",
+      customer: "Silas Johnson",
+      quantity: "15",
+      amount: "\$874.00",
+      paymentMethod: "Bank Transfer",
+      status: "On Hold",
+    ),
+    TrackOrderStatusRow(
+      id: "5",
+      customer: "Carmella DeVito",
+      quantity: "4",
+      amount: "\$721.00",
+      paymentMethod: "Credit Card",
+      status: "Completed",
+    ),
+    TrackOrderStatusRow(
+      id: "6",
+      customer: "Maria Garcia",
+      quantity: "8",
+      amount: "\$529.00",
+      paymentMethod: "PayPal",
+      status: "Completed",
+    ),
+  ];
+
   @override
   Widget build(BuildContext context) {
     final currentData = _isDesktop ? _desktopData : _mobileData;
@@ -725,70 +776,8 @@ class SalesDashboardScreenState extends State<SalesDashboardScreen> {
                           ),
 
                           // Body rows
-                          TableRow(
-                            cells: [
-                              _buildCell("1"),
-                              _buildCell("Kenneth Thompson"),
-                              _buildCell("2"),
-                              _buildCell("\$316.00"),
-                              _buildCell("E-Wallet"),
-                              _buildCell("New Order"),
-                            ],
-                          ),
-
-                          TableRow(
-                            cells: [
-                              _buildCell("2"),
-                              _buildCell("Abraham Lincoln"),
-                              _buildCell("6"),
-                              _buildCell("\$242.00"),
-                              _buildCell("Bank Transfer"),
-                              _buildCell("In Progress"),
-                            ],
-                          ),
-
-                          TableRow(
-                            cells: [
-                              _buildCell("3"),
-                              _buildCell("Monserrat Rodriguez"),
-                              _buildCell("3"),
-                              _buildCell("\$837.00"),
-                              _buildCell("E-Wallet"),
-                              _buildCell("New Order"),
-                            ],
-                          ),
-
-                          TableRow(
-                            cells: [
-                              _buildCell("4"),
-                              _buildCell("Silas Johnson"),
-                              _buildCell("15"),
-                              _buildCell("\$874.00"),
-                              _buildCell("Bank Transfer"),
-                              _buildCell("On Hold"),
-                            ],
-                          ),
-
-                          TableRow(
-                            cells: [
-                              _buildCell("5"),
-                              _buildCell("Carmella DeVito"),
-                              _buildCell("4"),
-                              _buildCell("\$721.00"),
-                              _buildCell("Credit Card"),
-                              _buildCell("Completed"),
-                            ],
-                          ),
-
-                          TableRow(
-                            cells: [
-                              _buildCell("6"),
-                              _buildCell("Maria Garcia"),
-                              _buildCell("8"),
-                              _buildCell("\$529.00"),
-                              _buildCell("PayPal"),
-                              _buildCell("Completed"),
-                            ],
+                          ...trackOrderStatus.map(
+                            (row) => _buildDataRow(context, row),
                           ),
                         ],
                       ),
@@ -840,6 +829,19 @@ class SalesDashboardScreenState extends State<SalesDashboardScreen> {
         alignment: alignRight ? .centerRight : .centerLeft,
         child: Text(text),
       ),
+    );
+  }
+
+  TableRow _buildDataRow(BuildContext context, TrackOrderStatusRow row) {
+    return TableRow(
+      cells: [
+        _buildCell(row.id),
+        _buildCell(row.customer),
+        _buildCell(row.quantity),
+        _buildCell(row.amount),
+        _buildCell(row.paymentMethod),
+        _buildCell(row.status, true),
+      ],
     );
   }
 }
@@ -980,4 +982,22 @@ class ChartData {
   final Color? color;
 
   const ChartData({required this.value, required this.label, this.color});
+}
+
+class TrackOrderStatusRow {
+  final String id;
+  final String customer;
+  final String quantity;
+  final String amount;
+  final String paymentMethod;
+  final String status;
+
+  TrackOrderStatusRow({
+    required this.id,
+    required this.customer,
+    required this.quantity,
+    required this.amount,
+    required this.paymentMethod,
+    required this.status,
+  });
 }

@@ -1,8 +1,58 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:shadcn_flutter/shadcn_flutter.dart';
 
-class FinanceDashboardScreen extends StatelessWidget {
+class FinanceDashboardScreen extends StatefulWidget {
   const FinanceDashboardScreen({super.key});
+
+  @override
+  State<FinanceDashboardScreen> createState() => FinanceDashboardScreenState();
+}
+
+class FinanceDashboardScreenState extends State<FinanceDashboardScreen> {
+  final transactions = [
+    TransactionsRow(
+      transaction: "Samantha William",
+      date: "2026-02-09",
+      type: "Income",
+      amount: "\$1640.26",
+    ),
+    TransactionsRow(
+      transaction: "Grocery at Shop",
+      date: "2026-02-09",
+      type: "Expenses",
+      amount: "-\$72.64",
+    ),
+    TransactionsRow(
+      transaction: "Coffee",
+      date: "2026-02-09",
+      type: "Expenses",
+      amount: "-\$8.65",
+    ),
+    TransactionsRow(
+      transaction: "Karen Smith",
+      date: "2026-02-09",
+      type: "Income",
+      amount: "\$842.50",
+    ),
+    TransactionsRow(
+      transaction: "Transportation",
+      date: "2026-02-09",
+      type: "Expenses",
+      amount: "-\$18.52",
+    ),
+    TransactionsRow(
+      transaction: "Online Course Purchase",
+      date: "2026-02-09",
+      type: "Expenses",
+      amount: "-\$120.00",
+    ),
+    TransactionsRow(
+      transaction: "Freelance Project Payment",
+      date: "2026-02-09",
+      type: "Income",
+      amount: "-\$980.75",
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -462,67 +512,8 @@ class FinanceDashboardScreen extends StatelessWidget {
                           ),
 
                           // Body rows
-                          TableRow(
-                            cells: [
-                              _buildCell("Samantha William"),
-                              _buildCell("2026-02-09"),
-                              _buildCell("Income"),
-                              _buildCell("\$1640.26", true),
-                            ],
-                          ),
-
-                          TableRow(
-                            cells: [
-                              _buildCell("Grocery at Shop"),
-                              _buildCell("2026-02-09"),
-                              _buildCell("Expenses"),
-                              _buildCell("-\$72.64", true),
-                            ],
-                          ),
-
-                          TableRow(
-                            cells: [
-                              _buildCell("Coffee"),
-                              _buildCell("2026-02-09"),
-                              _buildCell("Expenses"),
-                              _buildCell("-\$8.65", true),
-                            ],
-                          ),
-
-                          TableRow(
-                            cells: [
-                              _buildCell("Karen Smith"),
-                              _buildCell("2026-02-09"),
-                              _buildCell("Income"),
-                              _buildCell("\$842.50", true),
-                            ],
-                          ),
-
-                          TableRow(
-                            cells: [
-                              _buildCell("Transportation"),
-                              _buildCell("2026-02-09"),
-                              _buildCell("Expenses"),
-                              _buildCell("-\$18.52", true),
-                            ],
-                          ),
-
-                          TableRow(
-                            cells: [
-                              _buildCell("Online Course Purchase"),
-                              _buildCell("2026-02-09"),
-                              _buildCell("Expenses"),
-                              _buildCell("-\$120.00", true),
-                            ],
-                          ),
-
-                          TableRow(
-                            cells: [
-                              _buildCell("Freelance Project Payment"),
-                              _buildCell("2026-02-09"),
-                              _buildCell("Income"),
-                              _buildCell("-\$980.75", true),
-                            ],
+                          ...transactions.map(
+                            (row) => _buildDataRow(context, row),
                           ),
                         ],
                       ),
@@ -687,6 +678,17 @@ class FinanceDashboardScreen extends StatelessWidget {
       ),
     );
   }
+
+  TableRow _buildDataRow(BuildContext context, TransactionsRow row) {
+    return TableRow(
+      cells: [
+        _buildCell(row.transaction),
+        _buildCell(row.date),
+        _buildCell(row.type),
+        _buildCell(row.amount, true),
+      ],
+    );
+  }
 }
 
 class PieChartSample extends StatefulWidget {
@@ -815,4 +817,18 @@ class Indicator extends StatelessWidget {
       ],
     );
   }
+}
+
+class TransactionsRow {
+  final String transaction;
+  final String date;
+  final String type;
+  final String amount;
+
+  TransactionsRow({
+    required this.transaction,
+    required this.date,
+    required this.type,
+    required this.amount,
+  });
 }

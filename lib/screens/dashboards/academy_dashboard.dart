@@ -1,8 +1,52 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:shadcn_flutter/shadcn_flutter.dart';
 
-class AcademyDashboardScreen extends StatelessWidget {
+class AcademyDashboardScreen extends StatefulWidget {
   const AcademyDashboardScreen({super.key});
+
+  @override
+  State<AcademyDashboardScreen> createState() => AcademyDashboardScreenState();
+}
+
+class AcademyDashboardScreenState extends State<AcademyDashboardScreen> {
+  final popularCourses = [
+    PopularCoursesRow(
+      name: "Introduction to react",
+      category: "Web Development",
+      score: "4.5",
+      progress: 50,
+    ),
+    PopularCoursesRow(
+      name: "Introduction to angular",
+      category: "Data Science",
+      score: "4.8",
+      progress: 50,
+    ),
+    PopularCoursesRow(
+      name: "Introduction to vue",
+      category: "Marketing",
+      score: "4.2",
+      progress: 50,
+    ),
+    PopularCoursesRow(
+      name: "Introduction to python",
+      category: "Programming",
+      score: "4.6",
+      progress: 50,
+    ),
+    PopularCoursesRow(
+      name: "UX Design Principles",
+      category: "Design",
+      score: "4.4",
+      progress: 50,
+    ),
+    PopularCoursesRow(
+      name: "Introduction to svelte",
+      category: "Programming",
+      score: "4.8",
+      progress: 50,
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -435,394 +479,8 @@ class AcademyDashboardScreen extends StatelessWidget {
                           ),
 
                           // Body rows
-                          TableRow(
-                            cells: [
-                              _buildCell("Introduction to react"),
-                              _buildCell("Web Development"),
-                              _buildCell("4.5"),
-                              TableCell(
-                                child: Container(
-                                  padding: const .all(8),
-                                  child: Row(
-                                    children: [
-                                      SizedBox(
-                                        width: 100,
-                                        height: 8,
-                                        child: Progress(
-                                          progress: 60,
-                                          min: 0,
-                                          max: 100,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              TableCell(
-                                child: Container(
-                                  padding: const .symmetric(horizontal: 8),
-                                  alignment: .centerRight,
-                                  child: Builder(
-                                    builder: (context) {
-                                      return IconButton.ghost(
-                                        onPressed: () {
-                                          showDropdown(
-                                            context: context,
-                                            builder: (context) {
-                                              return const DropdownMenu(
-                                                children: [
-                                                  MenuButton(
-                                                    child: Text("View details"),
-                                                  ),
-                                                  MenuButton(
-                                                    child: Text(
-                                                      "Download receipt",
-                                                    ),
-                                                  ),
-                                                  MenuButton(
-                                                    child: Text(
-                                                      "Contact customer",
-                                                    ),
-                                                  ),
-                                                ],
-                                              );
-                                            },
-                                          );
-                                        },
-                                        icon: const Icon(
-                                          LucideIcons.ellipsisVertical,
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-
-                          TableRow(
-                            cells: [
-                              _buildCell("Introduction to angular"),
-                              _buildCell("Data Science"),
-                              _buildCell("4.8"),
-                              TableCell(
-                                child: Container(
-                                  padding: const .all(8),
-                                  child: Row(
-                                    children: [
-                                      SizedBox(
-                                        width: 100,
-                                        height: 8,
-                                        child: Progress(
-                                          progress: 60,
-                                          min: 0,
-                                          max: 100,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              TableCell(
-                                child: Container(
-                                  padding: const .symmetric(horizontal: 8),
-                                  alignment: .centerRight,
-                                  child: Builder(
-                                    builder: (context) {
-                                      return IconButton.ghost(
-                                        onPressed: () {
-                                          showDropdown(
-                                            context: context,
-                                            builder: (context) {
-                                              return const DropdownMenu(
-                                                children: [
-                                                  MenuButton(
-                                                    child: Text("View details"),
-                                                  ),
-                                                  MenuButton(
-                                                    child: Text(
-                                                      "Download receipt",
-                                                    ),
-                                                  ),
-                                                  MenuButton(
-                                                    child: Text(
-                                                      "Contact customer",
-                                                    ),
-                                                  ),
-                                                ],
-                                              );
-                                            },
-                                          );
-                                        },
-                                        icon: const Icon(
-                                          LucideIcons.ellipsisVertical,
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-
-                          TableRow(
-                            cells: [
-                              _buildCell("Introduction to vue"),
-                              _buildCell("Marketing"),
-                              _buildCell("4.2"),
-                              TableCell(
-                                child: Container(
-                                  padding: const .all(8),
-                                  child: Row(
-                                    children: [
-                                      SizedBox(
-                                        width: 100,
-                                        height: 8,
-                                        child: Progress(
-                                          progress: 60,
-                                          min: 0,
-                                          max: 100,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              TableCell(
-                                child: Container(
-                                  padding: const .symmetric(horizontal: 8),
-                                  alignment: .centerRight,
-                                  child: Builder(
-                                    builder: (context) {
-                                      return IconButton.ghost(
-                                        onPressed: () {
-                                          showDropdown(
-                                            context: context,
-                                            builder: (context) {
-                                              return const DropdownMenu(
-                                                children: [
-                                                  MenuButton(
-                                                    child: Text("View details"),
-                                                  ),
-                                                  MenuButton(
-                                                    child: Text(
-                                                      "Download receipt",
-                                                    ),
-                                                  ),
-                                                  MenuButton(
-                                                    child: Text(
-                                                      "Contact customer",
-                                                    ),
-                                                  ),
-                                                ],
-                                              );
-                                            },
-                                          );
-                                        },
-                                        icon: const Icon(
-                                          LucideIcons.ellipsisVertical,
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-
-                          TableRow(
-                            cells: [
-                              _buildCell("Introduction to python"),
-                              _buildCell("Programming"),
-                              _buildCell("4.6"),
-                              TableCell(
-                                child: Container(
-                                  padding: const .all(8),
-                                  child: Row(
-                                    children: [
-                                      SizedBox(
-                                        width: 100,
-                                        height: 8,
-                                        child: Progress(
-                                          progress: 60,
-                                          min: 0,
-                                          max: 100,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              TableCell(
-                                child: Container(
-                                  padding: const .symmetric(horizontal: 8),
-                                  alignment: .centerRight,
-                                  child: Builder(
-                                    builder: (context) {
-                                      return IconButton.ghost(
-                                        onPressed: () {
-                                          showDropdown(
-                                            context: context,
-                                            builder: (context) {
-                                              return const DropdownMenu(
-                                                children: [
-                                                  MenuButton(
-                                                    child: Text("View details"),
-                                                  ),
-                                                  MenuButton(
-                                                    child: Text(
-                                                      "Download receipt",
-                                                    ),
-                                                  ),
-                                                  MenuButton(
-                                                    child: Text(
-                                                      "Contact customer",
-                                                    ),
-                                                  ),
-                                                ],
-                                              );
-                                            },
-                                          );
-                                        },
-                                        icon: const Icon(
-                                          LucideIcons.ellipsisVertical,
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-
-                          TableRow(
-                            cells: [
-                              _buildCell("UX Design Principles"),
-                              _buildCell("Design"),
-                              _buildCell("4.4"),
-                              TableCell(
-                                child: Container(
-                                  padding: const .all(8),
-                                  child: Row(
-                                    children: [
-                                      SizedBox(
-                                        width: 100,
-                                        height: 8,
-                                        child: Progress(
-                                          progress: 60,
-                                          min: 0,
-                                          max: 100,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              TableCell(
-                                child: Container(
-                                  padding: const .symmetric(horizontal: 8),
-                                  alignment: .centerRight,
-                                  child: Builder(
-                                    builder: (context) {
-                                      return IconButton.ghost(
-                                        onPressed: () {
-                                          showDropdown(
-                                            context: context,
-                                            builder: (context) {
-                                              return const DropdownMenu(
-                                                children: [
-                                                  MenuButton(
-                                                    child: Text("View details"),
-                                                  ),
-                                                  MenuButton(
-                                                    child: Text(
-                                                      "Download receipt",
-                                                    ),
-                                                  ),
-                                                  MenuButton(
-                                                    child: Text(
-                                                      "Contact customer",
-                                                    ),
-                                                  ),
-                                                ],
-                                              );
-                                            },
-                                          );
-                                        },
-                                        icon: const Icon(
-                                          LucideIcons.ellipsisVertical,
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-
-                          TableRow(
-                            cells: [
-                              _buildCell("Introduction to svelte"),
-                              _buildCell("Programming"),
-                              _buildCell("4.8"),
-                              TableCell(
-                                child: Container(
-                                  padding: const .all(8),
-                                  child: Row(
-                                    children: [
-                                      SizedBox(
-                                        width: 100,
-                                        height: 8,
-                                        child: Progress(
-                                          progress: 60,
-                                          min: 0,
-                                          max: 100,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              TableCell(
-                                child: Container(
-                                  padding: const .symmetric(horizontal: 8),
-                                  alignment: .centerRight,
-                                  child: Builder(
-                                    builder: (context) {
-                                      return IconButton.ghost(
-                                        onPressed: () {
-                                          showDropdown(
-                                            context: context,
-                                            builder: (context) {
-                                              return const DropdownMenu(
-                                                children: [
-                                                  MenuButton(
-                                                    child: Text("View details"),
-                                                  ),
-                                                  MenuButton(
-                                                    child: Text(
-                                                      "Download receipt",
-                                                    ),
-                                                  ),
-                                                  MenuButton(
-                                                    child: Text(
-                                                      "Contact customer",
-                                                    ),
-                                                  ),
-                                                ],
-                                              );
-                                            },
-                                          );
-                                        },
-                                        icon: const Icon(
-                                          LucideIcons.ellipsisVertical,
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                ),
-                              ),
-                            ],
+                          ...popularCourses.map(
+                            (row) => _buildDataRow(context, row),
                           ),
                         ],
                       ),
@@ -874,6 +532,65 @@ class AcademyDashboardScreen extends StatelessWidget {
         alignment: alignRight ? .centerRight : .centerLeft,
         child: Text(text),
       ),
+    );
+  }
+
+  TableCell _actionCell(BuildContext context) {
+    return TableCell(
+      child: Container(
+        padding: const .symmetric(horizontal: 8),
+        alignment: .centerRight,
+        child: Builder(
+          builder: (context) {
+            return IconButton.ghost(
+              onPressed: () {
+                showDropdown(
+                  context: context,
+                  builder: (context) {
+                    return const DropdownMenu(
+                      children: [
+                        MenuButton(child: Text("View details")),
+                        MenuButton(child: Text("Download receipt")),
+                        MenuButton(child: Text("Contact customer")),
+                      ],
+                    );
+                  },
+                );
+              },
+              icon: const Icon(LucideIcons.ellipsisVertical),
+            );
+          },
+        ),
+      ),
+    );
+  }
+
+  TableCell _progressCell(double progress) {
+    return TableCell(
+      child: Container(
+        padding: const .all(8),
+        child: Row(
+          children: [
+            SizedBox(
+              width: 100,
+              height: 8,
+              child: Progress(progress: progress, min: 0, max: 100),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  TableRow _buildDataRow(BuildContext context, PopularCoursesRow row) {
+    return TableRow(
+      cells: [
+        _buildCell(row.name),
+        _buildCell(row.category),
+        _buildCell(row.score),
+        _progressCell(row.progress),
+        _actionCell(context),
+      ],
     );
   }
 }
@@ -1100,4 +817,18 @@ class LineChartSampleState extends State<LineChartSample> {
       ],
     );
   }
+}
+
+class PopularCoursesRow {
+  final String name;
+  final String category;
+  final String score;
+  final double progress;
+
+  PopularCoursesRow({
+    required this.name,
+    required this.category,
+    required this.score,
+    required this.progress,
+  });
 }

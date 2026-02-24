@@ -10,6 +10,45 @@ class ProfilePageScreen extends StatefulWidget {
 class ProfilePageScreenState extends State<ProfilePageScreen> {
   int index = 0;
 
+  final transactionHistory = [
+    TransactionHistoryRow(
+      product: "Mock premium pack",
+      status: "Pending",
+      date: "10/02/2026",
+      amount: "\$316.00",
+    ),
+    TransactionHistoryRow(
+      product: "Enterprise plan subscription",
+      status: "Paid",
+      date: "10/02/2026",
+      amount: "\$316.00",
+    ),
+    TransactionHistoryRow(
+      product: "Business board pro licence",
+      status: "Paid",
+      date: "10/02/2026",
+      amount: "\$316.00",
+    ),
+    TransactionHistoryRow(
+      product: "Custom integration package",
+      status: "Failed",
+      date: "10/02/2026",
+      amount: "\$316.00",
+    ),
+    TransactionHistoryRow(
+      product: "Developer toolkit license",
+      status: "Paid",
+      date: "10/02/2026",
+      amount: "\$316.00",
+    ),
+    TransactionHistoryRow(
+      product: "Support package renewal",
+      status: "Paid",
+      date: "10/02/2026",
+      amount: "\$316.00",
+    ),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -335,64 +374,8 @@ class ProfilePageScreenState extends State<ProfilePageScreen> {
                                     ),
 
                                     // Body rows
-                                    TableRow(
-                                      cells: [
-                                        _buildCell("Mock premium pack"),
-                                        _buildCell("Pending"),
-                                        _buildCell("10/02/2026"),
-                                        _buildCell("\$316.00", true),
-                                      ],
-                                    ),
-
-                                    TableRow(
-                                      cells: [
-                                        _buildCell(
-                                          "Enterprise plan subscription",
-                                        ),
-                                        _buildCell("Paid"),
-                                        _buildCell("10/02/2026"),
-                                        _buildCell("\$316.00", true),
-                                      ],
-                                    ),
-
-                                    TableRow(
-                                      cells: [
-                                        _buildCell(
-                                          "Business board pro licence",
-                                        ),
-                                        _buildCell("Paid"),
-                                        _buildCell("10/02/2026"),
-                                        _buildCell("\$316.00", true),
-                                      ],
-                                    ),
-
-                                    TableRow(
-                                      cells: [
-                                        _buildCell(
-                                          "Custom integration package",
-                                        ),
-                                        _buildCell("Failed"),
-                                        _buildCell("10/02/2026"),
-                                        _buildCell("\$316.00", true),
-                                      ],
-                                    ),
-
-                                    TableRow(
-                                      cells: [
-                                        _buildCell("Developer toolkit license"),
-                                        _buildCell("Paid"),
-                                        _buildCell("10/02/2026"),
-                                        _buildCell("\$316.00", true),
-                                      ],
-                                    ),
-
-                                    TableRow(
-                                      cells: [
-                                        _buildCell("Support package renewal"),
-                                        _buildCell("Paid"),
-                                        _buildCell("10/02/2026"),
-                                        _buildCell("\$316.00", true),
-                                      ],
+                                    ...transactionHistory.map(
+                                      (row) => _buildDataRow(context, row),
                                     ),
                                   ],
                                 ),
@@ -597,4 +580,29 @@ class ProfilePageScreenState extends State<ProfilePageScreen> {
       ),
     );
   }
+
+  TableRow _buildDataRow(BuildContext context, TransactionHistoryRow row) {
+    return TableRow(
+      cells: [
+        _buildCell(row.product),
+        _buildCell(row.status),
+        _buildCell(row.date),
+        _buildCell(row.amount, true),
+      ],
+    );
+  }
+}
+
+class TransactionHistoryRow {
+  final String product;
+  final String status;
+  final String date;
+  final String amount;
+
+  TransactionHistoryRow({
+    required this.product,
+    required this.status,
+    required this.date,
+    required this.amount,
+  });
 }

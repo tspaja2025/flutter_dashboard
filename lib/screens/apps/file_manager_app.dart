@@ -10,6 +10,13 @@ class FileManagerAppScreen extends StatefulWidget {
 class FileManagerAppScreenState extends State<FileManagerAppScreen> {
   CheckboxState _state = CheckboxState.unchecked;
 
+  final files = [
+    FilesRow(name: "Brand Styles Guide", date: "13/02/2026", size: "2.0MB"),
+    FilesRow(name: "Brand Styles Guide", date: "13/02/2026", size: "2.0MB"),
+    FilesRow(name: "Design", date: "13/02/2026", size: "2.0MB"),
+    FilesRow(name: "Project Brief", date: "13/02/2026", size: "2.0MB"),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -66,213 +73,7 @@ class FileManagerAppScreenState extends State<FileManagerAppScreen> {
               ),
 
               // Body rows
-              TableRow(
-                cells: [
-                  TableCell(
-                    child: Container(
-                      padding: const .all(8),
-                      child: Checkbox(
-                        state: _state,
-                        onChanged: (state) {
-                          setState(() {
-                            _state = state;
-                          });
-                        },
-                      ),
-                    ),
-                  ),
-                  _buildCell("Brand Styles Guide"),
-                  _buildCell("13/02/2026"),
-                  _buildCell("2.0MB"),
-                  TableCell(
-                    child: Container(
-                      padding: const .symmetric(horizontal: 8),
-                      alignment: .centerRight,
-                      child: Builder(
-                        builder: (context) {
-                          return IconButton.ghost(
-                            onPressed: () {
-                              showDropdown(
-                                context: context,
-                                builder: (context) {
-                                  return const DropdownMenu(
-                                    children: [
-                                      MenuButton(child: Text("Compress")),
-                                      MenuButton(child: Text("Archive")),
-                                      MenuButton(child: Text("Share")),
-                                      MenuDivider(),
-                                      MenuButton(child: Text("Move")),
-                                      MenuButton(child: Text("Copy")),
-                                      MenuButton(child: Text("Delete")),
-                                    ],
-                                  );
-                                },
-                              );
-                            },
-                            icon: const Icon(LucideIcons.ellipsisVertical),
-                          );
-                        },
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-
-              TableRow(
-                cells: [
-                  TableCell(
-                    child: Container(
-                      padding: const .all(8),
-                      child: Checkbox(
-                        state: _state,
-                        onChanged: (state) {
-                          setState(() {
-                            _state = state;
-                          });
-                        },
-                      ),
-                    ),
-                  ),
-                  _buildCell("Brand Styles Guide"),
-                  _buildCell("13/02/2026"),
-                  _buildCell("2.0MB"),
-                  TableCell(
-                    child: Container(
-                      padding: const .symmetric(horizontal: 8),
-                      alignment: .centerRight,
-                      child: Builder(
-                        builder: (context) {
-                          return IconButton.ghost(
-                            onPressed: () {
-                              showDropdown(
-                                context: context,
-                                builder: (context) {
-                                  return const DropdownMenu(
-                                    children: [
-                                      MenuButton(child: Text("Compress")),
-                                      MenuButton(child: Text("Archive")),
-                                      MenuButton(child: Text("Share")),
-                                      MenuDivider(),
-                                      MenuButton(child: Text("Move")),
-                                      MenuButton(child: Text("Copy")),
-                                      MenuButton(child: Text("Delete")),
-                                    ],
-                                  );
-                                },
-                              );
-                            },
-                            icon: const Icon(LucideIcons.ellipsisVertical),
-                          );
-                        },
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-
-              TableRow(
-                cells: [
-                  TableCell(
-                    child: Container(
-                      padding: const .all(8),
-                      child: Checkbox(
-                        state: _state,
-                        onChanged: (state) {
-                          setState(() {
-                            _state = state;
-                          });
-                        },
-                      ),
-                    ),
-                  ),
-                  _buildCell("Design"),
-                  _buildCell("13/02/2026"),
-                  _buildCell("2.0MB"),
-                  TableCell(
-                    child: Container(
-                      padding: const .symmetric(horizontal: 8),
-                      alignment: .centerRight,
-                      child: Builder(
-                        builder: (context) {
-                          return IconButton.ghost(
-                            onPressed: () {
-                              showDropdown(
-                                context: context,
-                                builder: (context) {
-                                  return const DropdownMenu(
-                                    children: [
-                                      MenuButton(child: Text("Compress")),
-                                      MenuButton(child: Text("Archive")),
-                                      MenuButton(child: Text("Share")),
-                                      MenuDivider(),
-                                      MenuButton(child: Text("Move")),
-                                      MenuButton(child: Text("Copy")),
-                                      MenuButton(child: Text("Delete")),
-                                    ],
-                                  );
-                                },
-                              );
-                            },
-                            icon: const Icon(LucideIcons.ellipsisVertical),
-                          );
-                        },
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-
-              TableRow(
-                cells: [
-                  TableCell(
-                    child: Container(
-                      padding: const .all(8),
-                      child: Checkbox(
-                        state: _state,
-                        onChanged: (state) {
-                          setState(() {
-                            _state = state;
-                          });
-                        },
-                      ),
-                    ),
-                  ),
-                  _buildCell("Project Brief"),
-                  _buildCell("13/02/2026"),
-                  _buildCell("2.0MB"),
-                  TableCell(
-                    child: Container(
-                      padding: const .symmetric(horizontal: 8),
-                      alignment: .centerRight,
-                      child: Builder(
-                        builder: (context) {
-                          return IconButton.ghost(
-                            onPressed: () {
-                              showDropdown(
-                                context: context,
-                                builder: (context) {
-                                  return const DropdownMenu(
-                                    children: [
-                                      MenuButton(child: Text("Compress")),
-                                      MenuButton(child: Text("Archive")),
-                                      MenuButton(child: Text("Share")),
-                                      MenuDivider(),
-                                      MenuButton(child: Text("Move")),
-                                      MenuButton(child: Text("Copy")),
-                                      MenuButton(child: Text("Delete")),
-                                    ],
-                                  );
-                                },
-                              );
-                            },
-                            icon: const Icon(LucideIcons.ellipsisVertical),
-                          );
-                        },
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+              ...files.map((row) => _buildDataRow(context, row)),
             ],
           ),
 
@@ -319,4 +120,74 @@ class FileManagerAppScreenState extends State<FileManagerAppScreen> {
       ),
     );
   }
+
+  TableCell _checkboxCell() {
+    return TableCell(
+      child: Padding(
+        padding: const .all(8),
+        child: Checkbox(
+          state: _state,
+          onChanged: (state) {
+            setState(() {
+              _state = state;
+            });
+          },
+        ),
+      ),
+    );
+  }
+
+  TableCell _actionCell(BuildContext context) {
+    return TableCell(
+      child: Container(
+        padding: const .symmetric(horizontal: 8),
+        alignment: .centerRight,
+        child: Builder(
+          builder: (context) {
+            return IconButton.ghost(
+              onPressed: () {
+                showDropdown(
+                  context: context,
+                  builder: (context) {
+                    return const DropdownMenu(
+                      children: [
+                        MenuButton(child: Text("Compress")),
+                        MenuButton(child: Text("Archive")),
+                        MenuButton(child: Text("Share")),
+                        MenuDivider(),
+                        MenuButton(child: Text("Move")),
+                        MenuButton(child: Text("Copy")),
+                        MenuButton(child: Text("Delete")),
+                      ],
+                    );
+                  },
+                );
+              },
+              icon: const Icon(LucideIcons.ellipsisVertical),
+            );
+          },
+        ),
+      ),
+    );
+  }
+
+  TableRow _buildDataRow(BuildContext context, FilesRow row) {
+    return TableRow(
+      cells: [
+        _checkboxCell(),
+        _buildCell(row.name),
+        _buildCell(row.date),
+        _buildCell(row.size),
+        _actionCell(context),
+      ],
+    );
+  }
+}
+
+class FilesRow {
+  final String name;
+  final String date;
+  final String size;
+
+  FilesRow({required this.name, required this.date, required this.size});
 }
