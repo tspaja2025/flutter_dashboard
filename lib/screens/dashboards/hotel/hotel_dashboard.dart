@@ -1,14 +1,16 @@
 import 'package:fl_chart/fl_chart.dart';
+import 'package:flutter_dashboard/widget/card_widget.dart';
+import 'package:flutter_dashboard/widget/table_widget.dart';
 import 'package:shadcn_flutter/shadcn_flutter.dart';
 
 class HotelDashboardScreen extends StatefulWidget {
   const HotelDashboardScreen({super.key});
 
   @override
-  State<HotelDashboardScreen> createState() => HotelDashboardScreenState();
+  State<HotelDashboardScreen> createState() => _HotelDashboardScreenState();
 }
 
-class HotelDashboardScreenState extends State<HotelDashboardScreen> {
+class _HotelDashboardScreenState extends State<HotelDashboardScreen> {
   String? overviewValue;
   String? statValue;
   String? allStatusValue;
@@ -55,908 +57,754 @@ class HotelDashboardScreenState extends State<HotelDashboardScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const .all(16),
-      child: Column(
-        children: [
-          Row(children: [const Text("Hotel Dashboard").bold().large()]),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(children: [const Text("Hotel Dashboard").bold.large]),
 
-          const SizedBox(height: 16),
-          Row(
-            crossAxisAlignment: .start,
-            spacing: 16,
-            children: [
-              Expanded(
-                child: Card(
-                  filled: true,
-                  fillColor: Colors.blue.shade900,
-                  padding: const .all(16),
-                  child: Column(
-                    crossAxisAlignment: .start,
-                    children: [
-                      Row(
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: CardWidget(
+                title: "Today's check-in",
+                subtitle: "200 | Unit Number: 1,0000",
+                leading: [
+                  Container(
+                    width: 44,
+                    height: 44,
+                    decoration: BoxDecoration(
+                      color: Colors.blue,
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: const Icon(LucideIcons.clock, color: Colors.white),
+                  ),
+                ],
+                trailing: [
+                  IconButton.ghost(
+                    onPressed: () {},
+                    icon: const Icon(LucideIcons.ellipsisVertical),
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
+              child: CardWidget(
+                title: "Today's check-out",
+                subtitle: "34 | Unit Number: 520",
+                leading: [
+                  Container(
+                    width: 44,
+                    height: 44,
+                    decoration: BoxDecoration(
+                      color: Colors.green,
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: const Icon(LucideIcons.clock, color: Colors.white),
+                  ),
+                ],
+                trailing: [
+                  IconButton.ghost(
+                    onPressed: () {},
+                    icon: const Icon(LucideIcons.ellipsisVertical),
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
+              child: CardWidget(
+                title: "Total guests",
+                subtitle: "3432 | Unit Number: 152",
+                leading: [
+                  Container(
+                    width: 44,
+                    height: 44,
+                    decoration: BoxDecoration(
+                      color: Colors.purple,
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: const Icon(LucideIcons.clock, color: Colors.white),
+                  ),
+                ],
+                trailing: [
+                  IconButton.ghost(
+                    onPressed: () {},
+                    icon: const Icon(LucideIcons.ellipsisVertical),
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
+              child: CardWidget(
+                title: "Total Amount",
+                subtitle: "\$668,726 | Unit Number: 266",
+                leading: [
+                  Container(
+                    width: 44,
+                    height: 44,
+                    decoration: BoxDecoration(
+                      color: Colors.orange,
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: const Icon(
+                      LucideIcons.dollarSign,
+                      color: Colors.white,
+                    ),
+                  ),
+                ],
+                trailing: [
+                  IconButton.ghost(
+                    onPressed: () {},
+                    icon: const Icon(LucideIcons.ellipsisVertical),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ).gap(16),
+
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: CardWidget(
+                title: "Reservations",
+                subtitle: "",
+                children: [PieChartSample()],
+              ),
+            ),
+            Expanded(
+              flex: 2,
+              child: CardWidget(
+                title: "Campaign Overview",
+                subtitle: "",
+                trailing: [
+                  Select<String>(
+                    itemBuilder: (context, item) {
+                      return Text(item);
+                    },
+                    popupConstraints: const BoxConstraints(
+                      maxHeight: 300,
+                      maxWidth: 200,
+                    ),
+                    onChanged: (value) {
+                      setState(() {
+                        overviewValue = value;
+                      });
+                    },
+                    value: overviewValue,
+                    placeholder: const Text("Select an overview"),
+                    popup: const SelectPopup(
+                      items: SelectItemList(
                         children: [
-                          Container(
-                            width: 44,
-                            height: 44,
-                            decoration: BoxDecoration(
-                              color: Colors.blue,
-                              borderRadius: .circular(12),
-                            ),
-                            child: const Icon(LucideIcons.clock),
+                          SelectItemButton(
+                            value: "This week",
+                            child: Text("This week"),
                           ),
-                          const Spacer(),
-                          IconButton.ghost(
-                            onPressed: () {},
-                            icon: const Icon(LucideIcons.ellipsisVertical),
+                          SelectItemButton(
+                            value: "Last week",
+                            child: Text("Last week"),
+                          ),
+                          SelectItemButton(
+                            value: "This month",
+                            child: Text("This month"),
+                          ),
+                          SelectItemButton(
+                            value: "Last month",
+                            child: Text("Last month"),
+                          ),
+                          SelectItemButton(
+                            value: "Last 3 months",
+                            child: Text("Last 3 months"),
                           ),
                         ],
                       ),
-
-                      const SizedBox(height: 16),
-
-                      const Text("Today's check-in").muted().small(),
-                      const SizedBox(height: 4),
-                      const Text("200").semiBold(),
-                      const SizedBox(height: 4),
-                      const Text("Unit Number: 1,000").muted().small(),
+                    ).call,
+                  ),
+                  IconButton.outline(
+                    onPressed: () {},
+                    icon: const Icon(LucideIcons.download),
+                  ),
+                ],
+                children: [
+                  Row(
+                    children: [
+                      OutlinedContainer(
+                        width: 200,
+                        height: 100,
+                        padding: const EdgeInsets.all(16),
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(8),
+                          bottomLeft: Radius.circular(8),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text("Booked").muted.small,
+                            const Text("290").semiBold,
+                          ],
+                        ),
+                      ),
+                      OutlinedContainer(
+                        width: 200,
+                        height: 100,
+                        padding: const EdgeInsets.all(16),
+                        borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(8),
+                          bottomRight: Radius.circular(8),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text("Visited").muted.small,
+                            const Text("638").semiBold,
+                          ],
+                        ),
+                      ),
                     ],
                   ),
-                ),
-              ),
-              Expanded(
-                child: Card(
-                  filled: true,
-                  fillColor: Colors.green.shade900,
-                  padding: const .all(16),
-                  child: Column(
-                    crossAxisAlignment: .start,
-                    children: [
-                      Row(
-                        children: [
-                          Container(
-                            width: 44,
-                            height: 44,
-                            decoration: BoxDecoration(
-                              color: Colors.green,
-                              borderRadius: .circular(12),
+
+                  const SizedBox(height: 32),
+
+                  SizedBox(
+                    height: 150,
+                    width: double.infinity,
+                    child: LineChart(
+                      LineChartData(
+                        lineBarsData: [
+                          LineChartBarData(
+                            spots: [
+                              FlSpot(0, 400),
+                              FlSpot(2, 300),
+                              FlSpot(4, 200),
+                              FlSpot(6, 278),
+                              FlSpot(8, 189),
+                              FlSpot(10, 239),
+                              FlSpot(12, 349),
+                            ],
+                            color: Colors.gray,
+                            isCurved: false,
+                            isStrokeCapRound: true,
+                            barWidth: 2,
+                            belowBarData: BarAreaData(show: false),
+                            dotData: FlDotData(
+                              show: true,
+                              getDotPainter: (spot, percent, barData, index) {
+                                return FlDotCirclePainter(
+                                  radius: 4,
+                                  color: Colors.gray,
+                                  strokeColor: Colors.white,
+                                  strokeWidth: 1,
+                                );
+                              },
                             ),
-                            child: const Icon(LucideIcons.logOut),
                           ),
-                          const Spacer(),
-                          IconButton.ghost(
-                            onPressed: () {},
-                            icon: const Icon(LucideIcons.ellipsisVertical),
+                          LineChartBarData(
+                            spots: [
+                              FlSpot(0, 240),
+                              FlSpot(2, 139),
+                              FlSpot(4, 400),
+                              FlSpot(6, 390),
+                              FlSpot(8, 480),
+                              FlSpot(10, 380),
+                              FlSpot(12, 400),
+                            ],
+                            color: Colors.black,
+                            isCurved: false,
+                            isStrokeCapRound: true,
+                            barWidth: 2,
+                            belowBarData: BarAreaData(show: false),
+                            dotData: FlDotData(
+                              show: true,
+                              getDotPainter: (spot, percent, barData, index) {
+                                return FlDotCirclePainter(
+                                  radius: 4,
+                                  color: Colors.gray,
+                                  strokeColor: Colors.white,
+                                  strokeWidth: 1,
+                                );
+                              },
+                            ),
                           ),
                         ],
+                        minY: 0,
+                        maxY: 400,
+                        titlesData: FlTitlesData(show: false),
+                        gridData: FlGridData(show: false),
+                        borderData: FlBorderData(show: false),
                       ),
-
-                      const SizedBox(height: 16),
-
-                      const Text("Today's check-out").muted().small(),
-                      const SizedBox(height: 4),
-                      const Text("34").semiBold(),
-                      const SizedBox(height: 4),
-                      const Text("Unit Number: 520").muted().small(),
-                    ],
+                    ),
                   ),
-                ),
+                ],
               ),
-              Expanded(
-                child: Card(
-                  filled: true,
-                  fillColor: Colors.pink.shade900,
-                  padding: const .all(16),
-                  child: Column(
-                    crossAxisAlignment: .start,
+            ),
+          ],
+        ).gap(16),
+
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: CardWidget(
+                title: "Recent activities",
+                subtitle: "",
+                children: [
+                  Row(
                     children: [
-                      Row(
+                      Avatar(
+                        size: 24,
+                        initials: Avatar.getInitials("ts paja"),
+                        provider: const NetworkImage(
+                          "https://avatars.githubusercontent.com/u/213942709?s=400&v=4",
+                        ),
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Container(
-                            width: 44,
-                            height: 44,
-                            decoration: BoxDecoration(
-                              color: Colors.pink,
-                              borderRadius: .circular(12),
-                            ),
-                            child: const Icon(LucideIcons.users),
-                          ),
-                          const Spacer(),
-                          IconButton.ghost(
-                            onPressed: () {},
-                            icon: const Icon(LucideIcons.ellipsisVertical),
-                          ),
+                          const Text("Wade Warren").bold,
+                          const Text(
+                            "Room #1, requested for a coffee and water",
+                          ).muted.small,
                         ],
                       ),
-
-                      const SizedBox(height: 16),
-
-                      const Text("Total guests").muted().small(),
-                      const SizedBox(height: 4),
-                      const Text("3432").semiBold(),
-                      const SizedBox(height: 4),
-                      const Text("Unit Number: 152").muted().small(),
+                      const Spacer(),
+                      const Text("16 mins").muted.small,
                     ],
-                  ),
-                ),
-              ),
-              Expanded(
-                child: Card(
-                  filled: true,
-                  fillColor: Colors.orange.shade900,
-                  padding: const .all(16),
-                  child: Column(
-                    crossAxisAlignment: .start,
+                  ).gap(16),
+
+                  const SizedBox(height: 16),
+
+                  Row(
                     children: [
-                      Row(
+                      Avatar(
+                        size: 24,
+                        initials: Avatar.getInitials("ts paja"),
+                        provider: const NetworkImage(
+                          "https://avatars.githubusercontent.com/u/213942709?s=400&v=4",
+                        ),
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Container(
-                            width: 44,
-                            height: 44,
-                            decoration: BoxDecoration(
-                              color: Colors.orange,
-                              borderRadius: .circular(12),
-                            ),
-                            child: const Icon(LucideIcons.dollarSign),
-                          ),
-                          const Spacer(),
-                          IconButton.ghost(
-                            onPressed: () {},
-                            icon: const Icon(LucideIcons.ellipsisVertical),
-                          ),
+                          const Text("Esther Howard").bold,
+                          const Text(
+                            "Room #2, requested for a coffee and water",
+                          ).muted.small,
                         ],
                       ),
-
-                      const SizedBox(height: 16),
-
-                      const Text("Total amount").muted().small(),
-                      const SizedBox(height: 4),
-                      const Text("\$668,726").semiBold(),
-                      const SizedBox(height: 4),
-                      const Text("Unit Number: 266").muted().small(),
+                      const Spacer(),
+                      const Text("16 mins").muted.small,
                     ],
-                  ),
-                ),
-              ),
-            ],
-          ),
+                  ).gap(16),
 
-          const SizedBox(height: 16),
-          Row(
-            crossAxisAlignment: .start,
-            spacing: 16,
-            children: [
-              Expanded(
-                child: Card(
-                  padding: const .all(16),
-                  child: Column(
-                    crossAxisAlignment: .start,
+                  const SizedBox(height: 16),
+
+                  Row(
                     children: [
-                      const Text("Reservations").semiBold(),
-
-                      const SizedBox(height: 16),
-
-                      PieChartSample(),
+                      Avatar(
+                        size: 24,
+                        initials: Avatar.getInitials("ts paja"),
+                        provider: const NetworkImage(
+                          "https://avatars.githubusercontent.com/u/213942709?s=400&v=4",
+                        ),
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text("Leslie Alexander").bold,
+                          const Text(
+                            "Room #3, requested for a coffee and water",
+                          ).muted.small,
+                        ],
+                      ),
+                      const Spacer(),
+                      const Text("16 mins").muted.small,
                     ],
-                  ),
-                ),
-              ),
-              Expanded(
-                flex: 2,
-                child: Card(
-                  padding: const .all(16),
-                  child: Column(
-                    crossAxisAlignment: .start,
+                  ).gap(16),
+
+                  const SizedBox(height: 16),
+
+                  Row(
                     children: [
-                      Row(
-                        spacing: 8,
+                      Avatar(
+                        size: 24,
+                        initials: Avatar.getInitials("ts paja"),
+                        provider: const NetworkImage(
+                          "https://avatars.githubusercontent.com/u/213942709?s=400&v=4",
+                        ),
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text("Campaign Overview").semiBold(),
-                          const Spacer(),
-                          Select<String>(
-                            itemBuilder: (context, item) {
-                              return Text(item);
-                            },
-                            popupConstraints: const BoxConstraints(
-                              maxHeight: 300,
-                              maxWidth: 200,
-                            ),
-                            onChanged: (value) {
-                              setState(() {
-                                overviewValue = value;
-                              });
-                            },
-                            value: overviewValue,
-                            placeholder: const Text("Select an overview"),
-                            popup: const SelectPopup(
-                              items: SelectItemList(
-                                children: [
-                                  SelectItemButton(
-                                    value: "This week",
-                                    child: Text("This week"),
-                                  ),
-                                  SelectItemButton(
-                                    value: "Last week",
-                                    child: Text("Last week"),
-                                  ),
-                                  SelectItemButton(
-                                    value: "This month",
-                                    child: Text("This month"),
-                                  ),
-                                  SelectItemButton(
-                                    value: "Last month",
-                                    child: Text("Last month"),
-                                  ),
-                                  SelectItemButton(
-                                    value: "Last 3 months",
-                                    child: Text("Last 3 months"),
-                                  ),
-                                ],
-                              ),
-                            ).call,
+                          const Text("Guy Hawkings").bold,
+                          const Text(
+                            "Room #4, requested for a coffee and water",
+                          ).muted.small,
+                        ],
+                      ),
+                      const Spacer(),
+                      const Text("16 mins").muted.small,
+                    ],
+                  ).gap(16),
+
+                  const SizedBox(height: 16),
+
+                  SizedBox(
+                    width: double.infinity,
+                    child: OutlineButton(
+                      onPressed: () {},
+                      alignment: Alignment.center,
+                      child: const Text("View All"),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
+              child: CardWidget(
+                title: "Revenue Stat",
+                subtitle: "",
+                trailing: [
+                  Select<String>(
+                    itemBuilder: (context, item) {
+                      return Text(item);
+                    },
+                    popupConstraints: const BoxConstraints(
+                      maxHeight: 300,
+                      maxWidth: 200,
+                    ),
+                    onChanged: (value) {
+                      setState(() {
+                        statValue = value;
+                      });
+                    },
+                    value: statValue,
+                    placeholder: const Text("Select an stat"),
+                    popup: const SelectPopup(
+                      items: SelectItemList(
+                        children: [
+                          SelectItemButton(
+                            value: "Weekly",
+                            child: Text("Weekly"),
                           ),
-                          IconButton.outline(
-                            onPressed: () {},
-                            icon: const Icon(LucideIcons.download),
+                          SelectItemButton(
+                            value: "Monthly",
+                            child: Text("Monthly"),
+                          ),
+                          SelectItemButton(
+                            value: "Yearly",
+                            child: Text("Yearly"),
                           ),
                         ],
                       ),
-
-                      Row(
-                        children: [
-                          OutlinedContainer(
-                            width: 200,
-                            height: 100,
-                            padding: const .all(16),
-                            borderRadius: BorderRadius.only(
-                              topLeft: .circular(8),
-                              bottomLeft: .circular(8),
-                            ),
-                            child: Column(
-                              crossAxisAlignment: .start,
-                              children: [
-                                const Text("Booked").muted().small(),
-                                const Text("290").semiBold(),
-                              ],
-                            ),
+                    ).call,
+                  ),
+                ],
+                children: [
+                  SizedBox(
+                    height: 75,
+                    child: BarChart(
+                      BarChartData(
+                        barTouchData: BarTouchData(
+                          enabled: false,
+                          touchTooltipData: BarTouchTooltipData(
+                            getTooltipColor: (group) => Colors.transparent,
+                            tooltipPadding: EdgeInsets.zero,
+                            tooltipMargin: 8,
+                            getTooltipItem:
+                                (
+                                  BarChartGroupData group,
+                                  int groupIndex,
+                                  BarChartRodData rod,
+                                  int rodIndex,
+                                ) {
+                                  return BarTooltipItem(
+                                    rod.toY.round().toString(),
+                                    TextStyle(
+                                      color: Theme.of(
+                                        context,
+                                      ).colorScheme.primary,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  );
+                                },
                           ),
-                          OutlinedContainer(
-                            width: 200,
-                            height: 100,
-                            padding: const .all(16),
-                            borderRadius: BorderRadius.only(
-                              topRight: .circular(8),
-                              bottomRight: .circular(8),
-                            ),
-                            child: Column(
-                              crossAxisAlignment: .start,
-                              children: [
-                                const Text("Visited").muted().small(),
-                                const Text("638").semiBold(),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-
-                      const SizedBox(height: 32),
-
-                      SizedBox(
-                        height: 150,
-                        width: double.infinity,
-                        child: LineChart(
-                          LineChartData(
-                            lineBarsData: [
-                              LineChartBarData(
-                                spots: [
-                                  FlSpot(0, 400),
-                                  FlSpot(2, 300),
-                                  FlSpot(4, 200),
-                                  FlSpot(6, 278),
-                                  FlSpot(8, 189),
-                                  FlSpot(10, 239),
-                                  FlSpot(12, 349),
-                                ],
-                                color: Colors.gray,
-                                isCurved: false,
-                                isStrokeCapRound: true,
-                                barWidth: 2,
-                                belowBarData: BarAreaData(show: false),
-                                dotData: FlDotData(
-                                  show: true,
-                                  getDotPainter:
-                                      (spot, percent, barData, index) {
-                                        return FlDotCirclePainter(
-                                          radius: 4,
-                                          color: Colors.gray,
-                                          strokeColor: Colors.white,
-                                          strokeWidth: 1,
-                                        );
-                                      },
-                                ),
-                              ),
-                              LineChartBarData(
-                                spots: [
-                                  FlSpot(0, 240),
-                                  FlSpot(2, 139),
-                                  FlSpot(4, 400),
-                                  FlSpot(6, 390),
-                                  FlSpot(8, 480),
-                                  FlSpot(10, 380),
-                                  FlSpot(12, 400),
-                                ],
+                        ),
+                        titlesData: const FlTitlesData(show: false),
+                        borderData: FlBorderData(show: false),
+                        barGroups: [
+                          BarChartGroupData(
+                            x: 0,
+                            barRods: [
+                              BarChartRodData(
+                                toY: 240,
+                                width: 47,
+                                borderRadius: BorderRadius.circular(4),
                                 color: Colors.black,
-                                isCurved: false,
-                                isStrokeCapRound: true,
-                                barWidth: 2,
-                                belowBarData: BarAreaData(show: false),
-                                dotData: FlDotData(
-                                  show: true,
-                                  getDotPainter:
-                                      (spot, percent, barData, index) {
-                                        return FlDotCirclePainter(
-                                          radius: 4,
-                                          color: Colors.gray,
-                                          strokeColor: Colors.white,
-                                          strokeWidth: 1,
-                                        );
-                                      },
-                                ),
                               ),
                             ],
-                            minY: 0,
-                            maxY: 400,
-                            titlesData: FlTitlesData(show: false),
-                            gridData: FlGridData(show: false),
-                            borderData: FlBorderData(show: false),
+                            showingTooltipIndicators: [0],
+                          ),
+                          BarChartGroupData(
+                            x: 1,
+                            barRods: [
+                              BarChartRodData(
+                                toY: 300,
+                                width: 47,
+                                borderRadius: BorderRadius.circular(4),
+                                color: Colors.black,
+                              ),
+                            ],
+                            showingTooltipIndicators: [0],
+                          ),
+                          BarChartGroupData(
+                            x: 2,
+                            barRods: [
+                              BarChartRodData(
+                                toY: 200,
+                                width: 47,
+                                borderRadius: BorderRadius.circular(8),
+                                color: Colors.black,
+                              ),
+                            ],
+                            showingTooltipIndicators: [0],
+                          ),
+                          BarChartGroupData(
+                            x: 3,
+                            barRods: [
+                              BarChartRodData(
+                                toY: 278,
+                                width: 47,
+                                borderRadius: BorderRadius.circular(4),
+                                color: Colors.black,
+                              ),
+                            ],
+                            showingTooltipIndicators: [0],
+                          ),
+                          BarChartGroupData(
+                            x: 4,
+                            barRods: [
+                              BarChartRodData(
+                                toY: 189,
+                                width: 47,
+                                borderRadius: BorderRadius.circular(4),
+                                color: Colors.black,
+                              ),
+                            ],
+                            showingTooltipIndicators: [0],
+                          ),
+                          BarChartGroupData(
+                            x: 5,
+                            barRods: [
+                              BarChartRodData(
+                                toY: 239,
+                                width: 47,
+                                borderRadius: BorderRadius.circular(4),
+                                color: Colors.black,
+                              ),
+                            ],
+                            showingTooltipIndicators: [0],
+                          ),
+                          BarChartGroupData(
+                            x: 6,
+                            barRods: [
+                              BarChartRodData(
+                                toY: 278,
+                                width: 47,
+                                borderRadius: BorderRadius.circular(4),
+                                color: Colors.black,
+                              ),
+                            ],
+                            showingTooltipIndicators: [0],
+                          ),
+                          BarChartGroupData(
+                            x: 7,
+                            barRods: [
+                              BarChartRodData(
+                                toY: 189,
+                                width: 47,
+                                borderRadius: .circular(4),
+                                color: Colors.black,
+                              ),
+                            ],
+                            showingTooltipIndicators: [0],
+                          ),
+                        ],
+                        gridData: const FlGridData(show: false),
+                        alignment: .spaceAround,
+                        maxY: 500,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
+              child: CardWidget(
+                title: "Bookings",
+                subtitle: "",
+                trailing: [
+                  Tabs(
+                    index: index,
+                    children: const [
+                      TabItem(child: Text("D")),
+                      TabItem(child: Text("W")),
+                      TabItem(child: Text("M")),
+                      TabItem(child: Text("Y")),
+                    ],
+                    onChanged: (int value) {
+                      setState(() {
+                        index = value;
+                      });
+                    },
+                  ),
+                ],
+                children: [
+                  Row(
+                    children: [
+                      const Text("20,395.50").x2Large.semiBold,
+                      const Text("Total Bookings").muted.small,
+                    ],
+                  ),
+
+                  const SizedBox(height: 16),
+                  const Divider(),
+                  const SizedBox(height: 16),
+
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Container(
+                          height: 48,
+                          decoration: BoxDecoration(
+                            color: Colors.green,
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(4),
+                              bottomLeft: Radius.circular(4),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        width: 150,
+                        height: 48,
+                        decoration: BoxDecoration(
+                          color: Colors.red,
+                          borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(4),
+                            bottomRight: Radius.circular(4),
                           ),
                         ),
                       ),
                     ],
                   ),
-                ),
-              ),
-            ],
-          ),
 
-          const SizedBox(height: 16),
-          Row(
-            crossAxisAlignment: .start,
-            spacing: 16,
-            children: [
-              Expanded(
-                child: Card(
-                  padding: const .all(16),
-                  child: Column(
-                    crossAxisAlignment: .start,
+                  const SizedBox(height: 16),
+
+                  Row(
                     children: [
-                      const Text("Recent activities").semiBold(),
-
-                      const SizedBox(height: 16),
-
-                      Row(
-                        spacing: 16,
-                        children: [
-                          Avatar(
-                            size: 24,
-                            initials: Avatar.getInitials("ts paja"),
-                            provider: const NetworkImage(
-                              "https://avatars.githubusercontent.com/u/213942709?s=400&v=4",
-                            ),
-                          ),
-                          Column(
-                            crossAxisAlignment: .start,
-                            children: [
-                              const Text("Wade Warren").bold(),
-                              const Text(
-                                "Room #1, requested for a coffee and water",
-                              ).muted().small(),
-                            ],
-                          ),
-                          const Spacer(),
-                          const Text("16 mins").muted().small(),
-                        ],
-                      ),
-
-                      const SizedBox(height: 16),
-
-                      Row(
-                        spacing: 16,
-                        children: [
-                          Avatar(
-                            size: 24,
-                            initials: Avatar.getInitials("ts paja"),
-                            provider: const NetworkImage(
-                              "https://avatars.githubusercontent.com/u/213942709?s=400&v=4",
-                            ),
-                          ),
-                          Column(
-                            crossAxisAlignment: .start,
-                            children: [
-                              const Text("Esther Howard").bold(),
-                              const Text(
-                                "Room #2, requested for a coffee and water",
-                              ).muted().small(),
-                            ],
-                          ),
-                          const Spacer(),
-                          const Text("16 mins").muted().small(),
-                        ],
-                      ),
-
-                      const SizedBox(height: 16),
-
-                      Row(
-                        spacing: 16,
-                        children: [
-                          Avatar(
-                            size: 24,
-                            initials: Avatar.getInitials("ts paja"),
-                            provider: const NetworkImage(
-                              "https://avatars.githubusercontent.com/u/213942709?s=400&v=4",
-                            ),
-                          ),
-                          Column(
-                            crossAxisAlignment: .start,
-                            children: [
-                              const Text("Leslie Alexander").bold(),
-                              const Text(
-                                "Room #3, requested for a coffee and water",
-                              ).muted().small(),
-                            ],
-                          ),
-                          const Spacer(),
-                          const Text("16 mins").muted().small(),
-                        ],
-                      ),
-
-                      const SizedBox(height: 16),
-
-                      Row(
-                        spacing: 16,
-                        children: [
-                          Avatar(
-                            size: 24,
-                            initials: Avatar.getInitials("ts paja"),
-                            provider: const NetworkImage(
-                              "https://avatars.githubusercontent.com/u/213942709?s=400&v=4",
-                            ),
-                          ),
-                          Column(
-                            crossAxisAlignment: .start,
-                            children: [
-                              const Text("Guy Hawkings").bold(),
-                              const Text(
-                                "Room #4, requested for a coffee and water",
-                              ).muted().small(),
-                            ],
-                          ),
-                          const Spacer(),
-                          const Text("16 mins").muted().small(),
-                        ],
-                      ),
-
-                      const SizedBox(height: 16),
-
-                      SizedBox(
-                        width: double.infinity,
-                        child: OutlineButton(
-                          onPressed: () {},
-                          alignment: .center,
-                          child: const Text("View All"),
-                        ),
-                      ),
+                      const Text("Online booking"),
+                      const Spacer(),
+                      const Text("Offline booking"),
                     ],
                   ),
-                ),
-              ),
-              Expanded(
-                child: Card(
-                  padding: const .all(16),
-                  child: Column(
-                    crossAxisAlignment: .start,
+
+                  const SizedBox(height: 16),
+
+                  Row(
                     children: [
-                      Row(
-                        children: [
-                          const Text("Revenue Stat").semiBold(),
-                          const Spacer(),
-                          Select<String>(
-                            itemBuilder: (context, item) {
-                              return Text(item);
-                            },
-                            popupConstraints: const BoxConstraints(
-                              maxHeight: 300,
-                              maxWidth: 200,
-                            ),
-                            onChanged: (value) {
-                              setState(() {
-                                statValue = value;
-                              });
-                            },
-                            value: statValue,
-                            placeholder: const Text("Select an stat"),
-                            popup: const SelectPopup(
-                              items: SelectItemList(
-                                children: [
-                                  SelectItemButton(
-                                    value: "Weekly",
-                                    child: Text("Weekly"),
-                                  ),
-                                  SelectItemButton(
-                                    value: "Monthly",
-                                    child: Text("Monthly"),
-                                  ),
-                                  SelectItemButton(
-                                    value: "Yearly",
-                                    child: Text("Yearly"),
-                                  ),
-                                ],
-                              ),
-                            ).call,
-                          ),
-                        ],
-                      ),
-
-                      const SizedBox(height: 16),
-
-                      SizedBox(
-                        height: 75,
-                        child: BarChart(
-                          BarChartData(
-                            barTouchData: BarTouchData(
-                              enabled: false,
-                              touchTooltipData: BarTouchTooltipData(
-                                getTooltipColor: (group) => Colors.transparent,
-                                tooltipPadding: .zero,
-                                tooltipMargin: 8,
-                                getTooltipItem:
-                                    (
-                                      BarChartGroupData group,
-                                      int groupIndex,
-                                      BarChartRodData rod,
-                                      int rodIndex,
-                                    ) {
-                                      return BarTooltipItem(
-                                        rod.toY.round().toString(),
-                                        TextStyle(
-                                          color: Theme.of(
-                                            context,
-                                          ).colorScheme.primary,
-                                          fontWeight: .bold,
-                                        ),
-                                      );
-                                    },
-                              ),
-                            ),
-                            titlesData: const FlTitlesData(show: false),
-                            borderData: FlBorderData(show: false),
-                            barGroups: [
-                              BarChartGroupData(
-                                x: 0,
-                                barRods: [
-                                  BarChartRodData(
-                                    toY: 240,
-                                    width: 47,
-                                    borderRadius: .circular(4),
-                                    color: Colors.black,
-                                  ),
-                                ],
-                                showingTooltipIndicators: [0],
-                              ),
-                              BarChartGroupData(
-                                x: 1,
-                                barRods: [
-                                  BarChartRodData(
-                                    toY: 300,
-                                    width: 47,
-                                    borderRadius: .circular(4),
-                                    color: Colors.black,
-                                  ),
-                                ],
-                                showingTooltipIndicators: [0],
-                              ),
-                              BarChartGroupData(
-                                x: 2,
-                                barRods: [
-                                  BarChartRodData(
-                                    toY: 200,
-                                    width: 47,
-                                    borderRadius: .circular(8),
-                                    color: Colors.black,
-                                  ),
-                                ],
-                                showingTooltipIndicators: [0],
-                              ),
-                              BarChartGroupData(
-                                x: 3,
-                                barRods: [
-                                  BarChartRodData(
-                                    toY: 278,
-                                    width: 47,
-                                    borderRadius: .circular(4),
-                                    color: Colors.black,
-                                  ),
-                                ],
-                                showingTooltipIndicators: [0],
-                              ),
-                              BarChartGroupData(
-                                x: 4,
-                                barRods: [
-                                  BarChartRodData(
-                                    toY: 189,
-                                    width: 47,
-                                    borderRadius: .circular(4),
-                                    color: Colors.black,
-                                  ),
-                                ],
-                                showingTooltipIndicators: [0],
-                              ),
-                              BarChartGroupData(
-                                x: 5,
-                                barRods: [
-                                  BarChartRodData(
-                                    toY: 239,
-                                    width: 47,
-                                    borderRadius: .circular(4),
-                                    color: Colors.black,
-                                  ),
-                                ],
-                                showingTooltipIndicators: [0],
-                              ),
-                              BarChartGroupData(
-                                x: 6,
-                                barRods: [
-                                  BarChartRodData(
-                                    toY: 278,
-                                    width: 47,
-                                    borderRadius: .circular(4),
-                                    color: Colors.black,
-                                  ),
-                                ],
-                                showingTooltipIndicators: [0],
-                              ),
-                              BarChartGroupData(
-                                x: 7,
-                                barRods: [
-                                  BarChartRodData(
-                                    toY: 189,
-                                    width: 47,
-                                    borderRadius: .circular(4),
-                                    color: Colors.black,
-                                  ),
-                                ],
-                                showingTooltipIndicators: [0],
-                              ),
-                            ],
-                            gridData: const FlGridData(show: false),
-                            alignment: .spaceAround,
-                            maxY: 500,
-                          ),
-                        ),
-                      ),
+                      const Text("14 839").semiBold,
+                      const Spacer(),
+                      const Text("5 556").semiBold,
                     ],
                   ),
-                ),
+                ],
               ),
-              Expanded(
-                child: Card(
-                  padding: const .all(16),
-                  child: Column(
-                    crossAxisAlignment: .start,
-                    children: [
-                      Row(
+            ),
+          ],
+        ).gap(16),
+
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: CardWidget(
+                title: "Booking List",
+                subtitle: "",
+                trailing: [
+                  SizedBox(
+                    width: 200,
+                    child: TextField(
+                      placeholder: const Text("Search guest,status,etc"),
+                    ),
+                  ),
+                  Select<String>(
+                    itemBuilder: (context, item) {
+                      return Text(item);
+                    },
+                    popupConstraints: const BoxConstraints(
+                      maxHeight: 300,
+                      maxWidth: 200,
+                    ),
+                    onChanged: (value) {
+                      setState(() {
+                        overviewValue = value;
+                      });
+                    },
+                    value: overviewValue,
+                    placeholder: const Text("Select a status"),
+                    popup: const SelectPopup(
+                      items: SelectItemList(
                         children: [
-                          const Text("Bookings").semiBold(),
-                          const Spacer(),
-                          Tabs(
-                            index: index,
-                            children: const [
-                              TabItem(child: Text("D")),
-                              TabItem(child: Text("W")),
-                              TabItem(child: Text("M")),
-                              TabItem(child: Text("Y")),
-                            ],
-                            onChanged: (int value) {
-                              setState(() {
-                                index = value;
-                              });
-                            },
+                          SelectItemButton(
+                            value: "All Status",
+                            child: Text("All Status"),
+                          ),
+                          SelectItemButton(
+                            value: "Checked-in",
+                            child: Text("Checked-in"),
+                          ),
+                          SelectItemButton(
+                            value: "Pending",
+                            child: Text("Pending"),
                           ),
                         ],
                       ),
-
-                      const SizedBox(height: 16),
-
-                      Row(
-                        children: [
-                          const Text("20,395.50").x2Large().semiBold(),
-                          const Text("Total Bookings").muted().small(),
-                        ],
-                      ),
-
-                      const SizedBox(height: 16),
-                      const Divider(),
-                      const SizedBox(height: 16),
-
-                      Row(
-                        children: [
-                          Expanded(
-                            child: Container(
-                              height: 48,
-                              decoration: BoxDecoration(
-                                color: Colors.green,
-                                borderRadius: BorderRadius.only(
-                                  topLeft: .circular(4),
-                                  bottomLeft: .circular(4),
-                                ),
-                              ),
-                            ),
-                          ),
-                          Container(
-                            width: 150,
-                            height: 48,
-                            decoration: BoxDecoration(
-                              color: Colors.red,
-                              borderRadius: BorderRadius.only(
-                                topRight: .circular(4),
-                                bottomRight: .circular(4),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-
-                      const SizedBox(height: 16),
-
-                      Row(
-                        children: [
-                          const Text("Online booking"),
-                          const Spacer(),
-                          const Text("Offline booking"),
-                        ],
-                      ),
-
-                      const SizedBox(height: 16),
-
-                      Row(
-                        children: [
-                          const Text("14 839").semiBold(),
-                          const Spacer(),
-                          const Text("5 556").semiBold(),
-                        ],
-                      ),
+                    ).call,
+                  ),
+                ],
+                children: [
+                  TableWidget(
+                    columnWidths: {0: FixedTableSize(120)},
+                    hasCheckbox: false,
+                    headerChildren: [
+                      _buildHeaderCell("Booking ID"),
+                      _buildHeaderCell("Guest Name"),
+                      _buildHeaderCell("Room Type"),
+                      _buildHeaderCell("Room Number"),
+                      _buildHeaderCell("Duration"),
+                      _buildHeaderCell("Check-In & Check-Out"),
+                      _buildHeaderCell("Status", true),
+                    ],
+                    bodyChildren: [
+                      ...bookingList.map((row) => _buildDataRow(context, row)),
                     ],
                   ),
-                ),
+                ],
               ),
-            ],
-          ),
-
-          const SizedBox(height: 16),
-          Row(
-            crossAxisAlignment: .start,
-            spacing: 16,
-            children: [
-              Expanded(
-                flex: 2,
-                child: Card(
-                  padding: const .all(16),
-                  child: Column(
-                    crossAxisAlignment: .start,
-                    children: [
-                      Row(
-                        spacing: 8,
-                        children: [
-                          const Text("Booking List").semiBold(),
-                          const Spacer(),
-                          SizedBox(
-                            width: 200,
-                            child: TextField(
-                              placeholder: const Text(
-                                "Search guest,status,etc",
-                              ),
-                            ),
-                          ),
-                          Select<String>(
-                            itemBuilder: (context, item) {
-                              return Text(item);
-                            },
-                            popupConstraints: const BoxConstraints(
-                              maxHeight: 300,
-                              maxWidth: 200,
-                            ),
-                            onChanged: (value) {
-                              setState(() {
-                                overviewValue = value;
-                              });
-                            },
-                            value: overviewValue,
-                            placeholder: const Text("Select a status"),
-                            popup: const SelectPopup(
-                              items: SelectItemList(
-                                children: [
-                                  SelectItemButton(
-                                    value: "All Status",
-                                    child: Text("All Status"),
-                                  ),
-                                  SelectItemButton(
-                                    value: "Checked-in",
-                                    child: Text("Checked-in"),
-                                  ),
-                                  SelectItemButton(
-                                    value: "Pending",
-                                    child: Text("Pending"),
-                                  ),
-                                ],
-                              ),
-                            ).call,
-                          ),
-                        ],
-                      ),
-
-                      const SizedBox(height: 16),
-
-                      Table(
-                        columnWidths: {0: FixedTableSize(120)},
-                        defaultRowHeight: FixedTableSize(48),
-
-                        rows: [
-                          // Header row
-                          TableRow(
-                            cells: [
-                              _buildHeaderCell("Booking ID"),
-                              _buildHeaderCell("Guest Name"),
-                              _buildHeaderCell("Room Type"),
-                              _buildHeaderCell("Room Number"),
-                              _buildHeaderCell("Duration"),
-                              _buildHeaderCell("Check-In & Check-Out"),
-                              _buildHeaderCell("Status", true),
-                            ],
-                          ),
-
-                          // Body rows
-                          ...bookingList.map(
-                            (row) => _buildDataRow(context, row),
-                          ),
-                        ],
-                      ),
-
-                      const SizedBox(height: 16),
-
-                      Row(
-                        spacing: 8,
-                        children: [
-                          const Text("0 of 8 row(s) selected."),
-                          const Spacer(),
-                          IconButton.outline(
-                            enabled: false,
-                            onPressed: () {},
-                            icon: const Icon(LucideIcons.chevronLeft),
-                          ),
-                          IconButton.outline(
-                            enabled: false,
-                            onPressed: () {},
-                            icon: const Icon(LucideIcons.chevronRight),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
+            ),
+          ],
+        ).gap(16),
+      ],
+    ).gap(16).withPadding(all: 16);
   }
 
   TableCell _buildHeaderCell(String text, [bool alignRight = false]) {
     return TableCell(
       child: Container(
-        padding: const .all(8),
-        alignment: alignRight ? .centerRight : .centerLeft,
-        child: Text(text).muted().semiBold(),
+        padding: const EdgeInsets.all(8),
+        alignment: alignRight ? Alignment.centerRight : Alignment.centerLeft,
+        child: Text(text).muted.semiBold,
       ),
     );
   }
@@ -964,8 +812,8 @@ class HotelDashboardScreenState extends State<HotelDashboardScreen> {
   TableCell _buildCell(String text, [bool alignRight = false]) {
     return TableCell(
       child: Container(
-        padding: const .all(8),
-        alignment: alignRight ? .centerRight : .centerLeft,
+        padding: const EdgeInsets.all(8),
+        alignment: alignRight ? Alignment.centerRight : Alignment.centerLeft,
         child: Text(text),
       ),
     );

@@ -1,3 +1,5 @@
+import 'package:flutter_dashboard/widget/card_widget.dart';
+import 'package:flutter_dashboard/widget/table_widget.dart';
 import 'package:shadcn_flutter/shadcn_flutter.dart';
 
 class EcommerceOrderListScreen extends StatefulWidget {
@@ -5,14 +7,14 @@ class EcommerceOrderListScreen extends StatefulWidget {
 
   @override
   State<EcommerceOrderListScreen> createState() =>
-      EcommerceOrderListScreenState();
+      _EcommerceOrderListScreenState();
 }
 
-class EcommerceOrderListScreenState extends State<EcommerceOrderListScreen> {
+class _EcommerceOrderListScreenState extends State<EcommerceOrderListScreen> {
+  CheckboxState _state = CheckboxState.unchecked;
   int index = 0;
   String? statusValue;
   String? categoryValue;
-  CheckboxState _state = CheckboxState.unchecked;
 
   final orderList = [
     OrderListRow(
@@ -91,196 +93,170 @@ class EcommerceOrderListScreenState extends State<EcommerceOrderListScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const .all(16),
-      child: Column(
-        crossAxisAlignment: .start,
-        children: [
-          Row(
-            children: [
-              const Text("Order list").bold().large(),
-              const Spacer(),
-              PrimaryButton(
-                onPressed: () {},
-                leading: const Icon(LucideIcons.plus),
-                child: const Text("Create Order"),
-              ),
-            ],
-          ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            const Text("Order list").bold.large,
+            const Spacer(),
+            PrimaryButton(
+              onPressed: () {},
+              leading: const Icon(LucideIcons.plus),
+              child: const Text("Create Order"),
+            ),
+          ],
+        ),
 
-          const SizedBox(height: 16),
+        Tabs(
+          index: index,
+          children: const [
+            TabItem(child: Text("All")),
+            TabItem(child: Text("Completed")),
+            TabItem(child: Text("Processed")),
+            TabItem(child: Text("Returned")),
+            TabItem(child: Text("Canceled")),
+          ],
+          onChanged: (int value) {
+            setState(() {
+              index = value;
+            });
+          },
+        ),
 
-          Tabs(
-            index: index,
-            children: const [
-              TabItem(child: Text("All")),
-              TabItem(child: Text("Completed")),
-              TabItem(child: Text("Processed")),
-              TabItem(child: Text("Returned")),
-              TabItem(child: Text("Canceled")),
-            ],
-            onChanged: (int value) {
-              setState(() {
-                index = value;
-              });
-            },
-          ),
-
-          const SizedBox(height: 16),
-
-          Row(
-            spacing: 8,
-            children: [
-              SizedBox(
-                width: 200,
-                child: TextField(placeholder: const Text("Search orders...")),
-              ),
-              Select<String>(
-                itemBuilder: (context, item) {
-                  return Text(item);
-                },
-                popupConstraints: const BoxConstraints(
-                  maxHeight: 300,
-                  maxWidth: 200,
-                ),
-                onChanged: (value) {
-                  setState(() {
-                    statusValue = value;
-                  });
-                },
-                value: statusValue,
-                placeholder: const Text("Status"),
-                popup: const SelectPopup(
-                  items: SelectItemList(
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: CardWidget(
+                title: "",
+                subtitle: "",
+                children: [
+                  Row(
                     children: [
-                      SelectItemButton(
-                        value: "Pending",
-                        child: Text("Pending"),
+                      SizedBox(
+                        width: 200,
+                        child: TextField(
+                          placeholder: const Text("Search orders..."),
+                        ),
                       ),
-                      SelectItemButton(
-                        value: "Completed",
-                        child: Text("Completed"),
-                      ),
-                      SelectItemButton(
-                        value: "Shipped",
-                        child: Text("Shipped"),
-                      ),
-                      SelectItemButton(
-                        value: "Delivered",
-                        child: Text("Delivered"),
-                      ),
-                    ],
-                  ),
-                ).call,
-              ),
-              Select<String>(
-                itemBuilder: (context, item) {
-                  return Text(item);
-                },
-                popupConstraints: const BoxConstraints(
-                  maxHeight: 300,
-                  maxWidth: 200,
-                ),
-                onChanged: (value) {
-                  setState(() {
-                    categoryValue = value;
-                  });
-                },
-                value: categoryValue,
-                placeholder: const Text("Category"),
-                popup: const SelectPopup(
-                  items: SelectItemList(
-                    children: [
-                      SelectItemButton(value: "Beauty", child: Text("Beauty")),
-                      SelectItemButton(
-                        value: "Technology",
-                        child: Text("Technology"),
-                      ),
-                      SelectItemButton(value: "Food", child: Text("Food")),
-                      SelectItemButton(
-                        value: "Home Appliances",
-                        child: Text("Home Appliances"),
-                      ),
-                    ],
-                  ),
-                ).call,
-              ),
-            ],
-          ),
-
-          const SizedBox(height: 16),
-
-          Table(
-            columnWidths: {
-              0: FixedTableSize(48),
-              1: FixedTableSize(48),
-              3: FixedTableSize(150),
-            },
-            defaultRowHeight: FixedTableSize(48),
-
-            rows: [
-              // Header row
-              TableRow(
-                cells: [
-                  TableCell(
-                    child: Container(
-                      padding: const .all(8),
-                      child: Checkbox(
-                        state: _state,
-                        onChanged: (state) {
+                      Select<String>(
+                        itemBuilder: (context, item) {
+                          return Text(item);
+                        },
+                        popupConstraints: const BoxConstraints(
+                          maxHeight: 300,
+                          maxWidth: 200,
+                        ),
+                        onChanged: (value) {
                           setState(() {
-                            _state = state;
+                            statusValue = value;
                           });
                         },
+                        value: statusValue,
+                        placeholder: const Text("Status"),
+                        popup: const SelectPopup(
+                          items: SelectItemList(
+                            children: [
+                              SelectItemButton(
+                                value: "Pending",
+                                child: Text("Pending"),
+                              ),
+                              SelectItemButton(
+                                value: "Completed",
+                                child: Text("Completed"),
+                              ),
+                              SelectItemButton(
+                                value: "Shipped",
+                                child: Text("Shipped"),
+                              ),
+                              SelectItemButton(
+                                value: "Delivered",
+                                child: Text("Delivered"),
+                              ),
+                            ],
+                          ),
+                        ).call,
                       ),
-                    ),
+                      Select<String>(
+                        itemBuilder: (context, item) {
+                          return Text(item);
+                        },
+                        popupConstraints: const BoxConstraints(
+                          maxHeight: 300,
+                          maxWidth: 200,
+                        ),
+                        onChanged: (value) {
+                          setState(() {
+                            categoryValue = value;
+                          });
+                        },
+                        value: categoryValue,
+                        placeholder: const Text("Category"),
+                        popup: const SelectPopup(
+                          items: SelectItemList(
+                            children: [
+                              SelectItemButton(
+                                value: "Beauty",
+                                child: Text("Beauty"),
+                              ),
+                              SelectItemButton(
+                                value: "Technology",
+                                child: Text("Technology"),
+                              ),
+                              SelectItemButton(
+                                value: "Food",
+                                child: Text("Food"),
+                              ),
+                              SelectItemButton(
+                                value: "Home Appliances",
+                                child: Text("Home Appliances"),
+                              ),
+                            ],
+                          ),
+                        ).call,
+                      ),
+                    ],
+                  ).gap(8),
+
+                  const SizedBox(height: 16),
+
+                  TableWidget(
+                    columnWidths: {
+                      0: FixedTableSize(48),
+                      1: FixedTableSize(48),
+                      3: FixedTableSize(150),
+                    },
+                    hasCheckbox: true,
+                    headerChildren: [
+                      _buildHeaderCell("#"),
+                      _buildHeaderCell("Product"),
+                      _buildHeaderCell("Price"),
+                      _buildHeaderCell("Customer"),
+                      _buildHeaderCell("Date"),
+                      _buildHeaderCell("Type"),
+                      _buildHeaderCell("Status"),
+                      _buildHeaderCell("Action", true),
+                    ],
+                    bodyChildren: [
+                      ...orderList.map((row) => _buildDataRow(context, row)),
+                    ],
                   ),
-                  _buildHeaderCell("#"),
-                  _buildHeaderCell("Product"),
-                  _buildHeaderCell("Price"),
-                  _buildHeaderCell("Customer"),
-                  _buildHeaderCell("Date"),
-                  _buildHeaderCell("Type"),
-                  _buildHeaderCell("Status"),
-                  _buildHeaderCell("Action", true),
                 ],
               ),
-
-              // Body rows
-              ...orderList.map((row) => _buildDataRow(context, row)),
-            ],
-          ),
-
-          const SizedBox(height: 16),
-
-          Row(
-            spacing: 8,
-            children: [
-              const Text("0 of 8 row(s) selected."),
-              const Spacer(),
-              IconButton.outline(
-                enabled: false,
-                onPressed: () {},
-                icon: const Icon(LucideIcons.chevronLeft),
-              ),
-              IconButton.outline(
-                enabled: false,
-                onPressed: () {},
-                icon: const Icon(LucideIcons.chevronRight),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
+            ),
+          ],
+        ),
+      ],
+    ).gap(16).withPadding(all: 16);
   }
 
   TableCell _buildHeaderCell(String text, [bool alignRight = false]) {
     return TableCell(
       child: Container(
-        padding: const .all(8),
-        alignment: alignRight ? .centerRight : .centerLeft,
-        child: Text(text).muted().semiBold(),
+        padding: const EdgeInsets.all(8),
+        alignment: alignRight ? Alignment.centerRight : Alignment.centerLeft,
+        child: Text(text).muted.semiBold,
       ),
     );
   }
@@ -288,8 +264,8 @@ class EcommerceOrderListScreenState extends State<EcommerceOrderListScreen> {
   TableCell _buildCell(String text, [bool alignRight = false]) {
     return TableCell(
       child: Container(
-        padding: const .all(8),
-        alignment: alignRight ? .centerRight : .centerLeft,
+        padding: const EdgeInsets.all(8),
+        alignment: alignRight ? Alignment.centerRight : Alignment.centerLeft,
         child: Text(text),
       ),
     );
@@ -298,7 +274,7 @@ class EcommerceOrderListScreenState extends State<EcommerceOrderListScreen> {
   TableCell _checkboxCell() {
     return TableCell(
       child: Padding(
-        padding: const .all(8),
+        padding: const EdgeInsets.all(8),
         child: Checkbox(
           state: _state,
           onChanged: (state) {
@@ -314,8 +290,8 @@ class EcommerceOrderListScreenState extends State<EcommerceOrderListScreen> {
   TableCell _actionCell(BuildContext context) {
     return TableCell(
       child: Container(
-        padding: const .symmetric(horizontal: 8),
-        alignment: .centerRight,
+        padding: const EdgeInsets.symmetric(horizontal: 8),
+        alignment: Alignment.centerRight,
         child: Builder(
           builder: (context) {
             return IconButton.ghost(

@@ -1,3 +1,5 @@
+import 'package:flutter_dashboard/widget/card_widget.dart';
+import 'package:flutter_dashboard/widget/table_widget.dart';
 import 'package:shadcn_flutter/shadcn_flutter.dart';
 
 class EcommerceDashboardScreen extends StatefulWidget {
@@ -5,10 +7,10 @@ class EcommerceDashboardScreen extends StatefulWidget {
 
   @override
   State<EcommerceDashboardScreen> createState() =>
-      EcommerceDashboardScreenState();
+      _EcommerceDashboardScreenState();
 }
 
-class EcommerceDashboardScreenState extends State<EcommerceDashboardScreen> {
+class _EcommerceDashboardScreenState extends State<EcommerceDashboardScreen> {
   final recentOrders = [
     RecentOrderRow(
       id: "# 1",
@@ -101,724 +103,500 @@ class EcommerceDashboardScreenState extends State<EcommerceDashboardScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const .all(16),
-      child: Column(
-        children: [
-          Row(children: [const Text("E-Commerce Dashboard").bold().large()]),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(children: [const Text("E-Commerce Dashboard").bold.large]),
 
-          const SizedBox(height: 16),
-          Row(
-            crossAxisAlignment: .start,
-            spacing: 16,
-            children: [
-              Expanded(
-                child: Card(
-                  padding: const .all(16),
-                  child: Column(
-                    crossAxisAlignment: .start,
-                    children: [
-                      const Text("Congratulations Tspaja").semiBold(),
-                      const SizedBox(height: 4),
-                      const Text("Best seller of the month").muted().small(),
-
-                      const SizedBox(height: 16),
-
-                      Row(
-                        children: [
-                          Column(
-                            crossAxisAlignment: .start,
-                            children: [
-                              const Text("\$15,231.89").semiBold(),
-                              const SizedBox(height: 4),
-                              const Text(
-                                "+65% from last month",
-                              ).muted().small(),
-                            ],
-                          ),
-                          const Spacer(),
-                          OutlineButton(
-                            onPressed: () {},
-                            child: const Text("View Sales"),
-                          ),
-                        ],
-                      ),
-                    ],
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: CardWidget(
+                title: "Congratulations tspaja",
+                subtitle: "Best seller of the month",
+                trailing: [
+                  OutlineButton(
+                    onPressed: () {},
+                    child: const Text("View all"),
                   ),
-                ),
+                ],
+                children: [
+                  const Text("\$15,231.89").semiBold,
+                  const SizedBox(height: 4),
+                  const Text("+65% from last month").muted.small,
+                ],
               ),
-              Expanded(
-                child: Card(
-                  padding: const .all(0),
-                  child: Column(
-                    crossAxisAlignment: .start,
-                    children: [
-                      Padding(
-                        padding: const .all(16),
-                        child: Column(
-                          crossAxisAlignment: .start,
-                          children: [
-                            const Text(
-                              "Monthly recurring revenue",
-                            ).muted().small(),
-                            const SizedBox(height: 4),
-                            const Text("\$34.1K").semiBold(),
-                          ],
-                        ),
-                      ),
-
-                      const Divider(),
-
-                      Padding(
-                        padding: const .all(8),
-                        child: Row(
-                          mainAxisAlignment: .end,
-                          children: [
-                            TextButton(
-                              onPressed: () {},
-                              trailing: const Icon(LucideIcons.arrowRight),
-                              child: const Text("View More"),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
+            ),
+            Expanded(
+              child: CardWidget(
+                title: "Monthly recurring revenue",
+                subtitle: "",
+                trailing: [
+                  OutlineButton(
+                    onPressed: () {},
+                    child: const Text("View all"),
                   ),
-                ),
+                ],
+                children: [
+                  const Text("\$34.1K").semiBold,
+                  const SizedBox(height: 4),
+                  const Text("+65% from last month").muted.small,
+                ],
               ),
-              Expanded(
-                child: Card(
-                  padding: const .all(0),
-                  child: Column(
-                    crossAxisAlignment: .start,
-                    children: [
-                      Padding(
-                        padding: const .all(16),
-                        child: Column(
-                          crossAxisAlignment: .start,
-                          children: [
-                            const Text("Users").muted().small(),
-                            const SizedBox(height: 4),
-                            const Text("500.1K").semiBold(),
-                          ],
-                        ),
-                      ),
-
-                      const Divider(),
-
-                      Padding(
-                        padding: const .all(8),
-                        child: Row(
-                          mainAxisAlignment: .end,
-                          children: [
-                            TextButton(
-                              onPressed: () {},
-                              trailing: const Icon(LucideIcons.arrowRight),
-                              child: const Text("View More"),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
+            ),
+            Expanded(
+              child: CardWidget(
+                title: "Users",
+                subtitle: "",
+                trailing: [
+                  OutlineButton(
+                    onPressed: () {},
+                    child: const Text("View all"),
                   ),
-                ),
+                ],
+                children: [
+                  const Text("500.1K").semiBold,
+                  const SizedBox(height: 4),
+                  const Text("+65% from last month").muted.small,
+                ],
               ),
-              Expanded(
-                child: Card(
-                  padding: const .all(0),
-                  child: Column(
-                    crossAxisAlignment: .start,
-                    children: [
-                      Padding(
-                        padding: const .all(16),
-                        child: Column(
-                          crossAxisAlignment: .start,
-                          children: [
-                            const Text("User growth").muted().small(),
-                            const SizedBox(height: 4),
-                            const Text("11.3%").semiBold(),
-                          ],
-                        ),
-                      ),
-
-                      const Divider(),
-
-                      Padding(
-                        padding: const .all(8),
-                        child: Row(
-                          mainAxisAlignment: .end,
-                          children: [
-                            TextButton(
-                              onPressed: () {},
-                              trailing: const Icon(LucideIcons.arrowRight),
-                              child: const Text("View More"),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
+            ),
+            Expanded(
+              child: CardWidget(
+                title: "User growth",
+                subtitle: "",
+                trailing: [
+                  OutlineButton(
+                    onPressed: () {},
+                    child: const Text("View all"),
                   ),
-                ),
+                ],
+                children: [
+                  const Text("11.3%").semiBold,
+                  const SizedBox(height: 4),
+                  const Text("+65% from last month").muted.small,
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
+        ).gap(16),
 
-          const SizedBox(height: 16),
-          Row(
-            crossAxisAlignment: .start,
-            spacing: 16,
-            children: [
-              Expanded(
-                child: Card(
-                  padding: const .all(16),
-                  child: Column(
-                    crossAxisAlignment: .start,
-                    children: [
-                      const Text("Total Revenue").semiBold(),
-                      const SizedBox(height: 4),
-                      const Text("Income in the last 28 days").muted().small(),
-                    ],
-                  ),
-                ),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: CardWidget(
+                title: "Total Revenue",
+                subtitle: "Income in the last 28 days",
               ),
-              Expanded(
-                flex: 2,
-                child: Card(
-                  padding: const .all(16),
-                  child: Column(
-                    crossAxisAlignment: .start,
-                    children: [
-                      Row(
-                        children: [
-                          Column(
-                            crossAxisAlignment: .start,
-                            children: [
-                              const Text("Returning Rate").muted().small(),
-                              const SizedBox(height: 4),
-                              const Text("\$42,379").semiBold(),
-                            ],
-                          ),
-                          const Spacer(),
-                          Builder(
+            ),
+            Expanded(
+              flex: 2,
+              child: CardWidget(
+                title: "Returning Rate",
+                subtitle: "\$42,379",
+                trailing: [
+                  Builder(
+                    builder: (context) {
+                      return OutlineButton(
+                        onPressed: () {
+                          showDropdown(
+                            context: context,
                             builder: (context) {
-                              return OutlineButton(
-                                onPressed: () {
-                                  showDropdown(
-                                    context: context,
-                                    builder: (context) {
-                                      return const DropdownMenu(
-                                        children: [
-                                          MenuButton(child: Text("Excel")),
-                                          MenuButton(child: Text("PDF")),
-                                        ],
-                                      );
-                                    },
-                                  );
-                                },
-                                leading: const Icon(LucideIcons.download),
-                                child: const Text("Export"),
+                              return const DropdownMenu(
+                                children: [
+                                  MenuButton(child: Text("Excel")),
+                                  MenuButton(child: Text("PDF")),
+                                ],
                               );
                             },
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
-
-          const SizedBox(height: 16),
-          Row(
-            crossAxisAlignment: .start,
-            spacing: 16,
-            children: [
-              Expanded(
-                flex: 2,
-                child: Card(
-                  padding: const .all(16),
-                  child: Column(
-                    crossAxisAlignment: .start,
-                    children: [
-                      Row(
-                        children: [
-                          Column(
-                            crossAxisAlignment: .start,
-                            children: [
-                              const Text("Sales by Location").semiBold(),
-                              const SizedBox(height: 4),
-                              const Text(
-                                "Income in the last 28 days",
-                              ).muted().small(),
-                            ],
-                          ),
-                          const Spacer(),
-                          Builder(
-                            builder: (context) {
-                              return OutlineButton(
-                                onPressed: () {
-                                  showDropdown(
-                                    context: context,
-                                    builder: (context) {
-                                      return const DropdownMenu(
-                                        children: [
-                                          MenuButton(child: Text("Excel")),
-                                          MenuButton(child: Text("PDF")),
-                                        ],
-                                      );
-                                    },
-                                  );
-                                },
-                                leading: const Icon(LucideIcons.download),
-                                child: const Text("Export"),
-                              );
-                            },
-                          ),
-                        ],
-                      ),
-
-                      const SizedBox(height: 16),
-
-                      Row(
-                        children: [
-                          const Text("Canada"),
-                          const Spacer(),
-                          const Text("85%"),
-                        ],
-                      ),
-                      const SizedBox(height: 4),
-                      SizedBox(
-                        width: double.infinity,
-                        child: Progress(progress: 85, min: 0, max: 100),
-                      ),
-
-                      const SizedBox(height: 16),
-
-                      Row(
-                        children: [
-                          const Text("Greenland"),
-                          const Spacer(),
-                          const Text("80%"),
-                        ],
-                      ),
-                      const SizedBox(height: 4),
-                      SizedBox(
-                        width: double.infinity,
-                        child: Progress(progress: 80, min: 0, max: 100),
-                      ),
-
-                      const SizedBox(height: 16),
-
-                      Row(
-                        children: [
-                          const Text("Russia"),
-                          const Spacer(),
-                          const Text("63%"),
-                        ],
-                      ),
-                      const SizedBox(height: 4),
-                      SizedBox(
-                        width: double.infinity,
-                        child: Progress(progress: 63, min: 0, max: 100),
-                      ),
-
-                      const SizedBox(height: 16),
-
-                      Row(
-                        children: [
-                          const Text("China"),
-                          const Spacer(),
-                          const Text("60%"),
-                        ],
-                      ),
-                      const SizedBox(height: 4),
-                      SizedBox(
-                        width: double.infinity,
-                        child: Progress(progress: 60, min: 0, max: 100),
-                      ),
-
-                      const SizedBox(height: 16),
-
-                      Row(
-                        children: [
-                          const Text("Australia"),
-                          const Spacer(),
-                          const Text("45%"),
-                        ],
-                      ),
-                      const SizedBox(height: 4),
-                      SizedBox(
-                        width: double.infinity,
-                        child: Progress(progress: 45, min: 0, max: 100),
-                      ),
-
-                      const SizedBox(height: 16),
-
-                      Row(
-                        children: [
-                          const Text("Greece"),
-                          const Spacer(),
-                          const Text("40%"),
-                        ],
-                      ),
-                      const SizedBox(height: 4),
-                      SizedBox(
-                        width: double.infinity,
-                        child: Progress(progress: 40, min: 0, max: 100),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Expanded(
-                child: Card(
-                  padding: const .all(16),
-                  child: Column(
-                    crossAxisAlignment: .start,
-                    children: [const Text("Store Visits by Source").semiBold()],
-                  ),
-                ),
-              ),
-              Expanded(
-                flex: 2,
-                child: Card(
-                  padding: const .all(16),
-                  child: Column(
-                    crossAxisAlignment: .start,
-                    children: [
-                      Row(
-                        children: [
-                          Column(
-                            crossAxisAlignment: .start,
-                            children: [
-                              const Text("Customer Reviews").semiBold(),
-                              const SizedBox(height: 4),
-                              const Text(
-                                "Based on 5,500 verified purchases",
-                              ).muted().small(),
-                            ],
-                          ),
-                          const Spacer(),
-                          OutlineButton(
-                            onPressed: () {},
-                            trailing: const Icon(LucideIcons.chevronRight),
-                            child: const Text("View All"),
-                          ),
-                        ],
-                      ),
-
-                      const SizedBox(height: 16),
-
-                      Row(
-                        spacing: 8,
-                        children: [
-                          const Text("5"),
-                          const Icon(LucideIcons.star, size: 14),
-                          Expanded(
-                            child: Progress(
-                              progress: 4000,
-                              min: 0,
-                              max: 5000,
-                              color: Colors.green,
-                            ),
-                          ),
-                          const Text("4000"),
-                        ],
-                      ),
-
-                      const SizedBox(height: 16),
-
-                      Row(
-                        spacing: 8,
-                        children: [
-                          const Text("4"),
-                          const Icon(LucideIcons.star, size: 14),
-                          Expanded(
-                            child: Progress(
-                              progress: 2100,
-                              min: 0,
-                              max: 5000,
-                              color: Colors.teal,
-                            ),
-                          ),
-                          const Text("2100"),
-                        ],
-                      ),
-
-                      const SizedBox(height: 16),
-
-                      Row(
-                        spacing: 8,
-                        children: [
-                          const Text("3"),
-                          const Icon(LucideIcons.star, size: 14),
-                          Expanded(
-                            child: Progress(
-                              progress: 800,
-                              min: 0,
-                              max: 5000,
-                              color: Colors.yellow,
-                            ),
-                          ),
-                          const Text("800"),
-                        ],
-                      ),
-
-                      const SizedBox(height: 16),
-
-                      Row(
-                        spacing: 8,
-                        children: [
-                          const Text("2"),
-                          const Icon(LucideIcons.star, size: 14),
-                          Expanded(
-                            child: Progress(
-                              progress: 631,
-                              min: 0,
-                              max: 5000,
-                              color: Colors.orange,
-                            ),
-                          ),
-                          const Text("631"),
-                        ],
-                      ),
-
-                      const SizedBox(height: 16),
-
-                      Row(
-                        spacing: 8,
-                        children: [
-                          const Text("1"),
-                          const Icon(LucideIcons.star, size: 14),
-                          Expanded(
-                            child: Progress(
-                              progress: 344,
-                              min: 0,
-                              max: 5000,
-                              color: Colors.red,
-                            ),
-                          ),
-                          const Text("344"),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
-
-          const SizedBox(height: 16),
-          Row(
-            crossAxisAlignment: .start,
-            spacing: 16,
-            children: [
-              Expanded(
-                flex: 2,
-                child: Card(
-                  padding: const .all(16),
-                  child: Column(
-                    crossAxisAlignment: .start,
-                    children: [
-                      Row(
-                        children: [
-                          const Text("Recent Orders").semiBold(),
-                          const Spacer(),
-                          Builder(
-                            builder: (context) {
-                              return OutlineButton(
-                                onPressed: () {
-                                  showDropdown(
-                                    context: context,
-                                    builder: (context) {
-                                      return const DropdownMenu(
-                                        children: [
-                                          MenuButton(child: Text("Excel")),
-                                          MenuButton(child: Text("PDF")),
-                                        ],
-                                      );
-                                    },
-                                  );
-                                },
-                                leading: const Icon(LucideIcons.download),
-                                child: const Text("Export"),
-                              );
-                            },
-                          ),
-                        ],
-                      ),
-
-                      const SizedBox(height: 16),
-
-                      SizedBox(
-                        width: 200,
-                        child: TextField(
-                          placeholder: const Text("Filter orders..."),
-                        ),
-                      ),
-
-                      const SizedBox(height: 16),
-
-                      Table(
-                        columnWidths: {
-                          0: FixedTableSize(48),
-                          1: FixedTableSize(150),
-                          2: FixedTableSize(140),
+                          );
                         },
-                        defaultRowHeight: FixedTableSize(48),
-
-                        rows: [
-                          // Header row
-                          TableRow(
-                            cells: [
-                              _buildHeaderCell("ID"),
-                              _buildHeaderCell("Customer"),
-                              _buildHeaderCell("Product"),
-                              _buildHeaderCell("Amount"),
-                              _buildHeaderCell("Status"),
-                              _buildHeaderCell("Action", true),
-                            ],
-                          ),
-
-                          // Body rows
-                          ...recentOrders.map(
-                            (row) => _buildRecentOrdersRow(context, row),
-                          ),
-                        ],
-                      ),
-
-                      const SizedBox(height: 16),
-
-                      Row(
-                        spacing: 8,
-                        children: [
-                          const Text("0 of 8 row(s) selected."),
-                          const Spacer(),
-                          IconButton.outline(
-                            enabled: false,
-                            onPressed: () {},
-                            icon: const Icon(LucideIcons.chevronLeft),
-                          ),
-                          IconButton.outline(
-                            enabled: false,
-                            onPressed: () {},
-                            icon: const Icon(LucideIcons.chevronRight),
-                          ),
-                        ],
-                      ),
-                    ],
+                        leading: const Icon(LucideIcons.download),
+                        child: const Text("Export"),
+                      );
+                    },
                   ),
-                ),
+                ],
               ),
-              Expanded(
-                flex: 2,
-                child: Card(
-                  padding: const .all(16),
-                  child: Column(
-                    crossAxisAlignment: .start,
-                    children: [
-                      Row(
-                        children: [
-                          const Text("Best Selling Products").semiBold(),
-                          const Spacer(),
-                          Builder(
+            ),
+          ],
+        ).gap(16),
+
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              flex: 2,
+              child: CardWidget(
+                title: "Sales by Location",
+                subtitle: "Income in the last 28 days",
+                trailing: [
+                  Builder(
+                    builder: (context) {
+                      return OutlineButton(
+                        onPressed: () {
+                          showDropdown(
+                            context: context,
                             builder: (context) {
-                              return OutlineButton(
-                                onPressed: () {
-                                  showDropdown(
-                                    context: context,
-                                    builder: (context) {
-                                      return const DropdownMenu(
-                                        children: [
-                                          MenuButton(child: Text("Excel")),
-                                          MenuButton(child: Text("PDF")),
-                                        ],
-                                      );
-                                    },
-                                  );
-                                },
-                                leading: const Icon(LucideIcons.download),
-                                child: const Text("Export"),
+                              return const DropdownMenu(
+                                children: [
+                                  MenuButton(child: Text("Excel")),
+                                  MenuButton(child: Text("PDF")),
+                                ],
                               );
                             },
-                          ),
-                        ],
-                      ),
+                          );
+                        },
+                        leading: const Icon(LucideIcons.download),
+                        child: const Text("Export"),
+                      );
+                    },
+                  ),
+                ],
+                children: [
+                  Row(
+                    children: [
+                      const Text("Canada"),
+                      const Spacer(),
+                      const Text("85%"),
+                    ],
+                  ),
+                  const SizedBox(height: 4),
+                  SizedBox(
+                    width: double.infinity,
+                    child: Progress(progress: 85, min: 0, max: 100),
+                  ),
 
-                      const SizedBox(height: 16),
+                  const SizedBox(height: 16),
 
-                      SizedBox(
-                        width: 200,
-                        child: TextField(
-                          placeholder: const Text("Filter products..."),
+                  Row(
+                    children: [
+                      const Text("Greenland"),
+                      const Spacer(),
+                      const Text("80%"),
+                    ],
+                  ),
+                  const SizedBox(height: 4),
+                  SizedBox(
+                    width: double.infinity,
+                    child: Progress(progress: 80, min: 0, max: 100),
+                  ),
+
+                  const SizedBox(height: 16),
+
+                  Row(
+                    children: [
+                      const Text("Russia"),
+                      const Spacer(),
+                      const Text("63%"),
+                    ],
+                  ),
+                  const SizedBox(height: 4),
+                  SizedBox(
+                    width: double.infinity,
+                    child: Progress(progress: 63, min: 0, max: 100),
+                  ),
+
+                  const SizedBox(height: 16),
+
+                  Row(
+                    children: [
+                      const Text("China"),
+                      const Spacer(),
+                      const Text("60%"),
+                    ],
+                  ),
+                  const SizedBox(height: 4),
+                  SizedBox(
+                    width: double.infinity,
+                    child: Progress(progress: 60, min: 0, max: 100),
+                  ),
+
+                  const SizedBox(height: 16),
+
+                  Row(
+                    children: [
+                      const Text("Australia"),
+                      const Spacer(),
+                      const Text("45%"),
+                    ],
+                  ),
+                  const SizedBox(height: 4),
+                  SizedBox(
+                    width: double.infinity,
+                    child: Progress(progress: 45, min: 0, max: 100),
+                  ),
+
+                  const SizedBox(height: 16),
+
+                  Row(
+                    children: [
+                      const Text("Greece"),
+                      const Spacer(),
+                      const Text("40%"),
+                    ],
+                  ),
+                  const SizedBox(height: 4),
+                  SizedBox(
+                    width: double.infinity,
+                    child: Progress(progress: 40, min: 0, max: 100),
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
+              child: CardWidget(title: "Store Visits by Source", subtitle: ""),
+            ),
+            Expanded(
+              flex: 2,
+              child: CardWidget(
+                title: "Customer Reviews",
+                subtitle: "Based on 5,500 verified purchases",
+                trailing: [
+                  OutlineButton(
+                    onPressed: () {},
+                    trailing: const Icon(LucideIcons.chevronRight),
+                    child: const Text("View All"),
+                  ),
+                ],
+                children: [
+                  Row(
+                    spacing: 8,
+                    children: [
+                      const Text("5"),
+                      const Icon(LucideIcons.star, size: 14),
+                      Expanded(
+                        child: Progress(
+                          progress: 4000,
+                          min: 0,
+                          max: 5000,
+                          color: Colors.green,
                         ),
                       ),
+                      const Text("4000"),
+                    ],
+                  ),
 
-                      const SizedBox(height: 16),
+                  const SizedBox(height: 16),
 
-                      Table(
-                        columnWidths: {
-                          0: FixedTableSize(170),
-                          1: FixedTableSize(150),
-                          2: FixedTableSize(140),
-                        },
-                        defaultRowHeight: FixedTableSize(48),
-
-                        rows: [
-                          // Header row
-                          TableRow(
-                            cells: [
-                              _buildHeaderCell("Product"),
-                              _buildHeaderCell("Sold"),
-                              _buildHeaderCell("Sales"),
-                              _buildHeaderCell("Action", true),
-                            ],
-                          ),
-
-                          // Body rows
-                          ...bestSellingProducts.map(
-                            (row) => _buildBestSellingProdutsRow(context, row),
-                          ),
-                        ],
+                  Row(
+                    spacing: 8,
+                    children: [
+                      const Text("4"),
+                      const Icon(LucideIcons.star, size: 14),
+                      Expanded(
+                        child: Progress(
+                          progress: 2100,
+                          min: 0,
+                          max: 5000,
+                          color: Colors.teal,
+                        ),
                       ),
+                      const Text("2100"),
+                    ],
+                  ),
 
-                      const SizedBox(height: 16),
+                  const SizedBox(height: 16),
 
-                      Row(
-                        spacing: 8,
-                        children: [
-                          const Text("0 of 8 row(s) selected."),
-                          const Spacer(),
-                          IconButton.outline(
-                            enabled: false,
-                            onPressed: () {},
-                            icon: const Icon(LucideIcons.chevronLeft),
-                          ),
-                          IconButton.outline(
-                            enabled: false,
-                            onPressed: () {},
-                            icon: const Icon(LucideIcons.chevronRight),
-                          ),
-                        ],
+                  Row(
+                    spacing: 8,
+                    children: [
+                      const Text("3"),
+                      const Icon(LucideIcons.star, size: 14),
+                      Expanded(
+                        child: Progress(
+                          progress: 800,
+                          min: 0,
+                          max: 5000,
+                          color: Colors.yellow,
+                        ),
+                      ),
+                      const Text("800"),
+                    ],
+                  ),
+
+                  const SizedBox(height: 16),
+
+                  Row(
+                    spacing: 8,
+                    children: [
+                      const Text("2"),
+                      const Icon(LucideIcons.star, size: 14),
+                      Expanded(
+                        child: Progress(
+                          progress: 631,
+                          min: 0,
+                          max: 5000,
+                          color: Colors.orange,
+                        ),
+                      ),
+                      const Text("631"),
+                    ],
+                  ),
+
+                  const SizedBox(height: 16),
+
+                  Row(
+                    spacing: 8,
+                    children: [
+                      const Text("1"),
+                      const Icon(LucideIcons.star, size: 14),
+                      Expanded(
+                        child: Progress(
+                          progress: 344,
+                          min: 0,
+                          max: 5000,
+                          color: Colors.red,
+                        ),
+                      ),
+                      const Text("344"),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ).gap(16),
+
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              flex: 2,
+              child: CardWidget(
+                title: "Recent Orders",
+                subtitle: "",
+                trailing: [
+                  Builder(
+                    builder: (context) {
+                      return OutlineButton(
+                        onPressed: () {
+                          showDropdown(
+                            context: context,
+                            builder: (context) {
+                              return const DropdownMenu(
+                                children: [
+                                  MenuButton(child: Text("Excel")),
+                                  MenuButton(child: Text("PDF")),
+                                ],
+                              );
+                            },
+                          );
+                        },
+                        leading: const Icon(LucideIcons.download),
+                        child: const Text("Export"),
+                      );
+                    },
+                  ),
+                ],
+                children: [
+                  SizedBox(
+                    width: 200,
+                    child: TextField(
+                      placeholder: const Text("Filter orders..."),
+                    ),
+                  ),
+
+                  const SizedBox(height: 16),
+
+                  TableWidget(
+                    columnWidths: {
+                      0: FixedTableSize(48),
+                      1: FixedTableSize(150),
+                      2: FixedTableSize(140),
+                    },
+                    hasCheckbox: true,
+                    headerChildren: [
+                      _buildHeaderCell("ID"),
+                      _buildHeaderCell("Customer"),
+                      _buildHeaderCell("Product"),
+                      _buildHeaderCell("Amount"),
+                      _buildHeaderCell("Status"),
+                      _buildHeaderCell("Action", true),
+                    ],
+                    bodyChildren: [
+                      ...recentOrders.map(
+                        (row) => _buildRecentOrdersRow(context, row),
                       ),
                     ],
                   ),
-                ),
+                ],
               ),
-            ],
-          ),
-        ],
-      ),
-    );
+            ),
+            Expanded(
+              flex: 2,
+              child: CardWidget(
+                title: "Best Selling Products",
+                subtitle: "",
+                trailing: [
+                  Builder(
+                    builder: (context) {
+                      return OutlineButton(
+                        onPressed: () {
+                          showDropdown(
+                            context: context,
+                            builder: (context) {
+                              return const DropdownMenu(
+                                children: [
+                                  MenuButton(child: Text("Excel")),
+                                  MenuButton(child: Text("PDF")),
+                                ],
+                              );
+                            },
+                          );
+                        },
+                        leading: const Icon(LucideIcons.download),
+                        child: const Text("Export"),
+                      );
+                    },
+                  ),
+                ],
+                children: [
+                  SizedBox(
+                    width: 200,
+                    child: TextField(
+                      placeholder: const Text("Filter products..."),
+                    ),
+                  ),
+
+                  const SizedBox(height: 16),
+
+                  TableWidget(
+                    columnWidths: {
+                      0: FixedTableSize(170),
+                      1: FixedTableSize(150),
+                      2: FixedTableSize(140),
+                    },
+                    hasCheckbox: true,
+                    headerChildren: [
+                      _buildHeaderCell("Product"),
+                      _buildHeaderCell("Sold"),
+                      _buildHeaderCell("Sales"),
+                      _buildHeaderCell("Action", true),
+                    ],
+                    bodyChildren: [
+                      ...bestSellingProducts.map(
+                        (row) => _buildBestSellingProdutsRow(context, row),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ).gap(16),
+      ],
+    ).gap(16).withPadding(all: 16);
   }
 
   TableCell _buildHeaderCell(String text, [bool alignRight = false]) {
     return TableCell(
       child: Container(
-        padding: const .all(8),
-        alignment: alignRight ? .centerRight : .centerLeft,
-        child: Text(text).muted().semiBold(),
+        padding: const EdgeInsets.all(8),
+        alignment: alignRight ? Alignment.centerRight : Alignment.centerLeft,
+        child: Text(text).muted.semiBold,
       ),
     );
   }
@@ -826,8 +604,8 @@ class EcommerceDashboardScreenState extends State<EcommerceDashboardScreen> {
   TableCell _buildCell(String text, [bool alignRight = false]) {
     return TableCell(
       child: Container(
-        padding: const .all(8),
-        alignment: alignRight ? .centerRight : .centerLeft,
+        padding: const EdgeInsets.all(8),
+        alignment: alignRight ? Alignment.centerRight : Alignment.centerLeft,
         child: Text(text),
       ),
     );
@@ -836,8 +614,8 @@ class EcommerceDashboardScreenState extends State<EcommerceDashboardScreen> {
   TableCell _actionCell(BuildContext context) {
     return TableCell(
       child: Container(
-        padding: const .symmetric(horizontal: 8),
-        alignment: .centerRight,
+        padding: const EdgeInsets.symmetric(horizontal: 8),
+        alignment: Alignment.centerRight,
         child: Builder(
           builder: (context) {
             return IconButton.ghost(
