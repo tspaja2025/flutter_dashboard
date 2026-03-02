@@ -66,10 +66,13 @@ class EcommerceAddProductScreenState extends State<EcommerceAddProductScreen> {
 
                             const SizedBox(height: 16),
 
-                            FormField(
-                              key: TextFieldKey(#name),
-                              label: const Text("Name"),
-                              child: const TextField(),
+                            SizedBox(
+                              width: double.infinity,
+                              child: FormField(
+                                key: TextFieldKey(#name),
+                                label: const Text("Name"),
+                                child: const TextField(),
+                              ),
                             ),
 
                             const SizedBox(height: 16),
@@ -94,10 +97,13 @@ class EcommerceAddProductScreenState extends State<EcommerceAddProductScreen> {
                             ),
 
                             const SizedBox(height: 16),
-                            FormField(
-                              key: TextFieldKey(#description),
-                              label: const Text("Description (optional)"),
-                              child: const TextArea(),
+                            SizedBox(
+                              width: double.infinity,
+                              child: FormField(
+                                key: TextFieldKey(#description),
+                                label: const Text("Description (optional)"),
+                                child: const TextArea(),
+                              ),
                             ),
                           ],
                         ),
@@ -356,17 +362,24 @@ class EcommerceAddProductScreenState extends State<EcommerceAddProductScreen> {
 
                             const SizedBox(height: 16),
 
-                            FormField(
-                              key: TextFieldKey(#basePrice),
-                              label: const Text("Base Price"),
-                              child: const TextField(),
+                            SizedBox(
+                              width: double.infinity,
+                              child: FormField(
+                                key: TextFieldKey(#basePrice),
+                                label: const Text("Base Price"),
+                                child: const TextField(),
+                              ),
                             ),
 
                             const SizedBox(height: 16),
-                            FormField(
-                              key: TextFieldKey(#discountedPrice),
-                              label: const Text("Discounted Price"),
-                              child: const TextField(),
+
+                            SizedBox(
+                              width: double.infinity,
+                              child: FormField(
+                                key: TextFieldKey(#discountedPrice),
+                                label: const Text("Discounted Price"),
+                                child: const TextField(),
+                              ),
                             ),
 
                             const SizedBox(height: 16),

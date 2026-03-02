@@ -1,4 +1,5 @@
 import 'package:fl_chart/fl_chart.dart';
+import 'package:flutter_dashboard/widget/table_widget.dart';
 import 'package:shadcn_flutter/shadcn_flutter.dart';
 
 class ClassicDashboardScreen extends StatefulWidget {
@@ -74,6 +75,7 @@ class ClassicDashboardScreenState extends State<ClassicDashboardScreen> {
           Row(children: [const Text("Classic Dashboard").bold().large()]),
 
           const SizedBox(height: 16),
+
           Row(
             crossAxisAlignment: .start,
             spacing: 16,
@@ -81,6 +83,7 @@ class ClassicDashboardScreenState extends State<ClassicDashboardScreen> {
               Expanded(
                 child: Card(
                   padding: const .all(16),
+                  borderColor: Theme.of(context).colorScheme.border,
                   child: Column(
                     crossAxisAlignment: .start,
                     children: [
@@ -218,6 +221,7 @@ class ClassicDashboardScreenState extends State<ClassicDashboardScreen> {
               Expanded(
                 child: Card(
                   padding: const .all(16),
+                  borderColor: Theme.of(context).colorScheme.border,
                   child: Column(
                     crossAxisAlignment: .start,
                     children: [
@@ -372,6 +376,7 @@ class ClassicDashboardScreenState extends State<ClassicDashboardScreen> {
               Expanded(
                 child: Card(
                   padding: const .all(16),
+                  borderColor: Theme.of(context).colorScheme.border,
                   child: Column(
                     crossAxisAlignment: .start,
                     children: [
@@ -438,6 +443,7 @@ class ClassicDashboardScreenState extends State<ClassicDashboardScreen> {
               Expanded(
                 child: Card(
                   padding: const .all(16),
+                  borderColor: Theme.of(context).colorScheme.border,
                   child: Column(
                     crossAxisAlignment: .start,
                     children: [
@@ -493,6 +499,7 @@ class ClassicDashboardScreenState extends State<ClassicDashboardScreen> {
                             padding: const .all(8),
                             child: const Text(
                               "Hey, I'm having trouble with my account.",
+                              style: TextStyle(color: Colors.white),
                             ),
                           ),
                         ],
@@ -522,7 +529,10 @@ class ClassicDashboardScreenState extends State<ClassicDashboardScreen> {
                               borderRadius: .circular(12),
                             ),
                             padding: const .all(8),
-                            child: const Text("I can't log in."),
+                            child: const Text(
+                              "I can't log in.",
+                              style: TextStyle(color: Colors.white),
+                            ),
                           ),
                         ],
                       ),
@@ -552,6 +562,7 @@ class ClassicDashboardScreenState extends State<ClassicDashboardScreen> {
                 flex: 2,
                 child: Card(
                   padding: const .all(16),
+                  borderColor: Theme.of(context).colorScheme.border,
                   child: Column(
                     crossAxisAlignment: .start,
                     children: [
@@ -681,6 +692,7 @@ class ClassicDashboardScreenState extends State<ClassicDashboardScreen> {
                 flex: 2,
                 child: Card(
                   padding: const .all(16),
+                  borderColor: Theme.of(context).colorScheme.border,
                   child: Column(
                     crossAxisAlignment: .start,
                     children: [
@@ -708,60 +720,22 @@ class ClassicDashboardScreenState extends State<ClassicDashboardScreen> {
 
                       const SizedBox(height: 16),
 
-                      Table(
+                      TableWidget(
                         columnWidths: {
-                          0: FixedTableSize(48),
-                          2: FixedTableSize(220),
+                          0: FixedTableSize(32),
+                          1: FixedTableSize(170),
+                          2: FixedTableSize(210),
                         },
-                        defaultRowHeight: FixedTableSize(48),
-
-                        rows: [
-                          // Header row
-                          TableRow(
-                            cells: [
-                              TableCell(
-                                child: Container(
-                                  padding: const .all(8),
-                                  child: Checkbox(
-                                    state: _state,
-                                    onChanged: (state) {
-                                      setState(() {
-                                        _state = state;
-                                      });
-                                    },
-                                  ),
-                                ),
-                              ),
-                              _buildHeaderCell("Customer"),
-                              _buildHeaderCell("Email"),
-                              _buildHeaderCell("Amount"),
-                              _buildHeaderCell("Status"),
-                              _buildHeaderCell("Action", true),
-                            ],
-                          ),
-
-                          // Body rows
-                          ...rows.map((row) => _buildDataRow(context, row)),
+                        hasCheckbox: true,
+                        headerChildren: [
+                          _buildHeaderCell("Customer"),
+                          _buildHeaderCell("Email"),
+                          _buildHeaderCell("Amount"),
+                          _buildHeaderCell("Status"),
+                          _buildHeaderCell("Action", true),
                         ],
-                      ),
-
-                      const SizedBox(height: 16),
-
-                      Row(
-                        spacing: 8,
-                        children: [
-                          const Text("0 of 6 row(s) selected."),
-                          const Spacer(),
-                          IconButton.outline(
-                            enabled: false,
-                            onPressed: () {},
-                            icon: const Icon(LucideIcons.chevronLeft),
-                          ),
-                          IconButton.outline(
-                            enabled: false,
-                            onPressed: () {},
-                            icon: const Icon(LucideIcons.chevronRight),
-                          ),
+                        bodyChildren: [
+                          ...rows.map((row) => _buildDataRow(context, row)),
                         ],
                       ),
                     ],
@@ -771,6 +745,7 @@ class ClassicDashboardScreenState extends State<ClassicDashboardScreen> {
               Expanded(
                 child: Card(
                   padding: const .all(16),
+                  borderColor: Theme.of(context).colorScheme.border,
                   child: Column(
                     crossAxisAlignment: .start,
                     children: [

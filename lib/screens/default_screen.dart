@@ -49,6 +49,7 @@ class DefaultScreenState extends State<DefaultScreen> {
                 ),
                 child: Card(
                   padding: const EdgeInsets.all(0),
+                  borderColor: Theme.of(context).colorScheme.border,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
