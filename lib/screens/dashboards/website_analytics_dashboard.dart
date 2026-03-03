@@ -1,4 +1,5 @@
 import 'package:fl_chart/fl_chart.dart';
+import 'package:flutter_dashboard/widget/card_widget.dart';
 import 'package:shadcn_flutter/shadcn_flutter.dart';
 
 class WebsiteAnalyticsDashboardScreen extends StatelessWidget {
@@ -6,912 +7,737 @@ class WebsiteAnalyticsDashboardScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const .all(16),
-      child: Column(
-        children: [
-          Row(
-            children: [
-              const Text("Website Analytics Dashboard").bold().large(),
-            ],
-          ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(children: [const Text("Website Analytics Dashboard").bold.large]),
 
-          const SizedBox(height: 16),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: CardWidget(
+                title: "Daily active users",
+                subtitle: "3,450",
+                trailing: [const Chip(child: Text("+12.1%"))],
+              ),
+            ),
+            Expanded(
+              child: CardWidget(
+                title: "Weekly sessions",
+                subtitle: "1,342",
+                trailing: [const Chip(child: Text("-9.8%"))],
+              ),
+            ),
+            Expanded(
+              child: CardWidget(
+                title: "Duration",
+                subtitle: "5.2min",
+                trailing: [const Chip(child: Text("+7.7%"))],
+              ),
+            ),
+            Expanded(
+              child: CardWidget(
+                title: "Conversion Rate",
+                subtitle: "2.8%",
+                trailing: [const Chip(child: Text("+4.3%"))],
+              ),
+            ),
+          ],
+        ).gap(16),
 
-          Row(
-            crossAxisAlignment: .start,
-            spacing: 16,
-            children: [
-              Expanded(
-                child: Card(
-                  padding: const .all(16),
-                  child: Column(
-                    crossAxisAlignment: .start,
-                    children: [
-                      Row(
-                        children: [
-                          const Text("Daily active users").muted().small(),
-                          const Spacer(),
-                          const Chip(child: Text("+12.1%")),
-                        ],
-                      ),
-                      const SizedBox(height: 4),
-                      const Text("3,450").semiBold(),
-                    ],
-                  ),
-                ),
-              ),
-              Expanded(
-                child: Card(
-                  padding: const .all(16),
-                  child: Column(
-                    crossAxisAlignment: .start,
-                    children: [
-                      Row(
-                        children: [
-                          const Text("Weekly sessions").muted().small(),
-                          const Spacer(),
-                          const Chip(child: Text("-9.8%")),
-                        ],
-                      ),
-                      const SizedBox(height: 4),
-                      const Text("1,342").semiBold(),
-                    ],
-                  ),
-                ),
-              ),
-              Expanded(
-                child: Card(
-                  padding: const .all(16),
-                  child: Column(
-                    crossAxisAlignment: .start,
-                    children: [
-                      Row(
-                        children: [
-                          const Text("Duration").muted().small(),
-                          const Spacer(),
-                          const Chip(child: Text("+7.7%")),
-                        ],
-                      ),
-                      const SizedBox(height: 4),
-                      const Text("5.2min").semiBold(),
-                    ],
-                  ),
-                ),
-              ),
-              Expanded(
-                child: Card(
-                  padding: const .all(16),
-                  child: Column(
-                    crossAxisAlignment: .start,
-                    children: [
-                      Row(
-                        children: [
-                          const Text("Conversion Rate").muted().small(),
-                          const Spacer(),
-                          const Chip(child: Text("+4.3%")),
-                        ],
-                      ),
-                      const SizedBox(height: 4),
-                      const Text("2.8%").semiBold(),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
-
-          const SizedBox(height: 16),
-
-          Row(
-            crossAxisAlignment: .start,
-            spacing: 16,
-            children: [
-              Expanded(
-                child: Card(
-                  padding: const .all(16),
-                  child: Column(
-                    crossAxisAlignment: .start,
-                    children: [
-                      Row(
-                        children: [
-                          Column(
-                            crossAxisAlignment: .start,
-                            children: [
-                              const Text("Earning Reports").semiBold(),
-                              const SizedBox(height: 4),
-                              const Text("Last 28 days").muted().small(),
-                            ],
-                          ),
-                          const Spacer(),
-                          Builder(
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: CardWidget(
+                title: "Earnings report",
+                subtitle: "Last 28 days",
+                trailing: [
+                  Builder(
+                    builder: (context) {
+                      return OutlineButton(
+                        onPressed: () {
+                          showDropdown(
+                            context: context,
                             builder: (context) {
-                              return OutlineButton(
-                                onPressed: () {
-                                  showDropdown(
-                                    context: context,
-                                    builder: (context) {
-                                      return const DropdownMenu(
-                                        children: [
-                                          MenuButton(child: Text("Excel")),
-                                          MenuButton(child: Text("PDF")),
-                                        ],
-                                      );
-                                    },
-                                  );
-                                },
-                                leading: const Icon(LucideIcons.download),
-                                child: const Text("Export"),
+                              return const DropdownMenu(
+                                children: [
+                                  MenuButton(child: Text("Excel")),
+                                  MenuButton(child: Text("PDF")),
+                                ],
                               );
                             },
-                          ),
-                        ],
-                      ),
+                          );
+                        },
+                        leading: const Icon(LucideIcons.download),
+                        child: const Text("Export"),
+                      );
+                    },
+                  ),
+                ],
+                children: [
+                  const Text("\$1.468").large.bold,
 
-                      const SizedBox(height: 16),
+                  const SizedBox(height: 16),
 
-                      const Text("\$1.468").large().bold(),
-
-                      const SizedBox(height: 16),
-
-                      SizedBox(
-                        height: 75,
-                        child: BarChart(
-                          BarChartData(
-                            barTouchData: BarTouchData(
-                              enabled: false,
-                              touchTooltipData: BarTouchTooltipData(
-                                getTooltipColor: (group) => Colors.transparent,
-                                tooltipPadding: .zero,
-                                tooltipMargin: 8,
-                                getTooltipItem:
-                                    (
-                                      BarChartGroupData group,
-                                      int groupIndex,
-                                      BarChartRodData rod,
-                                      int rodIndex,
-                                    ) {
-                                      return BarTooltipItem(
-                                        rod.toY.round().toString(),
-                                        TextStyle(
-                                          color: Theme.of(
-                                            context,
-                                          ).colorScheme.primary,
-                                          fontWeight: .bold,
-                                        ),
-                                      );
-                                    },
-                              ),
-                            ),
-                            titlesData: FlTitlesData(
-                              show: true,
-                              bottomTitles: AxisTitles(
-                                sideTitles: SideTitles(
-                                  showTitles: true,
-                                  reservedSize: 30,
-                                  getTitlesWidget: getTitles,
-                                ),
-                              ),
-                              leftTitles: const AxisTitles(
-                                sideTitles: SideTitles(showTitles: false),
-                              ),
-                              topTitles: const AxisTitles(
-                                sideTitles: SideTitles(showTitles: false),
-                              ),
-                              rightTitles: const AxisTitles(
-                                sideTitles: SideTitles(showTitles: false),
-                              ),
-                            ),
-                            borderData: FlBorderData(show: false),
-                            barGroups: [
-                              BarChartGroupData(
-                                x: 0,
-                                barRods: [
-                                  BarChartRodData(
-                                    toY: 35,
-                                    width: 47,
-                                    borderRadius: .circular(4),
-                                    color: Colors.black,
-                                  ),
-                                ],
-                              ),
-                              BarChartGroupData(
-                                x: 1,
-                                barRods: [
-                                  BarChartRodData(
-                                    toY: 30,
-                                    width: 47,
-                                    borderRadius: .circular(4),
-                                    color: Colors.black,
-                                  ),
-                                ],
-                              ),
-                              BarChartGroupData(
-                                x: 2,
-                                barRods: [
-                                  BarChartRodData(
-                                    toY: 37,
-                                    width: 47,
-                                    borderRadius: .circular(8),
-                                    color: Colors.black,
-                                  ),
-                                ],
-                              ),
-                              BarChartGroupData(
-                                x: 3,
-                                barRods: [
-                                  BarChartRodData(
-                                    toY: 14,
-                                    width: 47,
-                                    borderRadius: .circular(4),
-                                    color: Colors.black,
-                                  ),
-                                ],
-                              ),
-                              BarChartGroupData(
-                                x: 4,
-                                barRods: [
-                                  BarChartRodData(
-                                    toY: 20,
-                                    width: 47,
-                                    borderRadius: .circular(4),
-                                    color: Colors.black,
-                                  ),
-                                ],
-                              ),
-                              BarChartGroupData(
-                                x: 5,
-                                barRods: [
-                                  BarChartRodData(
-                                    toY: 24,
-                                    width: 47,
-                                    borderRadius: .circular(4),
-                                    color: Colors.black,
-                                  ),
-                                ],
-                              ),
-                              BarChartGroupData(
-                                x: 6,
-                                barRods: [
-                                  BarChartRodData(
-                                    toY: 38,
-                                    width: 47,
-                                    borderRadius: .circular(4),
-                                    color: Colors.black,
-                                  ),
-                                ],
-                              ),
-                            ],
-                            gridData: const FlGridData(show: false),
-                            alignment: .spaceAround,
-                            maxY: 40,
+                  SizedBox(
+                    height: 75,
+                    child: BarChart(
+                      BarChartData(
+                        barTouchData: BarTouchData(
+                          enabled: false,
+                          touchTooltipData: BarTouchTooltipData(
+                            getTooltipColor: (group) => Colors.transparent,
+                            tooltipPadding: EdgeInsets.zero,
+                            tooltipMargin: 8,
+                            getTooltipItem:
+                                (
+                                  BarChartGroupData group,
+                                  int groupIndex,
+                                  BarChartRodData rod,
+                                  int rodIndex,
+                                ) {
+                                  return BarTooltipItem(
+                                    rod.toY.round().toString(),
+                                    TextStyle(
+                                      color: Theme.of(
+                                        context,
+                                      ).colorScheme.primary,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  );
+                                },
                           ),
                         ),
+                        titlesData: FlTitlesData(
+                          show: true,
+                          bottomTitles: AxisTitles(
+                            sideTitles: SideTitles(
+                              showTitles: true,
+                              reservedSize: 30,
+                              getTitlesWidget: getTitles,
+                            ),
+                          ),
+                          leftTitles: const AxisTitles(
+                            sideTitles: SideTitles(showTitles: false),
+                          ),
+                          topTitles: const AxisTitles(
+                            sideTitles: SideTitles(showTitles: false),
+                          ),
+                          rightTitles: const AxisTitles(
+                            sideTitles: SideTitles(showTitles: false),
+                          ),
+                        ),
+                        borderData: FlBorderData(show: false),
+                        barGroups: [
+                          BarChartGroupData(
+                            x: 0,
+                            barRods: [
+                              BarChartRodData(
+                                toY: 35,
+                                width: 47,
+                                borderRadius: BorderRadius.circular(4),
+                                color: Colors.black,
+                              ),
+                            ],
+                          ),
+                          BarChartGroupData(
+                            x: 1,
+                            barRods: [
+                              BarChartRodData(
+                                toY: 30,
+                                width: 47,
+                                borderRadius: BorderRadius.circular(4),
+                                color: Colors.black,
+                              ),
+                            ],
+                          ),
+                          BarChartGroupData(
+                            x: 2,
+                            barRods: [
+                              BarChartRodData(
+                                toY: 37,
+                                width: 47,
+                                borderRadius: BorderRadius.circular(8),
+                                color: Colors.black,
+                              ),
+                            ],
+                          ),
+                          BarChartGroupData(
+                            x: 3,
+                            barRods: [
+                              BarChartRodData(
+                                toY: 14,
+                                width: 47,
+                                borderRadius: BorderRadius.circular(4),
+                                color: Colors.black,
+                              ),
+                            ],
+                          ),
+                          BarChartGroupData(
+                            x: 4,
+                            barRods: [
+                              BarChartRodData(
+                                toY: 20,
+                                width: 47,
+                                borderRadius: BorderRadius.circular(4),
+                                color: Colors.black,
+                              ),
+                            ],
+                          ),
+                          BarChartGroupData(
+                            x: 5,
+                            barRods: [
+                              BarChartRodData(
+                                toY: 24,
+                                width: 47,
+                                borderRadius: BorderRadius.circular(4),
+                                color: Colors.black,
+                              ),
+                            ],
+                          ),
+                          BarChartGroupData(
+                            x: 6,
+                            barRods: [
+                              BarChartRodData(
+                                toY: 38,
+                                width: 47,
+                                borderRadius: BorderRadius.circular(4),
+                                color: Colors.black,
+                              ),
+                            ],
+                          ),
+                        ],
+                        gridData: const FlGridData(show: false),
+                        alignment: BarChartAlignment.spaceAround,
+                        maxY: 40,
                       ),
+                    ),
+                  ),
 
-                      const SizedBox(height: 16),
+                  const SizedBox(height: 16),
 
-                      OutlinedContainer(
-                        padding: const .all(8),
-                        backgroundColor: Colors.transparent,
-                        child: Column(
+                  OutlinedContainer(
+                    padding: const EdgeInsets.all(8),
+                    backgroundColor: Colors.transparent,
+                    child: Column(
+                      children: [
+                        Row(
+                          spacing: 8,
                           children: [
-                            Row(
-                              spacing: 8,
-                              children: [
-                                OutlinedContainer(
-                                  width: 40,
-                                  height: 40,
-                                  backgroundColor: Colors.transparent,
-                                  child: const Icon(LucideIcons.dollarSign),
-                                ),
-                                const Text("Earnings"),
-                                const Spacer(),
-                                const Text("\$545.69"),
-                              ],
+                            OutlinedContainer(
+                              width: 40,
+                              height: 40,
+                              backgroundColor: Colors.transparent,
+                              child: const Icon(LucideIcons.dollarSign),
                             ),
-                            const SizedBox(height: 8),
-                            SizedBox(
-                              width: double.infinity,
-                              child: Progress(progress: 60, min: 0, max: 100),
-                            ),
+                            const Text("Earnings"),
+                            const Spacer(),
+                            const Text("\$545.69"),
                           ],
                         ),
-                      ),
+                        const SizedBox(height: 8),
+                        SizedBox(
+                          width: double.infinity,
+                          child: Progress(progress: 60, min: 0, max: 100),
+                        ),
+                      ],
+                    ),
+                  ),
 
-                      const SizedBox(height: 16),
+                  const SizedBox(height: 16),
 
-                      OutlinedContainer(
-                        padding: const .all(8),
-                        backgroundColor: Colors.transparent,
-                        child: Column(
+                  OutlinedContainer(
+                    padding: const EdgeInsets.all(8),
+                    backgroundColor: Colors.transparent,
+                    child: Column(
+                      children: [
+                        Row(
+                          spacing: 8,
                           children: [
-                            Row(
-                              spacing: 8,
-                              children: [
-                                OutlinedContainer(
-                                  width: 40,
-                                  height: 40,
-                                  backgroundColor: Colors.transparent,
-                                  child: const Icon(LucideIcons.chartLine),
-                                ),
-                                const Text("Profit"),
-                                const Spacer(),
-                                const Text("\$256.34"),
-                              ],
+                            OutlinedContainer(
+                              width: 40,
+                              height: 40,
+                              backgroundColor: Colors.transparent,
+                              child: const Icon(LucideIcons.chartLine),
                             ),
-                            const SizedBox(height: 8),
-                            SizedBox(
-                              width: double.infinity,
-                              child: Progress(progress: 40, min: 0, max: 100),
-                            ),
+                            const Text("Profit"),
+                            const Spacer(),
+                            const Text("\$256.34"),
                           ],
                         ),
-                      ),
+                        const SizedBox(height: 8),
+                        SizedBox(
+                          width: double.infinity,
+                          child: Progress(progress: 40, min: 0, max: 100),
+                        ),
+                      ],
+                    ),
+                  ),
 
-                      const SizedBox(height: 16),
+                  const SizedBox(height: 16),
 
-                      OutlinedContainer(
-                        padding: const .all(8),
-                        backgroundColor: Colors.transparent,
-                        child: Column(
+                  OutlinedContainer(
+                    padding: const EdgeInsets.all(8),
+                    backgroundColor: Colors.transparent,
+                    child: Column(
+                      children: [
+                        Row(
+                          spacing: 8,
                           children: [
-                            Row(
-                              spacing: 8,
-                              children: [
-                                OutlinedContainer(
-                                  width: 40,
-                                  height: 40,
-                                  backgroundColor: Colors.transparent,
-                                  child: const Icon(LucideIcons.handCoins),
-                                ),
-                                const Text("Expense"),
-                                const Spacer(),
-                                const Text("\$74.19"),
-                              ],
+                            OutlinedContainer(
+                              width: 40,
+                              height: 40,
+                              backgroundColor: Colors.transparent,
+                              child: const Icon(LucideIcons.handCoins),
                             ),
-                            const SizedBox(height: 8),
-                            SizedBox(
-                              width: double.infinity,
-                              child: Progress(progress: 80, min: 0, max: 100),
-                            ),
+                            const Text("Expense"),
+                            const Spacer(),
+                            const Text("\$74.19"),
                           ],
                         ),
-                      ),
-                    ],
+                        const SizedBox(height: 8),
+                        SizedBox(
+                          width: double.infinity,
+                          child: Progress(progress: 80, min: 0, max: 100),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
+                ],
               ),
-              Expanded(
-                child: Card(
-                  padding: const .all(16),
-                  child: Column(
-                    crossAxisAlignment: .start,
+            ),
+            Expanded(
+              child: CardWidget(
+                title: "",
+                subtitle: "",
+                children: [
+                  PieChartSample(),
+
+                  const SizedBox(height: 16),
+                  const Divider(),
+                  const SizedBox(height: 16),
+
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      PieChartSample(),
-
-                      const SizedBox(height: 16),
-                      const Divider(),
-                      const SizedBox(height: 16),
-
-                      Row(
-                        mainAxisAlignment: .spaceEvenly,
+                      OutlinedContainer(
+                        width: 40,
+                        height: 40,
+                        child: const Icon(LucideIcons.ticket),
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          OutlinedContainer(
-                            width: 40,
-                            height: 40,
-                            child: const Icon(LucideIcons.ticket),
-                          ),
-                          Column(
-                            crossAxisAlignment: .start,
-                            children: [
-                              const Text("New Tickets"),
-                              const Text("40").muted(),
-                            ],
-                          ),
-                          OutlinedContainer(
-                            width: 40,
-                            height: 40,
-                            child: const Icon(LucideIcons.clock),
-                          ),
-                          Column(
-                            crossAxisAlignment: .start,
-                            children: [
-                              const Text("Open Tickets"),
-                              const Text("25").muted(),
-                            ],
-                          ),
-                          OutlinedContainer(
-                            width: 40,
-                            height: 40,
-                            child: const Icon(LucideIcons.messageCircleReply),
-                          ),
-                          Column(
-                            crossAxisAlignment: .start,
-                            children: [
-                              const Text("Response time"),
-                              const Text("1 Day").muted(),
-                            ],
-                          ),
+                          const Text("New Tickets"),
+                          const Text("40").muted,
+                        ],
+                      ),
+                      OutlinedContainer(
+                        width: 40,
+                        height: 40,
+                        child: const Icon(LucideIcons.clock),
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text("Open Tickets"),
+                          const Text("25").muted,
+                        ],
+                      ),
+                      OutlinedContainer(
+                        width: 40,
+                        height: 40,
+                        child: const Icon(LucideIcons.messageCircleReply),
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text("Response time"),
+                          const Text("1 Day").muted,
                         ],
                       ),
                     ],
                   ),
-                ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
+        ).gap(16),
 
-          const SizedBox(height: 16),
-
-          Row(
-            crossAxisAlignment: .start,
-            spacing: 16,
-            children: [
-              Expanded(
-                child: Card(
-                  padding: const .all(16),
-                  child: Column(
-                    crossAxisAlignment: .start,
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: CardWidget(
+                title: "Website Analytics",
+                subtitle: "Total 28.5% Conversion rate",
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text("Website Analytics").semiBold(),
-                      const SizedBox(height: 4),
-                      const Text("Total 28.5% Conversion Rate").muted().small(),
-
-                      const SizedBox(height: 16),
-
-                      Row(
-                        mainAxisAlignment: .spaceBetween,
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Column(
-                            crossAxisAlignment: .start,
+                          Row(
                             children: [
-                              Row(
-                                spacing: 8,
-                                children: [
-                                  const Chip(child: Text("432")),
-                                  const Text("Direct"),
-                                ],
-                              ),
-                              const SizedBox(height: 16),
-                              Row(
-                                spacing: 8,
-                                children: [
-                                  const Chip(child: Text("29%")),
-                                  const Text("Sessions"),
-                                ],
-                              ),
-                              const SizedBox(height: 16),
-                              Row(
-                                spacing: 8,
-                                children: [
-                                  const Chip(child: Text("1.6K")),
-                                  const Text("Leads"),
-                                ],
-                              ),
+                              const Chip(child: Text("432")),
+                              const Text("Direct"),
                             ],
-                          ),
+                          ).gap(8),
+                          const SizedBox(height: 16),
+                          Row(
+                            children: [
+                              const Chip(child: Text("29%")),
+                              const Text("Sessions"),
+                            ],
+                          ).gap(8),
+                          const SizedBox(height: 16),
+                          Row(
+                            children: [
+                              const Chip(child: Text("1.6K")),
+                              const Text("Leads"),
+                            ],
+                          ).gap(8),
+                        ],
+                      ),
 
-                          Column(
-                            crossAxisAlignment: .start,
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
                             children: [
-                              Row(
-                                spacing: 8,
-                                children: [
-                                  const Chip(child: Text("216")),
-                                  const Text("Organic"),
-                                ],
-                              ),
-                              const SizedBox(height: 16),
-                              Row(
-                                spacing: 8,
-                                children: [
-                                  const Chip(child: Text("2.3K")),
-                                  const Text("Page Views"),
-                                ],
-                              ),
-                              const SizedBox(height: 16),
-                              Row(
-                                spacing: 8,
-                                children: [
-                                  const Chip(child: Text("8%")),
-                                  const Text("Conversions"),
-                                ],
-                              ),
+                              const Chip(child: Text("216")),
+                              const Text("Organic"),
                             ],
-                          ),
+                          ).gap(8),
+                          const SizedBox(height: 16),
+                          Row(
+                            children: [
+                              const Chip(child: Text("2.3K")),
+                              const Text("Page Views"),
+                            ],
+                          ).gap(8),
+                          const SizedBox(height: 16),
+                          Row(
+                            children: [
+                              const Chip(child: Text("8%")),
+                              const Text("Conversions"),
+                            ],
+                          ).gap(8),
                         ],
                       ),
                     ],
                   ),
-                ),
+                ],
               ),
-              Expanded(
-                child: Card(
-                  padding: const .all(16),
-                  child: Column(
-                    crossAxisAlignment: .start,
+            ),
+            Expanded(
+              child: CardWidget(
+                title: "Avarage Daily Sales",
+                subtitle: "\$28,450",
+                children: [LineChartSample()],
+              ),
+            ),
+            Expanded(
+              child: CardWidget(
+                title: "Sales Overview",
+                subtitle: "\$45.5K",
+                children: [
+                  Row(
                     children: [
-                      const Text("Average Daily Sales").muted().small(),
-                      const SizedBox(height: 4),
-                      const Text("\$28,450").semiBold(),
-
-                      const SizedBox(height: 16),
-
-                      LineChartSample(),
+                      const Chip(child: Text("62.2%")),
+                      const Text("Orders"),
+                      const Spacer(),
+                      const Chip(child: Text("25.5%")),
+                      const Text("Visits"),
                     ],
+                  ).gap(8),
+
+                  const SizedBox(height: 16),
+
+                  SizedBox(
+                    width: double.infinity,
+                    child: Progress(progress: 80, min: 0, max: 100),
                   ),
-                ),
+                ],
               ),
-              Expanded(
-                child: Card(
-                  padding: const .all(16),
-                  child: Column(
-                    crossAxisAlignment: .start,
+            ),
+          ],
+        ).gap(16),
+
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: CardWidget(
+                title: "Sales by countries",
+                subtitle: "Last 28 days",
+                trailing: [
+                  OutlineButton(
+                    onPressed: () {},
+                    trailing: const Icon(LucideIcons.chevronRight),
+                    child: const Text("View All"),
+                  ),
+                ],
+                children: [
+                  Row(
                     children: [
-                      const Text("Sales Overview").muted().small(),
-                      const SizedBox(height: 4),
-                      const Text("\$42.5K").semiBold(),
-
-                      const SizedBox(height: 16),
-
-                      Row(
-                        spacing: 8,
+                      Avatar(
+                        size: 24,
+                        initials: Avatar.getInitials("ts paja"),
+                        provider: const NetworkImage(
+                          "https://avatars.githubusercontent.com/u/213942709?s=400&v=4",
+                        ),
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Chip(child: Text("62.2%")),
-                          const Text("Orders"),
-                          const Spacer(),
-                          const Chip(child: Text("25.5%")),
-                          const Text("Visits"),
+                          const Text("United States"),
+                          const Text("+20.1% from last month").muted.small,
                         ],
                       ),
-
-                      const SizedBox(height: 16),
-
-                      SizedBox(
-                        width: double.infinity,
-                        child: Progress(progress: 80, min: 0, max: 100),
-                      ),
+                      const Spacer(),
+                      const Text("+\$1.999.00"),
                     ],
-                  ),
-                ),
-              ),
-            ],
-          ),
+                  ).gap(8),
 
-          const SizedBox(height: 16),
+                  const SizedBox(height: 16),
 
-          Row(
-            crossAxisAlignment: .start,
-            spacing: 16,
-            children: [
-              Expanded(
-                child: Card(
-                  padding: const .all(16),
-                  child: Column(
-                    crossAxisAlignment: .start,
+                  Row(
                     children: [
-                      Row(
+                      Avatar(
+                        size: 24,
+                        initials: Avatar.getInitials("ts paja"),
+                        provider: const NetworkImage(
+                          "https://avatars.githubusercontent.com/u/213942709?s=400&v=4",
+                        ),
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Column(
-                            crossAxisAlignment: .start,
-                            children: [
-                              const Text("Sales by Countries").semiBold(),
-                              const SizedBox(height: 4),
-                              const Text("Last 28 days").muted().small(),
-                            ],
-                          ),
-                          const Spacer(),
-                          OutlineButton(
-                            onPressed: () {},
-                            trailing: const Icon(LucideIcons.chevronRight),
-                            child: const Text("View All"),
-                          ),
+                          const Text("Brazil"),
+                          const Text("+20.1% from last month").muted.small,
                         ],
                       ),
-
-                      const SizedBox(height: 16),
-
-                      Row(
-                        spacing: 8,
-                        children: [
-                          Avatar(
-                            size: 24,
-                            initials: Avatar.getInitials("ts paja"),
-                            provider: const NetworkImage(
-                              "https://avatars.githubusercontent.com/u/213942709?s=400&v=4",
-                            ),
-                          ),
-                          Column(
-                            crossAxisAlignment: .start,
-                            children: [
-                              const Text("United States"),
-                              const Text(
-                                "+20.1% from last month",
-                              ).muted().small(),
-                            ],
-                          ),
-                          const Spacer(),
-                          const Text("+\$1.999.00"),
-                        ],
-                      ),
-
-                      const SizedBox(height: 16),
-
-                      Row(
-                        spacing: 8,
-                        children: [
-                          Avatar(
-                            size: 24,
-                            initials: Avatar.getInitials("ts paja"),
-                            provider: const NetworkImage(
-                              "https://avatars.githubusercontent.com/u/213942709?s=400&v=4",
-                            ),
-                          ),
-                          Column(
-                            crossAxisAlignment: .start,
-                            children: [
-                              const Text("Brazil"),
-                              const Text(
-                                "+20.1% from last month",
-                              ).muted().small(),
-                            ],
-                          ),
-                          const Spacer(),
-                          const Text("+\$1.999.00"),
-                        ],
-                      ),
-
-                      const SizedBox(height: 16),
-
-                      Row(
-                        spacing: 8,
-                        children: [
-                          Avatar(
-                            size: 24,
-                            initials: Avatar.getInitials("ts paja"),
-                            provider: const NetworkImage(
-                              "https://avatars.githubusercontent.com/u/213942709?s=400&v=4",
-                            ),
-                          ),
-                          Column(
-                            crossAxisAlignment: .start,
-                            children: [
-                              const Text("India"),
-                              const Text(
-                                "+20.1% from last month",
-                              ).muted().small(),
-                            ],
-                          ),
-                          const Spacer(),
-                          const Text("+\$1.999.00"),
-                        ],
-                      ),
-
-                      const SizedBox(height: 16),
-
-                      Row(
-                        spacing: 8,
-                        children: [
-                          Avatar(
-                            size: 24,
-                            initials: Avatar.getInitials("ts paja"),
-                            provider: const NetworkImage(
-                              "https://avatars.githubusercontent.com/u/213942709?s=400&v=4",
-                            ),
-                          ),
-                          Column(
-                            crossAxisAlignment: .start,
-                            children: [
-                              const Text("Australia"),
-                              const Text(
-                                "+20.1% from last month",
-                              ).muted().small(),
-                            ],
-                          ),
-                          const Spacer(),
-                          const Text("+\$1.999.00"),
-                        ],
-                      ),
-
-                      const SizedBox(height: 16),
-
-                      Row(
-                        spacing: 8,
-                        children: [
-                          Avatar(
-                            size: 24,
-                            initials: Avatar.getInitials("ts paja"),
-                            provider: const NetworkImage(
-                              "https://avatars.githubusercontent.com/u/213942709?s=400&v=4",
-                            ),
-                          ),
-                          Column(
-                            crossAxisAlignment: .start,
-                            children: [
-                              const Text("France"),
-                              const Text(
-                                "+20.1% from last month",
-                              ).muted().small(),
-                            ],
-                          ),
-                          const Spacer(),
-                          const Text("+\$1.999.00"),
-                        ],
-                      ),
-
-                      const SizedBox(height: 16),
-
-                      Row(
-                        spacing: 8,
-                        children: [
-                          Avatar(
-                            size: 24,
-                            initials: Avatar.getInitials("ts paja"),
-                            provider: const NetworkImage(
-                              "https://avatars.githubusercontent.com/u/213942709?s=400&v=4",
-                            ),
-                          ),
-                          Column(
-                            crossAxisAlignment: .start,
-                            children: [
-                              const Text("Greece"),
-                              const Text(
-                                "+20.1% from last month",
-                              ).muted().small(),
-                            ],
-                          ),
-                          const Spacer(),
-                          const Text("+\$1.999.00"),
-                        ],
-                      ),
+                      const Spacer(),
+                      const Text("+\$1.999.00"),
                     ],
-                  ),
-                ),
-              ),
-              Expanded(
-                child: Card(
-                  padding: const .all(16),
-                  child: Column(
-                    crossAxisAlignment: .start,
+                  ).gap(8),
+
+                  const SizedBox(height: 16),
+
+                  Row(
                     children: [
-                      const Text("Total Earning").muted().small(),
-                      const SizedBox(height: 4),
-                      const Text("83%").semiBold(),
-
-                      const SizedBox(height: 16),
-
-                      BarChartSample(),
+                      Avatar(
+                        size: 24,
+                        initials: Avatar.getInitials("ts paja"),
+                        provider: const NetworkImage(
+                          "https://avatars.githubusercontent.com/u/213942709?s=400&v=4",
+                        ),
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text("India"),
+                          const Text("+20.1% from last month").muted.small,
+                        ],
+                      ),
+                      const Spacer(),
+                      const Text("+\$1.999.00"),
                     ],
-                  ),
-                ),
-              ),
-              Expanded(
-                child: Card(
-                  padding: const .all(16),
-                  child: Column(
-                    crossAxisAlignment: .start,
+                  ).gap(8),
+
+                  const SizedBox(height: 16),
+
+                  Row(
                     children: [
-                      const Text("Monthly Campaign State ").semiBold(),
-                      const SizedBox(height: 4),
-                      const Text("8.5 social visitors").muted().small(),
-
-                      const SizedBox(height: 16),
-
-                      Row(
-                        spacing: 8,
+                      Avatar(
+                        size: 24,
+                        initials: Avatar.getInitials("ts paja"),
+                        provider: const NetworkImage(
+                          "https://avatars.githubusercontent.com/u/213942709?s=400&v=4",
+                        ),
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          OutlinedContainer(
-                            width: 40,
-                            height: 40,
-                            child: const Icon(LucideIcons.mail),
-                          ),
-                          const Text("Emails"),
-                          const Spacer(),
-                          const Text("1.503"),
-                          const Chip(child: Text("-0.3%")),
+                          const Text("Australia"),
+                          const Text("+20.1% from last month").muted.small,
                         ],
                       ),
-
-                      const SizedBox(height: 16),
-
-                      Row(
-                        spacing: 8,
-                        children: [
-                          OutlinedContainer(
-                            width: 40,
-                            height: 40,
-                            child: const Icon(LucideIcons.eye),
-                          ),
-                          const Text("Opened"),
-                          const Spacer(),
-                          const Text("1.503"),
-                          const Chip(child: Text("-0.3%")),
-                        ],
-                      ),
-
-                      const SizedBox(height: 16),
-
-                      Row(
-                        spacing: 8,
-                        children: [
-                          OutlinedContainer(
-                            width: 40,
-                            height: 40,
-                            child: const Icon(LucideIcons.pointer),
-                          ),
-                          const Text("Clicked"),
-                          const Spacer(),
-                          const Text("1.503"),
-                          const Chip(child: Text("-0.3%")),
-                        ],
-                      ),
-
-                      const SizedBox(height: 16),
-
-                      Row(
-                        spacing: 8,
-                        children: [
-                          OutlinedContainer(
-                            width: 40,
-                            height: 40,
-                            child: const Icon(LucideIcons.userPlus),
-                          ),
-                          const Text("Subscribe"),
-                          const Spacer(),
-                          const Text("1.503"),
-                          const Chip(child: Text("-0.3%")),
-                        ],
-                      ),
-
-                      const SizedBox(height: 16),
-
-                      Row(
-                        spacing: 8,
-                        children: [
-                          OutlinedContainer(
-                            width: 40,
-                            height: 40,
-                            child: const Icon(LucideIcons.circleAlert),
-                          ),
-                          const Text("Complaints"),
-                          const Spacer(),
-                          const Text("1.503"),
-                          const Chip(child: Text("-0.3%")),
-                        ],
-                      ),
-
-                      const SizedBox(height: 16),
-
-                      Row(
-                        spacing: 8,
-                        children: [
-                          OutlinedContainer(
-                            width: 40,
-                            height: 40,
-                            child: const Icon(LucideIcons.userMinus),
-                          ),
-                          const Text("Unsubscribe"),
-                          const Spacer(),
-                          const Text("1.503"),
-                          const Chip(child: Text("-0.3%")),
-                        ],
-                      ),
+                      const Spacer(),
+                      const Text("+\$1.999.00"),
                     ],
-                  ),
-                ),
+                  ).gap(8),
+
+                  const SizedBox(height: 16),
+
+                  Row(
+                    children: [
+                      Avatar(
+                        size: 24,
+                        initials: Avatar.getInitials("ts paja"),
+                        provider: const NetworkImage(
+                          "https://avatars.githubusercontent.com/u/213942709?s=400&v=4",
+                        ),
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text("France"),
+                          const Text("+20.1% from last month").muted.small,
+                        ],
+                      ),
+                      const Spacer(),
+                      const Text("+\$1.999.00"),
+                    ],
+                  ).gap(8),
+
+                  const SizedBox(height: 16),
+
+                  Row(
+                    children: [
+                      Avatar(
+                        size: 24,
+                        initials: Avatar.getInitials("ts paja"),
+                        provider: const NetworkImage(
+                          "https://avatars.githubusercontent.com/u/213942709?s=400&v=4",
+                        ),
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text("Greece"),
+                          const Text("+20.1% from last month").muted.small,
+                        ],
+                      ),
+                      const Spacer(),
+                      const Text("+\$1.999.00"),
+                    ],
+                  ).gap(8),
+                ],
               ),
-            ],
-          ),
-        ],
-      ),
-    );
+            ),
+            Expanded(
+              child: CardWidget(
+                title: "Total earnings",
+                subtitle: "83%",
+                children: [BarChartSample()],
+              ),
+            ),
+            Expanded(
+              child: CardWidget(
+                title: "Monthly campaign state",
+                subtitle: "8.5 social visitors",
+                children: [
+                  Row(
+                    children: [
+                      OutlinedContainer(
+                        width: 40,
+                        height: 40,
+                        child: const Icon(LucideIcons.mail),
+                      ),
+                      const Text("Emails"),
+                      const Spacer(),
+                      const Text("1.503"),
+                      const Chip(child: Text("-0.3%")),
+                    ],
+                  ).gap(8),
+
+                  const SizedBox(height: 16),
+
+                  Row(
+                    children: [
+                      OutlinedContainer(
+                        width: 40,
+                        height: 40,
+                        child: const Icon(LucideIcons.eye),
+                      ),
+                      const Text("Opened"),
+                      const Spacer(),
+                      const Text("1.503"),
+                      const Chip(child: Text("-0.3%")),
+                    ],
+                  ).gap(8),
+
+                  const SizedBox(height: 16),
+
+                  Row(
+                    children: [
+                      OutlinedContainer(
+                        width: 40,
+                        height: 40,
+                        child: const Icon(LucideIcons.pointer),
+                      ),
+                      const Text("Clicked"),
+                      const Spacer(),
+                      const Text("1.503"),
+                      const Chip(child: Text("-0.3%")),
+                    ],
+                  ).gap(8),
+
+                  const SizedBox(height: 16),
+
+                  Row(
+                    children: [
+                      OutlinedContainer(
+                        width: 40,
+                        height: 40,
+                        child: const Icon(LucideIcons.userPlus),
+                      ),
+                      const Text("Subscribe"),
+                      const Spacer(),
+                      const Text("1.503"),
+                      const Chip(child: Text("-0.3%")),
+                    ],
+                  ).gap(8),
+
+                  const SizedBox(height: 16),
+
+                  Row(
+                    children: [
+                      OutlinedContainer(
+                        width: 40,
+                        height: 40,
+                        child: const Icon(LucideIcons.circleAlert),
+                      ),
+                      const Text("Complaints"),
+                      const Spacer(),
+                      const Text("1.503"),
+                      const Chip(child: Text("-0.3%")),
+                    ],
+                  ).gap(8),
+
+                  const SizedBox(height: 16),
+
+                  Row(
+                    children: [
+                      OutlinedContainer(
+                        width: 40,
+                        height: 40,
+                        child: const Icon(LucideIcons.userMinus),
+                      ),
+                      const Text("Unsubscribe"),
+                      const Spacer(),
+                      const Text("1.503"),
+                      const Chip(child: Text("-0.3%")),
+                    ],
+                  ).gap(8),
+                ],
+              ),
+            ),
+          ],
+        ).gap(16),
+      ],
+    ).gap(16).withPadding(all: 16);
   }
 
   Widget getTitles(double value, TitleMeta meta) {
     final style = TextStyle(
       color: Colors.white,
-      fontWeight: .bold,
+      fontWeight: FontWeight.bold,
       fontSize: 14,
     );
     String text = switch (value.toInt()) {
@@ -1077,7 +903,12 @@ class LineChartSampleState extends State<LineChartSample> {
         AspectRatio(
           aspectRatio: 1.7,
           child: Padding(
-            padding: const .only(right: 18, left: 12, top: 24, bottom: 12),
+            padding: const EdgeInsets.only(
+              right: 18,
+              left: 12,
+              top: 24,
+              bottom: 12,
+            ),
             child: LineChart(
               LineChartData(
                 gridData: FlGridData(
@@ -1115,7 +946,9 @@ class LineChartSampleState extends State<LineChartSample> {
                 ),
                 borderData: FlBorderData(
                   show: true,
-                  border: .all(color: Theme.of(context).colorScheme.border),
+                  border: Border.all(
+                    color: Theme.of(context).colorScheme.border,
+                  ),
                 ),
                 minX: 0,
                 maxX: 12,
@@ -1169,7 +1002,7 @@ class BarChartSampleState extends State<BarChartSample> {
     return AspectRatio(
       aspectRatio: 1.6,
       child: Padding(
-        padding: const .only(top: 16),
+        padding: const EdgeInsets.only(top: 16),
         child: LayoutBuilder(
           builder: (context, constraints) {
             final barsSpace = 4.0 * constraints.maxWidth / 400;
@@ -1177,7 +1010,7 @@ class BarChartSampleState extends State<BarChartSample> {
 
             return BarChart(
               BarChartData(
-                alignment: .center,
+                alignment: BarChartAlignment.center,
                 barTouchData: const BarTouchData(enabled: true),
                 titlesData: FlTitlesData(
                   show: true,

@@ -1,14 +1,16 @@
 import 'package:fl_chart/fl_chart.dart';
+import 'package:flutter_dashboard/widget/card_widget.dart';
+import 'package:flutter_dashboard/widget/table_widget.dart';
 import 'package:shadcn_flutter/shadcn_flutter.dart';
 
 class CrmDashboardScreen extends StatefulWidget {
   const CrmDashboardScreen({super.key});
 
   @override
-  State<CrmDashboardScreen> createState() => CrmDashboardScreenState();
+  State<CrmDashboardScreen> createState() => _CrmDashboardScreenState();
 }
 
-class CrmDashboardScreenState extends State<CrmDashboardScreen> {
+class _CrmDashboardScreenState extends State<CrmDashboardScreen> {
   CheckboxState _state = CheckboxState.unchecked;
   String? _selectedValue;
 
@@ -38,585 +40,447 @@ class CrmDashboardScreenState extends State<CrmDashboardScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const .all(16),
-      child: Column(
-        children: [
-          Row(children: [const Text("CRM Dashboard").bold().large()]),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(children: [const Text("CRM Dashboard").bold.large]),
 
-          const SizedBox(height: 16),
-
-          Row(
-            crossAxisAlignment: .start,
-            spacing: 16,
-            children: [
-              Expanded(
-                child: Card(
-                  padding: const .all(16),
-                  child: Column(
-                    crossAxisAlignment: .start,
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: CardWidget(
+                title: "Your target is incomplete",
+                subtitle: "",
+                children: [
+                  Row(
                     children: [
-                      const Text("Your target is incomplete").semiBold(),
-
-                      const SizedBox(height: 16),
-
-                      Row(
-                        spacing: 8,
+                      Stack(
+                        alignment: Alignment.center,
                         children: [
-                          Stack(
-                            alignment: .center,
-                            children: [
-                              CircularProgressIndicator(value: 0.48, size: 48),
-                              const Text("48%").small(),
-                            ],
-                          ),
-                          Expanded(
-                            child: const Text(
-                              "You have completed 48% of the given target, you can also check your status",
-                            ),
-                          ),
+                          CircularProgressIndicator(value: 0.48, size: 48),
+                          const Text("48%").small,
                         ],
                       ),
+                      Expanded(
+                        child: const Text(
+                          "You have completed 48% of the given target, you can also check your status",
+                        ),
+                      ),
                     ],
-                  ),
-                ),
+                  ).gap(8),
+                ],
               ),
-              Expanded(
-                child: Card(
-                  padding: const .all(16),
-                  child: Column(
-                    crossAxisAlignment: .start,
-                    children: [
-                      const Text("Total Customers").muted().small(),
-                      const SizedBox(height: 4),
-                      const Text("1890").semiBold(),
-                      const SizedBox(height: 4),
-                      const Text("+10.4% from last month").muted().small(),
-                    ],
-                  ),
-                ),
+            ),
+            Expanded(
+              child: CardWidget(
+                title: "Total Customers",
+                subtitle: "+10.4% from last month",
+                children: [const Text("1890").xLarge.semiBold],
               ),
-              Expanded(
-                child: Card(
-                  padding: const .all(16),
-                  child: Column(
-                    crossAxisAlignment: .start,
-                    children: [
-                      const Text("Total Deals").muted().small(),
-                      const SizedBox(height: 4),
-                      const Text("1,02,890").semiBold(),
-                      const SizedBox(height: 4),
-                      const Text("-0.8% from last month").muted().small(),
-                    ],
-                  ),
-                ),
+            ),
+            Expanded(
+              child: CardWidget(
+                title: "Total Deals",
+                subtitle: "-0.8% from last month",
+                children: [const Text("\$1,02,890").xLarge.semiBold],
               ),
-              Expanded(
-                child: Card(
-                  padding: const .all(16),
-                  child: Column(
-                    crossAxisAlignment: .start,
-                    children: [
-                      const Text("Total Revenue").muted().small(),
-                      const SizedBox(height: 4),
-                      const Text("\$435,578").semiBold(),
-                      const SizedBox(height: 4),
-                      const Text("+20.1% from last month").muted().small(),
-                    ],
-                  ),
-                ),
+            ),
+            Expanded(
+              child: CardWidget(
+                title: "Total Revenue",
+                subtitle: "+20.1% from last month",
+                children: [const Text("\$435,578").xLarge.semiBold],
               ),
-            ],
-          ),
+            ),
+          ],
+        ).gap(16),
 
-          const SizedBox(height: 16),
-
-          Row(
-            crossAxisAlignment: .start,
-            spacing: 16,
-            children: [
-              Expanded(
-                child: Card(
-                  padding: const .all(16),
-                  child: Column(
-                    crossAxisAlignment: .start,
-                    children: [
-                      Row(
-                        children: [
-                          const Text("Leads by Source").semiBold(),
-                          const Spacer(),
-                          Builder(
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: CardWidget(
+                title: "Leads by Source",
+                subtitle: "",
+                trailing: [
+                  Builder(
+                    builder: (context) {
+                      return OutlineButton(
+                        onPressed: () {
+                          showDropdown(
+                            context: context,
                             builder: (context) {
-                              return OutlineButton(
-                                onPressed: () {
-                                  showDropdown(
-                                    context: context,
-                                    builder: (context) {
-                                      return const DropdownMenu(
-                                        children: [
-                                          MenuButton(child: Text("Excel")),
-                                          MenuButton(child: Text("PDF")),
-                                        ],
-                                      );
-                                    },
-                                  );
-                                },
-                                leading: const Icon(LucideIcons.download),
-                                child: const Text("Export"),
+                              return const DropdownMenu(
+                                children: [
+                                  MenuButton(child: Text("Excel")),
+                                  MenuButton(child: Text("PDF")),
+                                ],
                               );
                             },
-                          ),
-                        ],
-                      ),
-
-                      const SizedBox(height: 16),
-
-                      PieChartSample(),
-                    ],
+                          );
+                        },
+                        leading: const Icon(LucideIcons.download),
+                        child: const Text("Export"),
+                      );
+                    },
                   ),
-                ),
+                ],
+                children: [PieChartSample()],
               ),
-              Expanded(
-                child: Card(
-                  padding: const .all(16),
-                  child: Column(
-                    crossAxisAlignment: .start,
-                    children: [
-                      Row(
-                        children: [
-                          Column(
-                            crossAxisAlignment: .start,
-                            children: [
-                              const Text("Tasks").semiBold(),
-                              const SizedBox(height: 4),
-                              const Text(
-                                "Track and manage your upcoming tasks.",
-                              ).muted().small(),
-                            ],
-                          ),
-                          const Spacer(),
-                          OutlineButton(
-                            onPressed: () {},
-                            leading: const Icon(LucideIcons.plus),
-                            child: const Text("Add Task"),
-                          ),
-                        ],
-                      ),
-
-                      const SizedBox(height: 16),
-
-                      OutlinedContainer(
-                        padding: const .all(8),
-                        child: Row(
-                          crossAxisAlignment: .start,
-                          spacing: 8,
+            ),
+            Expanded(
+              child: CardWidget(
+                title: "Tasks",
+                subtitle: "Track and manage your upcoming tasks.",
+                trailing: [
+                  OutlineButton(
+                    onPressed: () {},
+                    leading: const Icon(LucideIcons.plus),
+                    child: const Text("Add Task"),
+                  ),
+                ],
+                children: [
+                  OutlinedContainer(
+                    padding: const EdgeInsets.all(8),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Checkbox(
+                          state: _state,
+                          onChanged: (value) {
+                            setState(() {
+                              _state = value;
+                            });
+                          },
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Checkbox(
-                              state: _state,
-                              onChanged: (value) {
-                                setState(() {
-                                  _state = value;
-                                });
-                              },
-                            ),
-                            Column(
-                              crossAxisAlignment: .start,
-                              children: [
-                                const Text("Follow up with...").small(),
-                                const SizedBox(height: 4),
-                                const Text(
-                                  "Send proposal and schedule meeting",
-                                ).muted().small(),
-                                const SizedBox(height: 4),
-                                const Chip(child: Text("High")),
-                              ],
-                            ),
+                            const Text("Follow up with...").small,
+                            const SizedBox(height: 4),
+                            const Text(
+                              "Send proposal and schedule meeting",
+                            ).muted.small,
+                            const SizedBox(height: 4),
+                            const Chip(child: Text("High")),
                           ],
                         ),
-                      ),
+                      ],
+                    ).gap(8),
+                  ),
 
-                      const SizedBox(height: 16),
+                  const SizedBox(height: 16),
 
-                      OutlinedContainer(
-                        padding: const .all(8),
-                        child: Row(
-                          crossAxisAlignment: .start,
-                          spacing: 8,
+                  OutlinedContainer(
+                    padding: const EdgeInsets.all(8),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Checkbox(
+                          state: _state,
+                          onChanged: (value) {
+                            setState(() {
+                              _state = value;
+                            });
+                          },
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Checkbox(
-                              state: _state,
-                              onChanged: (value) {
-                                setState(() {
-                                  _state = value;
-                                });
-                              },
-                            ),
-                            Column(
-                              crossAxisAlignment: .start,
-                              children: [
-                                const Text("Prepare quarterly report").small(),
-                                const SizedBox(height: 4),
-                                const Text(
-                                  "Compile sales data and forecasts",
-                                ).muted().small(),
-                                const SizedBox(height: 4),
-                                const Chip(child: Text("Medium")),
-                              ],
-                            ),
+                            const Text("Prepare quarterly report").small,
+                            const SizedBox(height: 4),
+                            const Text(
+                              "Compile sales data and forecasts",
+                            ).muted.small,
+                            const SizedBox(height: 4),
+                            const Chip(child: Text("Medium")),
                           ],
                         ),
-                      ),
+                      ],
+                    ).gap(8),
+                  ),
 
-                      const SizedBox(height: 16),
+                  const SizedBox(height: 16),
 
-                      OutlinedContainer(
-                        padding: const .all(8),
-                        child: Row(
-                          crossAxisAlignment: .start,
-                          spacing: 8,
+                  OutlinedContainer(
+                    padding: const EdgeInsets.all(8),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Checkbox(
+                          state: _state,
+                          onChanged: (value) {
+                            setState(() {
+                              _state = value;
+                            });
+                          },
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Checkbox(
-                              state: _state,
-                              onChanged: (value) {
-                                setState(() {
-                                  _state = value;
-                                });
-                              },
-                            ),
-                            Column(
-                              crossAxisAlignment: .start,
-                              children: [
-                                const Text("Update customer profiles").small(),
-                                const SizedBox(height: 4),
-                                const Text(
-                                  "Verify contact information and preferences",
-                                ).muted().small(),
-                                const SizedBox(height: 4),
-                                const Chip(child: Text("Low")),
-                              ],
-                            ),
+                            const Text("Update customer profiles").small,
+                            const SizedBox(height: 4),
+                            const Text(
+                              "Verify contact information and preferences",
+                            ).muted.small,
+                            const SizedBox(height: 4),
+                            const Chip(child: Text("Low")),
                           ],
+                        ),
+                      ],
+                    ).gap(8),
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
+              child: CardWidget(
+                title: "Sales pipeline",
+                subtitle: "Current Deals in your sales pipeline",
+                children: [
+                  Row(
+                    children: [
+                      Container(
+                        width: 16,
+                        height: 16,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(999),
+                          color: Colors.gray.shade900,
+                        ),
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text("Lead").small,
+                          const Text("235 deals").muted.small,
+                        ],
+                      ),
+                      const Spacer(),
+                      SizedBox(
+                        width: 100,
+                        child: Progress(
+                          progress: 38,
+                          min: 0,
+                          max: 100,
+                          color: Colors.gray.shade800,
                         ),
                       ),
                     ],
-                  ),
-                ),
-              ),
-              Expanded(
-                child: Card(
-                  padding: const .all(16),
-                  child: Column(
-                    crossAxisAlignment: .start,
+                  ).gap(16),
+
+                  const SizedBox(height: 16),
+
+                  Row(
                     children: [
-                      const Text("Sales Pipeline").muted().small(),
-                      const SizedBox(height: 4),
-                      const Text(
-                        "Current deals in your sales pipeline.",
-                      ).semiBold(),
-
-                      const SizedBox(height: 16),
-
-                      Row(
-                        spacing: 16,
+                      Container(
+                        width: 16,
+                        height: 16,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(999),
+                          color: Colors.gray.shade800,
+                        ),
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Container(
-                            width: 16,
-                            height: 16,
-                            decoration: BoxDecoration(
-                              borderRadius: .circular(999),
-                              color: Colors.gray.shade900,
-                            ),
-                          ),
-                          Column(
-                            crossAxisAlignment: .start,
-                            children: [
-                              const Text("Lead").small(),
-                              const Text("235 deals").muted().small(),
-                            ],
-                          ),
-                          const Spacer(),
-                          SizedBox(
-                            width: 100,
-                            child: Progress(
-                              progress: 38,
-                              min: 0,
-                              max: 100,
-                              color: Colors.gray.shade800,
-                            ),
-                          ),
+                          const Text("Qualified").small,
+                          const Text("235 deals").muted.small,
                         ],
                       ),
-
-                      const SizedBox(height: 16),
-
-                      Row(
-                        spacing: 16,
-                        children: [
-                          Container(
-                            width: 16,
-                            height: 16,
-                            decoration: BoxDecoration(
-                              borderRadius: .circular(999),
-                              color: Colors.gray.shade800,
-                            ),
-                          ),
-                          Column(
-                            crossAxisAlignment: .start,
-                            children: [
-                              const Text("Qualified").small(),
-                              const Text("235 deals").muted().small(),
-                            ],
-                          ),
-                          const Spacer(),
-                          SizedBox(
-                            width: 100,
-                            child: Progress(
-                              progress: 24,
-                              min: 0,
-                              max: 100,
-                              color: Colors.gray.shade700,
-                            ),
-                          ),
-                        ],
-                      ),
-
-                      const SizedBox(height: 16),
-
-                      Row(
-                        spacing: 16,
-                        children: [
-                          Container(
-                            width: 16,
-                            height: 16,
-                            decoration: BoxDecoration(
-                              borderRadius: .circular(999),
-                              color: Colors.gray.shade600,
-                            ),
-                          ),
-                          Column(
-                            crossAxisAlignment: .start,
-                            children: [
-                              const Text("Proposal").small(),
-                              const Text("235 deals").muted().small(),
-                            ],
-                          ),
-                          const Spacer(),
-                          SizedBox(
-                            width: 100,
-                            child: Progress(
-                              progress: 18,
-                              min: 0,
-                              max: 100,
-                              color: Colors.gray.shade500,
-                            ),
-                          ),
-                        ],
-                      ),
-
-                      const SizedBox(height: 16),
-
-                      Row(
-                        spacing: 16,
-                        children: [
-                          Container(
-                            width: 16,
-                            height: 16,
-                            decoration: BoxDecoration(
-                              borderRadius: .circular(999),
-                              color: Colors.gray.shade400,
-                            ),
-                          ),
-                          Column(
-                            crossAxisAlignment: .start,
-                            children: [
-                              const Text("Negotiation").small(),
-                              const Text("235 deals").muted().small(),
-                            ],
-                          ),
-                          const Spacer(),
-                          SizedBox(
-                            width: 100,
-                            child: Progress(
-                              progress: 12,
-                              min: 0,
-                              max: 100,
-                              color: Colors.gray.shade500,
-                            ),
-                          ),
-                        ],
-                      ),
-
-                      const SizedBox(height: 16),
-
-                      Row(
-                        spacing: 16,
-                        children: [
-                          Container(
-                            width: 16,
-                            height: 16,
-                            decoration: BoxDecoration(
-                              borderRadius: .circular(999),
-                              color: Colors.gray.shade300,
-                            ),
-                          ),
-                          Column(
-                            crossAxisAlignment: .start,
-                            children: [
-                              const Text("Closed Won").small(),
-                              const Text("235 deals").muted().small(),
-                            ],
-                          ),
-                          const Spacer(),
-                          SizedBox(
-                            width: 100,
-                            child: Progress(
-                              progress: 8,
-                              min: 0,
-                              max: 100,
-                              color: Colors.gray.shade500,
-                            ),
-                          ),
-                        ],
+                      const Spacer(),
+                      SizedBox(
+                        width: 100,
+                        child: Progress(
+                          progress: 24,
+                          min: 0,
+                          max: 100,
+                          color: Colors.gray.shade700,
+                        ),
                       ),
                     ],
-                  ),
-                ),
-              ),
-            ],
-          ),
+                  ).gap(16),
 
-          const SizedBox(height: 16),
+                  const SizedBox(height: 16),
 
-          Row(
-            crossAxisAlignment: .start,
-            children: [
-              Expanded(
-                child: Card(
-                  padding: const .all(16),
-                  child: Column(
-                    crossAxisAlignment: .start,
+                  Row(
                     children: [
-                      const Text("Leads").semiBold(),
-
-                      const SizedBox(height: 16),
-
-                      Row(
+                      Container(
+                        width: 16,
+                        height: 16,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(999),
+                          color: Colors.gray.shade600,
+                        ),
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          SizedBox(
-                            width: 200,
-                            child: TextField(
-                              placeholder: const Text("Filter leads..."),
-                            ),
-                          ),
-                          const Spacer(),
-                          Select<String>(
-                            itemBuilder: (context, item) {
-                              return Text(item);
-                            },
-                            popupConstraints: const BoxConstraints(
-                              maxHeight: 300,
-                              maxWidth: 200,
-                            ),
-                            onChanged: (value) {
-                              setState(() {
-                                _selectedValue = value;
-                              });
-                            },
-                            value: _selectedValue,
-                            placeholder: const Text("Columns"),
-                            popup: const SelectPopup(
-                              items: SelectItemList(
-                                children: [
-                                  SelectItemButton(
-                                    value: "Status",
-                                    child: Text("Status"),
-                                  ),
-                                  SelectItemButton(
-                                    value: "Email",
-                                    child: Text("Email"),
-                                  ),
-                                  SelectItemButton(
-                                    value: "Amount",
-                                    child: Text("Amount"),
-                                  ),
-                                ],
-                              ),
-                            ).call,
-                          ),
+                          const Text("Proposal").small,
+                          const Text("235 deals").muted.small,
                         ],
                       ),
-
-                      const SizedBox(height: 16),
-
-                      Table(
-                        columnWidths: {0: FixedTableSize(48)},
-                        defaultRowHeight: FixedTableSize(48),
-
-                        rows: [
-                          // Header row
-                          TableRow(
-                            cells: [
-                              TableCell(
-                                child: Container(
-                                  padding: const .all(8),
-                                  child: Checkbox(
-                                    state: _state,
-                                    onChanged: (state) {
-                                      setState(() {
-                                        _state = state;
-                                      });
-                                    },
-                                  ),
-                                ),
-                              ),
-                              _buildHeaderCell("Status"),
-                              _buildHeaderCell("Email"),
-                              _buildHeaderCell("Amount"),
-                              _buildHeaderCell("Action", true),
-                            ],
-                          ),
-
-                          // Body rows
-                          ...leadRow.map((row) => _buildDataRow(context, row)),
-                        ],
-                      ),
-
-                      const SizedBox(height: 16),
-
-                      Row(
-                        spacing: 8,
-                        children: [
-                          const Text("0 of 6 row(s) selected."),
-                          const Spacer(),
-                          IconButton.outline(
-                            enabled: false,
-                            onPressed: () {},
-                            icon: const Icon(LucideIcons.chevronLeft),
-                          ),
-                          IconButton.outline(
-                            enabled: false,
-                            onPressed: () {},
-                            icon: const Icon(LucideIcons.chevronRight),
-                          ),
-                        ],
+                      const Spacer(),
+                      SizedBox(
+                        width: 100,
+                        child: Progress(
+                          progress: 18,
+                          min: 0,
+                          max: 100,
+                          color: Colors.gray.shade500,
+                        ),
                       ),
                     ],
-                  ),
-                ),
+                  ).gap(16),
+
+                  const SizedBox(height: 16),
+
+                  Row(
+                    children: [
+                      Container(
+                        width: 16,
+                        height: 16,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(999),
+                          color: Colors.gray.shade400,
+                        ),
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text("Negotiation").small,
+                          const Text("235 deals").muted.small,
+                        ],
+                      ),
+                      const Spacer(),
+                      SizedBox(
+                        width: 100,
+                        child: Progress(
+                          progress: 12,
+                          min: 0,
+                          max: 100,
+                          color: Colors.gray.shade500,
+                        ),
+                      ),
+                    ],
+                  ).gap(16),
+
+                  const SizedBox(height: 16),
+
+                  Row(
+                    children: [
+                      Container(
+                        width: 16,
+                        height: 16,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(999),
+                          color: Colors.gray.shade300,
+                        ),
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text("Closed Won").small,
+                          const Text("235 deals").muted.small,
+                        ],
+                      ),
+                      const Spacer(),
+                      SizedBox(
+                        width: 100,
+                        child: Progress(
+                          progress: 8,
+                          min: 0,
+                          max: 100,
+                          color: Colors.gray.shade500,
+                        ),
+                      ),
+                    ],
+                  ).gap(16),
+                ],
               ),
-            ],
-          ),
-        ],
-      ),
-    );
+            ),
+          ],
+        ).gap(16),
+
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: CardWidget(
+                title: "Leads",
+                subtitle: "",
+                trailing: [
+                  SizedBox(
+                    width: 200,
+                    child: TextField(
+                      placeholder: const Text("Filter leads..."),
+                    ),
+                  ),
+                  const Spacer(),
+                  Select<String>(
+                    itemBuilder: (context, item) {
+                      return Text(item);
+                    },
+                    popupConstraints: const BoxConstraints(
+                      maxHeight: 300,
+                      maxWidth: 200,
+                    ),
+                    onChanged: (value) {
+                      setState(() {
+                        _selectedValue = value;
+                      });
+                    },
+                    value: _selectedValue,
+                    placeholder: const Text("Columns"),
+                    popup: const SelectPopup(
+                      items: SelectItemList(
+                        children: [
+                          SelectItemButton(
+                            value: "Status",
+                            child: Text("Status"),
+                          ),
+                          SelectItemButton(
+                            value: "Email",
+                            child: Text("Email"),
+                          ),
+                          SelectItemButton(
+                            value: "Amount",
+                            child: Text("Amount"),
+                          ),
+                        ],
+                      ),
+                    ).call,
+                  ),
+                ],
+                children: [
+                  TableWidget(
+                    columnWidths: {0: FixedTableSize(48)},
+                    hasCheckbox: true,
+                    headerChildren: [
+                      _buildHeaderCell("Status"),
+                      _buildHeaderCell("Email"),
+                      _buildHeaderCell("Amount"),
+                      _buildHeaderCell("Action", true),
+                    ],
+                    bodyChildren: [
+                      ...leadRow.map((row) => _buildDataRow(context, row)),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ],
+    ).gap(16).withPadding(all: 16);
   }
 
   TableCell _buildHeaderCell(String text, [bool alignRight = false]) {
     return TableCell(
       child: Container(
-        padding: const .all(8),
-        alignment: alignRight ? .centerRight : .centerLeft,
-        child: Text(text).muted().semiBold(),
+        padding: const EdgeInsets.all(8),
+        alignment: alignRight ? Alignment.centerRight : Alignment.centerLeft,
+        child: Text(text).muted.semiBold,
       ),
     );
   }
@@ -624,8 +488,8 @@ class CrmDashboardScreenState extends State<CrmDashboardScreen> {
   TableCell _buildCell(String text, [bool alignRight = false]) {
     return TableCell(
       child: Container(
-        padding: const .all(8),
-        alignment: alignRight ? .centerRight : .centerLeft,
+        padding: const EdgeInsets.all(8),
+        alignment: alignRight ? Alignment.centerRight : Alignment.centerLeft,
         child: Text(text),
       ),
     );
@@ -634,7 +498,7 @@ class CrmDashboardScreenState extends State<CrmDashboardScreen> {
   TableCell _checkboxCell() {
     return TableCell(
       child: Padding(
-        padding: const .all(8),
+        padding: const EdgeInsets.all(8),
         child: Checkbox(
           state: _state,
           onChanged: (state) {
@@ -651,7 +515,7 @@ class CrmDashboardScreenState extends State<CrmDashboardScreen> {
     return TableCell(
       child: Container(
         padding: const .symmetric(horizontal: 8),
-        alignment: .centerRight,
+        alignment: Alignment.centerRight,
         child: Builder(
           builder: (context) {
             return IconButton.ghost(

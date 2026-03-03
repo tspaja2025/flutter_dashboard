@@ -5,165 +5,161 @@ class HotelBookingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const .all(16),
-      child: Column(
-        children: [
-          Row(
-            spacing: 16,
-            children: [
-              const Text("Bookings").bold().large(),
-              ButtonGroup(
-                children: [
-                  IconButton.outline(
-                    onPressed: () {},
-                    icon: const Icon(LucideIcons.chevronLeft),
-                  ),
-                  OutlineButton(
-                    onPressed: () {},
-                    child: const Text("Tue, Jan 27"),
-                  ),
-                  IconButton.outline(
-                    onPressed: () {},
-                    icon: const Icon(LucideIcons.chevronRight),
-                  ),
-                ],
-              ),
-              const Spacer(),
-              PrimaryButton(
-                onPressed: () {},
-                leading: const Icon(LucideIcons.plus),
-                child: const Text("Booking Room"),
-              ),
-            ],
-          ),
-
-          const SizedBox(height: 16),
-
-          OutlinedContainer(
-            width: (MediaQuery.of(context).size.width - 60),
-            height: MediaQuery.of(context).size.height,
-            child: Column(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            const Text("Hotel Bookings").bold.large,
+            ButtonGroup(
               children: [
-                _buildHeaderRow(context),
-                const Divider(),
-                Row(
-                  children: [
-                    BuildRowContainer(
-                      isFirst: true,
-                      children: [const Text("07:00 AM")],
-                    ),
-                    BuildRowContainer(children: []),
-                    BuildRowContainer(children: []),
-                    BuildRowContainer(children: []),
-                    BuildRowContainer(children: []),
-                    BuildRowContainer(children: []),
-                    BuildRowContainer(children: []),
-                    BuildRowContainer(isLast: true, children: []),
-                  ],
+                IconButton.outline(
+                  onPressed: () {},
+                  icon: const Icon(LucideIcons.chevronLeft),
                 ),
-                const Divider(),
-                Row(
-                  children: [
-                    BuildRowContainer(
-                      isFirst: true,
-                      children: [const Text("08:00 AM")],
-                    ),
-                    BuildRowContainer(children: []),
-                    BuildRowContainer(children: []),
-                    BuildRowContainer(children: []),
-                    BuildRowContainer(children: []),
-                    BuildRowContainer(children: []),
-                    BuildRowContainer(children: []),
-                    BuildRowContainer(isLast: true, children: []),
-                  ],
+                OutlineButton(
+                  onPressed: () {},
+                  child: const Text("Tue, Jan 27"),
                 ),
-                const Divider(),
-                Row(
-                  children: [
-                    BuildRowContainer(
-                      isFirst: true,
-                      children: [const Text("09:00 AM")],
-                    ),
-                    BuildRowContainer(children: []),
-                    BuildRowContainer(children: []),
-                    BuildRowContainer(children: []),
-                    BuildRowContainer(children: []),
-                    BuildRowContainer(children: []),
-                    BuildRowContainer(children: []),
-                    BuildRowContainer(isLast: true, children: []),
-                  ],
-                ),
-                const Divider(),
-                Row(
-                  children: [
-                    BuildRowContainer(
-                      isFirst: true,
-                      children: [const Text("10:00 AM")],
-                    ),
-                    BuildRowContainer(children: []),
-                    BuildRowContainer(children: []),
-                    BuildRowContainer(children: []),
-                    BuildRowContainer(children: []),
-                    BuildRowContainer(children: []),
-                    BuildRowContainer(children: []),
-                    BuildRowContainer(isLast: true, children: []),
-                  ],
-                ),
-                const Divider(),
-                Row(
-                  children: [
-                    BuildRowContainer(
-                      isFirst: true,
-                      children: [const Text("11:00 AM")],
-                    ),
-                    BuildRowContainer(children: []),
-                    BuildRowContainer(children: []),
-                    BuildRowContainer(children: []),
-                    BuildRowContainer(children: []),
-                    BuildRowContainer(children: []),
-                    BuildRowContainer(children: []),
-                    BuildRowContainer(isLast: true, children: []),
-                  ],
-                ),
-                const Divider(),
-                Row(
-                  children: [
-                    BuildRowContainer(
-                      isFirst: true,
-                      children: [const Text("12:00 AM")],
-                    ),
-                    BuildRowContainer(children: []),
-                    BuildRowContainer(children: []),
-                    BuildRowContainer(children: []),
-                    BuildRowContainer(children: []),
-                    BuildRowContainer(children: []),
-                    BuildRowContainer(children: []),
-                    BuildRowContainer(isLast: true, children: []),
-                  ],
-                ),
-                const Divider(),
-                Row(
-                  children: [
-                    BuildRowContainer(
-                      isFirst: true,
-                      children: [const Text("13:00 AM")],
-                    ),
-                    BuildRowContainer(children: []),
-                    BuildRowContainer(children: []),
-                    BuildRowContainer(children: []),
-                    BuildRowContainer(children: []),
-                    BuildRowContainer(children: []),
-                    BuildRowContainer(children: []),
-                    BuildRowContainer(isLast: true, children: []),
-                  ],
+                IconButton.outline(
+                  onPressed: () {},
+                  icon: const Icon(LucideIcons.chevronRight),
                 ),
               ],
             ),
+            const Spacer(),
+            PrimaryButton(
+              onPressed: () {},
+              leading: const Icon(LucideIcons.plus),
+              child: const Text("Booking Room"),
+            ),
+          ],
+        ).gap(16),
+
+        OutlinedContainer(
+          width: (MediaQuery.of(context).size.width - 60),
+          height: MediaQuery.of(context).size.height,
+          borderColor: Theme.of(context).colorScheme.border,
+          child: Column(
+            children: [
+              _buildHeaderRow(context),
+              const Divider(),
+              Row(
+                children: [
+                  BuildRowContainer(
+                    isFirst: true,
+                    children: [const Text("07:00 AM")],
+                  ),
+                  BuildRowContainer(children: []),
+                  BuildRowContainer(children: []),
+                  BuildRowContainer(children: []),
+                  BuildRowContainer(children: []),
+                  BuildRowContainer(children: []),
+                  BuildRowContainer(children: []),
+                  BuildRowContainer(isLast: true, children: []),
+                ],
+              ),
+              const Divider(),
+              Row(
+                children: [
+                  BuildRowContainer(
+                    isFirst: true,
+                    children: [const Text("08:00 AM")],
+                  ),
+                  BuildRowContainer(children: []),
+                  BuildRowContainer(children: []),
+                  BuildRowContainer(children: []),
+                  BuildRowContainer(children: []),
+                  BuildRowContainer(children: []),
+                  BuildRowContainer(children: []),
+                  BuildRowContainer(isLast: true, children: []),
+                ],
+              ),
+              const Divider(),
+              Row(
+                children: [
+                  BuildRowContainer(
+                    isFirst: true,
+                    children: [const Text("09:00 AM")],
+                  ),
+                  BuildRowContainer(children: []),
+                  BuildRowContainer(children: []),
+                  BuildRowContainer(children: []),
+                  BuildRowContainer(children: []),
+                  BuildRowContainer(children: []),
+                  BuildRowContainer(children: []),
+                  BuildRowContainer(isLast: true, children: []),
+                ],
+              ),
+              const Divider(),
+              Row(
+                children: [
+                  BuildRowContainer(
+                    isFirst: true,
+                    children: [const Text("10:00 AM")],
+                  ),
+                  BuildRowContainer(children: []),
+                  BuildRowContainer(children: []),
+                  BuildRowContainer(children: []),
+                  BuildRowContainer(children: []),
+                  BuildRowContainer(children: []),
+                  BuildRowContainer(children: []),
+                  BuildRowContainer(isLast: true, children: []),
+                ],
+              ),
+              const Divider(),
+              Row(
+                children: [
+                  BuildRowContainer(
+                    isFirst: true,
+                    children: [const Text("11:00 AM")],
+                  ),
+                  BuildRowContainer(children: []),
+                  BuildRowContainer(children: []),
+                  BuildRowContainer(children: []),
+                  BuildRowContainer(children: []),
+                  BuildRowContainer(children: []),
+                  BuildRowContainer(children: []),
+                  BuildRowContainer(isLast: true, children: []),
+                ],
+              ),
+              const Divider(),
+              Row(
+                children: [
+                  BuildRowContainer(
+                    isFirst: true,
+                    children: [const Text("12:00 AM")],
+                  ),
+                  BuildRowContainer(children: []),
+                  BuildRowContainer(children: []),
+                  BuildRowContainer(children: []),
+                  BuildRowContainer(children: []),
+                  BuildRowContainer(children: []),
+                  BuildRowContainer(children: []),
+                  BuildRowContainer(isLast: true, children: []),
+                ],
+              ),
+              const Divider(),
+              Row(
+                children: [
+                  BuildRowContainer(
+                    isFirst: true,
+                    children: [const Text("13:00 AM")],
+                  ),
+                  BuildRowContainer(children: []),
+                  BuildRowContainer(children: []),
+                  BuildRowContainer(children: []),
+                  BuildRowContainer(children: []),
+                  BuildRowContainer(children: []),
+                  BuildRowContainer(children: []),
+                  BuildRowContainer(isLast: true, children: []),
+                ],
+              ),
+            ],
           ),
-        ],
-      ),
-    );
+        ),
+      ],
+    ).gap(16).withPadding(all: 16);
   }
 
   Widget _buildHeaderRow(BuildContext context) {
@@ -177,7 +173,7 @@ class HotelBookingScreen extends StatelessWidget {
           ),
           width: 96,
           height: 64,
-          alignment: .center,
+          alignment: Alignment.center,
           child: const Text("Time"),
         ),
         Container(
@@ -188,7 +184,7 @@ class HotelBookingScreen extends StatelessWidget {
           ),
           width: (MediaQuery.of(context).size.width - 208) / 7,
           height: 64,
-          alignment: .center,
+          alignment: Alignment.center,
           child: const Text("Room 1"),
         ),
         Container(
@@ -199,7 +195,7 @@ class HotelBookingScreen extends StatelessWidget {
           ),
           width: (MediaQuery.of(context).size.width - 208) / 7,
           height: 64,
-          alignment: .center,
+          alignment: Alignment.center,
           child: const Text("Room 2"),
         ),
         Container(
@@ -210,7 +206,7 @@ class HotelBookingScreen extends StatelessWidget {
           ),
           width: (MediaQuery.of(context).size.width - 208) / 7,
           height: 64,
-          alignment: .center,
+          alignment: Alignment.center,
           child: const Text("Room 3"),
         ),
         Container(
@@ -221,7 +217,7 @@ class HotelBookingScreen extends StatelessWidget {
           ),
           width: (MediaQuery.of(context).size.width - 208) / 7,
           height: 64,
-          alignment: .center,
+          alignment: Alignment.center,
           child: const Text("Room 4"),
         ),
         Container(
@@ -232,7 +228,7 @@ class HotelBookingScreen extends StatelessWidget {
           ),
           width: (MediaQuery.of(context).size.width - 208) / 7,
           height: 64,
-          alignment: .center,
+          alignment: Alignment.center,
           child: const Text("Room 5"),
         ),
         Container(
@@ -243,13 +239,13 @@ class HotelBookingScreen extends StatelessWidget {
           ),
           width: (MediaQuery.of(context).size.width - 208) / 7,
           height: 64,
-          alignment: .center,
+          alignment: Alignment.center,
           child: const Text("Room 6"),
         ),
         Container(
           width: (MediaQuery.of(context).size.width - 208) / 7,
           height: 64,
-          alignment: .center,
+          alignment: Alignment.center,
           child: const Text("Room 7"),
         ),
       ],
@@ -282,7 +278,7 @@ class BuildRowContainer extends StatelessWidget {
             ),
             width: 96,
             height: (MediaQuery.of(context).size.height - 73) / 7,
-            alignment: .topCenter,
+            alignment: Alignment.topCenter,
             child: Column(children: children),
           )
         else
@@ -301,7 +297,7 @@ class BuildRowContainer extends StatelessWidget {
                 ),
                 width: (MediaQuery.of(context).size.width - 208) / 7,
                 height: (MediaQuery.of(context).size.height - 73) / 7,
-                alignment: .center,
+                alignment: Alignment.center,
                 child: Column(children: children),
               ),
             ),
