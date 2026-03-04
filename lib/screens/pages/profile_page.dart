@@ -1,3 +1,5 @@
+import 'package:flutter_dashboard/widget/card_widget.dart';
+import 'package:flutter_dashboard/widget/table_widget.dart';
 import 'package:shadcn_flutter/shadcn_flutter.dart';
 
 class ProfilePageScreen extends StatefulWidget {
@@ -51,522 +53,439 @@ class ProfilePageScreenState extends State<ProfilePageScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const .all(16),
-      child: Column(
-        crossAxisAlignment: .start,
-        children: [
-          Row(
-            children: [
-              const Text("Profile Page").bold().large(),
-              const Spacer(),
-              PrimaryButton(
-                onPressed: () {},
-                leading: const Icon(LucideIcons.cog),
-                child: const Text("Settings"),
-              ),
-            ],
-          ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            const Text("Profile Page").bold.large,
+            const Spacer(),
+            PrimaryButton(
+              onPressed: () {},
+              leading: const Icon(LucideIcons.cog),
+              child: const Text("Settings"),
+            ),
+          ],
+        ),
 
-          const SizedBox(height: 16),
+        Tabs(
+          index: index,
+          children: const [
+            TabItem(child: Text("Overview")),
+            TabItem(child: Text("Projects")),
+            TabItem(child: Text("Activities")),
+            TabItem(child: Text("Members")),
+          ],
+          onChanged: (int value) {
+            setState(() {
+              index = value;
+            });
+          },
+        ),
 
-          Tabs(
-            index: index,
-            children: const [
-              TabItem(child: Text("Overview")),
-              TabItem(child: Text("Projects")),
-              TabItem(child: Text("Activities")),
-              TabItem(child: Text("Members")),
-            ],
-            onChanged: (int value) {
-              setState(() {
-                index = value;
-              });
-            },
-          ),
-
-          const SizedBox(height: 16),
-
-          Row(
-            crossAxisAlignment: .start,
-            spacing: 16,
-            children: [
-              Expanded(
-                child: Column(
-                  spacing: 16,
-                  children: [
-                    SizedBox(
-                      width: double.infinity,
-                      child: Card(
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  CardWidget(
+                    title: "",
+                    subtitle: "",
+                    children: [
+                      Center(
                         child: Column(
-                          crossAxisAlignment: .start,
                           children: [
-                            Center(
+                            Avatar(
+                              size: 64,
+                              initials: Avatar.getInitials("ts paja"),
+                              provider: const NetworkImage(
+                                "https://avatars.githubusercontent.com/u/213942709?s=400&v=4",
+                              ),
+                            ),
+                            const SizedBox(height: 4),
+                            const Text("TSpaja").large.bold,
+                            const SizedBox(height: 4),
+                            const Text("Project Manager").muted.small,
+                          ],
+                        ),
+                      ),
+
+                      const SizedBox(height: 16),
+
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Container(
+                              height: 75,
+                              decoration: BoxDecoration(
+                                color: Colors.gray.shade200,
+                                border: Border.all(color: Colors.gray),
+                                borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(12),
+                                  bottomLeft: Radius.circular(12),
+                                ),
+                              ),
                               child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Avatar(
-                                    size: 64,
-                                    initials: Avatar.getInitials("ts paja"),
-                                    provider: const NetworkImage(
-                                      "https://avatars.githubusercontent.com/u/213942709?s=400&v=4",
-                                    ),
-                                  ),
-                                  const SizedBox(height: 4),
-                                  const Text("TSpaja").large().bold(),
-                                  const SizedBox(height: 4),
-                                  const Text("Project Manager").muted().small(),
+                                  const Text("1").bold,
+                                  const Text("Post").muted.small,
                                 ],
                               ),
                             ),
-
-                            const SizedBox(height: 16),
-
-                            Row(
-                              children: [
-                                Expanded(
-                                  child: Container(
-                                    height: 75,
-                                    decoration: BoxDecoration(
-                                      color: Colors.gray.shade200,
-                                      border: Border.all(color: Colors.gray),
-                                      borderRadius: BorderRadius.only(
-                                        topLeft: Radius.circular(12),
-                                        bottomLeft: Radius.circular(12),
-                                      ),
-                                    ),
-                                    child: Column(
-                                      mainAxisAlignment: .center,
-                                      children: [
-                                        const Text("1").bold(),
-                                        const Text("Post").muted().small(),
-                                      ],
-                                    ),
-                                  ),
+                          ),
+                          Expanded(
+                            child: Container(
+                              height: 75,
+                              decoration: BoxDecoration(
+                                color: Colors.gray.shade200,
+                                border: Border(
+                                  top: BorderSide(color: Colors.gray),
+                                  bottom: BorderSide(color: Colors.gray),
                                 ),
-                                Expanded(
-                                  child: Container(
-                                    height: 75,
-                                    decoration: BoxDecoration(
-                                      color: Colors.gray.shade200,
-                                      border: Border(
-                                        top: BorderSide(color: Colors.gray),
-                                        bottom: BorderSide(color: Colors.gray),
-                                      ),
-                                    ),
-                                    child: Column(
-                                      mainAxisAlignment: .center,
-                                      children: [
-                                        const Text("2").bold(),
-                                        const Text("Projects").muted().small(),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  child: Container(
-                                    height: 75,
-                                    decoration: BoxDecoration(
-                                      color: Colors.gray.shade200,
-                                      border: Border.all(color: Colors.gray),
-                                      borderRadius: BorderRadius.only(
-                                        topRight: Radius.circular(12),
-                                        bottomRight: Radius.circular(12),
-                                      ),
-                                    ),
-                                    child: Column(
-                                      mainAxisAlignment: .center,
-                                      children: [
-                                        const Text("3").bold(),
-                                        const Text("Members").muted().small(),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-
-                            const SizedBox(height: 16),
-
-                            Row(
-                              spacing: 8,
-                              children: [
-                                const Icon(LucideIcons.mail, size: 16),
-                                const Text("example@example.com"),
-                              ],
-                            ),
-
-                            const SizedBox(height: 16),
-
-                            Row(
-                              spacing: 8,
-                              children: [
-                                const Icon(LucideIcons.phoneCall, size: 16),
-                                const Text("+123 4567 890 123"),
-                              ],
-                            ),
-
-                            const SizedBox(height: 16),
-
-                            Row(
-                              spacing: 8,
-                              children: [
-                                const Icon(LucideIcons.mapPin, size: 16),
-                                const Text("Moon"),
-                              ],
-                            ),
-
-                            const SizedBox(height: 16),
-
-                            Row(
-                              spacing: 8,
-                              children: [
-                                const Icon(LucideIcons.link, size: 16),
-                                const Text("http://example.com"),
-                              ],
-                            ),
-
-                            const SizedBox(height: 16),
-
-                            Row(
-                              spacing: 8,
-                              children: [
-                                const Icon(LucideIcons.link, size: 16),
-                                const Text("http://example.com"),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: double.infinity,
-                      child: Card(
-                        child: Column(
-                          crossAxisAlignment: .start,
-                          children: [
-                            const Text("Complete Your Profile").semiBold(),
-
-                            const SizedBox(height: 16),
-
-                            Row(
-                              spacing: 16,
-                              children: [
-                                Expanded(
-                                  child: Progress(
-                                    progress: 66,
-                                    min: 0,
-                                    max: 100,
-                                  ),
-                                ),
-                                const Text("66%"),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: double.infinity,
-                      child: Card(
-                        child: Column(
-                          crossAxisAlignment: .start,
-                          children: [
-                            const Text("Skills").semiBold(),
-
-                            const SizedBox(height: 16),
-
-                            Row(
-                              spacing: 8,
-                              children: const [
-                                Chip(child: Text("Flutter")),
-                                Chip(child: Text("HTML")),
-                                Chip(child: Text("Svelte")),
-                                Chip(child: Text("Vue")),
-                                Chip(child: Text("Tailwind CSS")),
-                                Chip(child: Text("CSS")),
-                                Chip(child: Text("Node.js")),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Expanded(
-                flex: 2,
-                child: Column(
-                  spacing: 16,
-                  children: [
-                    SizedBox(
-                      width: double.infinity,
-                      child: Card(
-                        child: Column(
-                          crossAxisAlignment: .start,
-                          children: [
-                            Row(
-                              children: [
-                                const Text("Latest Activity").semiBold(),
-                                const Spacer(),
-                                OutlineButton(
-                                  onPressed: () {},
-                                  child: const Text("View All"),
-                                ),
-                              ],
-                            ),
-
-                            const SizedBox(height: 16),
-
-                            Timeline(
-                              data: [
-                                TimelineData(
-                                  time: const Text("10/02/2026"),
-                                  title: const Text("Flutter Dashboard"),
-                                  content: const Text("Flutter Dashboard"),
-                                ),
-                                TimelineData(
-                                  time: const Text("10/02/2026"),
-                                  title: const Text("Flutter Dashboard"),
-                                  content: const Text("Flutter Dashboard"),
-                                ),
-                                TimelineData(
-                                  time: const Text("10/02/2026"),
-                                  title: const Text("Flutter Dashboard"),
-                                  content: const Text("Flutter Dashboard"),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Row(
-                      crossAxisAlignment: .start,
-                      spacing: 16,
-                      children: [
-                        Expanded(
-                          child: Card(
-                            child: Column(
-                              crossAxisAlignment: .start,
-                              children: [
-                                const Text("Transaction History").semiBold(),
-
-                                const SizedBox(height: 16),
-
-                                Table(
-                                  columnWidths: {
-                                    0: FixedTableSize(225),
-                                    1: FixedTableSize(76),
-                                    2: FixedTableSize(110),
-                                  },
-                                  defaultRowHeight: FixedTableSize(48),
-
-                                  rows: [
-                                    // Header row
-                                    TableRow(
-                                      cells: [
-                                        _buildHeaderCell("Product"),
-                                        _buildHeaderCell("Status"),
-                                        _buildHeaderCell("Date"),
-                                        _buildHeaderCell("Amount", true),
-                                      ],
-                                    ),
-
-                                    // Body rows
-                                    ...transactionHistory.map(
-                                      (row) => _buildDataRow(context, row),
-                                    ),
-                                  ],
-                                ),
-                              ],
+                              ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  const Text("2").bold,
+                                  const Text("Projects").muted.small,
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                        Expanded(
-                          child: Card(
-                            child: Column(
-                              crossAxisAlignment: .start,
-                              children: [
-                                Row(
-                                  children: [
-                                    const Text("Connections").semiBold(),
-                                    const Spacer(),
-                                    IconButton.outline(
-                                      onPressed: () {},
-                                      icon: const Icon(
-                                        LucideIcons.chevronRight,
-                                      ),
-                                    ),
-                                  ],
+                          Expanded(
+                            child: Container(
+                              height: 75,
+                              decoration: BoxDecoration(
+                                color: Colors.gray.shade200,
+                                border: Border.all(color: Colors.gray),
+                                borderRadius: BorderRadius.only(
+                                  topRight: Radius.circular(12),
+                                  bottomRight: Radius.circular(12),
                                 ),
-
-                                const SizedBox(height: 16),
-
-                                Row(
-                                  spacing: 8,
-                                  children: [
-                                    Avatar(
-                                      size: 24,
-                                      initials: Avatar.getInitials("ts paja"),
-                                      provider: const NetworkImage(
-                                        "https://avatars.githubusercontent.com/u/213942709?s=400&v=4",
-                                      ),
-                                    ),
-                                    Column(
-                                      crossAxisAlignment: .start,
-                                      children: [
-                                        const Text("Olivia Davis"),
-                                        const Text(
-                                          "olivia.davis@example.com",
-                                        ).muted().small(),
-                                      ],
-                                    ),
-                                    const Spacer(),
-                                    PrimaryButton(
-                                      onPressed: () {},
-                                      child: const Text("Connect"),
-                                    ),
-                                  ],
-                                ),
-
-                                const SizedBox(height: 16),
-
-                                Row(
-                                  spacing: 8,
-                                  children: [
-                                    Avatar(
-                                      size: 24,
-                                      initials: Avatar.getInitials("ts paja"),
-                                      provider: const NetworkImage(
-                                        "https://avatars.githubusercontent.com/u/213942709?s=400&v=4",
-                                      ),
-                                    ),
-                                    Column(
-                                      crossAxisAlignment: .start,
-                                      children: [
-                                        const Text("John Doe"),
-                                        const Text(
-                                          "john.doe@example.com",
-                                        ).muted().small(),
-                                      ],
-                                    ),
-                                    const Spacer(),
-                                    OutlineButton(
-                                      onPressed: () {},
-                                      child: const Text("Disconnect"),
-                                    ),
-                                  ],
-                                ),
-
-                                const SizedBox(height: 16),
-
-                                Row(
-                                  spacing: 8,
-                                  children: [
-                                    Avatar(
-                                      size: 24,
-                                      initials: Avatar.getInitials("ts paja"),
-                                      provider: const NetworkImage(
-                                        "https://avatars.githubusercontent.com/u/213942709?s=400&v=4",
-                                      ),
-                                    ),
-                                    Column(
-                                      crossAxisAlignment: .start,
-                                      children: [
-                                        const Text("Alice Smith"),
-                                        const Text(
-                                          "alice.smith@example.com",
-                                        ).muted().small(),
-                                      ],
-                                    ),
-                                    const Spacer(),
-                                    PrimaryButton(
-                                      onPressed: () {},
-                                      child: const Text("Connect"),
-                                    ),
-                                  ],
-                                ),
-
-                                const SizedBox(height: 16),
-
-                                Row(
-                                  spacing: 8,
-                                  children: [
-                                    Avatar(
-                                      size: 24,
-                                      initials: Avatar.getInitials("ts paja"),
-                                      provider: const NetworkImage(
-                                        "https://avatars.githubusercontent.com/u/213942709?s=400&v=4",
-                                      ),
-                                    ),
-                                    Column(
-                                      crossAxisAlignment: .start,
-                                      children: [
-                                        const Text("Emily Martinez"),
-                                        const Text(
-                                          "emily.martinez@example.com",
-                                        ).muted().small(),
-                                      ],
-                                    ),
-                                    const Spacer(),
-                                    OutlineButton(
-                                      onPressed: () {},
-                                      child: const Text("Disconnect"),
-                                    ),
-                                  ],
-                                ),
-
-                                const SizedBox(height: 16),
-
-                                Row(
-                                  spacing: 8,
-                                  children: [
-                                    Avatar(
-                                      size: 24,
-                                      initials: Avatar.getInitials("ts paja"),
-                                      provider: const NetworkImage(
-                                        "https://avatars.githubusercontent.com/u/213942709?s=400&v=4",
-                                      ),
-                                    ),
-                                    Column(
-                                      crossAxisAlignment: .start,
-                                      children: [
-                                        const Text("James Wilson"),
-                                        const Text(
-                                          "james.wilson@example.com",
-                                        ).muted().small(),
-                                      ],
-                                    ),
-                                    const Spacer(),
-                                    OutlineButton(
-                                      onPressed: () {},
-                                      child: const Text("Disconnect"),
-                                    ),
-                                  ],
-                                ),
-                              ],
+                              ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  const Text("3").bold,
+                                  const Text("Members").muted.small,
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
+                        ],
+                      ),
+
+                      const SizedBox(height: 16),
+
+                      Row(
+                        children: [
+                          const Icon(LucideIcons.mail, size: 16),
+                          const Text("example@example.com"),
+                        ],
+                      ).gap(8),
+
+                      const SizedBox(height: 16),
+
+                      Row(
+                        children: [
+                          const Icon(LucideIcons.phoneCall, size: 16),
+                          const Text("+123 4567 890 123"),
+                        ],
+                      ).gap(8),
+
+                      const SizedBox(height: 16),
+
+                      Row(
+                        children: [
+                          const Icon(LucideIcons.mapPin, size: 16),
+                          const Text("Moon"),
+                        ],
+                      ).gap(8),
+
+                      const SizedBox(height: 16),
+
+                      Row(
+                        children: [
+                          const Icon(LucideIcons.link, size: 16),
+                          const Text("http://example.com"),
+                        ],
+                      ).gap(8),
+
+                      const SizedBox(height: 16),
+
+                      Row(
+                        children: [
+                          const Icon(LucideIcons.link, size: 16),
+                          const Text("http://example.com"),
+                        ],
+                      ).gap(8),
+                    ],
+                  ),
+                  CardWidget(
+                    title: "Complete your profile",
+                    subtitle: "",
+                    children: [
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Progress(progress: 66, min: 0, max: 100),
+                          ),
+                          const Text("66%"),
+                        ],
+                      ).gap(16),
+                    ],
+                  ),
+                  CardWidget(
+                    title: "Skills",
+                    subtitle: "",
+                    children: [
+                      Row(
+                        children: const [
+                          Chip(child: Text("Flutter")),
+                          Chip(child: Text("HTML")),
+                          Chip(child: Text("Svelte")),
+                          Chip(child: Text("Vue")),
+                        ],
+                      ).gap(8),
+
+                      const SizedBox(height: 16),
+
+                      Row(
+                        children: const [
+                          Chip(child: Text("Tailwind CSS")),
+                          Chip(child: Text("CSS")),
+                          Chip(child: Text("Node.js")),
+                        ],
+                      ).gap(8),
+                    ],
+                  ),
+                ],
+              ).gap(16),
+            ),
+            Expanded(
+              flex: 2,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  CardWidget(
+                    title: "Latests Activity",
+                    subtitle: "",
+                    trailing: [
+                      OutlineButton(
+                        onPressed: () {},
+                        child: const Text("View All"),
+                      ),
+                    ],
+                    children: [
+                      Timeline(
+                        data: [
+                          TimelineData(
+                            time: const Text("10/02/2026"),
+                            title: const Text("Flutter Dashboard"),
+                            content: const Text("Flutter Dashboard"),
+                          ),
+                          TimelineData(
+                            time: const Text("10/02/2026"),
+                            title: const Text("Flutter Dashboard"),
+                            content: const Text("Flutter Dashboard"),
+                          ),
+                          TimelineData(
+                            time: const Text("10/02/2026"),
+                            title: const Text("Flutter Dashboard"),
+                            content: const Text("Flutter Dashboard"),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  CardWidget(
+                    title: "Transaction history",
+                    subtitle: "",
+                    children: [
+                      TableWidget(
+                        columnWidths: {
+                          0: FixedTableSize(225),
+                          1: FixedTableSize(76),
+                          2: FixedTableSize(110),
+                        },
+                        hasCheckbox: false,
+                        headerChildren: [
+                          _buildHeaderCell("Product"),
+                          _buildHeaderCell("Status"),
+                          _buildHeaderCell("Date"),
+                          _buildHeaderCell("Amount", true),
+                        ],
+                        bodyChildren: [
+                          ...transactionHistory.map(
+                            (row) => _buildDataRow(context, row),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  CardWidget(
+                    title: "Connections",
+                    subtitle: "",
+                    trailing: [
+                      IconButton.outline(
+                        onPressed: () {},
+                        icon: const Icon(LucideIcons.chevronRight),
+                      ),
+                    ],
+                    children: [
+                      Row(
+                        children: [
+                          Avatar(
+                            size: 24,
+                            initials: Avatar.getInitials("ts paja"),
+                            provider: const NetworkImage(
+                              "https://avatars.githubusercontent.com/u/213942709?s=400&v=4",
+                            ),
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text("Olivia Davis"),
+                              const Text(
+                                "olivia.davis@example.com",
+                              ).muted.small,
+                            ],
+                          ),
+                          const Spacer(),
+                          PrimaryButton(
+                            onPressed: () {},
+                            child: const Text("Connect"),
+                          ),
+                        ],
+                      ).gap(8),
+
+                      const SizedBox(height: 16),
+
+                      Row(
+                        children: [
+                          Avatar(
+                            size: 24,
+                            initials: Avatar.getInitials("ts paja"),
+                            provider: const NetworkImage(
+                              "https://avatars.githubusercontent.com/u/213942709?s=400&v=4",
+                            ),
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text("John Doe"),
+                              const Text("john.doe@example.com").muted.small,
+                            ],
+                          ),
+                          const Spacer(),
+                          OutlineButton(
+                            onPressed: () {},
+                            child: const Text("Disconnect"),
+                          ),
+                        ],
+                      ).gap(8),
+
+                      const SizedBox(height: 16),
+
+                      Row(
+                        children: [
+                          Avatar(
+                            size: 24,
+                            initials: Avatar.getInitials("ts paja"),
+                            provider: const NetworkImage(
+                              "https://avatars.githubusercontent.com/u/213942709?s=400&v=4",
+                            ),
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text("Alice Smith"),
+                              const Text("alice.smith@example.com").muted.small,
+                            ],
+                          ),
+                          const Spacer(),
+                          PrimaryButton(
+                            onPressed: () {},
+                            child: const Text("Connect"),
+                          ),
+                        ],
+                      ).gap(8),
+
+                      const SizedBox(height: 16),
+
+                      Row(
+                        children: [
+                          Avatar(
+                            size: 24,
+                            initials: Avatar.getInitials("ts paja"),
+                            provider: const NetworkImage(
+                              "https://avatars.githubusercontent.com/u/213942709?s=400&v=4",
+                            ),
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text("Emily Martinez"),
+                              const Text(
+                                "emily.martinez@example.com",
+                              ).muted.small,
+                            ],
+                          ),
+                          const Spacer(),
+                          OutlineButton(
+                            onPressed: () {},
+                            child: const Text("Disconnect"),
+                          ),
+                        ],
+                      ).gap(8),
+
+                      const SizedBox(height: 16),
+
+                      Row(
+                        children: [
+                          Avatar(
+                            size: 24,
+                            initials: Avatar.getInitials("ts paja"),
+                            provider: const NetworkImage(
+                              "https://avatars.githubusercontent.com/u/213942709?s=400&v=4",
+                            ),
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text("James Wilson"),
+                              const Text(
+                                "james.wilson@example.com",
+                              ).muted.small,
+                            ],
+                          ),
+                          const Spacer(),
+                          OutlineButton(
+                            onPressed: () {},
+                            child: const Text("Disconnect"),
+                          ),
+                        ],
+                      ).gap(8),
+                    ],
+                  ),
+                ],
+              ).gap(16),
+            ),
+          ],
+        ).gap(16),
+      ],
+    ).gap(16).withPadding(all: 16);
   }
 
   TableCell _buildHeaderCell(String text, [bool alignRight = false]) {
     return TableCell(
       child: Container(
-        padding: const .all(8),
-        alignment: alignRight ? .centerRight : .centerLeft,
-        child: Text(text).muted().semiBold(),
+        padding: const EdgeInsets.all(8),
+        alignment: alignRight ? Alignment.centerRight : Alignment.centerLeft,
+        child: Text(text).muted.semiBold,
       ),
     );
   }
@@ -574,8 +493,8 @@ class ProfilePageScreenState extends State<ProfilePageScreen> {
   TableCell _buildCell(String text, [bool alignRight = false]) {
     return TableCell(
       child: Container(
-        padding: const .all(8),
-        alignment: alignRight ? .centerRight : .centerLeft,
+        padding: const EdgeInsets.all(8),
+        alignment: alignRight ? Alignment.centerRight : Alignment.centerLeft,
         child: Text(text),
       ),
     );

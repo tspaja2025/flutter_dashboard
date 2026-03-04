@@ -5,100 +5,93 @@ class AuthenticationLoginPageScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const .all(16),
-      child: Column(
-        children: [
-          Row(children: [const Text("Login Page").bold().large()]),
+    return Column(
+      children: [
+        Row(children: [const Text("Login Page").bold.large]),
 
-          const SizedBox(height: 16),
+        Center(
+          child: SizedBox(
+            width: 400,
+            child: Card(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text("Welcome back").x4Large.bold,
+                  const Text("Please sign in to your account").muted.small,
 
-          Center(
-            child: SizedBox(
-              width: 400,
-              child: Card(
-                child: Column(
-                  crossAxisAlignment: .start,
-                  children: [
-                    const Text("Welcome back").x4Large().bold(),
-                    const Text(
-                      "Please sign in to your account",
-                    ).muted().small(),
+                  const SizedBox(height: 16),
 
-                    const SizedBox(height: 16),
-
-                    TextField(placeholder: const Text("Email address")),
-                    const SizedBox(height: 16),
-                    TextField(placeholder: const Text("Password")),
-                    const SizedBox(height: 16),
-                    Row(
-                      mainAxisAlignment: .end,
-                      children: [
-                        TextButton(
-                          onPressed: () {},
-                          child: const Text("Forgot your password?"),
-                        ),
-                      ],
-                    ),
-
-                    const SizedBox(height: 16),
-
-                    SizedBox(
-                      width: double.infinity,
-                      child: PrimaryButton(
+                  TextField(placeholder: const Text("Email address")),
+                  const SizedBox(height: 16),
+                  TextField(placeholder: const Text("Password")),
+                  const SizedBox(height: 16),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      TextButton(
                         onPressed: () {},
-                        child: const Text("Sign in"),
+                        child: const Text("Forgot your password?"),
                       ),
+                    ],
+                  ),
+
+                  const SizedBox(height: 16),
+
+                  SizedBox(
+                    width: double.infinity,
+                    child: PrimaryButton(
+                      onPressed: () {},
+                      alignment: Alignment.center,
+                      child: const Text("Sign in"),
                     ),
+                  ),
 
-                    const SizedBox(height: 16),
+                  const SizedBox(height: 16),
 
-                    Stack(
-                      alignment: .center,
-                      children: [
-                        const Divider(),
-                        const Text(
-                          "or continue with",
-                          style: TextStyle(backgroundColor: Colors.white),
-                        ),
-                      ],
-                    ),
+                  Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      const Divider(),
+                      const Text(
+                        "or continue with",
+                        style: TextStyle(backgroundColor: Colors.white),
+                      ),
+                    ],
+                  ),
 
-                    const SizedBox(height: 16),
+                  const SizedBox(height: 16),
 
-                    Row(
-                      mainAxisAlignment: .center,
-                      spacing: 16,
-                      children: [
-                        OutlineButton(
-                          onPressed: () {},
-                          child: const Text("Google"),
-                        ),
-                        OutlineButton(
-                          onPressed: () {},
-                          child: const Text("Github"),
-                        ),
-                      ],
-                    ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      OutlineButton(
+                        onPressed: () {},
+                        child: const Text("Google"),
+                      ),
+                      OutlineButton(
+                        onPressed: () {},
+                        child: const Text("Github"),
+                      ),
+                    ],
+                  ).gap(16),
 
-                    const SizedBox(height: 16),
+                  const SizedBox(height: 16),
 
-                    Row(
-                      mainAxisAlignment: .center,
-                      children: [
-                        TextButton(
-                          onPressed: () {},
-                          child: const Text("Don't have an account? Sign up"),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      TextButton(
+                        onPressed: () {},
+                        child: const Text("Don't have an account? Sign up"),
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ),
           ),
-        ],
-      ),
-    );
+        ),
+      ],
+    ).gap(16).withPadding(all: 16);
   }
 }

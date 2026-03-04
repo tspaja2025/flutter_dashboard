@@ -1,3 +1,5 @@
+import 'package:flutter_dashboard/widget/card_widget.dart';
+import 'package:flutter_dashboard/widget/table_widget.dart';
 import 'package:shadcn_flutter/shadcn_flutter.dart';
 
 class SettingsBillingPageScreen extends StatefulWidget {
@@ -50,181 +52,145 @@ class SettingsBillingPageScreenState extends State<SettingsBillingPageScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const .all(16),
-      child: Column(
-        children: [
-          Center(
-            child: SizedBox(
-              width: 800,
-              child: Column(
-                crossAxisAlignment: .start,
-                children: [
-                  const Text("Settings Account Page").bold().large(),
-                  const SizedBox(height: 4),
-                  const Text(
-                    "Manage your account settings and set e-mail preferences.",
-                  ).muted().small(),
-                ],
-              ),
+    return Column(
+      children: [
+        Center(
+          child: SizedBox(
+            width: 800,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text("Settings Account Page").bold.large,
+                const SizedBox(height: 4),
+                const Text(
+                  "Manage your account settings and set e-mail preferences.",
+                ).muted.small,
+              ],
             ),
           ),
+        ),
 
-          const SizedBox(height: 16),
-
-          Center(
-            child: SizedBox(
-              width: 800,
-              child: Card(
-                child: Row(
-                  children: [
-                    Column(
-                      crossAxisAlignment: .start,
-                      children: [
-                        const Text("Billing").semiBold(),
-                        const Text(
-                          "Billing monthly | next Payment on 10/02/2026",
-                        ).muted().small(),
-                      ],
-                    ),
-                    const Spacer(),
-                    PrimaryButton(
-                      onPressed: () {},
-                      child: const Text("Change plan"),
-                    ),
-                  ],
+        Center(
+          child: SizedBox(
+            width: 800,
+            child: CardWidget(
+              title: "Billing",
+              subtitle: "Billing monthly | next Payment on 10/02/2026",
+              trailing: [
+                PrimaryButton(
+                  onPressed: () {},
+                  child: const Text("Change plan"),
                 ),
-              ),
+              ],
             ),
           ),
+        ),
 
-          const SizedBox(height: 16),
+        const SizedBox(height: 16),
 
-          Center(
-            child: SizedBox(
-              width: 800,
-              child: Card(
-                child: Column(
-                  children: [
-                    const Text("Payment Method").semiBold(),
-
-                    const SizedBox(height: 16),
-
-                    OutlinedContainer(
-                      padding: const .all(16),
-                      child: Row(
+        Center(
+          child: SizedBox(
+            width: 800,
+            child: CardWidget(
+              title: "Payment Method",
+              subtitle: "",
+              children: [
+                OutlinedContainer(
+                  padding: const EdgeInsets.all(16),
+                  child: Row(
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Column(
-                            crossAxisAlignment: .start,
-                            children: [
-                              const Text("Carolyn Perkins **** 1234"),
-                              const Text("Expired Jan 2026"),
-                            ],
-                          ),
-                          const Spacer(),
-                          IconButton.outline(
-                            onPressed: () {},
-                            icon: const Icon(LucideIcons.pencil),
-                          ),
+                          const Text("Carolyn Perkins **** 1234"),
+                          const Text("Expired Jan 2026"),
                         ],
                       ),
-                    ),
-
-                    const SizedBox(height: 16),
-
-                    OutlinedContainer(
-                      padding: const .all(16),
-                      child: Row(
-                        children: [
-                          Column(
-                            crossAxisAlignment: .start,
-                            children: [
-                              const Text("Carolyn Perkins **** 5678"),
-                              const Text("Expired Jan 2026"),
-                            ],
-                          ),
-                          const Spacer(),
-                          IconButton.outline(
-                            onPressed: () {},
-                            icon: const Icon(LucideIcons.pencil),
-                          ),
-                        ],
-                      ),
-                    ),
-
-                    const SizedBox(height: 16),
-
-                    SizedBox(
-                      width: double.infinity,
-                      child: OutlineButton(
+                      const Spacer(),
+                      IconButton.outline(
                         onPressed: () {},
-                        alignment: .center,
-                        leading: const Icon(LucideIcons.plus),
-                        child: const Text("Add payment method"),
+                        icon: const Icon(LucideIcons.pencil),
                       ),
+                    ],
+                  ),
+                ),
+
+                const SizedBox(height: 16),
+
+                OutlinedContainer(
+                  padding: const EdgeInsets.all(16),
+                  child: Row(
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text("Carolyn Perkins **** 5678"),
+                          const Text("Expired Jan 2026"),
+                        ],
+                      ),
+                      const Spacer(),
+                      IconButton.outline(
+                        onPressed: () {},
+                        icon: const Icon(LucideIcons.pencil),
+                      ),
+                    ],
+                  ),
+                ),
+
+                const SizedBox(height: 16),
+
+                SizedBox(
+                  width: double.infinity,
+                  child: OutlineButton(
+                    onPressed: () {},
+                    alignment: Alignment.center,
+                    leading: const Icon(LucideIcons.plus),
+                    child: const Text("Add payment method"),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+
+        const SizedBox(height: 16),
+
+        Center(
+          child: SizedBox(
+            width: 800,
+            child: CardWidget(
+              title: "Transaction history",
+              subtitle: "",
+              children: [
+                TableWidget(
+                  columnWidths: {},
+                  hasCheckbox: false,
+                  headerChildren: [
+                    _buildHeaderCell("Product"),
+                    _buildHeaderCell("Status"),
+                    _buildHeaderCell("Date"),
+                    _buildHeaderCell("Amount", true),
+                  ],
+                  bodyChildren: [
+                    ...transactionHistory.map(
+                      (row) => _buildDataRow(context, row),
                     ),
                   ],
                 ),
-              ),
+              ],
             ),
           ),
-
-          const SizedBox(height: 16),
-
-          Center(
-            child: SizedBox(
-              width: 800,
-              child: Card(
-                child: Column(
-                  crossAxisAlignment: .start,
-                  children: [
-                    const Text("Transaction history").semiBold(),
-
-                    const SizedBox(height: 16),
-
-                    Table(
-                      columnWidths: {
-                        0: FixedTableSize(100),
-                        1: FixedTableSize(225),
-                        2: FixedTableSize(76),
-                        3: FixedTableSize(110),
-                      },
-                      defaultRowHeight: FixedTableSize(48),
-
-                      rows: [
-                        // Header row
-                        TableRow(
-                          cells: [
-                            _buildHeaderCell("Reference"),
-                            _buildHeaderCell("Product"),
-                            _buildHeaderCell("Status"),
-                            _buildHeaderCell("Date"),
-                            _buildHeaderCell("Amount", true),
-                          ],
-                        ),
-
-                        // Body rows
-                        ...transactionHistory.map(
-                          (row) => _buildDataRow(context, row),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
+        ),
+      ],
+    ).gap(16).withPadding(all: 16);
   }
 
   TableCell _buildHeaderCell(String text, [bool alignRight = false]) {
     return TableCell(
       child: Container(
-        padding: const .all(8),
-        alignment: alignRight ? .centerRight : .centerLeft,
-        child: Text(text).muted().semiBold(),
+        padding: const EdgeInsets.all(8),
+        alignment: alignRight ? Alignment.centerRight : Alignment.centerLeft,
+        child: Text(text).muted.semiBold,
       ),
     );
   }
@@ -232,8 +198,8 @@ class SettingsBillingPageScreenState extends State<SettingsBillingPageScreen> {
   TableCell _buildCell(String text, [bool alignRight = false]) {
     return TableCell(
       child: Container(
-        padding: const .all(8),
-        alignment: alignRight ? .centerRight : .centerLeft,
+        padding: const EdgeInsets.all(8),
+        alignment: alignRight ? Alignment.centerRight : Alignment.centerLeft,
         child: Text(text),
       ),
     );

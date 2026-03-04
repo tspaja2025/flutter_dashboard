@@ -5,37 +5,30 @@ class Error404PageScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const .all(16),
-      child: Column(
-        children: [
-          Row(children: [const Text("Error 404 Page").bold().large()]),
+    return Column(
+      children: [
+        Row(children: [const Text("Error 404 Page").bold.large]),
 
-          const SizedBox(height: 16),
-
-          OutlinedContainer(
-            width: 800,
-            height: 300,
-            backgroundColor: Colors.gray.shade100,
-            child: Column(
-              mainAxisAlignment: .center,
-              children: [
-                const Text("404").x8Large().bold(),
-                const SizedBox(height: 16),
-                const Text("Page Not Found").x2Large(),
-              ],
-            ),
+        OutlinedContainer(
+          width: 800,
+          height: 300,
+          backgroundColor: Colors.gray.shade100,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text("404").x8Large.bold,
+              const SizedBox(height: 16),
+              const Text("Page Not Found").x2Large,
+            ],
           ),
+        ),
 
-          const SizedBox(height: 16),
-
-          OutlineButton(
-            onPressed: () {},
-            trailing: const Icon(LucideIcons.arrowRight),
-            child: const Text("Back to Home"),
-          ),
-        ],
-      ),
-    );
+        OutlineButton(
+          onPressed: () {},
+          trailing: const Icon(LucideIcons.arrowRight),
+          child: const Text("Back to Home"),
+        ),
+      ],
+    ).gap(16).withPadding(all: 16);
   }
 }

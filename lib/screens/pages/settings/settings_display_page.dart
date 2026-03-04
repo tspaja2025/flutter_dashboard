@@ -15,115 +15,110 @@ class SettingsDisplayPageScreenState extends State<SettingsDisplayPageScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const .all(16),
-      child: Column(
-        children: [
-          Center(
-            child: SizedBox(
-              width: 800,
+    return Column(
+      children: [
+        Center(
+          child: SizedBox(
+            width: 800,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text("Settings Display Page").bold.large,
+                const SizedBox(height: 4),
+                const Text(
+                  "Manage your account settings and set e-mail preferences.",
+                ).muted.small,
+              ],
+            ),
+          ),
+        ),
+
+        Center(
+          child: SizedBox(
+            width: 800,
+            child: Card(
               child: Column(
-                crossAxisAlignment: .start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text("Settings Display Page").bold().large(),
-                  const SizedBox(height: 4),
+                  const Text("Sidebar"),
                   const Text(
-                    "Manage your account settings and set e-mail preferences.",
-                  ).muted().small(),
+                    "Select the items you want to display in the sidebar",
+                  ).muted.small,
+
+                  const SizedBox(height: 16),
+
+                  Checkbox(
+                    state: _state,
+                    onChanged: (value) {
+                      setState(() {
+                        _state = value;
+                      });
+                    },
+                    trailing: const Text("Recents"),
+                  ),
+                  const SizedBox(height: 4),
+                  Checkbox(
+                    state: _state,
+                    onChanged: (value) {
+                      setState(() {
+                        _state = value;
+                      });
+                    },
+                    trailing: const Text("Home"),
+                  ),
+                  const SizedBox(height: 4),
+                  Checkbox(
+                    state: _state,
+                    onChanged: (value) {
+                      setState(() {
+                        _state = value;
+                      });
+                    },
+                    trailing: const Text("Applications"),
+                  ),
+                  const SizedBox(height: 4),
+                  Checkbox(
+                    state: _state,
+                    onChanged: (value) {
+                      setState(() {
+                        _state = value;
+                      });
+                    },
+                    trailing: const Text("Desktop"),
+                  ),
+                  const SizedBox(height: 4),
+                  Checkbox(
+                    state: _state,
+                    onChanged: (value) {
+                      setState(() {
+                        _state = value;
+                      });
+                    },
+                    trailing: const Text("Downloads"),
+                  ),
+                  const SizedBox(height: 4),
+                  Checkbox(
+                    state: _state,
+                    onChanged: (value) {
+                      setState(() {
+                        _state = value;
+                      });
+                    },
+                    trailing: const Text("Documents"),
+                  ),
+
+                  const SizedBox(height: 16),
+
+                  PrimaryButton(
+                    onPressed: () {},
+                    child: const Text("Update display"),
+                  ),
                 ],
               ),
             ),
           ),
-
-          const SizedBox(height: 16),
-
-          Center(
-            child: SizedBox(
-              width: 800,
-              child: Card(
-                child: Column(
-                  crossAxisAlignment: .start,
-                  children: [
-                    const Text("Sidebar"),
-                    const Text(
-                      "Select the items you want to display in the sidebar",
-                    ).muted().small(),
-
-                    const SizedBox(height: 16),
-
-                    Checkbox(
-                      state: _state,
-                      onChanged: (value) {
-                        setState(() {
-                          _state = value;
-                        });
-                      },
-                      trailing: const Text("Recents"),
-                    ),
-                    const SizedBox(height: 4),
-                    Checkbox(
-                      state: _state,
-                      onChanged: (value) {
-                        setState(() {
-                          _state = value;
-                        });
-                      },
-                      trailing: const Text("Home"),
-                    ),
-                    const SizedBox(height: 4),
-                    Checkbox(
-                      state: _state,
-                      onChanged: (value) {
-                        setState(() {
-                          _state = value;
-                        });
-                      },
-                      trailing: const Text("Applications"),
-                    ),
-                    const SizedBox(height: 4),
-                    Checkbox(
-                      state: _state,
-                      onChanged: (value) {
-                        setState(() {
-                          _state = value;
-                        });
-                      },
-                      trailing: const Text("Desktop"),
-                    ),
-                    const SizedBox(height: 4),
-                    Checkbox(
-                      state: _state,
-                      onChanged: (value) {
-                        setState(() {
-                          _state = value;
-                        });
-                      },
-                      trailing: const Text("Downloads"),
-                    ),
-                    const SizedBox(height: 4),
-                    Checkbox(
-                      state: _state,
-                      onChanged: (value) {
-                        setState(() {
-                          _state = value;
-                        });
-                      },
-                      trailing: const Text("Documents"),
-                    ),
-
-                    const SizedBox(height: 16),
-
-                    PrimaryButton(
-                      onPressed: () {},
-                      child: const Text("Update display"),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
+        ),
+      ],
+    ).gap(16).withPadding(all: 16);
   }
 }

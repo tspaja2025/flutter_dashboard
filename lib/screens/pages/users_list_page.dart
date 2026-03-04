@@ -1,3 +1,4 @@
+import 'package:flutter_dashboard/widget/table_widget.dart';
 import 'package:shadcn_flutter/shadcn_flutter.dart';
 
 class UsersListPageScreen extends StatefulWidget {
@@ -64,177 +65,130 @@ class UsersListPageScreenState extends State<UsersListPageScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const .all(16),
-      child: Column(
-        children: [
-          Row(
-            children: [
-              const Text("Users List Page").bold().large(),
-              const Spacer(),
-              PrimaryButton(
-                onPressed: () {},
-                leading: const Icon(LucideIcons.plus),
-                child: const Text("Add New User"),
-              ),
-            ],
-          ),
+    return Column(
+      children: [
+        Row(
+          children: [
+            const Text("Users List Page").bold.large,
+            const Spacer(),
+            PrimaryButton(
+              onPressed: () {},
+              leading: const Icon(LucideIcons.plus),
+              child: const Text("Add New User"),
+            ),
+          ],
+        ),
 
-          const SizedBox(height: 16),
-
-          Row(
-            spacing: 8,
-            children: [
-              SizedBox(
-                width: 200,
-                child: TextField(placeholder: const Text("Search users...")),
+        Row(
+          children: [
+            SizedBox(
+              width: 200,
+              child: TextField(placeholder: const Text("Search users...")),
+            ),
+            Select<String>(
+              itemBuilder: (context, item) {
+                return Text(item);
+              },
+              popupConstraints: const BoxConstraints(
+                maxHeight: 300,
+                maxWidth: 200,
               ),
-              Select<String>(
-                itemBuilder: (context, item) {
-                  return Text(item);
-                },
-                popupConstraints: const BoxConstraints(
-                  maxHeight: 300,
-                  maxWidth: 200,
+              onChanged: (value) {
+                setState(() {
+                  selectedValue = value;
+                });
+              },
+              value: selectedValue,
+              placeholder: const Text("Status"),
+              popup: const SelectPopup(
+                items: SelectItemList(
+                  children: [
+                    SelectItemButton(value: "select", child: Text("Select")),
+                    SelectItemButton(value: "select", child: Text("Select")),
+                    SelectItemButton(value: "select", child: Text("Select")),
+                  ],
                 ),
-                onChanged: (value) {
-                  setState(() {
-                    selectedValue = value;
-                  });
-                },
-                value: selectedValue,
-                placeholder: const Text("Status"),
-                popup: const SelectPopup(
-                  items: SelectItemList(
-                    children: [
-                      SelectItemButton(value: "select", child: Text("Select")),
-                      SelectItemButton(value: "select", child: Text("Select")),
-                      SelectItemButton(value: "select", child: Text("Select")),
-                    ],
-                  ),
-                ).call,
+              ).call,
+            ),
+            Select<String>(
+              itemBuilder: (context, item) {
+                return Text(item);
+              },
+              popupConstraints: const BoxConstraints(
+                maxHeight: 300,
+                maxWidth: 200,
               ),
-              Select<String>(
-                itemBuilder: (context, item) {
-                  return Text(item);
-                },
-                popupConstraints: const BoxConstraints(
-                  maxHeight: 300,
-                  maxWidth: 200,
+              onChanged: (value) {
+                setState(() {
+                  selectedValue = value;
+                });
+              },
+              value: selectedValue,
+              placeholder: const Text("Plan"),
+              popup: const SelectPopup(
+                items: SelectItemList(
+                  children: [
+                    SelectItemButton(value: "select", child: Text("Select")),
+                    SelectItemButton(value: "select", child: Text("Select")),
+                    SelectItemButton(value: "select", child: Text("Select")),
+                  ],
                 ),
-                onChanged: (value) {
-                  setState(() {
-                    selectedValue = value;
-                  });
-                },
-                value: selectedValue,
-                placeholder: const Text("Plan"),
-                popup: const SelectPopup(
-                  items: SelectItemList(
-                    children: [
-                      SelectItemButton(value: "select", child: Text("Select")),
-                      SelectItemButton(value: "select", child: Text("Select")),
-                      SelectItemButton(value: "select", child: Text("Select")),
-                    ],
-                  ),
-                ).call,
+              ).call,
+            ),
+            Select<String>(
+              itemBuilder: (context, item) {
+                return Text(item);
+              },
+              popupConstraints: const BoxConstraints(
+                maxHeight: 300,
+                maxWidth: 200,
               ),
-              Select<String>(
-                itemBuilder: (context, item) {
-                  return Text(item);
-                },
-                popupConstraints: const BoxConstraints(
-                  maxHeight: 300,
-                  maxWidth: 200,
+              onChanged: (value) {
+                setState(() {
+                  selectedValue = value;
+                });
+              },
+              value: selectedValue,
+              placeholder: const Text("Role"),
+              popup: const SelectPopup(
+                items: SelectItemList(
+                  children: [
+                    SelectItemButton(value: "select", child: Text("Select")),
+                    SelectItemButton(value: "select", child: Text("Select")),
+                    SelectItemButton(value: "select", child: Text("Select")),
+                  ],
                 ),
-                onChanged: (value) {
-                  setState(() {
-                    selectedValue = value;
-                  });
-                },
-                value: selectedValue,
-                placeholder: const Text("Role"),
-                popup: const SelectPopup(
-                  items: SelectItemList(
-                    children: [
-                      SelectItemButton(value: "select", child: Text("Select")),
-                      SelectItemButton(value: "select", child: Text("Select")),
-                      SelectItemButton(value: "select", child: Text("Select")),
-                    ],
-                  ),
-                ).call,
-              ),
-            ],
-          ),
+              ).call,
+            ),
+          ],
+        ).gap(8),
 
-          const SizedBox(height: 16),
-
-          Table(
-            columnWidths: {0: FixedTableSize(48), 2: FixedTableSize(220)},
-            defaultRowHeight: FixedTableSize(48),
-
-            rows: [
-              // Header row
-              TableRow(
-                cells: [
-                  TableCell(
-                    child: Container(
-                      padding: const .all(8),
-                      child: Checkbox(
-                        state: _state,
-                        onChanged: (state) {
-                          setState(() {
-                            _state = state;
-                          });
-                        },
-                      ),
-                    ),
-                  ),
-                  _buildHeaderCell("Name"),
-                  _buildHeaderCell("Role"),
-                  _buildHeaderCell("Plan"),
-                  _buildHeaderCell("Email"),
-                  _buildHeaderCell("Country"),
-                  _buildHeaderCell("Status"),
-                  _buildHeaderCell("Action", true),
-                ],
-              ),
-
-              // Body rows
-              ...usersList.map((row) => _buildDataRow(context, row)),
-            ],
-          ),
-
-          const SizedBox(height: 16),
-
-          Row(
-            spacing: 8,
-            children: [
-              const Text("0 of 6 row(s) selected."),
-              const Spacer(),
-              IconButton.outline(
-                enabled: false,
-                onPressed: () {},
-                icon: const Icon(LucideIcons.chevronLeft),
-              ),
-              IconButton.outline(
-                enabled: false,
-                onPressed: () {},
-                icon: const Icon(LucideIcons.chevronRight),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
+        TableWidget(
+          columnWidths: {0: FixedTableSize(48), 2: FixedTableSize(220)},
+          hasCheckbox: true,
+          headerChildren: [
+            _buildHeaderCell("Name"),
+            _buildHeaderCell("Role"),
+            _buildHeaderCell("Plan"),
+            _buildHeaderCell("Email"),
+            _buildHeaderCell("Country"),
+            _buildHeaderCell("Status"),
+            _buildHeaderCell("Action", true),
+          ],
+          bodyChildren: [
+            ...usersList.map((row) => _buildDataRow(context, row)),
+          ],
+        ),
+      ],
+    ).gap(16).withPadding(all: 16);
   }
 
   TableCell _buildHeaderCell(String text, [bool alignRight = false]) {
     return TableCell(
       child: Container(
-        padding: const .all(8),
-        alignment: alignRight ? .centerRight : .centerLeft,
-        child: Text(text).muted().semiBold(),
+        padding: const EdgeInsets.all(8),
+        alignment: alignRight ? Alignment.centerRight : Alignment.centerLeft,
+        child: Text(text).muted.semiBold,
       ),
     );
   }
@@ -242,8 +196,8 @@ class UsersListPageScreenState extends State<UsersListPageScreen> {
   TableCell _buildCell(String text, [bool alignRight = false]) {
     return TableCell(
       child: Container(
-        padding: const .all(8),
-        alignment: alignRight ? .centerRight : .centerLeft,
+        padding: const EdgeInsets.all(8),
+        alignment: alignRight ? Alignment.centerRight : Alignment.centerLeft,
         child: Text(text),
       ),
     );
@@ -252,7 +206,7 @@ class UsersListPageScreenState extends State<UsersListPageScreen> {
   TableCell _checkboxCell() {
     return TableCell(
       child: Padding(
-        padding: const .all(8),
+        padding: const EdgeInsets.all(8),
         child: Checkbox(
           state: _state,
           onChanged: (state) {
@@ -268,8 +222,8 @@ class UsersListPageScreenState extends State<UsersListPageScreen> {
   TableCell _actionCell(BuildContext context) {
     return TableCell(
       child: Container(
-        padding: const .symmetric(horizontal: 8),
-        alignment: .centerRight,
+        padding: const EdgeInsets.symmetric(horizontal: 8),
+        alignment: Alignment.centerRight,
         child: Builder(
           builder: (context) {
             return IconButton.ghost(
