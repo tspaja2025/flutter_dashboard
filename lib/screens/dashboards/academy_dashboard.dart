@@ -1,14 +1,16 @@
 import 'package:fl_chart/fl_chart.dart';
+import 'package:flutter_dashboard/widget/card_widget.dart';
+import 'package:flutter_dashboard/widget/table_widget.dart';
 import 'package:shadcn_flutter/shadcn_flutter.dart';
 
 class AcademyDashboardScreen extends StatefulWidget {
   const AcademyDashboardScreen({super.key});
 
   @override
-  State<AcademyDashboardScreen> createState() => AcademyDashboardScreenState();
+  State<AcademyDashboardScreen> createState() => _AcademyDashboardScreenState();
 }
 
-class AcademyDashboardScreenState extends State<AcademyDashboardScreen> {
+class _AcademyDashboardScreenState extends State<AcademyDashboardScreen> {
   final popularCourses = [
     PopularCoursesRow(
       name: "Introduction to react",
@@ -50,477 +52,365 @@ class AcademyDashboardScreenState extends State<AcademyDashboardScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const .all(16),
-      child: Column(
-        children: [
-          Row(children: [const Text("Academy Dashboard").bold().large()]),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(children: [const Text("Academy Dashboard").bold.large]),
 
-          const SizedBox(height: 16),
-          Row(
-            crossAxisAlignment: .start,
-            spacing: 16,
-            children: [
-              Expanded(
-                flex: 2,
-                child: Card(
-                  padding: const .all(16),
-                  child: Column(
-                    crossAxisAlignment: .start,
-                    children: [
-                      const Text("Hi, Tspaja").x3Large().semiBold(),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              flex: 2,
+              child: CardWidget(
+                title: "",
+                subtitle: "",
+                children: [
+                  const Text("Hi, Tspaja").x3Large.semiBold,
 
-                      const SizedBox(height: 16),
+                  const SizedBox(height: 16),
 
-                      const Text(
-                        "What do you want to learn today with your partner?",
-                      ).x3Large(),
+                  const Text(
+                    "What do you want to learn today with your partner?",
+                  ).x3Large,
 
-                      const SizedBox(height: 16),
+                  const SizedBox(height: 16),
 
-                      const Text(
-                        "Discover courses, track progress, and achieve your learning goods seamlessly.",
-                      ),
-
-                      const SizedBox(height: 16),
-
-                      PrimaryButton(
-                        onPressed: () {},
-                        child: const Text("Explore Courses"),
-                      ),
-                    ],
+                  const Text(
+                    "Discover courses, track progress, and achieve your learning goods seamlessly.",
                   ),
-                ),
+
+                  const SizedBox(height: 16),
+
+                  PrimaryButton(
+                    onPressed: () {},
+                    child: const Text("Explore Courses"),
+                  ),
+                ],
               ),
-              Expanded(
-                child: Card(
-                  padding: const .all(16),
-                  child: Column(
-                    crossAxisAlignment: .start,
+            ),
+            Expanded(
+              child: CardWidget(
+                title: "Learning Path",
+                subtitle: "",
+                trailing: [const Icon(LucideIcons.share2)],
+                children: [
+                  OutlinedContainer(
+                    padding: const EdgeInsets.all(16),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text("Full-Stack Developer").large.bold,
+                        const SizedBox(height: 8),
+                        SizedBox(
+                          width: double.infinity,
+                          height: 8,
+                          child: Progress(progress: 40, min: 0, max: 100),
+                        ),
+                        const SizedBox(height: 8),
+                        const Text("4 of 10 modules completed").muted.small,
+                      ],
+                    ),
+                  ),
+
+                  const SizedBox(height: 16),
+
+                  OutlinedContainer(
+                    padding: const EdgeInsets.all(16),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text("Full-Stack Developer").large.bold,
+                        const SizedBox(height: 8),
+                        SizedBox(
+                          width: double.infinity,
+                          height: 8,
+                          child: Progress(progress: 40, min: 0, max: 100),
+                        ),
+                        const SizedBox(height: 8),
+                        const Text("4 of 10 modules completed").muted.small,
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
+              child: CardWidget(
+                title: "Leaderboard",
+                subtitle: "",
+                trailing: [
+                  IconButton.outline(
+                    onPressed: () {},
+                    icon: const Icon(LucideIcons.chevronRight),
+                  ),
+                ],
+                children: [
+                  Row(
                     children: [
-                      Row(
-                        children: [
-                          const Text("Learning Path").semiBold(),
-                          const Spacer(),
-                          const Icon(LucideIcons.gitBranch),
-                        ],
-                      ),
-
-                      const SizedBox(height: 16),
-
-                      OutlinedContainer(
-                        padding: const .all(16),
-                        child: Column(
-                          crossAxisAlignment: .start,
-                          children: [
-                            const Text("Full-Stack Developer").large().bold(),
-                            const SizedBox(height: 8),
-                            SizedBox(
-                              width: double.infinity,
-                              height: 8,
-                              child: Progress(progress: 40, min: 0, max: 100),
-                            ),
-                            const SizedBox(height: 8),
-                            const Text(
-                              "4 of 10 modules completed",
-                            ).muted().small(),
-                          ],
+                      const Text("1"),
+                      Avatar(
+                        size: 24,
+                        initials: Avatar.getInitials("ts paja"),
+                        provider: const NetworkImage(
+                          "https://avatars.githubusercontent.com/u/213942709?s=400&v=4",
                         ),
                       ),
+                      const Text("Liam Smith"),
+                      const Spacer(),
+                      const Chip(child: Text("5000 pts")),
+                    ],
+                  ).gap(8),
 
-                      const SizedBox(height: 16),
+                  const SizedBox(height: 16),
 
-                      OutlinedContainer(
-                        padding: const .all(16),
-                        child: Column(
-                          crossAxisAlignment: .start,
-                          children: [
-                            const Text("Full-Stack Developer").large().bold(),
-                            const SizedBox(height: 8),
-                            SizedBox(
-                              width: double.infinity,
-                              height: 8,
-                              child: Progress(progress: 40, min: 0, max: 100),
-                            ),
-                            const SizedBox(height: 8),
-                            const Text(
-                              "4 of 10 modules completed",
-                            ).muted().small(),
-                          ],
+                  Row(
+                    children: [
+                      const Text("2"),
+                      Avatar(
+                        size: 24,
+                        initials: Avatar.getInitials("ts paja"),
+                        provider: const NetworkImage(
+                          "https://avatars.githubusercontent.com/u/213942709?s=400&v=4",
                         ),
                       ),
+                      const Text("Emma Brown"),
+                      const Spacer(),
+                      const Chip(child: Text("4800 pts")),
                     ],
-                  ),
-                ),
-              ),
-              Expanded(
-                child: Card(
-                  padding: const .all(16),
-                  child: Column(
-                    crossAxisAlignment: .start,
+                  ).gap(8),
+
+                  const SizedBox(height: 16),
+
+                  Row(
                     children: [
-                      Row(
-                        children: [
-                          const Text("Leaderboard").semiBold(),
-                          const Spacer(),
-                          IconButton.outline(
-                            onPressed: () {},
-                            icon: const Icon(LucideIcons.chevronRight),
-                          ),
-                        ],
+                      const Text("3"),
+                      Avatar(
+                        size: 24,
+                        initials: Avatar.getInitials("ts paja"),
+                        provider: const NetworkImage(
+                          "https://avatars.githubusercontent.com/u/213942709?s=400&v=4",
+                        ),
                       ),
-
-                      const SizedBox(height: 16),
-
-                      Row(
-                        spacing: 8,
-                        children: [
-                          const Text("1"),
-                          Avatar(
-                            size: 24,
-                            initials: Avatar.getInitials("ts paja"),
-                            provider: const NetworkImage(
-                              "https://avatars.githubusercontent.com/u/213942709?s=400&v=4",
-                            ),
-                          ),
-                          const Text("Liam Smith"),
-                          const Spacer(),
-                          const Chip(child: Text("5000 pts")),
-                        ],
-                      ),
-
-                      const SizedBox(height: 16),
-
-                      Row(
-                        spacing: 8,
-                        children: [
-                          const Text("2"),
-                          Avatar(
-                            size: 24,
-                            initials: Avatar.getInitials("ts paja"),
-                            provider: const NetworkImage(
-                              "https://avatars.githubusercontent.com/u/213942709?s=400&v=4",
-                            ),
-                          ),
-                          const Text("Emma Brown"),
-                          const Spacer(),
-                          const Chip(child: Text("4800 pts")),
-                        ],
-                      ),
-
-                      const SizedBox(height: 16),
-
-                      Row(
-                        spacing: 8,
-                        children: [
-                          const Text("3"),
-                          Avatar(
-                            size: 24,
-                            initials: Avatar.getInitials("ts paja"),
-                            provider: const NetworkImage(
-                              "https://avatars.githubusercontent.com/u/213942709?s=400&v=4",
-                            ),
-                          ),
-                          const Text("Noah Johnson"),
-                          const Spacer(),
-                          const Chip(child: Text("4600 pts")),
-                        ],
-                      ),
-
-                      const SizedBox(height: 16),
-
-                      Row(
-                        spacing: 8,
-                        children: [
-                          const Text("4"),
-                          Avatar(
-                            size: 24,
-                            initials: Avatar.getInitials("ts paja"),
-                            provider: const NetworkImage(
-                              "https://avatars.githubusercontent.com/u/213942709?s=400&v=4",
-                            ),
-                          ),
-                          const Text("Olivia Davis"),
-                          const Spacer(),
-                          const Chip(child: Text("4400 pts")),
-                        ],
-                      ),
+                      const Text("Noah Johnson"),
+                      const Spacer(),
+                      const Chip(child: Text("4600 pts")),
                     ],
-                  ),
-                ),
-              ),
-            ],
-          ),
+                  ).gap(8),
 
-          const SizedBox(height: 16),
-          Row(
-            crossAxisAlignment: .start,
-            spacing: 16,
-            children: [
-              Expanded(
-                child: Card(
-                  padding: const .all(16),
-                  child: Column(
-                    crossAxisAlignment: .start,
+                  const SizedBox(height: 16),
+
+                  Row(
                     children: [
-                      const Text("Student Overall Success Rate").semiBold(),
-
-                      const SizedBox(height: 16),
-
-                      const Text("88%").large().bold(),
-
-                      const SizedBox(height: 16),
-
-                      SizedBox(
-                        width: double.infinity,
-                        height: 8,
-                        child: Progress(progress: 88, min: 0, max: 100),
+                      const Text("4"),
+                      Avatar(
+                        size: 24,
+                        initials: Avatar.getInitials("ts paja"),
+                        provider: const NetworkImage(
+                          "https://avatars.githubusercontent.com/u/213942709?s=400&v=4",
+                        ),
                       ),
-                      const SizedBox(height: 8),
-                      Row(
-                        children: [
-                          const Text("Previous: 85%"),
-                          const Spacer(),
-                          const Text("Target: 100%"),
-                        ],
-                      ),
+                      const Text("Olivia Davis"),
+                      const Spacer(),
+                      const Chip(child: Text("4400 pts")),
+                    ],
+                  ).gap(8),
+                ],
+              ),
+            ),
+          ],
+        ).gap(16),
 
-                      const SizedBox(height: 16),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: CardWidget(
+                title: "Student Overall Success Rate",
+                subtitle: "",
+                children: [
+                  const Text("88%").large.bold,
 
-                      Row(
-                        children: [
-                          const Icon(LucideIcons.users),
-                          const Text("Total Students"),
-                          const Spacer(),
-                          const Text("1500").semiBold(),
-                        ],
-                      ),
+                  const SizedBox(height: 16),
 
-                      const SizedBox(height: 16),
-
-                      Row(
-                        children: [
-                          const Icon(LucideIcons.users),
-                          const Text("Passing Students"),
-                          const Spacer(),
-                          const Text("1320").semiBold(),
-                        ],
-                      ),
-                      const SizedBox(height: 8),
-                      SizedBox(
-                        width: double.infinity,
-                        height: 8,
-                        child: Progress(progress: 88, min: 0, max: 100),
-                      ),
-                      const SizedBox(height: 8),
+                  SizedBox(
+                    width: double.infinity,
+                    height: 8,
+                    child: Progress(progress: 88, min: 0, max: 100),
+                  ),
+                  const SizedBox(height: 8),
+                  Row(
+                    children: [
                       const Text("Previous: 85%"),
-
-                      const SizedBox(height: 16),
-
-                      SizedBox(
-                        width: double.infinity,
-                        child: PrimaryButton(
-                          onPressed: () {},
-                          child: const Text("View Details"),
-                        ),
-                      ),
+                      const Spacer(),
+                      const Text("Target: 100%"),
                     ],
                   ),
-                ),
-              ),
-              Expanded(
-                flex: 2,
-                child: Card(
-                  padding: const .all(16),
-                  child: Column(
-                    crossAxisAlignment: .start,
+
+                  const SizedBox(height: 16),
+
+                  Row(
                     children: [
-                      const Text("Progress Statistics").semiBold(),
-
-                      const SizedBox(height: 16),
-
-                      Center(
-                        child: Column(
-                          children: [
-                            const Text("Total Activity"),
-                            const Text("72.5%").x2Large().bold(),
-                          ],
-                        ),
-                      ),
-
-                      const SizedBox(height: 16),
-
-                      Row(
-                        spacing: 16,
-                        children: [
-                          Expanded(
-                            child: Progress(progress: 65, min: 0, max: 100),
-                          ),
-                          Expanded(
-                            child: Progress(progress: 50, min: 0, max: 100),
-                          ),
-                        ],
-                      ),
-
-                      const SizedBox(height: 16),
-
-                      OutlinedContainer(
-                        padding: const .all(16),
-                        child: Row(
-                          spacing: 8,
-                          children: [
-                            const Icon(LucideIcons.calendarClock),
-                            const Text("30"),
-                            const Spacer(),
-                            const Text("In Progress"),
-                          ],
-                        ),
-                      ),
-
-                      const SizedBox(height: 16),
-
-                      OutlinedContainer(
-                        padding: const .all(16),
-                        child: Row(
-                          spacing: 8,
-                          children: [
-                            const Icon(LucideIcons.calendarClock),
-                            const Text("30"),
-                            const Spacer(),
-                            const Text("Completed"),
-                          ],
-                        ),
-                      ),
+                      const Icon(LucideIcons.users),
+                      const Text("Total Students"),
+                      const Spacer(),
+                      const Text("1500").semiBold,
                     ],
                   ),
-                ),
-              ),
-              Expanded(
-                flex: 2,
-                child: Card(
-                  padding: const .all(16),
-                  child: Column(
-                    crossAxisAlignment: .start,
+
+                  const SizedBox(height: 16),
+
+                  Row(
                     children: [
-                      const Text("Most Activity").semiBold(),
-
-                      const SizedBox(height: 16),
-
-                      PieChartSample(),
+                      const Icon(LucideIcons.users),
+                      const Text("Passing Students"),
+                      const Spacer(),
+                      const Text("1320").semiBold,
                     ],
                   ),
-                ),
-              ),
-            ],
-          ),
+                  const SizedBox(height: 8),
+                  SizedBox(
+                    width: double.infinity,
+                    height: 8,
+                    child: Progress(progress: 88, min: 0, max: 100),
+                  ),
+                  const SizedBox(height: 8),
+                  const Text("Previous: 85%"),
 
-          const SizedBox(height: 16),
-          Row(
-            crossAxisAlignment: .start,
-            spacing: 16,
-            children: [
-              Expanded(
-                child: Card(
-                  padding: const .all(16),
-                  child: Column(
-                    crossAxisAlignment: .start,
+                  const SizedBox(height: 16),
+
+                  SizedBox(
+                    width: double.infinity,
+                    child: PrimaryButton(
+                      onPressed: () {},
+                      child: const Text("View Details"),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
+              flex: 2,
+              child: CardWidget(
+                title: "Progress Statistics",
+                subtitle: "",
+                children: [
+                  Center(
+                    child: Column(
+                      children: [
+                        const Text("Total Activity"),
+                        const Text("72.5%").x2Large.bold,
+                      ],
+                    ),
+                  ),
+
+                  const SizedBox(height: 16),
+
+                  Row(
                     children: [
-                      const Text("Course Progress by Month").semiBold(),
-                      const SizedBox(height: 4),
-                      const Text(
-                        "Compared to previous month 50.56%",
-                      ).muted().small(),
+                      Expanded(child: Progress(progress: 65, min: 0, max: 100)),
+                      Expanded(child: Progress(progress: 50, min: 0, max: 100)),
+                    ],
+                  ).gap(16),
 
-                      const SizedBox(height: 16),
+                  const SizedBox(height: 16),
 
-                      LineChartSample(),
+                  OutlinedContainer(
+                    padding: const EdgeInsets.all(16),
+                    child: Row(
+                      children: [
+                        const Icon(LucideIcons.calendarClock),
+                        const Text("30"),
+                        const Spacer(),
+                        const Text("In Progress"),
+                      ],
+                    ).gap(8),
+                  ),
+
+                  const SizedBox(height: 16),
+
+                  OutlinedContainer(
+                    padding: const EdgeInsets.all(16),
+                    child: Row(
+                      children: [
+                        const Icon(LucideIcons.calendarClock),
+                        const Text("30"),
+                        const Spacer(),
+                        const Text("Completed"),
+                      ],
+                    ).gap(8),
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
+              flex: 2,
+              child: CardWidget(
+                title: "Most Activity",
+                subtitle: "",
+                children: [PieChartSample()],
+              ),
+            ),
+          ],
+        ).gap(16),
+
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: CardWidget(
+                title: "Course Progress by Month",
+                subtitle: "Compared to previous month 50.56%",
+                children: [LineChartSample()],
+              ),
+            ),
+            Expanded(
+              child: CardWidget(
+                title: "Popular Courses",
+                subtitle: "",
+                trailing: [
+                  SizedBox(
+                    width: 200,
+                    child: TextField(
+                      placeholder: const Text("Search courses..."),
+                    ),
+                  ),
+                ],
+                children: [
+                  TableWidget(
+                    columnWidths: {
+                      0: FixedTableSize(185),
+                      1: FixedTableSize(150),
+                    },
+                    hasCheckbox: false,
+                    headerChildren: [
+                      _buildHeaderCell("Course Name"),
+                      _buildHeaderCell("Category"),
+                      _buildHeaderCell("Score"),
+                      _buildHeaderCell("Progress"),
+                      _buildHeaderCell("Action", true),
+                    ],
+                    bodyChildren: [
+                      ...popularCourses.map(
+                        (row) => _buildDataRow(context, row),
+                      ),
                     ],
                   ),
-                ),
+                ],
               ),
-              Expanded(
-                child: Card(
-                  padding: const .all(16),
-                  child: Column(
-                    crossAxisAlignment: .start,
-                    children: [
-                      Row(
-                        children: [
-                          const Text("Popular Courses").semiBold(),
-                          const Spacer(),
-                          SizedBox(
-                            width: 200,
-                            child: TextField(
-                              placeholder: const Text("Search courses..."),
-                            ),
-                          ),
-                        ],
-                      ),
-
-                      const SizedBox(height: 16),
-
-                      Table(
-                        columnWidths: {
-                          0: FixedTableSize(185),
-                          1: FixedTableSize(150),
-                        },
-                        defaultRowHeight: FixedTableSize(48),
-
-                        rows: [
-                          // Header row
-                          TableRow(
-                            cells: [
-                              _buildHeaderCell("Course Name"),
-                              _buildHeaderCell("Category"),
-                              _buildHeaderCell("Score"),
-                              _buildHeaderCell("Progress"),
-                              _buildHeaderCell("Action", true),
-                            ],
-                          ),
-
-                          // Body rows
-                          ...popularCourses.map(
-                            (row) => _buildDataRow(context, row),
-                          ),
-                        ],
-                      ),
-
-                      const SizedBox(height: 16),
-
-                      Row(
-                        spacing: 8,
-                        children: [
-                          const Text("0 of 6 row(s) selected."),
-                          const Spacer(),
-                          IconButton.outline(
-                            enabled: false,
-                            onPressed: () {},
-                            icon: const Icon(LucideIcons.chevronLeft),
-                          ),
-                          IconButton.outline(
-                            enabled: false,
-                            onPressed: () {},
-                            icon: const Icon(LucideIcons.chevronRight),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
+            ),
+          ],
+        ).gap(16),
+      ],
+    ).gap(16).withPadding(all: 16);
   }
 
   TableCell _buildHeaderCell(String text, [bool alignRight = false]) {
     return TableCell(
       child: Container(
-        padding: const .all(8),
-        alignment: alignRight ? .centerRight : .centerLeft,
-        child: Text(text).muted().semiBold(),
+        padding: const EdgeInsets.all(8),
+        alignment: alignRight ? Alignment.centerRight : Alignment.centerLeft,
+        child: Text(text).muted.semiBold,
       ),
     );
   }
@@ -528,8 +418,8 @@ class AcademyDashboardScreenState extends State<AcademyDashboardScreen> {
   TableCell _buildCell(String text, [bool alignRight = false]) {
     return TableCell(
       child: Container(
-        padding: const .all(8),
-        alignment: alignRight ? .centerRight : .centerLeft,
+        padding: const EdgeInsets.all(8),
+        alignment: alignRight ? Alignment.centerRight : Alignment.centerLeft,
         child: Text(text),
       ),
     );
@@ -538,8 +428,8 @@ class AcademyDashboardScreenState extends State<AcademyDashboardScreen> {
   TableCell _actionCell(BuildContext context) {
     return TableCell(
       child: Container(
-        padding: const .symmetric(horizontal: 8),
-        alignment: .centerRight,
+        padding: const EdgeInsets.symmetric(horizontal: 8),
+        alignment: Alignment.centerRight,
         child: Builder(
           builder: (context) {
             return IconButton.ghost(
@@ -568,7 +458,7 @@ class AcademyDashboardScreenState extends State<AcademyDashboardScreen> {
   TableCell _progressCell(double progress) {
     return TableCell(
       child: Container(
-        padding: const .all(8),
+        padding: const EdgeInsets.all(8),
         child: Row(
           children: [
             SizedBox(
@@ -740,7 +630,12 @@ class LineChartSampleState extends State<LineChartSample> {
         AspectRatio(
           aspectRatio: 1.7,
           child: Padding(
-            padding: const .only(right: 18, left: 12, top: 24, bottom: 12),
+            padding: const EdgeInsets.only(
+              right: 18,
+              left: 12,
+              top: 24,
+              bottom: 12,
+            ),
             child: LineChart(
               LineChartData(
                 gridData: FlGridData(

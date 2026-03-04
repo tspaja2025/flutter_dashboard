@@ -1,4 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
+import 'package:flutter_dashboard/widget/card_widget.dart';
+import 'package:flutter_dashboard/widget/table_widget.dart';
 import 'package:shadcn_flutter/shadcn_flutter.dart';
 
 class HospitalManagementDashboardScreen extends StatefulWidget {
@@ -6,10 +8,10 @@ class HospitalManagementDashboardScreen extends StatefulWidget {
 
   @override
   State<HospitalManagementDashboardScreen> createState() =>
-      HospitalManagementDashboardScreenState();
+      _HospitalManagementDashboardScreenState();
 }
 
-class HospitalManagementDashboardScreenState
+class _HospitalManagementDashboardScreenState
     extends State<HospitalManagementDashboardScreen> {
   int index = 0;
 
@@ -67,519 +69,393 @@ class HospitalManagementDashboardScreenState
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const .all(16),
-      child: Column(
-        crossAxisAlignment: .start,
-        children: [
-          Row(
-            children: [
-              const Text("Hospital Management Dashboard").bold().large(),
-            ],
-          ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(children: [const Text("Hospital Management Dashboard").bold.large]),
 
-          const SizedBox(height: 16),
+        Tabs(
+          index: index,
+          children: const [
+            TabItem(child: Text("Overview")),
+            TabItem(child: Text("Reports")),
+            TabItem(child: Text("Activites")),
+          ],
+          onChanged: (int value) {
+            setState(() {
+              index = value;
+            });
+          },
+        ),
 
-          Tabs(
-            index: index,
-            children: const [
-              TabItem(child: Text("Overview")),
-              TabItem(child: Text("Reports")),
-              TabItem(child: Text("Activites")),
-            ],
-            onChanged: (int value) {
-              setState(() {
-                index = value;
-              });
-            },
-          ),
-
-          const SizedBox(height: 16),
-
-          IndexedStack(
-            index: index,
-            children: [
-              Column(
-                children: [
-                  Row(
-                    crossAxisAlignment: .start,
-                    spacing: 16,
-                    children: [
-                      Expanded(
-                        child: Card(
-                          padding: const .all(16),
-                          child: Column(
-                            crossAxisAlignment: .start,
-                            children: [
-                              const Text("Total Appointments").semiBold(),
-
-                              const SizedBox(height: 16),
-
-                              const Text("2350").large().bold(),
-                              const Text(
-                                "+20.1 from last month",
-                              ).muted().small(),
-                            ],
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: Card(
-                          padding: const .all(16),
-                          child: Column(
-                            crossAxisAlignment: .start,
-                            children: [
-                              const Text("New Patients").semiBold(),
-
-                              const SizedBox(height: 16),
-
-                              const Text("145").large().bold(),
-                              const Text(
-                                "+180.1 from last month",
-                              ).muted().small(),
-                            ],
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: Card(
-                          padding: const .all(16),
-                          child: Column(
-                            crossAxisAlignment: .start,
-                            children: [
-                              const Text("Operations").semiBold(),
-
-                              const SizedBox(height: 16),
-
-                              const Text("89").large().bold(),
-                              const Text("-19 from last month").muted().small(),
-                            ],
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: Card(
-                          padding: const .all(16),
-                          child: Column(
-                            crossAxisAlignment: .start,
-                            children: [
-                              const Text("Total Revenue").semiBold(),
-
-                              const SizedBox(height: 16),
-
-                              const Text("\$9583").large().bold(),
-                              const Text(
-                                "+20.1 from last month",
-                              ).muted().small(),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-
-                  const SizedBox(height: 16),
-                  Row(
-                    crossAxisAlignment: .start,
-                    spacing: 16,
-                    children: [
-                      Expanded(
-                        child: Card(
-                          padding: const .all(16),
-                          child: Column(
-                            crossAxisAlignment: .start,
-                            children: [
-                              const Text("Patient Visits by Gender").semiBold(),
-
-                              const SizedBox(height: 16),
-
-                              SizedBox(
-                                width: double.infinity,
-                                height: 300,
-                                child: LineChartSample(),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: Card(
-                          padding: const .all(16),
-                          child: Column(
-                            crossAxisAlignment: .start,
-                            children: [
-                              const Text("Patients by Department").semiBold(),
-
-                              SizedBox(
-                                width: double.infinity,
-                                height: 300,
-                                child: PieChartSample(),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-
-                  const SizedBox(height: 16),
-                  Row(
-                    crossAxisAlignment: .start,
-                    spacing: 16,
-                    children: [
-                      Expanded(
-                        flex: 2,
-                        child: Card(
-                          padding: const .all(16),
-                          child: Column(
-                            crossAxisAlignment: .start,
-                            children: [
-                              const Text("Upcoming Appointments").semiBold(),
-
-                              const SizedBox(height: 16),
-
-                              Table(
-                                columnWidths: {
-                                  0: FixedTableSize(185),
-                                  1: FixedTableSize(150),
-                                },
-                                defaultRowHeight: FixedTableSize(48),
-
-                                rows: [
-                                  // Header row
-                                  TableRow(
-                                    cells: [
-                                      _buildHeaderCell("Patient"),
-                                      _buildHeaderCell("Date"),
-                                      _buildHeaderCell("Time"),
-                                      _buildHeaderCell("Doctor"),
-                                      _buildHeaderCell("Department"),
-                                      _buildHeaderCell("Action", true),
-                                    ],
-                                  ),
-
-                                  // Body rows
-                                  ...upcomingAppointments.map(
-                                    (row) => _buildDataRow(context, row),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: Card(
-                          padding: const .all(16),
-                          child: Column(
-                            crossAxisAlignment: .start,
-                            children: [
-                              Row(
-                                children: [
-                                  const Text(
-                                    "Patients with Last Procedure",
-                                  ).semiBold(),
-                                  const Spacer(),
-                                  OutlineButton(
-                                    onPressed: () {},
-                                    trailing: const Icon(
-                                      LucideIcons.chevronRight,
-                                    ),
-                                    child: const Text("View All"),
-                                  ),
-                                ],
-                              ),
-
-                              const SizedBox(height: 16),
-
-                              Row(
-                                spacing: 8,
-                                children: [
-                                  Avatar(
-                                    size: 24,
-                                    initials: Avatar.getInitials("ts paja"),
-                                    provider: const NetworkImage(
-                                      "https://avatars.githubusercontent.com/u/213942709?s=400&v=4",
-                                    ),
-                                  ),
-                                  Column(
-                                    crossAxisAlignment: .start,
-                                    children: [
-                                      const Text("Olivia Martin"),
-                                      const Text("olivia.martin@email.com"),
-                                    ],
-                                  ),
-                                  const Spacer(),
-                                  Column(
-                                    crossAxisAlignment: .end,
-                                    children: [
-                                      const Text("Appendectory"),
-                                      const Text("2026-02-09"),
-                                    ],
-                                  ),
-                                ],
-                              ),
-
-                              const SizedBox(height: 16),
-
-                              Row(
-                                spacing: 8,
-                                children: [
-                                  Avatar(
-                                    size: 24,
-                                    initials: Avatar.getInitials("ts paja"),
-                                    provider: const NetworkImage(
-                                      "https://avatars.githubusercontent.com/u/213942709?s=400&v=4",
-                                    ),
-                                  ),
-                                  Column(
-                                    crossAxisAlignment: .start,
-                                    children: [
-                                      const Text("Jackson Lee"),
-                                      const Text("jackson.lee@email.com"),
-                                    ],
-                                  ),
-                                  const Spacer(),
-                                  Column(
-                                    crossAxisAlignment: .end,
-                                    children: [
-                                      const Text("Knee Arthroscopy"),
-                                      const Text("2026-02-09"),
-                                    ],
-                                  ),
-                                ],
-                              ),
-
-                              const SizedBox(height: 16),
-
-                              Row(
-                                spacing: 8,
-                                children: [
-                                  Avatar(
-                                    size: 24,
-                                    initials: Avatar.getInitials("ts paja"),
-                                    provider: const NetworkImage(
-                                      "https://avatars.githubusercontent.com/u/213942709?s=400&v=4",
-                                    ),
-                                  ),
-                                  Column(
-                                    crossAxisAlignment: .start,
-                                    children: [
-                                      const Text("Isabella Nguyen"),
-                                      const Text("isabell.nguyen@email.com"),
-                                    ],
-                                  ),
-                                  const Spacer(),
-                                  Column(
-                                    crossAxisAlignment: .end,
-                                    children: [
-                                      const Text("Cataract Surgery"),
-                                      const Text("2026-02-09"),
-                                    ],
-                                  ),
-                                ],
-                              ),
-
-                              const SizedBox(height: 16),
-
-                              Row(
-                                spacing: 8,
-                                children: [
-                                  Avatar(
-                                    size: 24,
-                                    initials: Avatar.getInitials("ts paja"),
-                                    provider: const NetworkImage(
-                                      "https://avatars.githubusercontent.com/u/213942709?s=400&v=4",
-                                    ),
-                                  ),
-                                  Column(
-                                    crossAxisAlignment: .start,
-                                    children: [
-                                      const Text("William Chen"),
-                                      const Text("william.chen@email.com"),
-                                    ],
-                                  ),
-                                  const Spacer(),
-                                  Column(
-                                    crossAxisAlignment: .end,
-                                    children: [
-                                      const Text("Colonoscopy"),
-                                      const Text("2026-02-09"),
-                                    ],
-                                  ),
-                                ],
-                              ),
-
-                              const SizedBox(height: 16),
-
-                              Row(
-                                spacing: 8,
-                                children: [
-                                  Avatar(
-                                    size: 24,
-                                    initials: Avatar.getInitials("ts paja"),
-                                    provider: const NetworkImage(
-                                      "https://avatars.githubusercontent.com/u/213942709?s=400&v=4",
-                                    ),
-                                  ),
-                                  Column(
-                                    crossAxisAlignment: .start,
-                                    children: [
-                                      const Text("Can Jackson"),
-                                      const Text("can.jackson@email.com"),
-                                    ],
-                                  ),
-                                  const Spacer(),
-                                  Column(
-                                    crossAxisAlignment: .end,
-                                    children: [
-                                      const Text("Colonoscopy"),
-                                      const Text("2026-02-09"),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-
-                  const SizedBox(height: 16),
-                  Row(
-                    crossAxisAlignment: .start,
-                    spacing: 16,
-                    children: [
-                      Expanded(
-                        child: Card(
-                          padding: const .all(16),
-                          child: Column(
-                            crossAxisAlignment: .start,
-                            children: [CalendarWidget()],
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: Card(
-                          padding: const .all(16),
-                          child: Column(
-                            crossAxisAlignment: .start,
-                            children: [
-                              const Text("Notes").semiBold(),
-
-                              const SizedBox(height: 16),
-
-                              Row(
-                                children: [
-                                  const Text("Dr.Smith's surgery at 10 AM"),
-                                  const Spacer(),
-                                  const Text("Feb 09, 2026"),
-                                ],
-                              ),
-                              const SizedBox(height: 4),
-                              const Divider(),
-                              const SizedBox(height: 4),
-                              Row(
-                                children: [
-                                  const Text("Staff meeting at 2 PM"),
-                                  const Spacer(),
-                                  const Text("Feb 09, 2026"),
-                                ],
-                              ),
-                              const SizedBox(height: 4),
-                              const Divider(),
-                              const SizedBox(height: 4),
-                              Row(
-                                children: [
-                                  const Text("New patient orientation"),
-                                  const Spacer(),
-                                  const Text("Feb 09, 2026"),
-                                ],
-                              ),
-                              const SizedBox(height: 4),
-                              const Divider(),
-                              const SizedBox(height: 4),
-                              Row(
-                                children: [
-                                  const Text("Inventory check"),
-                                  const Spacer(),
-                                  const Text("Feb 09, 2026"),
-                                ],
-                              ),
-                              const SizedBox(height: 4),
-                              const Divider(),
-                              const SizedBox(height: 4),
-                              Row(
-                                children: [
-                                  const Text("Staff meeting at 3 PM"),
-                                  const Spacer(),
-                                  const Text("Feb 09, 2026"),
-                                ],
-                              ),
-                              const SizedBox(height: 4),
-                              const Divider(),
-                              const SizedBox(height: 4),
-                              Row(
-                                children: [
-                                  const Text("Dr.Smith's surgery at 10 AM"),
-                                  const Spacer(),
-                                  const Text("Feb 09, 2026"),
-                                ],
-                              ),
-                              const SizedBox(height: 4),
-                              const Divider(),
-                              const SizedBox(height: 4),
-                              Row(
-                                children: [
-                                  const Text("Annual health checkup"),
-                                  const Spacer(),
-                                  const Text("Feb 09, 2026"),
-                                ],
-                              ),
-                              const SizedBox(height: 4),
-                              const Divider(),
-                              const SizedBox(height: 4),
-                              Row(
-                                children: [
-                                  const Text("Dental examination at 4 PM"),
-                                  const Spacer(),
-                                  const Text("Feb 09, 2026"),
-                                ],
-                              ),
-                              const SizedBox(height: 4),
-                              const Divider(),
-                              const SizedBox(height: 4),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: CardWidget(
+                title: "Total Appointments",
+                subtitle: "+20.1 from last month",
+                children: [const Text("2350").large.bold],
               ),
-              Column(
+            ),
+            Expanded(
+              child: CardWidget(
+                title: "New Patients",
+                subtitle: "+180.1 from last month",
+                children: [const Text("145").large.bold],
+              ),
+            ),
+            Expanded(
+              child: CardWidget(
+                title: "Operations",
+                subtitle: "-19 from last month",
+                children: [const Text("89").large.bold],
+              ),
+            ),
+            Expanded(
+              child: CardWidget(
+                title: "Total Revenue",
+                subtitle: "+20.1 from last month",
+                children: [const Text("\$9583").large.bold],
+              ),
+            ),
+          ],
+        ).gap(16),
+
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: CardWidget(
+                title: "Patient Visits by Gender",
+                subtitle: "",
                 children: [
                   SizedBox(
-                    width: 200,
-                    child: TextField(placeholder: const Text("Filter sales")),
+                    width: double.infinity,
+                    height: 300,
+                    child: LineChartSample(),
                   ),
                 ],
               ),
-              Column(children: [SizedBox()]),
-            ],
-          ),
-        ],
-      ),
-    );
+            ),
+            Expanded(
+              child: CardWidget(
+                title: "Patients by Department",
+                subtitle: "",
+                children: [
+                  SizedBox(
+                    width: double.infinity,
+                    height: 300,
+                    child: PieChartSample(),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ).gap(16),
+
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              flex: 2,
+              child: CardWidget(
+                title: "Upcoming Appointments",
+                subtitle: "",
+                children: [
+                  TableWidget(
+                    columnWidths: {
+                      0: FixedTableSize(185),
+                      1: FixedTableSize(150),
+                    },
+                    hasCheckbox: false,
+                    headerChildren: [
+                      _buildHeaderCell("Patient"),
+                      _buildHeaderCell("Date"),
+                      _buildHeaderCell("Time"),
+                      _buildHeaderCell("Doctor"),
+                      _buildHeaderCell("Department"),
+                      _buildHeaderCell("Action", true),
+                    ],
+                    bodyChildren: [
+                      ...upcomingAppointments.map(
+                        (row) => _buildDataRow(context, row),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
+              child: CardWidget(
+                title: "Patients with Last Procedure",
+                subtitle: "",
+                trailing: [
+                  OutlineButton(
+                    onPressed: () {},
+                    trailing: const Icon(LucideIcons.chevronRight),
+                    child: const Text("View All"),
+                  ),
+                ],
+                children: [
+                  Row(
+                    children: [
+                      Avatar(
+                        size: 24,
+                        initials: Avatar.getInitials("ts paja"),
+                        provider: const NetworkImage(
+                          "https://avatars.githubusercontent.com/u/213942709?s=400&v=4",
+                        ),
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text("Olivia Martin"),
+                          const Text("olivia.martin@email.com"),
+                        ],
+                      ),
+                      const Spacer(),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          const Text("Appendectory"),
+                          const Text("2026-02-09"),
+                        ],
+                      ),
+                    ],
+                  ).gap(8),
+
+                  const SizedBox(height: 16),
+
+                  Row(
+                    children: [
+                      Avatar(
+                        size: 24,
+                        initials: Avatar.getInitials("ts paja"),
+                        provider: const NetworkImage(
+                          "https://avatars.githubusercontent.com/u/213942709?s=400&v=4",
+                        ),
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text("Jackson Lee"),
+                          const Text("jackson.lee@email.com"),
+                        ],
+                      ),
+                      const Spacer(),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          const Text("Knee Arthroscopy"),
+                          const Text("2026-02-09"),
+                        ],
+                      ),
+                    ],
+                  ).gap(8),
+
+                  const SizedBox(height: 16),
+
+                  Row(
+                    children: [
+                      Avatar(
+                        size: 24,
+                        initials: Avatar.getInitials("ts paja"),
+                        provider: const NetworkImage(
+                          "https://avatars.githubusercontent.com/u/213942709?s=400&v=4",
+                        ),
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text("Isabella Nguyen"),
+                          const Text("isabell.nguyen@email.com"),
+                        ],
+                      ),
+                      const Spacer(),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          const Text("Cataract Surgery"),
+                          const Text("2026-02-09"),
+                        ],
+                      ),
+                    ],
+                  ).gap(8),
+
+                  const SizedBox(height: 16),
+
+                  Row(
+                    children: [
+                      Avatar(
+                        size: 24,
+                        initials: Avatar.getInitials("ts paja"),
+                        provider: const NetworkImage(
+                          "https://avatars.githubusercontent.com/u/213942709?s=400&v=4",
+                        ),
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text("William Chen"),
+                          const Text("william.chen@email.com"),
+                        ],
+                      ),
+                      const Spacer(),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          const Text("Colonoscopy"),
+                          const Text("2026-02-09"),
+                        ],
+                      ),
+                    ],
+                  ).gap(8),
+
+                  const SizedBox(height: 16),
+
+                  Row(
+                    children: [
+                      Avatar(
+                        size: 24,
+                        initials: Avatar.getInitials("ts paja"),
+                        provider: const NetworkImage(
+                          "https://avatars.githubusercontent.com/u/213942709?s=400&v=4",
+                        ),
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text("Can Jackson"),
+                          const Text("can.jackson@email.com"),
+                        ],
+                      ),
+                      const Spacer(),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          const Text("Colonoscopy"),
+                          const Text("2026-02-09"),
+                        ],
+                      ),
+                    ],
+                  ).gap(8),
+                ],
+              ),
+            ),
+          ],
+        ).gap(16),
+
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: CardWidget(
+                title: "",
+                subtitle: "",
+                children: [CalendarWidget()],
+              ),
+            ),
+            Expanded(
+              child: CardWidget(
+                title: "Notes",
+                subtitle: "",
+                children: [
+                  Row(
+                    children: [
+                      const Text("Dr.Smith's surgery at 10 AM"),
+                      const Spacer(),
+                      const Text("Feb 09, 2026"),
+                    ],
+                  ),
+                  const SizedBox(height: 4),
+                  const Divider(),
+                  const SizedBox(height: 4),
+                  Row(
+                    children: [
+                      const Text("Staff meeting at 2 PM"),
+                      const Spacer(),
+                      const Text("Feb 09, 2026"),
+                    ],
+                  ),
+                  const SizedBox(height: 4),
+                  const Divider(),
+                  const SizedBox(height: 4),
+                  Row(
+                    children: [
+                      const Text("New patient orientation"),
+                      const Spacer(),
+                      const Text("Feb 09, 2026"),
+                    ],
+                  ),
+                  const SizedBox(height: 4),
+                  const Divider(),
+                  const SizedBox(height: 4),
+                  Row(
+                    children: [
+                      const Text("Inventory check"),
+                      const Spacer(),
+                      const Text("Feb 09, 2026"),
+                    ],
+                  ),
+                  const SizedBox(height: 4),
+                  const Divider(),
+                  const SizedBox(height: 4),
+                  Row(
+                    children: [
+                      const Text("Staff meeting at 3 PM"),
+                      const Spacer(),
+                      const Text("Feb 09, 2026"),
+                    ],
+                  ),
+                  const SizedBox(height: 4),
+                  const Divider(),
+                  const SizedBox(height: 4),
+                  Row(
+                    children: [
+                      const Text("Dr.Smith's surgery at 10 AM"),
+                      const Spacer(),
+                      const Text("Feb 09, 2026"),
+                    ],
+                  ),
+                  const SizedBox(height: 4),
+                  const Divider(),
+                  const SizedBox(height: 4),
+                  Row(
+                    children: [
+                      const Text("Annual health checkup"),
+                      const Spacer(),
+                      const Text("Feb 09, 2026"),
+                    ],
+                  ),
+                  const SizedBox(height: 4),
+                  const Divider(),
+                  const SizedBox(height: 4),
+                  Row(
+                    children: [
+                      const Text("Dental examination at 4 PM"),
+                      const Spacer(),
+                      const Text("Feb 09, 2026"),
+                    ],
+                  ),
+                  const SizedBox(height: 4),
+                  const Divider(),
+                  const SizedBox(height: 4),
+                ],
+              ),
+            ),
+          ],
+        ).gap(16),
+      ],
+    ).gap(16).withPadding(all: 16);
   }
 
   TableCell _buildHeaderCell(String text, [bool alignRight = false]) {
     return TableCell(
       child: Container(
-        padding: const .all(8),
-        alignment: alignRight ? .centerRight : .centerLeft,
-        child: Text(text).muted().semiBold(),
+        padding: const EdgeInsets.all(8),
+        alignment: alignRight ? Alignment.centerRight : Alignment.centerLeft,
+        child: Text(text).muted.semiBold,
       ),
     );
   }
@@ -587,8 +463,8 @@ class HospitalManagementDashboardScreenState
   TableCell _buildCell(String text, [bool alignRight = false]) {
     return TableCell(
       child: Container(
-        padding: const .all(8),
-        alignment: alignRight ? .centerRight : .centerLeft,
+        padding: const EdgeInsets.all(8),
+        alignment: alignRight ? Alignment.centerRight : Alignment.centerLeft,
         child: Text(text),
       ),
     );
@@ -597,8 +473,8 @@ class HospitalManagementDashboardScreenState
   TableCell _actionCell(BuildContext context) {
     return TableCell(
       child: Container(
-        padding: const .symmetric(horizontal: 8),
-        alignment: .centerRight,
+        padding: const EdgeInsets.symmetric(horizontal: 8),
+        alignment: Alignment.centerRight,
         child: Builder(
           builder: (context) {
             return IconButton.ghost(
@@ -687,9 +563,6 @@ class LineChartSample extends StatelessWidget {
               FlSpot(3, 1.5),
               FlSpot(5, 1.4),
               FlSpot(7, 3.4),
-              // FlSpot(10, 2),
-              // FlSpot(12, 2.2),
-              // FlSpot(13, 1.8),
             ],
           ),
           // 2
@@ -705,9 +578,6 @@ class LineChartSample extends StatelessWidget {
               FlSpot(3, 4),
               FlSpot(5, 1.8),
               FlSpot(7, 5),
-              // FlSpot(10, 2),
-              // FlSpot(12, 2.2),
-              // FlSpot(13, 1.8),
             ],
           ),
           // 3
@@ -723,9 +593,6 @@ class LineChartSample extends StatelessWidget {
               FlSpot(3, 2.8),
               FlSpot(5, 1.9),
               FlSpot(7, 3),
-              // FlSpot(10, 2),
-              // FlSpot(12, 2.5),
-              // FlSpot(13, 1.2),
             ],
           ),
         ],
@@ -750,7 +617,7 @@ class LineChartSample extends StatelessWidget {
       space: 10,
       child: Text(
         text,
-        style: const TextStyle(fontWeight: .bold, fontSize: 16),
+        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
       ),
     );
   }
@@ -877,7 +744,7 @@ class CalendarWidget extends StatelessWidget {
         const SizedBox(height: 16),
 
         Row(
-          mainAxisAlignment: .spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             const Text("Su"),
             const Text("Mo"),
@@ -892,7 +759,7 @@ class CalendarWidget extends StatelessWidget {
         const SizedBox(height: 8),
 
         Row(
-          mainAxisAlignment: .spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             ...List.generate(
               7,
@@ -909,7 +776,7 @@ class CalendarWidget extends StatelessWidget {
         const SizedBox(height: 8),
 
         Row(
-          mainAxisAlignment: .spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             ...List.generate(
               7,
@@ -926,7 +793,7 @@ class CalendarWidget extends StatelessWidget {
         const SizedBox(height: 8),
 
         Row(
-          mainAxisAlignment: .spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             ...List.generate(
               7,
@@ -943,7 +810,7 @@ class CalendarWidget extends StatelessWidget {
         const SizedBox(height: 8),
 
         Row(
-          mainAxisAlignment: .spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             ...List.generate(
               7,

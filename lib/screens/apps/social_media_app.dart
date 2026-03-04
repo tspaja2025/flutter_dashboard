@@ -5,15 +5,12 @@ class SocialMediaAppScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const .all(16),
-      child: Column(
-        children: [
-          Row(children: [const Text("Social Media App").bold().large()]),
+    return Column(
+      children: [
+        Row(children: [const Text("Social Media App").bold.large]),
 
-          const SizedBox(height: 16),
-        ],
-      ),
-    );
+        const SizedBox(height: 16),
+      ],
+    ).gap(16).withPadding(all: 16);
   }
 }

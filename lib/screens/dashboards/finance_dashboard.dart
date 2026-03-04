@@ -1,14 +1,16 @@
 import 'package:fl_chart/fl_chart.dart';
+import 'package:flutter_dashboard/widget/card_widget.dart';
+import 'package:flutter_dashboard/widget/table_widget.dart';
 import 'package:shadcn_flutter/shadcn_flutter.dart';
 
 class FinanceDashboardScreen extends StatefulWidget {
   const FinanceDashboardScreen({super.key});
 
   @override
-  State<FinanceDashboardScreen> createState() => FinanceDashboardScreenState();
+  State<FinanceDashboardScreen> createState() => _FinanceDashboardScreenState();
 }
 
-class FinanceDashboardScreenState extends State<FinanceDashboardScreen> {
+class _FinanceDashboardScreenState extends State<FinanceDashboardScreen> {
   final transactions = [
     TransactionsRow(
       transaction: "Samantha William",
@@ -56,584 +58,441 @@ class FinanceDashboardScreenState extends State<FinanceDashboardScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const .all(16),
-      child: Column(
-        children: [
-          Row(children: [const Text("Finance Dashboard").bold().large()]),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(children: [const Text("Finance Dashboard").bold.large]),
 
-          const SizedBox(height: 16),
-          Row(
-            crossAxisAlignment: .start,
-            spacing: 16,
-            children: [
-              Expanded(
-                child: Card(
-                  padding: const .all(16),
-                  child: Column(
-                    crossAxisAlignment: .start,
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: CardWidget(
+                title: "My Balance",
+                subtitle: "+12.5% compared to last month",
+                children: [
+                  const Text("\$125,430").x2Large.bold,
+
+                  const SizedBox(height: 16),
+
+                  Row(
                     children: [
-                      const Text("My Balance").semiBold(),
+                      PrimaryButton(
+                        onPressed: () {},
+                        leading: const Icon(LucideIcons.arrowUp),
+                        child: const Text("Transfer"),
+                      ),
+                      OutlineButton(
+                        onPressed: () {},
+                        leading: const Icon(LucideIcons.arrowDown),
+                        child: const Text("Request"),
+                      ),
+                    ],
+                  ).gap(8),
+                ],
+              ),
+            ),
+            Expanded(
+              child: CardWidget(
+                title: "Net Profit",
+                subtitle: "+8.5% compared to last month",
+                children: [const Text("\$38,700").x2Large.bold],
+              ),
+            ),
+            Expanded(
+              child: CardWidget(
+                title: "Expenses",
+                subtitle: "-5.5% compared to last month",
+                children: [const Text("\$26,450").x2Large.bold],
+              ),
+            ),
+            Expanded(
+              child: CardWidget(
+                title: "Pending Invoices",
+                subtitle: "+12.5% compared to last month",
+                children: [const Text("\$3,200").x2Large.bold],
+              ),
+            ),
+          ],
+        ).gap(16),
 
-                      const SizedBox(height: 16),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: CardWidget(
+                title: "Income Sources",
+                subtitle: "Total Income | +15.5% compared to last month",
+                children: [
+                  const Text("\$92,000").x2Large.bold,
 
-                      const Text("\$125,430").x2Large().bold(),
-                      const Text(
-                        "+12.5% compared to last month",
-                      ).muted().small(),
+                  const SizedBox(height: 16),
 
-                      const SizedBox(height: 16),
-
-                      Row(
-                        spacing: 8,
-                        children: [
-                          PrimaryButton(
-                            onPressed: () {},
-                            leading: const Icon(LucideIcons.arrowUp),
-                            child: const Text("Transfer"),
+                  Row(
+                    children: [
+                      Container(
+                        width: 170,
+                        height: 12,
+                        decoration: BoxDecoration(
+                          color: Colors.black,
+                          borderRadius: BorderRadius.horizontal(
+                            left: Radius.circular(12),
                           ),
-                          OutlineButton(
-                            onPressed: () {},
-                            leading: const Icon(LucideIcons.arrowDown),
-                            child: const Text("Request"),
+                        ),
+                      ),
+                      Container(
+                        width: 150,
+                        height: 12,
+                        decoration: BoxDecoration(color: Colors.gray),
+                      ),
+                      Container(
+                        width: 100,
+                        height: 12,
+                        decoration: BoxDecoration(color: Colors.gray.shade700),
+                      ),
+                      Container(
+                        width: 70,
+                        height: 12,
+                        decoration: BoxDecoration(
+                          color: Colors.gray.shade400,
+                          borderRadius: BorderRadius.horizontal(
+                            right: Radius.circular(12),
                           ),
-                        ],
+                        ),
                       ),
                     ],
                   ),
-                ),
-              ),
-              Expanded(
-                child: Card(
-                  padding: const .all(16),
-                  child: Column(
-                    crossAxisAlignment: .start,
+
+                  const SizedBox(height: 16),
+
+                  Row(
                     children: [
-                      const Text("Net Profit").semiBold(),
-
-                      const SizedBox(height: 16),
-
-                      const Text("\$38,700").x2Large().bold(),
-                      const Text(
-                        "+8.5% compared to last month",
-                      ).muted().small(),
+                      Container(
+                        width: 10,
+                        height: 10,
+                        decoration: BoxDecoration(
+                          color: Colors.black,
+                          borderRadius: BorderRadius.circular(999),
+                        ),
+                      ),
+                      const Text("Rental").muted,
+                      const Spacer(),
+                      const Text("\$35,000"),
                     ],
-                  ),
-                ),
-              ),
-              Expanded(
-                child: Card(
-                  padding: const .all(16),
-                  child: Column(
-                    crossAxisAlignment: .start,
+                  ).gap(8),
+
+                  const SizedBox(height: 16),
+
+                  Row(
                     children: [
-                      const Text("Expenses").semiBold(),
-
-                      const SizedBox(height: 16),
-
-                      const Text("\$26,450").x2Large().bold(),
-                      const Text(
-                        "-5.5% compared to last month",
-                      ).muted().small(),
+                      Container(
+                        width: 10,
+                        height: 10,
+                        decoration: BoxDecoration(
+                          color: Colors.gray,
+                          borderRadius: BorderRadius.circular(999),
+                        ),
+                      ),
+                      const Text("Investments").muted,
+                      const Spacer(),
+                      const Text("\$28,000"),
                     ],
-                  ),
-                ),
-              ),
-              Expanded(
-                child: Card(
-                  padding: const .all(16),
-                  child: Column(
-                    crossAxisAlignment: .start,
+                  ).gap(8),
+
+                  const SizedBox(height: 16),
+
+                  Row(
                     children: [
-                      const Text("Pending Invoices").semiBold(),
-
-                      const SizedBox(height: 16),
-
-                      const Text("\$3,200").x2Large().bold(),
-                      const Text(
-                        "+12.5% compared to last month",
-                      ).muted().small(),
+                      Container(
+                        width: 10,
+                        height: 10,
+                        decoration: BoxDecoration(
+                          color: Colors.gray.shade700,
+                          borderRadius: BorderRadius.circular(999),
+                        ),
+                      ),
+                      const Text("Business").muted,
+                      const Spacer(),
+                      const Text("\$18,000"),
                     ],
-                  ),
-                ),
-              ),
-            ],
-          ),
+                  ).gap(8),
 
-          const SizedBox(height: 16),
-          Row(
-            crossAxisAlignment: .start,
-            spacing: 16,
-            children: [
-              Expanded(
-                child: Card(
-                  padding: const .all(16),
-                  child: Column(
-                    crossAxisAlignment: .start,
+                  const SizedBox(height: 16),
+
+                  Row(
                     children: [
-                      const Text("Income Sources").semiBold(),
-
-                      const SizedBox(height: 16),
-
-                      const Text("Total Income").muted().small(),
-                      const Text("\$92,000").x2Large().bold(),
-                      const Text(
-                        "+15.5% compared to last month",
-                      ).muted().small(),
-
-                      const SizedBox(height: 16),
-
-                      Row(
-                        children: [
-                          Container(
-                            width: 170,
-                            height: 12,
-                            decoration: BoxDecoration(
-                              color: Colors.black,
-                              borderRadius: BorderRadius.horizontal(
-                                left: .circular(12),
+                      Container(
+                        width: 10,
+                        height: 10,
+                        decoration: BoxDecoration(
+                          color: Colors.gray.shade400,
+                          borderRadius: BorderRadius.circular(999),
+                        ),
+                      ),
+                      const Text("Freelance").muted,
+                      const Spacer(),
+                      const Text("\$11,000"),
+                    ],
+                  ).gap(8),
+                ],
+              ),
+            ),
+            Expanded(
+              child: CardWidget(
+                title: "Monthly Expenses",
+                subtitle: "Last 6 months",
+                children: [
+                  SizedBox(
+                    height: 75,
+                    child: BarChart(
+                      BarChartData(
+                        barTouchData: BarTouchData(
+                          enabled: false,
+                          touchTooltipData: BarTouchTooltipData(
+                            getTooltipColor: (group) => Colors.transparent,
+                            tooltipPadding: EdgeInsets.zero,
+                            tooltipMargin: 8,
+                            getTooltipItem:
+                                (
+                                  BarChartGroupData group,
+                                  int groupIndex,
+                                  BarChartRodData rod,
+                                  int rodIndex,
+                                ) {
+                                  return BarTooltipItem(
+                                    rod.toY.round().toString(),
+                                    TextStyle(
+                                      color: Theme.of(
+                                        context,
+                                      ).colorScheme.primary,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  );
+                                },
+                          ),
+                        ),
+                        titlesData: FlTitlesData(
+                          show: true,
+                          bottomTitles: AxisTitles(
+                            sideTitles: SideTitles(
+                              showTitles: true,
+                              reservedSize: 30,
+                              getTitlesWidget: getTitles,
+                            ),
+                          ),
+                          leftTitles: const AxisTitles(
+                            sideTitles: SideTitles(showTitles: false),
+                          ),
+                          topTitles: const AxisTitles(
+                            sideTitles: SideTitles(showTitles: false),
+                          ),
+                          rightTitles: const AxisTitles(
+                            sideTitles: SideTitles(showTitles: false),
+                          ),
+                        ),
+                        borderData: FlBorderData(show: false),
+                        barGroups: [
+                          BarChartGroupData(
+                            x: 0,
+                            barRods: [
+                              BarChartRodData(
+                                toY: 35,
+                                width: 47,
+                                borderRadius: BorderRadius.circular(4),
+                                color: Colors.black,
                               ),
-                            ),
+                            ],
                           ),
-                          Container(
-                            width: 150,
-                            height: 12,
-                            decoration: BoxDecoration(color: Colors.gray),
-                          ),
-                          Container(
-                            width: 100,
-                            height: 12,
-                            decoration: BoxDecoration(
-                              color: Colors.gray.shade700,
-                            ),
-                          ),
-                          Container(
-                            width: 70,
-                            height: 12,
-                            decoration: BoxDecoration(
-                              color: Colors.gray.shade400,
-                              borderRadius: BorderRadius.horizontal(
-                                right: .circular(12),
+                          BarChartGroupData(
+                            x: 1,
+                            barRods: [
+                              BarChartRodData(
+                                toY: 30,
+                                width: 47,
+                                borderRadius: BorderRadius.circular(4),
+                                color: Colors.black,
                               ),
-                            ),
+                            ],
+                          ),
+                          BarChartGroupData(
+                            x: 2,
+                            barRods: [
+                              BarChartRodData(
+                                toY: 37,
+                                width: 47,
+                                borderRadius: BorderRadius.circular(8),
+                                color: Colors.black,
+                              ),
+                            ],
+                          ),
+                          BarChartGroupData(
+                            x: 3,
+                            barRods: [
+                              BarChartRodData(
+                                toY: 14,
+                                width: 47,
+                                borderRadius: BorderRadius.circular(4),
+                                color: Colors.black,
+                              ),
+                            ],
+                          ),
+                          BarChartGroupData(
+                            x: 4,
+                            barRods: [
+                              BarChartRodData(
+                                toY: 20,
+                                width: 47,
+                                borderRadius: BorderRadius.circular(4),
+                                color: Colors.black,
+                              ),
+                            ],
+                          ),
+                          BarChartGroupData(
+                            x: 5,
+                            barRods: [
+                              BarChartRodData(
+                                toY: 24,
+                                width: 47,
+                                borderRadius: BorderRadius.circular(4),
+                                color: Colors.black,
+                              ),
+                            ],
+                          ),
+                          BarChartGroupData(
+                            x: 6,
+                            barRods: [
+                              BarChartRodData(
+                                toY: 38,
+                                width: 47,
+                                borderRadius: BorderRadius.circular(4),
+                                color: Colors.black,
+                              ),
+                            ],
                           ),
                         ],
+                        gridData: const FlGridData(show: false),
+                        alignment: BarChartAlignment.spaceAround,
+                        maxY: 40,
                       ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
+              child: CardWidget(
+                title: "Summary",
+                subtitle: "Data from 1-12 Jan, 2026",
+                children: [PieChartSample()],
+              ),
+            ),
+          ],
+        ).gap(16),
 
-                      const SizedBox(height: 16),
-
-                      Row(
-                        spacing: 8,
-                        children: [
-                          Container(
-                            width: 10,
-                            height: 10,
-                            decoration: BoxDecoration(
-                              color: Colors.black,
-                              borderRadius: .circular(999),
-                            ),
-                          ),
-                          const Text("Rental").muted(),
-                          const Spacer(),
-                          const Text("\$35,000"),
-                        ],
-                      ),
-
-                      const SizedBox(height: 16),
-
-                      Row(
-                        spacing: 8,
-                        children: [
-                          Container(
-                            width: 10,
-                            height: 10,
-                            decoration: BoxDecoration(
-                              color: Colors.gray,
-                              borderRadius: .circular(999),
-                            ),
-                          ),
-                          const Text("Investments").muted(),
-                          const Spacer(),
-                          const Text("\$28,000"),
-                        ],
-                      ),
-
-                      const SizedBox(height: 16),
-
-                      Row(
-                        spacing: 8,
-                        children: [
-                          Container(
-                            width: 10,
-                            height: 10,
-                            decoration: BoxDecoration(
-                              color: Colors.gray.shade700,
-                              borderRadius: .circular(999),
-                            ),
-                          ),
-                          const Text("Business").muted(),
-                          const Spacer(),
-                          const Text("\$18,000"),
-                        ],
-                      ),
-
-                      const SizedBox(height: 16),
-
-                      Row(
-                        spacing: 8,
-                        children: [
-                          Container(
-                            width: 10,
-                            height: 10,
-                            decoration: BoxDecoration(
-                              color: Colors.gray.shade400,
-                              borderRadius: .circular(999),
-                            ),
-                          ),
-                          const Text("Freelance").muted(),
-                          const Spacer(),
-                          const Text("\$11,000"),
-                        ],
-                      ),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: CardWidget(
+                title: "Transactions",
+                subtitle: "",
+                trailing: [
+                  OutlineButton(
+                    onPressed: () {},
+                    child: const Text("View All"),
+                  ),
+                ],
+                children: [
+                  TableWidget(
+                    columnWidths: {
+                      0: FixedTableSize(215),
+                      1: FixedTableSize(150),
+                    },
+                    hasCheckbox: false,
+                    headerChildren: [
+                      _buildHeaderCell("Transaction"),
+                      _buildHeaderCell("Date"),
+                      _buildHeaderCell("Type"),
+                      _buildHeaderCell("Amount", true),
+                    ],
+                    bodyChildren: [
+                      ...transactions.map((row) => _buildDataRow(context, row)),
                     ],
                   ),
-                ),
+                ],
               ),
-              Expanded(
-                child: Card(
-                  padding: const .all(16),
-                  child: Column(
-                    crossAxisAlignment: .start,
+            ),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  CardWidget(
+                    title: "Saving Goal",
+                    subtitle: "75% progress",
+                    trailing: [
+                      OutlineButton(
+                        onPressed: () {},
+                        child: const Text("View Report"),
+                      ),
+                    ],
                     children: [
-                      const Text("Monthly Expenses").semiBold(),
-                      const SizedBox(height: 4),
-                      const Text("Last 6 months").muted().small(),
+                      Row(
+                        children: [
+                          const Text("\$1052.98").x2Large.bold,
+                          const Text("of \$1200").muted.small,
+                        ],
+                      ).gap(8),
 
                       const SizedBox(height: 16),
 
                       SizedBox(
-                        height: 75,
-                        child: BarChart(
-                          BarChartData(
-                            barTouchData: BarTouchData(
-                              enabled: false,
-                              touchTooltipData: BarTouchTooltipData(
-                                getTooltipColor: (group) => Colors.transparent,
-                                tooltipPadding: .zero,
-                                tooltipMargin: 8,
-                                getTooltipItem:
-                                    (
-                                      BarChartGroupData group,
-                                      int groupIndex,
-                                      BarChartRodData rod,
-                                      int rodIndex,
-                                    ) {
-                                      return BarTooltipItem(
-                                        rod.toY.round().toString(),
-                                        TextStyle(
-                                          color: Theme.of(
-                                            context,
-                                          ).colorScheme.primary,
-                                          fontWeight: .bold,
-                                        ),
-                                      );
-                                    },
-                              ),
-                            ),
-                            titlesData: FlTitlesData(
-                              show: true,
-                              bottomTitles: AxisTitles(
-                                sideTitles: SideTitles(
-                                  showTitles: true,
-                                  reservedSize: 30,
-                                  getTitlesWidget: getTitles,
-                                ),
-                              ),
-                              leftTitles: const AxisTitles(
-                                sideTitles: SideTitles(showTitles: false),
-                              ),
-                              topTitles: const AxisTitles(
-                                sideTitles: SideTitles(showTitles: false),
-                              ),
-                              rightTitles: const AxisTitles(
-                                sideTitles: SideTitles(showTitles: false),
-                              ),
-                            ),
-                            borderData: FlBorderData(show: false),
-                            barGroups: [
-                              BarChartGroupData(
-                                x: 0,
-                                barRods: [
-                                  BarChartRodData(
-                                    toY: 35,
-                                    width: 47,
-                                    borderRadius: .circular(4),
-                                    color: Colors.black,
-                                  ),
-                                ],
-                              ),
-                              BarChartGroupData(
-                                x: 1,
-                                barRods: [
-                                  BarChartRodData(
-                                    toY: 30,
-                                    width: 47,
-                                    borderRadius: .circular(4),
-                                    color: Colors.black,
-                                  ),
-                                ],
-                              ),
-                              BarChartGroupData(
-                                x: 2,
-                                barRods: [
-                                  BarChartRodData(
-                                    toY: 37,
-                                    width: 47,
-                                    borderRadius: .circular(8),
-                                    color: Colors.black,
-                                  ),
-                                ],
-                              ),
-                              BarChartGroupData(
-                                x: 3,
-                                barRods: [
-                                  BarChartRodData(
-                                    toY: 14,
-                                    width: 47,
-                                    borderRadius: .circular(4),
-                                    color: Colors.black,
-                                  ),
-                                ],
-                              ),
-                              BarChartGroupData(
-                                x: 4,
-                                barRods: [
-                                  BarChartRodData(
-                                    toY: 20,
-                                    width: 47,
-                                    borderRadius: .circular(4),
-                                    color: Colors.black,
-                                  ),
-                                ],
-                              ),
-                              BarChartGroupData(
-                                x: 5,
-                                barRods: [
-                                  BarChartRodData(
-                                    toY: 24,
-                                    width: 47,
-                                    borderRadius: .circular(4),
-                                    color: Colors.black,
-                                  ),
-                                ],
-                              ),
-                              BarChartGroupData(
-                                x: 6,
-                                barRods: [
-                                  BarChartRodData(
-                                    toY: 38,
-                                    width: 47,
-                                    borderRadius: .circular(4),
-                                    color: Colors.black,
-                                  ),
-                                ],
-                              ),
-                            ],
-                            gridData: const FlGridData(show: false),
-                            alignment: .spaceAround,
-                            maxY: 40,
-                          ),
-                        ),
+                        width: double.infinity,
+                        height: 8,
+                        child: Progress(progress: 70, min: 0, max: 100),
                       ),
                     ],
                   ),
-                ),
-              ),
-              Expanded(
-                child: Card(
-                  padding: const .all(16),
-                  child: Column(
-                    crossAxisAlignment: .start,
-                    children: [
-                      const Text("Summary").semiBold(),
-                      const SizedBox(height: 4),
-                      const Text("Data from 1-12 Apr, 2024").muted().small(),
-
-                      const SizedBox(height: 16),
-
-                      PieChartSample(),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
-
-          const SizedBox(height: 16),
-          Row(
-            crossAxisAlignment: .start,
-            spacing: 16,
-            children: [
-              Expanded(
-                child: Card(
-                  padding: const .all(16),
-                  child: Column(
-                    crossAxisAlignment: .start,
-                    children: [
-                      Row(
-                        children: [
-                          const Text("Transactions").semiBold(),
-                          const Spacer(),
-                          OutlineButton(
-                            onPressed: () {},
-                            child: const Text("View All"),
-                          ),
-                        ],
+                  CardWidget(
+                    title: "My Wallet",
+                    subtitle: "A total of 4 cards are listed",
+                    trailing: [
+                      OutlineButton(
+                        onPressed: () {},
+                        leading: const Icon(LucideIcons.plus),
+                        child: const Text("Add New"),
                       ),
+                    ],
+                    children: [
+                      SizedBox(
+                        width: double.infinity,
+                        child: Card(
+                          filled: true,
+                          fillColor: Colors.green,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text("Credit Card"),
 
-                      const SizedBox(height: 16),
+                              const SizedBox(height: 16),
 
-                      Table(
-                        columnWidths: {
-                          0: FixedTableSize(215),
-                          1: FixedTableSize(150),
-                        },
-                        defaultRowHeight: FixedTableSize(48),
+                              const Text("1234 **** **** 5678"),
 
-                        rows: [
-                          // Header row
-                          TableRow(
-                            cells: [
-                              _buildHeaderCell("Transaction"),
-                              _buildHeaderCell("Date"),
-                              _buildHeaderCell("Type"),
-                              _buildHeaderCell("Amount", true),
+                              const SizedBox(height: 64),
+
+                              const Text("\$5,325.57").x2Large.bold,
                             ],
                           ),
-
-                          // Body rows
-                          ...transactions.map(
-                            (row) => _buildDataRow(context, row),
-                          ),
-                        ],
+                        ),
                       ),
                     ],
                   ),
-                ),
-              ),
-              Expanded(
-                child: Column(
-                  spacing: 16,
-                  children: [
-                    SizedBox(
-                      width: double.infinity,
-                      child: Card(
-                        padding: const .all(16),
-                        child: Column(
-                          crossAxisAlignment: .start,
-                          children: [
-                            Row(
-                              children: [
-                                Column(
-                                  crossAxisAlignment: .start,
-                                  children: [
-                                    const Text("Saving Goal").semiBold(),
-                                    const SizedBox(height: 4),
-                                    const Text("75% Progress").muted().small(),
-                                  ],
-                                ),
-                                const Spacer(),
-                                OutlineButton(
-                                  onPressed: () {},
-                                  child: const Text("View Report"),
-                                ),
-                              ],
-                            ),
-
-                            const SizedBox(height: 16),
-
-                            Row(
-                              spacing: 8,
-                              children: [
-                                const Text("\$1052.98").x2Large().bold(),
-                                const Text("of \$1200").muted().small(),
-                              ],
-                            ),
-
-                            const SizedBox(height: 16),
-
-                            SizedBox(
-                              width: double.infinity,
-                              height: 8,
-                              child: Progress(progress: 70, min: 0, max: 100),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: double.infinity,
-                      child: Card(
-                        padding: const .all(16),
-                        child: Column(
-                          crossAxisAlignment: .start,
-                          children: [
-                            Row(
-                              children: [
-                                Column(
-                                  crossAxisAlignment: .start,
-                                  children: [
-                                    const Text("My Wallet").semiBold(),
-                                    const SizedBox(height: 4),
-                                    const Text(
-                                      "A total of 4 cards are listed",
-                                    ).muted().small(),
-                                  ],
-                                ),
-                                const Spacer(),
-                                OutlineButton(
-                                  onPressed: () {},
-                                  leading: const Icon(LucideIcons.plus),
-                                  child: const Text("Add New"),
-                                ),
-                              ],
-                            ),
-
-                            const SizedBox(height: 16),
-
-                            SizedBox(
-                              width: double.infinity,
-                              child: Card(
-                                filled: true,
-                                fillColor: Colors.green,
-                                child: Column(
-                                  crossAxisAlignment: .start,
-                                  children: [
-                                    const Text("Credit Card"),
-
-                                    const SizedBox(height: 16),
-
-                                    const Text("1234 **** **** 5678"),
-
-                                    const SizedBox(height: 64),
-
-                                    const Text("\$5,325.57").x2Large().bold(),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
+                ],
+              ).gap(16),
+            ),
+          ],
+        ).gap(16),
+      ],
+    ).gap(16).withPadding(all: 16);
   }
 
   Widget getTitles(double value, TitleMeta meta) {
@@ -662,9 +521,9 @@ class FinanceDashboardScreenState extends State<FinanceDashboardScreen> {
   TableCell _buildHeaderCell(String text, [bool alignRight = false]) {
     return TableCell(
       child: Container(
-        padding: const .all(8),
-        alignment: alignRight ? .centerRight : .centerLeft,
-        child: Text(text).muted().semiBold(),
+        padding: const EdgeInsets.all(8),
+        alignment: alignRight ? Alignment.centerRight : Alignment.centerLeft,
+        child: Text(text).muted.semiBold,
       ),
     );
   }
@@ -672,8 +531,8 @@ class FinanceDashboardScreenState extends State<FinanceDashboardScreen> {
   TableCell _buildCell(String text, [bool alignRight = false]) {
     return TableCell(
       child: Container(
-        padding: const .all(8),
-        alignment: alignRight ? .centerRight : .centerLeft,
+        padding: const EdgeInsets.all(8),
+        alignment: alignRight ? Alignment.centerRight : Alignment.centerLeft,
         child: Text(text),
       ),
     );

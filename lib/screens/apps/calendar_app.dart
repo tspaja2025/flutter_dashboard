@@ -144,147 +144,135 @@ class CalendarAppScreenState extends State<CalendarAppScreen> {
   Widget build(BuildContext context) {
     final calendarWeeks = _generateCalendarDays();
 
-    return Padding(
-      padding: const .all(16),
-      child: Column(
-        children: [
-          Row(children: [const Text("Calendar App").bold().large()]),
+    return Column(
+      children: [
+        Row(children: [const Text("Calendar App").bold.large]),
 
-          const SizedBox(height: 16),
-
-          OutlinedContainer(
-            child: Column(
-              children: [
-                Padding(
-                  padding: const .all(16),
-                  child: Row(
-                    spacing: 8,
-                    children: [
-                      OutlineButton(
-                        onPressed: _navigateToToday,
-                        child: const Text("Today"),
+        OutlinedContainer(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(16),
+                child: Row(
+                  children: [
+                    OutlineButton(
+                      onPressed: _navigateToToday,
+                      child: const Text("Today"),
+                    ),
+                    IconButton.ghost(
+                      onPressed: _navigateToPreviousMonth,
+                      icon: const Icon(LucideIcons.chevronLeft),
+                    ),
+                    IconButton.ghost(
+                      onPressed: _navigateToNextMonth,
+                      icon: const Icon(LucideIcons.chevronRight),
+                    ),
+                    Text(_getMonthYearString()),
+                    const Spacer(),
+                    Select<String>(
+                      itemBuilder: (context, item) {
+                        return Text(item);
+                      },
+                      popupConstraints: const BoxConstraints(
+                        maxHeight: 300,
+                        maxWidth: 200,
                       ),
-                      IconButton.ghost(
-                        onPressed: _navigateToPreviousMonth,
-                        icon: const Icon(LucideIcons.chevronLeft),
-                      ),
-                      IconButton.ghost(
-                        onPressed: _navigateToNextMonth,
-                        icon: const Icon(LucideIcons.chevronRight),
-                      ),
-                      Text(_getMonthYearString()),
-                      const Spacer(),
-                      Select<String>(
-                        itemBuilder: (context, item) {
-                          return Text(item);
-                        },
-                        popupConstraints: const BoxConstraints(
-                          maxHeight: 300,
-                          maxWidth: 200,
+                      onChanged: (value) {
+                        setState(() {
+                          _selectedValue = value;
+                        });
+                      },
+                      value: _selectedValue,
+                      placeholder: const Text("View"),
+                      popup: const SelectPopup(
+                        items: SelectItemList(
+                          children: [
+                            SelectItemButton(
+                              value: "Month",
+                              child: Text("Month"),
+                            ),
+                            SelectItemButton(
+                              value: "Week",
+                              child: Text("Week"),
+                            ),
+                            SelectItemButton(value: "Day", child: Text("Day")),
+                          ],
                         ),
-                        onChanged: (value) {
-                          setState(() {
-                            _selectedValue = value;
-                          });
-                        },
-                        value: _selectedValue,
-                        placeholder: const Text("View"),
-                        popup: const SelectPopup(
-                          items: SelectItemList(
-                            children: [
-                              SelectItemButton(
-                                value: "Month",
-                                child: Text("Month"),
-                              ),
-                              SelectItemButton(
-                                value: "Week",
-                                child: Text("Week"),
-                              ),
-                              SelectItemButton(
-                                value: "Day",
-                                child: Text("Day"),
-                              ),
-                            ],
-                          ),
-                        ).call,
-                      ),
-                      PrimaryButton(
-                        onPressed: () {},
-                        leading: const Icon(LucideIcons.plus),
-                        child: const Text("New Event"),
-                      ),
-                    ],
-                  ),
-                ),
-                Row(
-                  children: _weekdays.map((weekday) {
-                    return Expanded(
-                      child: Container(
-                        height: 32,
-                        alignment: .center,
-                        child: Text(weekday).bold(),
-                      ),
-                    );
-                  }).toList(),
-                ),
+                      ).call,
+                    ),
+                    PrimaryButton(
+                      onPressed: () {},
+                      leading: const Icon(LucideIcons.plus),
+                      child: const Text("New Event"),
+                    ),
+                  ],
+                ).gap(8),
+              ),
+              Row(
+                children: _weekdays.map((weekday) {
+                  return Expanded(
+                    child: Container(
+                      height: 32,
+                      alignment: Alignment.center,
+                      child: Text(weekday).bold(),
+                    ),
+                  );
+                }).toList(),
+              ),
 
-                const SizedBox(height: 4),
+              const SizedBox(height: 4),
 
-                Column(
-                  children: calendarWeeks.map((week) {
-                    return Row(
-                      mainAxisAlignment: .spaceEvenly,
-                      children: week.map((day) {
-                        final isToday = _isToday(day);
-                        final isSelected =
-                            _selectedDate != null &&
-                            _selectedDate!.year == day.year &&
-                            _selectedDate!.month == day.month &&
-                            _selectedDate!.day == day.day;
-                        final isCurrentMonth = _isSameMonth(day);
+              Column(
+                children: calendarWeeks.map((week) {
+                  return Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: week.map((day) {
+                      final isToday = _isToday(day);
+                      final isSelected =
+                          _selectedDate != null &&
+                          _selectedDate!.year == day.year &&
+                          _selectedDate!.month == day.month &&
+                          _selectedDate!.day == day.day;
+                      final isCurrentMonth = _isSameMonth(day);
 
-                        return Expanded(
-                          child: Container(
-                            height:
-                                (MediaQuery.of(context).size.height - 112) / 6,
-                            decoration: BoxDecoration(
-                              border: .all(
-                                color: Theme.of(context).colorScheme.border,
-                              ),
+                      return Expanded(
+                        child: Container(
+                          height:
+                              (MediaQuery.of(context).size.height - 112) / 6,
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Theme.of(context).colorScheme.border,
                             ),
-                            child: TextButton(
-                              onPressed: () {
-                                setState(() {
-                                  _selectedDate = day;
-                                  if (!isCurrentMonth) {
-                                    _currentMonth = DateTime(
-                                      day.year,
-                                      day.month,
-                                    );
-                                  }
-                                });
-                              },
-                              child: Text(
-                                day.day.toString(),
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: isSelected || isToday
-                                      ? FontWeight.w600
-                                      : FontWeight.normal,
-                                ),
+                          ),
+                          child: TextButton(
+                            onPressed: () {
+                              setState(() {
+                                _selectedDate = day;
+                                if (!isCurrentMonth) {
+                                  _currentMonth = DateTime(day.year, day.month);
+                                }
+                              });
+                            },
+                            child: Text(
+                              day.day.toString(),
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: isSelected || isToday
+                                    ? FontWeight.w600
+                                    : FontWeight.normal,
                               ),
                             ),
                           ),
-                        );
-                      }).toList(),
-                    );
-                  }).toList(),
-                ),
-              ],
-            ),
+                        ),
+                      );
+                    }).toList(),
+                  );
+                }).toList(),
+              ),
+            ],
           ),
-        ],
-      ),
-    );
+        ),
+      ],
+    ).gap(16).withPadding(all: 16);
   }
 }

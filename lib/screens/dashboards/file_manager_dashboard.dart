@@ -1,4 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
+import 'package:flutter_dashboard/widget/card_widget.dart';
+import 'package:flutter_dashboard/widget/table_widget.dart';
 import 'package:shadcn_flutter/shadcn_flutter.dart';
 
 class FileManagerDashboardScreen extends StatefulWidget {
@@ -6,10 +8,10 @@ class FileManagerDashboardScreen extends StatefulWidget {
 
   @override
   State<FileManagerDashboardScreen> createState() =>
-      FileManagerDashboardScreenState();
+      _FileManagerDashboardScreenState();
 }
 
-class FileManagerDashboardScreenState
+class _FileManagerDashboardScreenState
     extends State<FileManagerDashboardScreen> {
   final recentlyUploadedFiles = [
     RecentlyUploadedFilesRow(
@@ -41,507 +43,385 @@ class FileManagerDashboardScreenState
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const .all(16),
-      child: Column(
-        children: [
-          Row(
-            children: [
-              const Text("File Manager Dashboard").bold().large(),
-              const Spacer(),
-              PrimaryButton(
-                onPressed: () {},
-                leading: const Icon(LucideIcons.upload),
-                child: const Text("Upload"),
-              ),
-            ],
-          ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            const Text("File Manager Dashboard").bold.large,
+            const Spacer(),
+            PrimaryButton(
+              onPressed: () {},
+              leading: const Icon(LucideIcons.upload),
+              child: const Text("Upload"),
+            ),
+          ],
+        ),
 
-          const SizedBox(height: 16),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: CardWidget(
+                title: "Documents",
+                subtitle: "",
+                children: [
+                  NumberTicker(
+                    initialNumber: 0,
+                    number: 1390,
+                    style: const TextStyle(fontSize: 32),
+                    formatter: (number) {
+                      return number.toStringAsFixed(0);
+                    },
+                  ),
 
-          Row(
-            crossAxisAlignment: .start,
-            spacing: 16,
-            children: [
-              Expanded(
-                child: Card(
-                  padding: const .all(16),
-                  child: Column(
-                    crossAxisAlignment: .start,
+                  const SizedBox(height: 16),
+
+                  SizedBox(
+                    width: double.infinity,
+                    child: Progress(progress: 35, min: 0, max: 100),
+                  ),
+                  const SizedBox(height: 8),
+
+                  Row(
                     children: [
-                      const Text("Documents").semiBold(),
-
-                      const SizedBox(height: 16),
-
-                      NumberTicker(
-                        initialNumber: 0,
-                        number: 1390,
-                        style: const TextStyle(fontSize: 32),
-                        formatter: (number) {
-                          return number.toStringAsFixed(0);
-                        },
-                      ),
-
-                      const SizedBox(height: 16),
-
-                      SizedBox(
-                        width: double.infinity,
-                        child: Progress(progress: 35, min: 0, max: 100),
-                      ),
-                      const SizedBox(height: 8),
-
-                      Row(
-                        children: [
-                          const Text("2.1 GB used").muted().small(),
-                          const Spacer(),
-                          const Text("35%").muted().small(),
-                        ],
-                      ),
+                      const Text("2.1 GB used").muted.small,
+                      const Spacer(),
+                      const Text("35%").muted.small,
                     ],
                   ),
-                ),
+                ],
               ),
-              Expanded(
-                child: Card(
-                  padding: const .all(16),
-                  child: Column(
-                    crossAxisAlignment: .start,
+            ),
+            Expanded(
+              child: CardWidget(
+                title: "Images",
+                subtitle: "",
+                children: [
+                  NumberTicker(
+                    initialNumber: 0,
+                    number: 5678,
+                    style: const TextStyle(fontSize: 32),
+                    formatter: (number) {
+                      return number.toStringAsFixed(0);
+                    },
+                  ),
+
+                  const SizedBox(height: 16),
+
+                  SizedBox(
+                    width: double.infinity,
+                    child: Progress(progress: 62, min: 0, max: 100),
+                  ),
+                  const SizedBox(height: 8),
+
+                  Row(
                     children: [
-                      const Text("Images").semiBold(),
-
-                      const SizedBox(height: 16),
-
-                      NumberTicker(
-                        initialNumber: 0,
-                        number: 5678,
-                        style: const TextStyle(fontSize: 32),
-                        formatter: (number) {
-                          return number.toStringAsFixed(0);
-                        },
-                      ),
-
-                      const SizedBox(height: 16),
-
-                      SizedBox(
-                        width: double.infinity,
-                        child: Progress(progress: 62, min: 0, max: 100),
-                      ),
-                      const SizedBox(height: 8),
-
-                      Row(
-                        children: [
-                          const Text("3.8 GB used").muted().small(),
-                          const Spacer(),
-                          const Text("62%").muted().small(),
-                        ],
-                      ),
+                      const Text("3.8 GB used").muted.small,
+                      const Spacer(),
+                      const Text("62%").muted.small,
                     ],
                   ),
-                ),
+                ],
               ),
-              Expanded(
-                child: Card(
-                  padding: const .all(16),
-                  child: Column(
-                    crossAxisAlignment: .start,
+            ),
+            Expanded(
+              child: CardWidget(
+                title: "Videos",
+                subtitle: "",
+                children: [
+                  NumberTicker(
+                    initialNumber: 0,
+                    number: 901,
+                    style: const TextStyle(fontSize: 32),
+                    formatter: (number) {
+                      return number.toStringAsFixed(0);
+                    },
+                  ),
+
+                  const SizedBox(height: 16),
+
+                  SizedBox(
+                    width: double.infinity,
+                    child: Progress(progress: 89, min: 0, max: 100),
+                  ),
+                  const SizedBox(height: 8),
+
+                  Row(
                     children: [
-                      const Text("Videos").semiBold(),
-
-                      const SizedBox(height: 16),
-
-                      NumberTicker(
-                        initialNumber: 0,
-                        number: 901,
-                        style: const TextStyle(fontSize: 32),
-                        formatter: (number) {
-                          return number.toStringAsFixed(0);
-                        },
-                      ),
-
-                      const SizedBox(height: 16),
-
-                      SizedBox(
-                        width: double.infinity,
-                        child: Progress(progress: 89, min: 0, max: 100),
-                      ),
-                      const SizedBox(height: 8),
-
-                      Row(
-                        children: [
-                          const Text("7.5 GB used").muted().small(),
-                          const Spacer(),
-                          const Text("89%").muted().small(),
-                        ],
-                      ),
+                      const Text("7.5 GB used").muted.small,
+                      const Spacer(),
+                      const Text("89%").muted.small,
                     ],
                   ),
-                ),
+                ],
               ),
-              Expanded(
-                child: Card(
-                  padding: const .all(16),
-                  child: Column(
-                    crossAxisAlignment: .start,
+            ),
+            Expanded(
+              child: CardWidget(
+                title: "Others",
+                subtitle: "",
+                children: [
+                  NumberTicker(
+                    initialNumber: 0,
+                    number: 234,
+                    style: const TextStyle(fontSize: 32),
+                    formatter: (number) {
+                      return number.toStringAsFixed(0);
+                    },
+                  ),
+
+                  const SizedBox(height: 16),
+
+                  SizedBox(
+                    width: double.infinity,
+                    child: Progress(progress: 35, min: 0, max: 100),
+                  ),
+                  const SizedBox(height: 8),
+
+                  Row(
                     children: [
-                      const Text("Others").semiBold(),
-
-                      const SizedBox(height: 16),
-
-                      NumberTicker(
-                        initialNumber: 0,
-                        number: 234,
-                        style: const TextStyle(fontSize: 32),
-                        formatter: (number) {
-                          return number.toStringAsFixed(0);
-                        },
-                      ),
-
-                      const SizedBox(height: 16),
-
-                      SizedBox(
-                        width: double.infinity,
-                        child: Progress(progress: 28, min: 0, max: 100),
-                      ),
-                      const SizedBox(height: 8),
-
-                      Row(
-                        children: [
-                          const Text("1.2 GB used").muted().small(),
-                          const Spacer(),
-                          const Text("28%").muted().small(),
-                        ],
-                      ),
+                      const Text("1.2 GB used").muted.small,
+                      const Spacer(),
+                      const Text("28%").muted.small,
                     ],
                   ),
-                ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
+        ).gap(16),
 
-          const SizedBox(height: 16),
-
-          Row(
-            crossAxisAlignment: .start,
-            spacing: 16,
-            children: [
-              Expanded(
-                child: Card(
-                  padding: const .all(16),
-                  child: Column(
-                    crossAxisAlignment: .start,
-                    children: [
-                      Row(
-                        children: [
-                          const Text("Documents").semiBold(),
-                          const Spacer(),
-                          Builder(
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: CardWidget(
+                title: "Documents",
+                subtitle: "",
+                trailing: [
+                  Builder(
+                    builder: (context) {
+                      return IconButton.ghost(
+                        onPressed: () {
+                          showDropdown(
+                            context: context,
                             builder: (context) {
-                              return IconButton.ghost(
-                                onPressed: () {
-                                  showDropdown(
-                                    context: context,
-                                    builder: (context) {
-                                      return const DropdownMenu(
-                                        children: [
-                                          MenuButton(child: Text("Download")),
-                                          MenuButton(child: Text("Share")),
-                                          MenuDivider(),
-                                          MenuButton(child: Text("Delete")),
-                                        ],
-                                      );
-                                    },
-                                  );
-                                },
-                                icon: const Icon(LucideIcons.ellipsisVertical),
+                              return const DropdownMenu(
+                                children: [
+                                  MenuButton(child: Text("Download")),
+                                  MenuButton(child: Text("Share")),
+                                  MenuDivider(),
+                                  MenuButton(child: Text("Delete")),
+                                ],
                               );
                             },
-                          ),
-                        ],
-                      ),
+                          );
+                        },
+                        icon: const Icon(LucideIcons.ellipsisVertical),
+                      );
+                    },
+                  ),
+                ],
+                children: [
+                  OutlinedContainer(
+                    width: double.infinity,
+                    padding: const EdgeInsets.all(8),
+                    backgroundColor: Colors.gray.shade200,
+                    child: const Text("120 items"),
+                  ),
 
-                      const SizedBox(height: 16),
+                  const SizedBox(height: 8),
 
-                      OutlinedContainer(
-                        width: double.infinity,
-                        padding: const .all(8),
-                        child: const Text("120 items"),
-                      ),
-
-                      const SizedBox(height: 8),
-
-                      Row(
-                        children: [
-                          const Text("Last update: 10 days ago"),
-                          const Spacer(),
-                          const Icon(LucideIcons.star),
-                        ],
-                      ),
+                  Row(
+                    children: [
+                      const Text("Last update: 10 days ago"),
+                      const Spacer(),
+                      const Icon(LucideIcons.star),
                     ],
                   ),
-                ),
+                ],
               ),
-              Expanded(
-                child: Card(
-                  padding: const .all(16),
-                  child: Column(
-                    crossAxisAlignment: .start,
-                    children: [
-                      Row(
-                        children: [
-                          const Text("Images").semiBold(),
-                          const Spacer(),
-                          Builder(
+            ),
+            Expanded(
+              child: CardWidget(
+                title: "Images",
+                subtitle: "",
+                trailing: [
+                  Builder(
+                    builder: (context) {
+                      return IconButton.ghost(
+                        onPressed: () {
+                          showDropdown(
+                            context: context,
                             builder: (context) {
-                              return IconButton.ghost(
-                                onPressed: () {
-                                  showDropdown(
-                                    context: context,
-                                    builder: (context) {
-                                      return const DropdownMenu(
-                                        children: [
-                                          MenuButton(child: Text("Download")),
-                                          MenuButton(child: Text("Share")),
-                                          MenuDivider(),
-                                          MenuButton(child: Text("Delete")),
-                                        ],
-                                      );
-                                    },
-                                  );
-                                },
-                                icon: const Icon(LucideIcons.ellipsisVertical),
+                              return const DropdownMenu(
+                                children: [
+                                  MenuButton(child: Text("Download")),
+                                  MenuButton(child: Text("Share")),
+                                  MenuDivider(),
+                                  MenuButton(child: Text("Delete")),
+                                ],
                               );
                             },
-                          ),
-                        ],
-                      ),
+                          );
+                        },
+                        icon: const Icon(LucideIcons.ellipsisVertical),
+                      );
+                    },
+                  ),
+                ],
+                children: [
+                  OutlinedContainer(
+                    width: double.infinity,
+                    padding: const EdgeInsets.all(8),
+                    backgroundColor: Colors.gray.shade200,
+                    child: const Text("250 items"),
+                  ),
 
-                      const SizedBox(height: 16),
+                  const SizedBox(height: 8),
 
-                      OutlinedContainer(
-                        width: double.infinity,
-                        padding: const .all(8),
-                        child: const Text("250 items"),
-                      ),
-
-                      const SizedBox(height: 8),
-
-                      Row(
-                        children: [
-                          const Text("Last update: 10 days ago"),
-                          const Spacer(),
-                          const Icon(LucideIcons.star),
-                        ],
-                      ),
+                  Row(
+                    children: [
+                      const Text("Last update: 10 days ago"),
+                      const Spacer(),
+                      const Icon(LucideIcons.star),
                     ],
                   ),
-                ),
+                ],
               ),
-              Expanded(
-                child: Card(
-                  padding: const .all(16),
-                  child: Column(
-                    crossAxisAlignment: .start,
-                    children: [
-                      Row(
-                        children: [
-                          const Text("Downloads").semiBold(),
-                          const Spacer(),
-                          Builder(
+            ),
+            Expanded(
+              child: CardWidget(
+                title: "Downloads",
+                subtitle: "",
+                trailing: [
+                  Builder(
+                    builder: (context) {
+                      return IconButton.ghost(
+                        onPressed: () {
+                          showDropdown(
+                            context: context,
                             builder: (context) {
-                              return IconButton.ghost(
-                                onPressed: () {
-                                  showDropdown(
-                                    context: context,
-                                    builder: (context) {
-                                      return const DropdownMenu(
-                                        children: [
-                                          MenuButton(child: Text("Download")),
-                                          MenuButton(child: Text("Share")),
-                                          MenuDivider(),
-                                          MenuButton(child: Text("Delete")),
-                                        ],
-                                      );
-                                    },
-                                  );
-                                },
-                                icon: const Icon(LucideIcons.ellipsisVertical),
+                              return const DropdownMenu(
+                                children: [
+                                  MenuButton(child: Text("Download")),
+                                  MenuButton(child: Text("Share")),
+                                  MenuDivider(),
+                                  MenuButton(child: Text("Delete")),
+                                ],
                               );
                             },
-                          ),
-                        ],
-                      ),
-
-                      const SizedBox(height: 16),
-
-                      OutlinedContainer(
-                        width: double.infinity,
-                        padding: const .all(8),
-                        child: const Text("80 items"),
-                      ),
-
-                      const SizedBox(height: 8),
-
-                      Row(
-                        children: [
-                          const Text("Last update: 10 days ago"),
-                          const Spacer(),
-                          const Icon(LucideIcons.star),
-                        ],
-                      ),
-                    ],
+                          );
+                        },
+                        icon: const Icon(LucideIcons.ellipsisVertical),
+                      );
+                    },
                   ),
-                ),
-              ),
-              Expanded(
-                child: Card(
-                  padding: const .all(16),
-                  child: Column(
-                    crossAxisAlignment: .start,
+                ],
+                children: [
+                  OutlinedContainer(
+                    width: double.infinity,
+                    padding: const EdgeInsets.all(8),
+                    backgroundColor: Colors.gray.shade200,
+                    child: const Text("80 items"),
+                  ),
+
+                  const SizedBox(height: 8),
+
+                  Row(
                     children: [
-                      Row(
-                        children: [
-                          Column(
-                            crossAxisAlignment: .start,
-                            children: [
-                              const Text("Storage Space Used").semiBold(),
-                              const SizedBox(height: 4),
-                              const Text(
-                                "See your remaining file storage",
-                              ).muted().small(),
-                            ],
-                          ),
-                          const Spacer(),
-                          IconButton.outline(
-                            onPressed: () {},
-                            icon: const Icon(LucideIcons.chevronRight),
-                          ),
-                        ],
-                      ),
-
-                      const SizedBox(height: 16),
-
-                      Row(
-                        children: [
-                          const Text("1.8 GB used"),
-                          const Spacer(),
-                          const Text("3 GB total"),
-                        ],
-                      ),
-
-                      const SizedBox(height: 16),
-
-                      SizedBox(
-                        width: double.infinity,
-                        child: Progress(progress: 70, min: 0, max: 100),
-                      ),
+                      const Text("Last update: 10 days ago"),
+                      const Spacer(),
+                      const Icon(LucideIcons.star),
                     ],
                   ),
-                ),
+                ],
               ),
-            ],
-          ),
-
-          const SizedBox(height: 16),
-
-          Row(
-            crossAxisAlignment: .start,
-            spacing: 16,
-            children: [
-              Expanded(
-                child: Card(
-                  padding: const .all(16),
-                  child: Column(
-                    crossAxisAlignment: .start,
+            ),
+            Expanded(
+              child: CardWidget(
+                title: "Storage Space Used",
+                subtitle: "See your remaining file storage",
+                trailing: [
+                  IconButton.outline(
+                    onPressed: () {},
+                    icon: const Icon(LucideIcons.chevronRight),
+                  ),
+                ],
+                children: [
+                  Row(
                     children: [
-                      const Text("Monthly File Transfer").semiBold(),
-                      const SizedBox(height: 4),
-                      const Text("Last 28 Days").muted().small(),
-
-                      const SizedBox(height: 16),
-
-                      BarChartSample(),
+                      const Text("1.8 GB used"),
+                      const Spacer(),
+                      const Text("3 GB total"),
                     ],
                   ),
-                ),
+
+                  const SizedBox(height: 16),
+
+                  SizedBox(
+                    width: double.infinity,
+                    child: Progress(progress: 70, min: 0, max: 100),
+                  ),
+                ],
               ),
-              Expanded(
-                child: Card(
-                  padding: const .all(16),
-                  child: Column(
-                    crossAxisAlignment: .start,
-                    children: [
-                      Row(
-                        children: [
-                          const Text("Recently Uploaded Files").semiBold(),
-                          const Spacer(),
-                          OutlineButton(
-                            onPressed: () {},
-                            trailing: const Icon(LucideIcons.chevronRight),
-                            child: const Text("View All"),
-                          ),
-                        ],
-                      ),
+            ),
+          ],
+        ).gap(16),
 
-                      const SizedBox(height: 16),
-
-                      Table(
-                        // columnWidths: {0: FixedTableSize(200)},
-                        defaultRowHeight: FixedTableSize(48),
-
-                        rows: [
-                          // Header row
-                          TableRow(
-                            cells: [
-                              _buildHeaderCell("Name"),
-                              _buildHeaderCell("Size"),
-                              _buildHeaderCell("Upload Date"),
-                              _buildHeaderCell("Action", true),
-                            ],
-                          ),
-
-                          // Body rows
-                          ...recentlyUploadedFiles.map(
-                            (row) => _buildDataRow(context, row),
-                          ),
-                        ],
-                      ),
-
-                      const SizedBox(height: 16),
-
-                      Row(
-                        spacing: 8,
-                        children: [
-                          const Text("0 of 6 row(s) selected."),
-                          const Spacer(),
-                          IconButton.outline(
-                            enabled: false,
-                            onPressed: () {},
-                            icon: const Icon(LucideIcons.chevronLeft),
-                          ),
-                          IconButton.outline(
-                            enabled: false,
-                            onPressed: () {},
-                            icon: const Icon(LucideIcons.chevronRight),
-                          ),
-                        ],
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: CardWidget(
+                title: "Monthly File Transfer",
+                subtitle: "Last 28 days",
+                children: [BarChartSample()],
+              ),
+            ),
+            Expanded(
+              child: CardWidget(
+                title: "Recently Uploaded Files",
+                subtitle: "",
+                trailing: [
+                  OutlineButton(
+                    onPressed: () {},
+                    trailing: const Icon(LucideIcons.chevronRight),
+                    child: const Text("View All"),
+                  ),
+                ],
+                children: [
+                  TableWidget(
+                    columnWidths: {},
+                    hasCheckbox: false,
+                    headerChildren: [
+                      _buildHeaderCell("Name"),
+                      _buildHeaderCell("Size"),
+                      _buildHeaderCell("Upload Date"),
+                      _buildHeaderCell("Action", true),
+                    ],
+                    bodyChildren: [
+                      ...recentlyUploadedFiles.map(
+                        (row) => _buildDataRow(context, row),
                       ),
                     ],
                   ),
-                ),
+                ],
               ),
-            ],
-          ),
-        ],
-      ),
-    );
+            ),
+          ],
+        ).gap(16),
+      ],
+    ).gap(16).withPadding(all: 16);
   }
 
   TableCell _buildHeaderCell(String text, [bool alignRight = false]) {
     return TableCell(
       child: Container(
-        padding: const .all(8),
-        alignment: alignRight ? .centerRight : .centerLeft,
-        child: Text(text).muted().semiBold(),
+        padding: const EdgeInsets.all(8),
+        alignment: alignRight ? Alignment.centerRight : Alignment.centerLeft,
+        child: Text(text).muted.semiBold,
       ),
     );
   }
@@ -549,8 +429,8 @@ class FileManagerDashboardScreenState
   TableCell _buildCell(String text, [bool alignRight = false]) {
     return TableCell(
       child: Container(
-        padding: const .all(8),
-        alignment: alignRight ? .centerRight : .centerLeft,
+        padding: const EdgeInsets.all(8),
+        alignment: alignRight ? Alignment.centerRight : Alignment.centerLeft,
         child: Text(text),
       ),
     );
@@ -559,8 +439,8 @@ class FileManagerDashboardScreenState
   TableCell _actionCell(BuildContext context) {
     return TableCell(
       child: Container(
-        padding: const .symmetric(horizontal: 8),
-        alignment: .centerRight,
+        padding: const EdgeInsets.symmetric(horizontal: 8),
+        alignment: Alignment.centerRight,
         child: Builder(
           builder: (context) {
             return IconButton.ghost(
@@ -611,7 +491,7 @@ class BarChartSampleState extends State<BarChartSample> {
     return AspectRatio(
       aspectRatio: 2.0,
       child: Padding(
-        padding: const .only(top: 16),
+        padding: const EdgeInsets.only(top: 16),
         child: LayoutBuilder(
           builder: (context, constraints) {
             final barsSpace = 4.0 * constraints.maxWidth / 400;
