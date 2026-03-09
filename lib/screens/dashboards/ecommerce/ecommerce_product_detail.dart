@@ -13,6 +13,8 @@ class _EcommerceProductDetailScreenState
     extends State<EcommerceProductDetailScreen> {
   int flag = 0;
 
+  final CarouselController controller = CarouselController();
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -41,7 +43,7 @@ class _EcommerceProductDetailScreenState
             const Text("Published: 26 Jan, 2026"),
             const Text("WH1000XM4"),
           ],
-        ),
+        ).gap(16),
 
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -50,10 +52,73 @@ class _EcommerceProductDetailScreenState
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  CardWidget(title: "", subtitle: "", children: []),
+                  CardWidget(
+                    title: "",
+                    subtitle: "",
+                    children: [
+                      Row(
+                        children: [
+                          OutlineButton(
+                            shape: ButtonShape.circle,
+                            onPressed: () {
+                              controller.animatePrevious(
+                                const Duration(milliseconds: 500),
+                              );
+                            },
+                            child: const Icon(LucideIcons.arrowLeft),
+                          ),
+                          const Gap(24),
+                          Expanded(
+                            child: SizedBox(
+                              height: 200,
+                              child: Carousel(
+                                transition: const CarouselTransition.sliding(
+                                  gap: 24,
+                                ),
+                                controller: controller,
+                                sizeConstraint: const CarouselFixedConstraint(
+                                  200,
+                                ),
+                                autoplaySpeed: const Duration(seconds: 2),
+                                itemCount: 3,
+                                duration: const Duration(seconds: 1),
+                                itemBuilder: (context, index) {
+                                  return NumberedContainer(index: index);
+                                },
+                              ),
+                            ),
+                          ),
+                          const Gap(24),
+                          OutlineButton(
+                            shape: ButtonShape.circle,
+                            onPressed: () {
+                              controller.animateNext(
+                                const Duration(milliseconds: 500),
+                              );
+                            },
+                            child: const Icon(LucideIcons.arrowRight),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      Expanded(
+                        child: CardWidget(
+                          title: "",
+                          subtitle: "",
+                          children: [],
+                        ),
+                      ),
+                      Expanded(
+                        child: CardWidget(
+                          title: "",
+                          subtitle: "",
+                          children: [],
+                        ),
+                      ),
                       Expanded(
                         child: CardWidget(
                           title: "",
@@ -107,8 +172,107 @@ class _EcommerceProductDetailScreenState
 
                   CardWidget(
                     title: "Description",
-                    subtitle: "This is a shirt",
+                    subtitle:
+                        "Men striped pink sweatshirt. Crafted with cotton. Material composition is 100% organic cotton.",
+                    trailing: [
+                      OutlinedContainer(
+                        borderColor: Theme.of(context).colorScheme.border,
+                        width: 350,
+                        child: Column(
+                          children: [
+                            Container(
+                              decoration: BoxDecoration(
+                                border: Border(
+                                  bottom: BorderSide(
+                                    color: Theme.of(context).colorScheme.border,
+                                  ),
+                                ),
+                              ),
+                              height: 32,
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 8,
+                              ),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  const Text("Category").semiBold,
+                                  const Text("T-Shirt").muted,
+                                ],
+                              ),
+                            ),
+                            Container(
+                              decoration: BoxDecoration(
+                                border: Border(
+                                  bottom: BorderSide(
+                                    color: Theme.of(context).colorScheme.border,
+                                  ),
+                                ),
+                              ),
+                              height: 32,
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 8,
+                              ),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  const Text("Brand").semiBold,
+                                  const Text("WearIt").muted,
+                                ],
+                              ),
+                            ),
+                            Container(
+                              decoration: BoxDecoration(
+                                border: Border(
+                                  bottom: BorderSide(
+                                    color: Theme.of(context).colorScheme.border,
+                                  ),
+                                ),
+                              ),
+                              height: 32,
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 8,
+                              ),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  const Text("Color").semiBold,
+                                  const Text("Purple").muted,
+                                ],
+                              ),
+                            ),
+                            Container(
+                              height: 32,
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 8,
+                              ),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  const Text("Weight").semiBold,
+                                  const Text("1.2 Kg").muted,
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                     children: [
+                      const Text("Key Features").bold,
+                      const SizedBox(height: 4),
+                      const Text(
+                        "- Industry-leading noise cancellation",
+                      ).muted.small,
+                      const Text("- 30-hour battery life").muted.small,
+                      const Text("- Touch sensor controls").muted.small,
+                      const Text("- Speak-to-chat technology").muted.small,
+
+                      const SizedBox(height: 16),
+
                       const Text("Size").bold,
                       const SizedBox(height: 4),
 
@@ -195,5 +359,43 @@ class _EcommerceProductDetailScreenState
         ).gap(16),
       ],
     ).gap(16).withPadding(all: 16);
+  }
+}
+
+class NumberedContainer extends StatelessWidget {
+  final int index;
+  final double? width;
+  final double? height;
+  final bool fill;
+
+  const NumberedContainer({
+    super.key,
+    required this.index,
+    this.width,
+    this.height,
+    this.fill = true,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
+    return Container(
+      width: width,
+      height: height,
+      decoration: BoxDecoration(
+        color: fill
+            ? Colors.primaries[(Colors.primaries.length - 1 - index) %
+                  Colors.primaries.length]
+            : null,
+        borderRadius: theme.borderRadiusMd,
+      ),
+      child: Center(
+        child: Text(
+          index.toString(),
+          style: const TextStyle(color: Colors.white, fontSize: 24),
+        ),
+      ),
+    );
   }
 }

@@ -24,6 +24,7 @@ class CardWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               ...leading,
               if (title.isNotEmpty || subtitle.isNotEmpty)
