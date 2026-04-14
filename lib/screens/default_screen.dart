@@ -1,18 +1,9 @@
 import "package:flutter_dashboard/navigation/navigation_builder.dart";
-import "package:flutter_dashboard/navigation/navigation_config.dart";
-import "package:flutter_dashboard/navigation/screen_builder.dart";
 import "package:flutter_dashboard/widget/app_bar_widget.dart";
 import "package:shadcn_flutter/shadcn_flutter.dart";
 
 class DefaultScreen extends StatefulWidget {
-  final VoidCallback onThemeToggle;
-  final ThemeMode themeMode;
-
-  const DefaultScreen({
-    super.key,
-    required this.onThemeToggle,
-    required this.themeMode,
-  });
+  const DefaultScreen({super.key});
 
   @override
   State<DefaultScreen> createState() => DefaultScreenState();
@@ -54,8 +45,6 @@ class DefaultScreenState extends State<DefaultScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       AppBarWidget(
-                        onThemeToggle: widget.onThemeToggle,
-                        themeMode: widget.themeMode,
                         onToggleExpanded: () =>
                             setState(() => expanded = !expanded),
                       ),

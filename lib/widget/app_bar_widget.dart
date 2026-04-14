@@ -1,19 +1,16 @@
+import 'package:flutter_dashboard/providers/theme_provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shadcn_flutter/shadcn_flutter.dart';
 
-class AppBarWidget extends StatelessWidget {
-  final VoidCallback onThemeToggle;
-  final ThemeMode themeMode;
+class AppBarWidget extends ConsumerWidget {
   final VoidCallback onToggleExpanded;
 
-  const AppBarWidget({
-    super.key,
-    required this.onThemeToggle,
-    required this.themeMode,
-    required this.onToggleExpanded,
-  });
+  const AppBarWidget({super.key, required this.onToggleExpanded});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final themeMode = ref.watch(themeProvider);
+
     return Container(
       height: 56,
       padding: const .symmetric(horizontal: 16),
@@ -37,7 +34,7 @@ class AppBarWidget extends StatelessWidget {
           const Spacer(),
           const NotificationsMenu(),
           IconButton.ghost(
-            onPressed: onThemeToggle,
+            onPressed: () => ref.read(themeProvider.notifier).toggle(),
             icon: Icon(
               themeMode == ThemeMode.dark ? LucideIcons.sun : LucideIcons.moon,
               size: 16,

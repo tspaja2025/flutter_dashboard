@@ -1,37 +1,27 @@
+import 'package:flutter_dashboard/providers/router_provider.dart';
+import 'package:flutter_dashboard/providers/theme_provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shadcn_flutter/shadcn_flutter.dart';
-import 'package:flutter_dashboard/screens/default_screen.dart';
 
 void main() {
-  runApp(const FlutterDashboard());
+  runApp(const ProviderScope(child: FlutterDashboard()));
 }
 
-class FlutterDashboard extends StatefulWidget {
+class FlutterDashboard extends ConsumerWidget {
   const FlutterDashboard({super.key});
 
   @override
-  State<FlutterDashboard> createState() => FlutterDashboardState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final themeMode = ref.watch(themeProvider);
+    final router = ref.watch(routerProvider);
 
-class FlutterDashboardState extends State<FlutterDashboard> {
-  ThemeMode _themeMode = ThemeMode.light;
-
-  void _toggleTheme() {
-    setState(() {
-      _themeMode = _themeMode == ThemeMode.light
-          ? ThemeMode.dark
-          : ThemeMode.light;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return ShadcnApp(
+    return ShadcnApp.router(
       debugShowCheckedModeBanner: false,
       title: "Flutter Dashboard",
       theme: ThemeData(colorScheme: ColorSchemes.lightNeutral),
       darkTheme: ThemeData.dark(colorScheme: ColorSchemes.darkNeutral),
-      themeMode: _themeMode,
-      home: DefaultScreen(onThemeToggle: _toggleTheme, themeMode: _themeMode),
+      themeMode: themeMode,
+      routerConfig: router,
     );
   }
 }
