@@ -21,7 +21,7 @@ class AppScaffold extends StatefulWidget {
 class _AppScaffoldState extends State<AppScaffold> {
   bool expanded = true;
 
-  NavigationItem buildButton(String text, IconData icon, String routeName) {
+  NavigationItem _buildButton(String text, IconData icon, String routeName) {
     final isSelected = _isRouteActive(routeName);
 
     return NavigationItem(
@@ -37,7 +37,7 @@ class _AppScaffoldState extends State<AppScaffold> {
     );
   }
 
-  NavigationGroup buildLabel(String label, List<Widget> children) {
+  NavigationGroup _buildLabel(String label, List<Widget> children) {
     return NavigationGroup(
       labelAlignment: Alignment.centerLeft,
       label: Text(label).semiBold.muted.xSmall,
@@ -46,15 +46,8 @@ class _AppScaffoldState extends State<AppScaffold> {
   }
 
   bool _isRouteActive(String routeName) {
-    final routerState = GoRouterState.of(context);
-    final currentLocation = routerState.uri.path;
-
-    switch (routeName) {
-      case "classicDashboard":
-        return currentLocation == "/";
-      default:
-        return false;
-    }
+    final currentRoute = GoRouterState.of(context).name;
+    return currentRoute == routeName;
   }
 
   @override
@@ -63,9 +56,6 @@ class _AppScaffoldState extends State<AppScaffold> {
       child: Row(
         children: [
           NavigationRail(
-            backgroundColor: Theme.of(
-              context,
-            ).colorScheme.accent.withValues(alpha: 0.4),
             labelType: NavigationLabelType.expanded,
             labelPosition: NavigationLabelPosition.end,
             alignment: NavigationRailAlignment.start,
@@ -141,25 +131,300 @@ class _AppScaffoldState extends State<AppScaffold> {
               ),
             ],
             children: [
-              buildButton("Dashbord", LucideIcons.house, "dashboard"),
-              NavigationCollapsible(
-                leading: const Icon(LucideIcons.receiptText),
-                label: const Text("Invoices"),
-                children: [
-                  buildButton(
-                    "Dashboard",
-                    LucideIcons.receiptText,
-                    "invoiceDashboard",
-                  ),
-                  buildButton(
-                    "Invoice List",
-                    LucideIcons.receipt,
-                    "invoiceList",
-                  ),
-                  buildButton("Clients", LucideIcons.users, "invoiceClients"),
-                ],
-              ),
-              buildButton("Kanban", LucideIcons.kanban, "kanban"),
+              // Dashboards
+              _buildLabel("Dashboards", [
+                _buildButton(
+                  "Classic Dashboard",
+                  LucideIcons.chartPie,
+                  "classicDashboard",
+                ),
+                NavigationCollapsible(
+                  leading: const Icon(LucideIcons.shoppingBag),
+                  label: const Text("E-commerce"),
+                  children: [
+                    _buildButton(
+                      "Dashboard",
+                      LucideIcons.shoppingCart,
+                      "ecommerceDashboard",
+                    ),
+                    _buildButton(
+                      "Product List",
+                      LucideIcons.list,
+                      "ecommerceProductList",
+                    ),
+                    _buildButton(
+                      "Product Detail",
+                      LucideIcons.fileText,
+                      "ecommerceProductDetail",
+                    ),
+                    _buildButton(
+                      "Add Product",
+                      LucideIcons.plus,
+                      "ecommerceAddProduct",
+                    ),
+                    _buildButton(
+                      "Order List",
+                      LucideIcons.listOrdered,
+                      "ecommerceOrderList",
+                    ),
+                    _buildButton(
+                      "Order Detail",
+                      LucideIcons.fileText,
+                      "ecommerceOrderDetail",
+                    ),
+                  ],
+                ),
+                NavigationCollapsible(
+                  leading: const Icon(LucideIcons.creditCard),
+                  label: const Text("Payment Management"),
+                  children: [
+                    _buildButton(
+                      "Dashboard",
+                      LucideIcons.banknote,
+                      "paymentDashboard",
+                    ),
+                    _buildButton(
+                      "Transactions",
+                      LucideIcons.history,
+                      "paymentTransactions",
+                    ),
+                  ],
+                ),
+                NavigationCollapsible(
+                  leading: const Icon(LucideIcons.building),
+                  label: const Text("Hotel Management"),
+                  children: [
+                    _buildButton(
+                      "Dashboard",
+                      LucideIcons.building2,
+                      "hotelDashboard",
+                    ),
+                    _buildButton(
+                      "Booking",
+                      LucideIcons.bookText,
+                      "hotelBooking",
+                    ),
+                  ],
+                ),
+                NavigationCollapsible(
+                  leading: const Icon(LucideIcons.folderPlus),
+                  label: const Text("Project Management"),
+                  children: [
+                    _buildButton(
+                      "Dashboard",
+                      LucideIcons.fileCheck,
+                      "projectManagementDashboard",
+                    ),
+                    _buildButton(
+                      "Project List",
+                      LucideIcons.listCheck,
+                      "projectProjectList",
+                    ),
+                  ],
+                ),
+                _buildButton(
+                  "Sales",
+                  LucideIcons.circleDollarSign,
+                  "salesDashboard",
+                ),
+                _buildButton(
+                  "CRM",
+                  LucideIcons.chartBarIncreasing,
+                  "crmDashboard",
+                ),
+                _buildButton(
+                  "Website Analytics",
+                  LucideIcons.gauge,
+                  "websiteAnalyticsDashboard",
+                ),
+                _buildButton(
+                  "File Manager",
+                  LucideIcons.folder,
+                  "fileManagerDashboard",
+                ),
+                _buildButton("Crypto", LucideIcons.wallet, "cryptoDashboard"),
+                _buildButton(
+                  "Academy/School",
+                  LucideIcons.graduationCap,
+                  "academyDashboard",
+                ),
+                _buildButton(
+                  "Hospital Management",
+                  LucideIcons.heartPulse,
+                  "hospitalManagementDashboard",
+                ),
+                _buildButton(
+                  "Finance Dashboard",
+                  LucideIcons.walletCards,
+                  "financeDashboard",
+                ),
+              ]),
+
+              // Apps
+              _buildLabel("Apps", [
+                _buildButton("Kanban", LucideIcons.kanban, "kanbanBoardApp"),
+                _buildButton("Notes", LucideIcons.stickyNote, "notesApp"),
+                _buildButton("Chats", LucideIcons.messageSquare, "chatsApp"),
+                _buildButton(
+                  "Social Media",
+                  LucideIcons.messageSquareHeart,
+                  "socialMediaApp",
+                ),
+                _buildButton("Mail", LucideIcons.mail, "mailApp"),
+                _buildButton("Todo List", LucideIcons.listTodo, "todoListApp"),
+                _buildButton("Tasks", LucideIcons.clipboardCheck, "tasksApp"),
+                _buildButton("Calendar", LucideIcons.calendar, "calendarApp"),
+                _buildButton(
+                  "File Manager",
+                  LucideIcons.fileArchive,
+                  "fileManagerApp",
+                ),
+                _buildButton("API Keys", LucideIcons.key, "apiKeysApp"),
+                _buildButton("POS", LucideIcons.cookie, "posApp"),
+                _buildButton("Courses", LucideIcons.bookA, "coursesApp"),
+              ]),
+
+              // AI Apps
+              _buildLabel("AI Apps", [
+                _buildButton(
+                  "AI Chat",
+                  LucideIcons.brainCircuit,
+                  "aiChatAiApp",
+                ),
+                _buildButton(
+                  "Image Generator",
+                  LucideIcons.images,
+                  "imageGenerateAiApp",
+                ),
+                _buildButton(
+                  "Text to Speech",
+                  LucideIcons.speech,
+                  "textToSpeechAiApp",
+                ),
+              ]),
+
+              // Pages
+              _buildLabel("Pages", [
+                _buildButton("Users List", LucideIcons.users, "usersListPage"),
+                _buildButton("Profile", LucideIcons.user, "profilePage"),
+                _buildButton(
+                  "Onboarding Flow",
+                  LucideIcons.redoDot,
+                  "onboardingFlowPage",
+                ),
+                NavigationCollapsible(
+                  leading: const Icon(LucideIcons.brush),
+                  label: const Text("Empty States"),
+                  children: [
+                    _buildButton(
+                      "Empty State 01",
+                      LucideIcons.construction,
+                      "emptyStates01Page",
+                    ),
+                    _buildButton(
+                      "Empty State 02",
+                      LucideIcons.construction,
+                      "emptyStates02Page",
+                    ),
+                    _buildButton(
+                      "Empty State 03",
+                      LucideIcons.construction,
+                      "emptyStates03Page",
+                    ),
+                  ],
+                ),
+                NavigationCollapsible(
+                  leading: const Icon(LucideIcons.settings),
+                  label: const Text("Settings"),
+                  children: [
+                    _buildButton(
+                      "Profile",
+                      LucideIcons.user,
+                      "settingsProfilePage",
+                    ),
+                    _buildButton(
+                      "Account",
+                      LucideIcons.userCog,
+                      "settingsAccountPage",
+                    ),
+                    _buildButton(
+                      "Account",
+                      LucideIcons.creditCard,
+                      "settingsBillingPage",
+                    ),
+                    _buildButton(
+                      "Appearance",
+                      LucideIcons.palette,
+                      "settingsAppearancePage",
+                    ),
+                    _buildButton(
+                      "Notifications",
+                      LucideIcons.bell,
+                      "settingsNotificationsPage",
+                    ),
+                    _buildButton(
+                      "Display",
+                      LucideIcons.monitor,
+                      "settingsDisplayPage",
+                    ),
+                  ],
+                ),
+                NavigationCollapsible(
+                  leading: const Icon(LucideIcons.badgeDollarSign),
+                  label: const Text("Pricing"),
+                  children: [
+                    _buildButton(
+                      "Column Pricing",
+                      LucideIcons.columns2,
+                      "pricingColumnPage",
+                    ),
+                    _buildButton(
+                      "Table Pricing",
+                      LucideIcons.table,
+                      "pricingTablePage",
+                    ),
+                    _buildButton(
+                      "Single Pricing",
+                      LucideIcons.fileText,
+                      "pricingSinglePage",
+                    ),
+                  ],
+                ),
+                NavigationCollapsible(
+                  leading: const Icon(LucideIcons.fingerprint),
+                  label: const Text("Authentication"),
+                  children: [
+                    _buildButton(
+                      "Login",
+                      LucideIcons.logIn,
+                      "authenticationLoginPage",
+                    ),
+                    _buildButton(
+                      "Register",
+                      LucideIcons.userPlus,
+                      "authenticationRegisterPage",
+                    ),
+                    _buildButton(
+                      "Forgot Password",
+                      LucideIcons.key,
+                      "authenticationForgotPasswordPage",
+                    ),
+                  ],
+                ),
+                NavigationCollapsible(
+                  leading: const Icon(LucideIcons.folderPlus),
+                  label: const Text("Error Pages"),
+                  children: [
+                    _buildButton(
+                      "404",
+                      LucideIcons.fileQuestion,
+                      "error404Page",
+                    ),
+                    _buildButton("500", LucideIcons.server, "error500Page"),
+                    _buildButton("403", LucideIcons.shield, "error403Page"),
+                  ],
+                ),
+              ]),
             ],
           ),
           Flexible(
