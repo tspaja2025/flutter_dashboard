@@ -1,6 +1,4 @@
 import 'package:flutter_dashboard/widget/app_bar_widget.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import "package:shadcn_flutter/shadcn_flutter.dart";
 import 'package:flutter_dashboard/screens/ai_apps/ai_chat_ai_app.dart';
 import 'package:flutter_dashboard/screens/ai_apps/image_generate_ai_app.dart';
@@ -859,20 +857,3 @@ class DefaultScreenState extends State<DefaultScreen> {
     );
   }
 }
-
-// Refactor this file to use:
-// * flutter_riverpod
-// * go_router
-// routerProvider example:
-final routerProvider = Provider<GoRouter>((ref) {
-  return GoRouter(
-    initialLocation: "/",
-    routes: [
-      GoRoute(
-        path: "/",
-        name: "classicDashboard",
-        builder: (context, state) => const ClassicDashboardScreen(),
-      ),
-    ],
-  );
-});
